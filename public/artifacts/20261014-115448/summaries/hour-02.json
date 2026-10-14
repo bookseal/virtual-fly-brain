@@ -1,0 +1,46 @@
+{
+  "id": "20261014-115448-0012",
+  "index": 2,
+  "recorded_at": "2026-10-14T14:07:23+09:00",
+  "scheduled_epoch": 1791953828.5686998,
+  "elapsed_minutes": 130.24866251945497,
+  "backend": "3d",
+  "status": "gap",
+  "title": "덮개 절전으로 기록 지연",
+  "question": "2번째 한 시간 동안 무엇이 달라졌을까?",
+  "change": "구간 7 → 12. macOS 전원 로그에서 Clamshell Sleep 확인",
+  "result": "예정 시각보다 10.2분 늦게 저장했습니다. 이 구간을 연속 계산 또는 새 행동 평가로 해석하지 않습니다. 이 시간의 기록 지연 6개.",
+  "next_action": "덮개가 열린 상태에서 계산을 재개하고 다음 실시간 기록 확인",
+  "training": {},
+  "events": [
+    {
+      "id": "9758088380b146bc99e33f49869ec104",
+      "at": "2026-10-14T13:51:56+09:00",
+      "epoch": 1791953516.623911,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 6,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0006']' returned non-zero exit status 1."
+    }
+  ],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0012.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T14:23:34+09:00",
+    "video": "artifacts/20261014-115448/videos/hour-0002/recap.mp4"
+  },
+  "actor": "local-script",
+  "summary_kind": "hour",
+  "source_intervals": [
+    "20261014-115448-0007",
+    "20261014-115448-0008",
+    "20261014-115448-0009",
+    "20261014-115448-0010",
+    "20261014-115448-0011",
+    "20261014-115448-0012"
+  ]
+}

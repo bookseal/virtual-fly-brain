@@ -1,0 +1,235 @@
+{
+  "id": "20261014-115448-0017",
+  "index": 17,
+  "recorded_at": "2026-10-14T14:47:09+09:00",
+  "scheduled_epoch": 1791956828.5686998,
+  "elapsed_minutes": 170.01179900169373,
+  "backend": "3d",
+  "status": "training",
+  "title": "다음 에피소드부터 정책 학습 재개",
+  "question": "먹이까지의 거리가 줄어드는 행동을 보상하면 도달률이 높아질까?",
+  "change": "3d-food-near-seed11: dense 보상, seed 11",
+  "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+  "next_action": "한 시간마다 학습에 쓰지 않은 20개 시작 조건으로 평가",
+  "training": {
+    "trial": "3d-food-near-seed11",
+    "timesteps": 2792,
+    "steps_this_segment": 84,
+    "decisions_per_second": 3.9518475221635967,
+    "reward_terms_sum": {
+      "approach": 9.042769411920784,
+      "arrival": 0.0,
+      "time": -2.0999999999999965,
+      "collision": 0.0,
+      "flip": 0.0
+    },
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000002708.zip"
+  },
+  "events": [
+    {
+      "id": "18b6f13cac744b64aa6d05d5011a2fa5",
+      "at": "2026-10-14T14:38:15+09:00",
+      "epoch": 1791956295.618198,
+      "actor": "gpt-6.1-sol",
+      "kind": "verification",
+      "title": "실제 3D PPO의 중단·재개 통합 검증 시작",
+      "detail": "첫 optimizer 업데이트가 지난 뒤 학습 프로세스에 안전 종료를 요청합니다. 체크포인트와 난수 상태를 확인한 뒤 같은 정책에서 이어갑니다."
+    },
+    {
+      "id": "367c1fd65d054e7fb8f8dcaba71c2330",
+      "at": "2026-10-14T14:38:16+09:00",
+      "epoch": 1791956296.217024,
+      "actor": "local-script",
+      "kind": "training",
+      "title": "학습 구간 저장",
+      "trial": "3d-food-near-seed11",
+      "checkpoint": "runs/20261014-115448/checkpoints/3d-food-near-seed11/step-000000660.zip",
+      "timesteps": 660,
+      "seconds": 157.60149097442627,
+      "stopped": true,
+      "config": {
+        "trial": "3d-food-near-seed11",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "near",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 11,
+        "policy_layers": [
+          64,
+          64
+        ],
+        "decision_seconds": 0.05,
+        "physics_timestep": 0.0001,
+        "observation": "known target and obstacle coordinates; not olfaction"
+      }
+    },
+    {
+      "id": "09cf9c35eee64715a32118d467571a59",
+      "at": "2026-10-14T14:38:17+09:00",
+      "epoch": 1791956297.6666281,
+      "actor": "gpt-6.1-sol",
+      "kind": "resume",
+      "title": "검증된 3D 체크포인트에서 실험 관리자 재개",
+      "timesteps": 660,
+      "gradient_updates": 5,
+      "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000000660.zip"
+    },
+    {
+      "id": "466321f7c7d848e893837b94c44db903",
+      "at": "2026-10-14T14:38:17+09:00",
+      "epoch": 1791956297.728915,
+      "actor": "local-script",
+      "kind": "command",
+      "title": "정해진 실험 구간 실행",
+      "command": ".venv/bin/python -m lab.learning train runs/20261014-115448 --config runs/20261014-115448/configs/3d-food-near-seed11.json --steps 2048 --workers 4 --checkpoint runs/20261014-115448/checkpoints/3d-food-near-seed11/step-000000660.zip --deadline 1791967097.7166238",
+      "command_ko": "저장된 설정으로 로컬 CPU에서 학습 또는 평가합니다."
+    },
+    {
+      "id": "c12f5ad806e04e06ba3adc06c7f106a0",
+      "at": "2026-10-14T14:38:23+09:00",
+      "epoch": 1791956303.41472,
+      "actor": "local-script",
+      "kind": "resume",
+      "title": "다음 에피소드부터 정책 학습 재개",
+      "trial": "3d-food-near-seed11",
+      "checkpoint": "runs/20261014-115448/checkpoints/3d-food-near-seed11/step-000000660.zip",
+      "detail": "정책·optimizer·난수 상태를 읽었습니다. 중단된 rollout은 폐기하고 새 에피소드에서 시작합니다."
+    },
+    {
+      "id": "80cdfbfeccbc4651a602c5236a9255e3",
+      "at": "2026-10-14T14:41:20+09:00",
+      "epoch": 1791956480.035868,
+      "actor": "gpt-6.1-sol",
+      "kind": "verification",
+      "title": "실제 3D 학습 저장·재개 검증 완료",
+      "detail": "660행동, optimizer 업데이트 5회에서 안전 저장한 뒤 재개했습니다. 현재 학습량이 660을 넘어 계속 증가합니다. 정책 성능 개선은 다음 20회 고정 평가에서 별도로 판정합니다."
+    },
+    {
+      "id": "3f742d185bb44e95bb1c3ac1e7ea5715",
+      "at": "2026-10-14T14:46:35+09:00",
+      "epoch": 1791956795.5773141,
+      "actor": "local-script",
+      "kind": "training",
+      "title": "학습 구간 저장",
+      "trial": "3d-food-near-seed11",
+      "checkpoint": "runs/20261014-115448/checkpoints/3d-food-near-seed11/step-000002708.zip",
+      "timesteps": 2708,
+      "seconds": 492.1607072353363,
+      "stopped": false,
+      "config": {
+        "trial": "3d-food-near-seed11",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "near",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 11,
+        "policy_layers": [
+          64,
+          64
+        ],
+        "decision_seconds": 0.05,
+        "physics_timestep": 0.0001,
+        "observation": "known target and obstacle coordinates; not olfaction"
+      }
+    },
+    {
+      "id": "0d97f162d1464291a64a91552f592d92",
+      "at": "2026-10-14T14:46:38+09:00",
+      "epoch": 1791956798.725572,
+      "actor": "local-script",
+      "kind": "command",
+      "title": "정해진 실험 구간 실행",
+      "command": ".venv/bin/python -m lab.learning train runs/20261014-115448 --config runs/20261014-115448/configs/3d-food-near-seed11.json --steps 2048 --workers 4 --checkpoint runs/20261014-115448/checkpoints/3d-food-near-seed11/step-000002708.zip --deadline 1791967097.7166238",
+      "command_ko": "저장된 설정으로 로컬 CPU에서 학습 또는 평가합니다."
+    },
+    {
+      "id": "4edf215f8ac94d7a90d715e64ba6aac3",
+      "at": "2026-10-14T14:46:44+09:00",
+      "epoch": 1791956804.4337358,
+      "actor": "local-script",
+      "kind": "resume",
+      "title": "다음 에피소드부터 정책 학습 재개",
+      "trial": "3d-food-near-seed11",
+      "checkpoint": "runs/20261014-115448/checkpoints/3d-food-near-seed11/step-000002708.zip",
+      "detail": "정책·optimizer·난수 상태를 읽었습니다. 중단된 rollout은 폐기하고 새 에피소드에서 시작합니다."
+    }
+  ],
+  "evaluation": {
+    "id": "1791955321946788000-3d-food-near-seed11-untrained-fixed",
+    "evaluated_at": "2026-10-14T14:35:11+09:00",
+    "backend": "3d",
+    "task": "food-near",
+    "policy": "untrained",
+    "policy_family": "3d-food-near-seed11",
+    "trial": "3d-food-near-seed11",
+    "seed": 11,
+    "timesteps": 0,
+    "success_rate": 0.0,
+    "successes": 0,
+    "episodes": 20,
+    "mean_steps": 120.0,
+    "mean_success_seconds": null,
+    "collision_count": 0,
+    "flip_count": 0,
+    "seconds": 789.5825638771057,
+    "evaluation_suite": "3094622ba4a9",
+    "selection_holdout": false,
+    "seeds": [
+      10000,
+      10001,
+      10002,
+      10003,
+      10004,
+      10005,
+      10006,
+      10007,
+      10008,
+      10009,
+      10010,
+      10011,
+      10012,
+      10013,
+      10014,
+      10015,
+      10016,
+      10017,
+      10018,
+      10019
+    ],
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000000000.zip",
+    "config": {
+      "trial": "3d-food-near-seed11",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 11,
+      "policy_layers": [
+        64,
+        64
+      ],
+      "decision_seconds": 0.05,
+      "physics_timestep": 0.0001,
+      "observation": "known target and obstacle coordinates; not olfaction"
+    },
+    "video": "artifacts/20261014-115448/media/1791955321946788000-3d-food-near-seed11-untrained-fixed.mp4",
+    "video_seed": 10000,
+    "path_image": "artifacts/20261014-115448/media/1791955321946788000-3d-food-near-seed11-untrained-fixed-paths.png",
+    "record_url": "artifacts/20261014-115448/evaluations/1791955321946788000-3d-food-near-seed11-untrained-fixed.json"
+  },
+  "media": [
+    "artifacts/20261014-115448/media/interval-0017.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T14:47:40+09:00",
+    "video": "artifacts/20261014-115448/videos/interval-0017/recap.mp4"
+  },
+  "actor": "local-script",
+  "record_type": "interval",
+  "recording_delay_seconds": 0.7079401016235352,
+  "last_evaluated_at": "2026-10-14T14:35:11+09:00"
+}

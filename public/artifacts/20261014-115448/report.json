@@ -1,0 +1,171 @@
+{
+  "run_id": "20261014-115448",
+  "generated_at": "2026-10-14T14:42:09+09:00",
+  "elapsed_hours": 2.7503508939345678,
+  "verdict": {
+    "record_system": {
+      "status": "partial",
+      "intervals": 17,
+      "rendered": 17,
+      "gaps": 11
+    },
+    "3d_execution": {
+      "status": "pass",
+      "evidence": "artifacts/20261014-115448/media/first-3d-walk.mp4"
+    },
+    "learning_improvement": {
+      "status": "not_confirmed",
+      "comparisons": [],
+      "interpretation": "같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다."
+    },
+    "obstacles": {
+      "status": "not_started",
+      "holdout_results": []
+    }
+  },
+  "errors": [
+    {
+      "id": "6e3317e8c11a4097951da3288cb4874a",
+      "at": "2026-10-14T12:04:21+09:00",
+      "epoch": 1791947061.087882,
+      "actor": "gpt-6.1-sol",
+      "kind": "error",
+      "title": "설치 패키지의 import 이름 확인",
+      "detail": "배포 이름 flygym-gymnasium과 import 이름 flygym_gymnasium이 달랐습니다. ModuleNotFoundError 이후 설치 파일을 확인하고 수정했습니다."
+    },
+    {
+      "id": "6d372e810e08421e9ef42834e7e96c43",
+      "at": "2026-10-14T12:36:11+09:00",
+      "epoch": 1791948971.236964,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 2,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0002']' returned non-zero exit status 1."
+    },
+    {
+      "id": "26bb92cfff344cc3ac61a2bdb96eac12",
+      "at": "2026-10-14T12:53:27+09:00",
+      "epoch": 1791950007.795433,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 3,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0003']' returned non-zero exit status 1."
+    },
+    {
+      "id": "30065ec800444b7f9722e2d1dc90feba",
+      "at": "2026-10-14T13:19:13+09:00",
+      "epoch": 1791951553.4562979,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 4,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0004']' returned non-zero exit status 1."
+    },
+    {
+      "id": "a3176e9640134577ac99bc21e7a46df7",
+      "at": "2026-10-14T13:36:03+09:00",
+      "epoch": 1791952563.834677,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 5,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0005']' returned non-zero exit status 1."
+    },
+    {
+      "id": "9758088380b146bc99e33f49869ec104",
+      "at": "2026-10-14T13:51:56+09:00",
+      "epoch": 1791953516.623911,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 6,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0006']' returned non-zero exit status 1."
+    },
+    {
+      "id": "3bedf7164e6249c38ab69001e9e27a59",
+      "at": "2026-10-14T14:15:45+09:00",
+      "epoch": 1791954945.5103302,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 7,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'render', 'runs/20261014-115448/videos/interval-0007', '--output', 'runs/20261014-115448/videos/interval-0007/recap.mp4', '--fps', '24', '--quality', 'delivery', '--workers', '1']' returned non-zero exit status 1."
+    },
+    {
+      "id": "397defe08324458788a0c41b856312f6",
+      "at": "2026-10-14T14:16:11+09:00",
+      "epoch": 1791954971.441538,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 8,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'render', 'runs/20261014-115448/videos/interval-0008', '--output', 'runs/20261014-115448/videos/interval-0008/recap.mp4', '--fps', '24', '--quality', 'delivery', '--workers', '1']' returned non-zero exit status 1."
+    },
+    {
+      "id": "2fe67d0a50514815bdc145f624346629",
+      "at": "2026-10-14T14:18:54+09:00",
+      "epoch": 1791955134.987581,
+      "actor": "gpt-6.1-sol",
+      "kind": "error",
+      "title": "덮개 절전으로 발생한 기록 지연을 정정",
+      "intervals": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "detail": "원본 JSON은 audit/original-delayed-intervals에 보존했습니다. 기록 카드에 지연을 표시하며 영상은 정정 내용으로 재제작합니다."
+    },
+    {
+      "id": "119ac38cef39437b8eb94b852a7d488c",
+      "at": "2026-10-14T14:20:59+09:00",
+      "epoch": 1791955259.053387,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "실험 자동 진행 보류",
+      "detail": "RuntimeError('Baseline process ended without completed baseline records; inspect logs/baselines.log')"
+    },
+    {
+      "id": "62424a6076c44f91bfb18c55073ede7b",
+      "at": "2026-10-14T14:21:54+09:00",
+      "epoch": 1791955314.696,
+      "actor": "gpt-6.1-sol",
+      "kind": "error",
+      "title": "체크포인트 임시 파일 확장자 오류",
+      "detail": "복구 시험에서 SB3가 임시 파일의 .partial 확장자를 그대로 사용하는 것을 확인했습니다. 명시적인 .partial.zip으로 수정했고 optimizer와 난수 상태를 포함한 저장·재개 시험을 통과했습니다. 무작위·규칙 평가 원본은 보존하고 학습 전 PPO부터 재개합니다."
+    },
+    {
+      "id": "5d6d47054ffd416587a9a0c9a917e99c",
+      "at": "2026-10-14T14:27:15+09:00",
+      "epoch": 1791955635.8676841,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 15,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0015']' returned non-zero exit status 1."
+    },
+    {
+      "id": "dc030314dd24405a93d71e9ef3503394",
+      "at": "2026-10-14T14:30:47+09:00",
+      "epoch": 1791955847.667655,
+      "actor": "gpt-6.1-sol",
+      "kind": "error",
+      "title": "실제 행동 영상을 넣는 HyperFrames 시간축 계약 수정",
+      "detail": "상태 카드 영상은 정상 렌더됐으나 실제 video를 시간 지정 section 안에 넣으면 매체 시작 시각 검증이 실패했습니다. video를 독립된 시간축 요소로 옮기고 원본 종료 뒤에는 마지막 실제 프레임임을 표시합니다."
+    }
+  ],
+  "remaining": [
+    "실제 초파리 뇌 전체와 생물학적 가소성은 이번 정책 학습의 대상이 아닙니다.",
+    "서로 다른 환경 seed와 새로운 조건에서 반복 검증이 필요합니다."
+  ],
+  "reproduction": "See EXPERIMENTS.md and per-evaluation config/seeds/checkpoint/actions."
+}

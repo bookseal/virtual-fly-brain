@@ -1,0 +1,104 @@
+{
+  "id": "20261014-115448-0002",
+  "index": 2,
+  "recorded_at": "2026-10-14T12:29:52+09:00",
+  "scheduled_epoch": 1791947828.5686998,
+  "elapsed_minutes": 32.72593928575516,
+  "backend": "3d",
+  "status": "gap",
+  "title": "덮개 절전으로 기록 지연",
+  "question": "예정 시각에 실제 계산과 기록이 계속됐는가?",
+  "change": "macOS 전원 로그에서 Clamshell Sleep 확인",
+  "result": "예정 시각보다 12.7분 늦게 저장했습니다. 이 구간을 연속 계산 또는 새 행동 평가로 해석하지 않습니다.",
+  "next_action": "덮개가 열린 상태에서 계산을 재개하고 다음 실시간 기록 확인",
+  "training": {},
+  "events": [
+    {
+      "id": "626d8694a8494ad1829f061baf52c76b",
+      "at": "2026-10-14T12:08:50+09:00",
+      "epoch": 1791947330.8022962,
+      "actor": "local-script",
+      "kind": "calibration",
+      "title": "左右 신호와 실제 회전 방향 측정",
+      "results": [
+        {
+          "action": [
+            1.2,
+            0.4
+          ],
+          "heading": -1.6539470789515445,
+          "position": [
+            3.765859842300415,
+            -4.263302803039551
+          ]
+        },
+        {
+          "action": [
+            0.4,
+            1.2
+          ],
+          "heading": 1.5018743903297875,
+          "position": [
+            4.02805233001709,
+            3.992861032485962
+          ]
+        }
+      ]
+    },
+    {
+      "id": "753393407c4a4d6395c2dec24a24a530",
+      "at": "2026-10-14T12:09:19+09:00",
+      "epoch": 1791947359.597525,
+      "actor": "gpt-6.1-sol",
+      "kind": "fix",
+      "title": "측정에 따라 좌우 회전 부호를 수정",
+      "detail": "왼쪽 신호 1.2 / 오른쪽 0.4에서 실제 몸은 -1.65rad 회전했습니다. 오른쪽 신호가 더 크면 +1.50rad였습니다. 규칙 정책과 2D 운동식을 이 방향에 맞췄습니다."
+    },
+    {
+      "id": "be981e941cef4ec9b8b4648767cda65e",
+      "at": "2026-10-14T12:09:48+09:00",
+      "epoch": 1791947388.643306,
+      "actor": "local-script",
+      "kind": "evaluation",
+      "title": "동일 조건 행동 평가 시작",
+      "trial": "3d-food-near-seed11",
+      "policy": "random",
+      "seeds": [
+        10000,
+        10001,
+        10002,
+        10003,
+        10004,
+        10005,
+        10006,
+        10007,
+        10008,
+        10009,
+        10010,
+        10011,
+        10012,
+        10013,
+        10014,
+        10015,
+        10016,
+        10017,
+        10018,
+        10019
+      ],
+      "backend": "3d",
+      "task": "food",
+      "command": ".venv/bin/python -m lab.learning evaluate runs/20261014-115448 --config runs/20261014-115448/configs/3d-food-near-seed11.json --policy random --seed-start 10000 --episodes 20 --workers 4",
+      "command_ko": "학습에 쓰지 않은 고정 시작 조건에서 먹이 도달 횟수를 셉니다. 모델을 평가 중에 업데이트하지 않습니다."
+    }
+  ],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0002.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T14:19:16+09:00",
+    "video": "artifacts/20261014-115448/videos/interval-0002/recap.mp4"
+  },
+  "actor": "local-script"
+}

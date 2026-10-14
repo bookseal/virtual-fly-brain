@@ -1,0 +1,26 @@
+{
+  "id": "20261014-115448-0013",
+  "index": 13,
+  "recorded_at": "2026-10-14T14:07:23+09:00",
+  "scheduled_epoch": 1791954428.5686998,
+  "elapsed_minutes": 130.24980606635413,
+  "backend": "3d",
+  "status": "evaluating",
+  "title": "random 20회 평가",
+  "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
+  "change": "실측으로 좌우 회전 부호를 확인하고 4개 환경을 선택",
+  "result": "3D 몸 실행 확보. 4개 환경에서 2만 행동+평가 예상 약 1.7시간.",
+  "next_action": "무작위·규칙·학습 전 PPO를 같은 조건에서 비교",
+  "training": {},
+  "events": [],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0013.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T14:18:08+09:00",
+    "video": "artifacts/20261014-115448/videos/interval-0013/recap.mp4"
+  },
+  "actor": "local-script"
+}

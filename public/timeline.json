@@ -1,0 +1,392 @@
+{
+  "title": "Fly Brain Lab — 초파리 뇌·몸 시뮬레이션 체험",
+  "updated": "2026-10-14 15:23:18",
+  "phases": [
+    {
+      "id": 0,
+      "title": "계획 & 환경 점검",
+      "goal": "Mac 환경 확인, 로드맵, 이 사이트. (21:15~21:45)",
+      "status": "done"
+    },
+    {
+      "id": 1,
+      "title": "뇌 지도 접속 + 최신 소식",
+      "goal": "VFB MCP 연결, 뉴런 경로 질의, 2026-09 수컷 CNS 커넥톰 해설 (~22:30)",
+      "status": "running"
+    },
+    {
+      "id": 2,
+      "title": "몸 시뮬레이터 설치",
+      "goal": "flygym-gymnasium + MuJoCo, 첫 초파리 렌더 영상, 시뮬 속도(steps/s) 측정 (~23:30)",
+      "status": "done"
+    },
+    {
+      "id": 3,
+      "title": "걷기·회전 컨트롤러",
+      "goal": "좌/우 하강 신호로 조종, 규칙 기반 냄새 추적으로 먹이 도달 영상 (~00:30)",
+      "status": "done"
+    },
+    {
+      "id": 4,
+      "title": "🐛 지렁이 게임 RL",
+      "goal": "먹이 재생성 아레나 + PPO 8개 병렬 학습을 백그라운드로 시작, 곡선 주기 갱신 (~01:30 시작, ~03:30 종료)",
+      "status": "running"
+    },
+    {
+      "id": 5,
+      "title": "🍄 마리오 코스",
+      "goal": "틈·블록 사이드스크롤 지형, 규칙 기반 통과 영상 → 시간 남으면 RL 조향 (~02:30)",
+      "status": "planned"
+    },
+    {
+      "id": 6,
+      "title": "뇌→몸 연결 데모",
+      "goal": "커넥톰에서 회전 하강뉴런(DNa02 등) 조회 → 발화율을 하강 신호로 매핑해 몸 조종 (~03:30)",
+      "status": "planned"
+    },
+    {
+      "id": 7,
+      "title": "마무리",
+      "goal": "학습 곡선·영상 모음·튜토리얼 정리, 토큰 창 끝까지 (~04:30)",
+      "status": "planned"
+    }
+  ],
+  "steps": [
+    {
+      "id": 1,
+      "time": "10-11 21:22",
+      "phase": 0,
+      "status": "done",
+      "media": [],
+      "title": "하드웨어·파이썬 환경 확인",
+      "cmd": "sysctl -n machdep.cpu.brand_string; sysctl -n hw.memsize; python3 --version; uv --version",
+      "why": "시뮬레이션은 전부 이 Mac에서 돈다(GPU 없음). MuJoCo는 CPU 물리엔진이라 M1 Pro로 충분하지만, RL 학습은 \"작은 정책 + 고수준 행동\"으로 설계해야 하루 안에 결과가 나온다. flygym 2.x는 Python 3.12~3.14를 요구 → 3.13 OK.",
+      "out": "Apple M1 Pro / 16 GB RAM\nPython 3.13.13 (miniforge) / uv 0.11.24\nMCP: claude.ai 커넥터들 연결됨, VFB MCP는 아직 없음",
+      "cmd_ko": [
+        [
+          "sysctl -n machdep.cpu.brand_string",
+          "커널 변수 조회(sysctl)로 CPU 이름을 값만(-n) 출력"
+        ],
+        [
+          "sysctl -n hw.memsize",
+          "하드웨어 메모리 크기를 바이트로 출력 (÷1024³ = GB)"
+        ],
+        [
+          "python3 --version",
+          "기본 파이썬 버전 확인"
+        ],
+        [
+          "uv --version",
+          "uv(빠른 파이썬 패키지·가상환경 관리자) 버전 확인"
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "time": "10-11 21:22",
+      "phase": 0,
+      "status": "done",
+      "media": [],
+      "title": "외부 자원 접속 확인 (VFB MCP, PyPI)",
+      "cmd": "curl -X POST https://vfb3-mcp.virtualflybrain.org -d \"{jsonrpc initialize...}\"   # → 200\ncurl https://pypi.org/pypi/flygym/json | jq .info.version        # → 2.1.0",
+      "why": "VFB MCP 서버가 살아있는지(계정·키 불필요) 먼저 확인. flygym(NeuroMechFly v2)은 pip로 설치 가능하고 MuJoCo를 내장 의존성으로 끌어온다. flybody(DeepMind/Janelia)는 PyPI에 없어 GitHub 설치가 필요 → 1차 선택은 flygym, flybody는 비교용.",
+      "out": "VFB MCP initialize → HTTP 200 (3.3s)\nflygym 2.1.0 (requires_python >=3.12,<3.15)\nstable-baselines3 2.9.0, gymnasium 1.4.0, dm_control 1.0.48",
+      "cmd_ko": [
+        [
+          "curl -X POST https://vfb3-mcp.virtualflybrain.org -d \"{...}\"",
+          "curl로 VFB MCP 서버에 POST 요청(-X POST), 본문(-d)에 MCP 초기화 JSON을 담아 보냄 → HTTP 200이면 서버 정상"
+        ],
+        [
+          "curl https://pypi.org/pypi/flygym/json",
+          "PyPI(파이썬 패키지 저장소)의 flygym 메타데이터를 JSON으로 받음"
+        ],
+        [
+          "| jq .info.version",
+          "파이프(|)로 넘겨 jq가 JSON에서 .info.version 필드만 뽑음"
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "time": "10-11 21:25",
+      "phase": 0,
+      "status": "done",
+      "media": [],
+      "title": "라이브러리 조사: 어느 초파리 몸을 쓸까",
+      "cmd": "WebFetch https://neuromechfly.org/installation\nWebFetch https://github.com/NeLy-EPFL/flygym-gymnasium\ncurl https://pypi.org/pypi/flygym-gymnasium/json | jq .info.requires_python   # <3.13,>=3.10",
+      "why": "발견: flygym은 2026년 3월에 2.x로 완전히 재작성됐고(CPU 10배 빠름), 냄새·시각·먹이 아레나·틈/블록 지형처럼 \"게임 재료\"가 되는 코드는 구버전 flygym-gymnasium(1.3.2)에 남아 있다. 구버전은 Python 3.12까지, mujoco 3.2.7 고정 → uv로 3.12 가상환경을 따로 만든다. flybody(DeepMind)는 걷기 정책을 RL로 처음부터 학습해야 해서(GPU 수십 개·일 단위) Mac 1대엔 부적합, 참고용으로만. Eon Systems의 뇌-몸 폐루프 코드는 공개 흔적 없음.",
+      "out": "flygym-gymnasium 1.3.2 | requires_python <3.13,>=3.10 | mujoco==3.2.7\nflygym 2.1.0 | requires_python >=3.12,<3.15 | GPU(warp)는 NVIDIA만, Mac은 CPU\nflybody: PyPI 없음, conda python=3.10, acme/tf 기반 분산 RL\nEon Systems: 코드 공개 확인 안 됨 (뉴스 기사만)",
+      "cmd_ko": [
+        [
+          "WebFetch https://neuromechfly.org/installation",
+          "Claude의 웹 읽기 도구로 설치 문서 페이지를 읽어 요약"
+        ],
+        [
+          "WebFetch https://github.com/NeLy-EPFL/flygym-gymnasium",
+          "구버전(legacy) 저장소 README 읽기"
+        ],
+        [
+          "curl https://pypi.org/pypi/flygym-gymnasium/json | jq .info.requires_python",
+          "PyPI 메타데이터에서 지원 파이썬 버전 범위만 추출"
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "time": "10-11 21:25",
+      "phase": 0,
+      "status": "done",
+      "media": [],
+      "title": "계획 수립 → PLAN.md",
+      "cmd": "cat PLAN.md",
+      "why": "# Fly Brain Lab — 계획 (2026-10-11 작성)\n\n목표: 초파리 \"몸\"(MuJoCo)과 \"뇌\"(커넥톰)를 Mac 한 대에서 굴려 보고, 초파리가 게임(지렁이, 마리오 코스)을 **학습하는 장면**을 영상으로 남긴다.\n모든 명령·설명·결과는 http://localhost:8765 타임라인에 실시간 기록한다.\n\n## 환경 결론 (Phase 0 조사 결과)\n- Mac M1 Pro, 16 GB, GPU 없음 → MuJoCo(CPU 물리)는 OK, RL은 \"작은 정책 + 고수준 행동\"으로 설계.\n- 몸 모델 후보 비교:\n  | | flygym-gymnasium 1.3.2 (legacy) | flygym 2.1.0 (2026-03 재작성) | flybody (DeepMind) |\n  |---|---|---|---|\n  | Python | 3.10–3.12 (3.13 불가) | 3.12–3.14 | 3.10 + conda |\n  | 냄새·시각·먹이 아레나·틈/블록 지형 | **있음** (OdorArena, Gapped/Blocks/MixedTerrain) | 미확인(재작성으로 일부 제외 추정) | 없음 |\n  | 걷기+회전 컨트롤러 | HybridTurningController (2D 하강 신호) | 4d turning controller 튜토리얼 있음, CPU 10x 빠름 | RL로 직접 학습 필요(수십 GPU·일 단위) |\n  | 선택 | **1차 선택: 게임 재료가 전부 있음** | 속도 병목 시 대체 | 비교·참고용 |\n- Eon Systems 뇌-몸 폐루프 코드는 공개 흔적 없음 → Phase 6은 Shiu 모델 + VFB로 축소 재현.\n\n## Phase 별 계획\n| P | 내용 | 산출물 | 예상 |\n|---|---|---|---|\n| 0 | 환경 점검, 계획, 타임라인 사이트 | 이 문서, localhost:8765 | 오늘 ✅ |\n| 1 | VFB MCP 등록(`claude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org`) + JSON-RPC로 직접 호출해 \"단맛 뉴런→주둥이 운동뉴런\" 경로, 회전 하강뉴런(DNa02 등) 조회 | 질의/응답 기록 | 오늘 30분 |\n| 2 | `uv venv -p 3.12 .venv && uv pip install flygym-gymnasium stable-baselines3` → 초파리 첫 렌더 영상, 시뮬 속도 측정(steps/s) | fly_first.mp4, 속도표 | 오늘 1시간 |\n| 3 | HybridTurningController에 (좌,우) 하강 신호 주입 → 수동/규칙 기반(냄새 추적) 정책으로 먹이 도달 | odor_taxis.mp4 | 오늘~내일 |\n| 4 | 🐛 지렁이 게임: 먹이 먹으면 다른 곳에 재생성+점수, 관측=냄새 세기(4채널)+(초기엔)먹이 상대좌표, 행동=하강 신호 2D, 결정 주기 50 ms. SB3 PPO, SubprocVecEnv 8개로 학습, 학습 곡선과 before/after 영상 | learning_curve.png, snake_ep*.mp4 | 내일~월 (학습은 밤새) |\n| 5 | 🍄 마리오 코스: Gapped+Blocks 지형을 가로(사이드 스크롤) 코스로 깔고, 먹이=코인. 측면 카메라. 하이브리드 컨트롤러 위에 RL 조향 | mario_course.mp4 | 화~수 |\n| 6 | (stretch) Shiu 전뇌 스파이킹 모델(Colab)에서 감각 자극→하강뉴런 발화율 뽑아 Phase 3 회전 명령으로 연결 | brain2body.mp4 | 수~ |\n\n## 설계 원칙\n- 각 Phase는 \"RL 없이도 영상 하나\"를 먼저 뽑고(규칙 기반), 그다음 RL로 교체한다. 학습이 늦어도 보여줄 게 남는다.\n- 시뮬 속도 측정 후 RL 스텝 예산을 정한다. 1.x가 너무 느리면 flygym 2.x로 몸만 교체(아레나 코드는 직접 작성).\n- 긴 학습은 nohup 백그라운드 + 타임라인에 주기적으로 곡선 갱신.\n\n## 결정이 필요한 것\n1. \"마리오\"의 정의: 위 5번(초파리가 플랫폼 코스를 직접 걷는 것)으로 간다. 진짜 NES 마리오를 초파리 움직임으로 조종하는 건 재미는 있지만 생물학적 의미가 없어 후순위.\n2. 밤새 학습 허용 여부(Mac 팬 돌아감, 8코어 점유).",
+      "cmd_ko": [
+        [
+          "cat PLAN.md",
+          "파일 내용을 터미널에 출력(cat = concatenate)"
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "time": "10-11 21:35",
+      "phase": 1,
+      "status": "done",
+      "media": [],
+      "title": "VFB MCP 서버에 직접 말 걸기: 도구 목록 받기",
+      "cmd": "python3 vfb_mcp.py tools\nclaude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org",
+      "why": "MCP(Model Context Protocol)는 LLM이 외부 도구를 부르는 공통 규약이다. 서버가 \"내가 할 수 있는 일(tools)\"을 JSON으로 내려주고, 모델은 그 중 하나를 JSON 인자로 호출한다. 처음엔 응답 파싱이 실패했는데, 도구 설명문 안에 \"data:\"라는 글자가 들어 있어 SSE(스트리밍) 응답으로 착각한 버그였다 → Content-Type 헤더로 판별하게 고침. 계정·API 키가 전혀 필요 없다는 점이 VFB의 장점.",
+      "out": "- get_term_info: Get term info for a VFB or anatomy ontology entity (VFB_*, FBbt_*, etc.). THIS IS THE QUERY DISCOVERY TOOL: the response's \"Queries\" array l\n- run_query: Run a pre-computed query on a VFB entity. REQUIRED WORKFLOW: (1) call get_term_info on the ID first; (2) read the response's \"Queries\" array\n- search_terms: Search VFB terms. This is the search virtualflybrain.org itself runs — the same Solr query, the same ranking — so what comes back first here\n- list_search_facets: List the type names search_terms can filter, exclude, boost or demote by, with the number of terms carrying each one. Call this instead of g\n- resolve_entity: Resolve an unresolved FlyBase-related query string into VFB/FlyBase IDs and metadata. Pass the raw text exactly as the user wrote it (for ex\n- resolve_combination: Resolve an unresolved split-GAL4 combination name or synonym into its FBco ID and component hemidrivers. Pass the raw combination text exact\n- list_connectome_datasets: List available connectome datasets with their labels and symbols. Use the returned symbols when constructing exclude_dbs arguments for query\n- query_connectivity: Query synaptic connectivity between Drosophila neuron classes across ALL connectome datasets simultaneously for comparative connectomics. Th\n- get_predicted_neurotransmitters: Get the PREDICTED neurotransmitter(s) for a Drosophila neuron class — itself or any subclass — from per-instance connectome predictions (eac\n- get_known_neurotransmitters: Get the KNOWN (curated) neurotransmitter(s) for a Drosophila neuron class and its subclasses, from the ontology's classification rather than\n- get_hierarchy: Build a hierarchy tree for a VFB term, showing ancestors (parents) and/or descendants (children). Use relationship \"part_of\" for brain regio\n",
+      "cmd_ko": [
+        [
+          "python3 vfb_mcp.py tools",
+          "표준 라이브러리만 쓴 40줄짜리 MCP 클라이언트. ① initialize(인사) → ② notifications/initialized(준비됨 알림, 서버는 202 빈 응답) → ③ tools/list(도구 목록 요청). 모두 같은 URL에 JSON-RPC POST"
+        ],
+        [
+          "claude mcp add --transport http virtual-fly-brain https://vfb3-mcp.virtualflybrain.org",
+          "Claude Code 설정(~/.claude.json)에 이 MCP 서버를 \"virtual-fly-brain\"이라는 이름으로 HTTP 방식 등록. 다음 대화 세션부터 Claude가 도구로 바로 쓸 수 있음. 지금 세션은 재시작 전이라 vfb_mcp.py로 우회"
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "time": "10-11 21:36",
+      "phase": 1,
+      "status": "done",
+      "media": [],
+      "title": "VFB가 품고 있는 커넥톰 데이터셋 확인",
+      "cmd": "python3 vfb_mcp.py call list_connectome_datasets '{}'",
+      "why": "놀랍게도 몇 주 전 Cell에 나온 수컷 CNS v1.0(mc)과 6월 Nature의 BANC까지 이미 들어 있다. 즉 뉴런 A→B 연결을 물으면 FlyWire(암컷 뇌), hemibrain(암컷 반쪽 뇌), MANC(수컷 신경삭), 수컷 CNS, BANC(암컷 전신), 시각엽(optic lobe) 데이터를 동시에 비교해 준다. 위 📌 노트의 해당 문장을 이 사실로 수정했다.",
+      "out": " BANC  BANC web interface v888\n   fw  FlyWire web interface v783\n   ol  Neuprint web interface - JRC_Optic-Lobe:v1.0.1\n   mv  Neuprint web interface - MANC:v1.2.1\n   hb  Neuprint web interface - hemibrain:v1.2.1\n   mc  Neuprint web interface - male-cns:v1.0\n fafb  VFB CATMAID Adult Brain (FAFB)\n l1em  VFB CATMAID L1 CNS",
+      "cmd_ko": [
+        [
+          "python3 vfb_mcp.py call list_connectome_datasets '{}'",
+          "MCP 도구 list_connectome_datasets를 빈 인자({})로 호출. 내부적으로 tools/call JSON-RPC 요청 1번"
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "time": "10-11 21:37",
+      "phase": 1,
+      "status": "done",
+      "media": [],
+      "title": "뉴런 이름 → VFB ID 찾기 (단맛 뉴런, 주둥이 운동뉴런, 회전 하강뉴런)",
+      "cmd": "for q in \"sugar gustatory receptor neuron\" \"Gr64f\" \"proboscis motor neuron\" \"DNa02\" \"DNp09\"; do\n  python3 vfb_mcp.py call search_terms \"{\\\"query\\\":\\\"$q\\\",\\\"minimize_results\\\":true,\\\"filter_types\\\":[\\\"Neuron\\\"]}\"\ndone",
+      "why": "VFB의 ID 체계: FBbt_xxxxx = 해부학 온톨로지의 \"클래스\"(예: 단맛 감각 뉴런 전체), VFB_fw... = FlyWire 개별 뉴런, VFB_jrmc... = 수컷 CNS 개별 뉴런, VFB_jrch... = hemibrain 개별 뉴런. 연결성 질의는 클래스(FBbt) 단위로 해야 데이터셋 간 비교가 된다.\n찾은 ID — 단맛 감각 뉴런: FBbt_00049614 / Gr64f 라벨라 뉴런: FBbt_00058156 / 주둥이 근육9 운동뉴런(mn9, 주둥이 뻗기): FBbt_00111298 / DNa02(회전 하강뉴런): FBbt_00047573 / DNp09(전진 걷기 하강뉴런): FBbt_00047642\nDNa02는 FlyWire 2개, hemibrain 1개, 수컷 CNS 좌우 2개, FAFB 1개로 모든 데이터셋에서 같은 뉴런이 식별돼 있다 → Phase 6에서 \"뇌의 회전 명령\"으로 쓸 후보.",
+      "out": "FBbt_00051194\",\n      \"label\": \"proboscis motor neuron mn13 (proboscis muscle 13 motor neuron)\",\n      \"original_label\": \"proboscis muscle 13 motor neuron\"\n    },\n    {\n      \"short_form\": \"FBbt_00051182\",\n      \"label\": \"proboscis motor neuron mn2D (proboscis muscle 2 dorsal motor neuron)\",\n      \"original_label\": \"proboscis muscle 2 dorsal motor neuron\"\n=== search: DNa02 ===\n{\n  \"query\": \"DNa02\",\n  \"unique\": true,\n  \"start\": 0,\n  \"returned\": 7,\n  \"total\": 7,\n  \"distinct_terms\": 7,\n  \"solr_matches\": 7,\n  \"candidate_pool\": 500,\n  \"_note\": \"Only short_form, label and original_label are shown; re-run with minimize_results=false for facets and IDs.\",\n  \"results\": [\n    {\n      \"short_form\": \"FBbt_00047573\",\n      \"label\": \"DNa02 (descending neuron of the anterior dorsal brain DNa02)\",\n      \"original_label\": \"descending neuron of the anterior dorsal brain DNa02\"\n    },\n    {\n      \"short_form\": \"VFB_fw000695\",\n      \"label\": \"DNa02 (LAL.IPS.2 (FlyWire:720575940604737708))\",\n      \"original_label\": \"LAL.IPS.2 (FlyWire:720575940604737708)\"\n    },\n    {\n      \"short_form\": \"VFB_fw003628\",\n      \"label\": \"DNa02 (LAL.IPS.3 (FlyWire:720575940629327659))\",\n      \"original_label\": \"LAL.IPS.3 (FlyWire:720575940629327659)\"\n    },\n    {\n      \"short_form\": \"VFB_jrchjtff\",\n      \"label\": \"DNa02_R (DNa02_R (FlyEM-HB:1140245595))\",\n      \"original_label\": \"DNa02_R (FlyEM-HB:1140245595)\"\n    },\n    {\n      \"short_form\": \"VFB_jrmc37m0\",\n      \"label\": \"DNa02_L (MaleCNS:523769) (VFB_jrmc37m0)\",\n      \"original_label\": \"DNa02_L (MaleCNS:523769)\"\n    },\n    {\n      \"short_form\": \"VFB_jrmc37lz\",\n      \"label\": \"DNa02_R (MaleCNS:10360) (VFB_jrmc37lz)\",\n      \"original_label\": \"DNa02_R (MaleCNS:10360)\"\n    },\n    {\n      \"short_form\": \"VFB_00102h0r\",\n      \"label\": \"right DNa02 (FAFB:12526673) (VFB_00102h0r)\",\n      \"original_label\": \"right DNa02 (FAFB:12526673)\"\n    }\n  ]\n}\n=== search: DNp09 ===\n{\n  \"query\": \"DNp09\",\n  \"unique\": true,\n  \"start\": 0,\n  \"returned\": 10,\n  \"total\": 11,\n  \"distinct_terms\": 11,\n  \"solr_matches\": 11,\n  \"candidate_pool\": 500,\n  \"_note\": \"Showing results 0-10 of 11. To see more, re-run with start=10 (same rows). Only short_form, label and original_label are shown; re-run with minimize_results=false for facets and IDs.\",\n  \"results\": [\n    {\n      \"short_form\": \"FBbt_00047642\",\n      \"label\": \"DNp09 (descending neuron of the posterior brain DNp09)\",\n      \"original_label\": \"descending neuron of the posterior brain DNp09\"\n    },\n    {\n      \"short_form\": \"VFB_fw017053\",\n      \"label\": \"DNp09 (AVLP.GNG.14 (FlyWire:720575940625673196))\",\n      \"original_label\": \"AVLP.GNG.14 (FlyWire:720575940625673196)\"\n    },\n    {\n      \"short_form\": \"VFB_fw005318\",\n      \"label\": \"DNp09 (AVLP.GNG.6 (FlyWire:720575940627652358))\",\n      \"original_label\": \"AVLP.GNG.6 (FlyWire:720575940627652358)\"\n    },\n    {\n      \"short_form\": \"VFB_fw000742\",\n      \"label\": \"DNp09 (AVLP.GNG.7 (FlyWire:720575940633095137))\",\n      \"original_label\": \"AVLP.GNG.7 (FlyWire:720575940633095137)\"\n    },\n    {\n      \"short_form\": \"VFB_fw002700\",\n      \"label\": \"DNp09 (PVLP.GNG.3 (FlyWire:720575940635872101))\",\n      \"original_label\": \"PVLP.GNG.3 (FlyWire:720575940635872101)\"\n    },\n    {\n      \"short_form\": \"VFB_jrchjtgc\",\n      \"label\": \"DNp09_R (DNp09_R (FlyEM-HB:1226887763))\",\n      \"original_label\": \"DNp09_R (FlyEM-HB:1226887763)\"\n    },\n    {\n      \"short_form\": \"VFB_jrchjtgb\",\n      \"label\": \"DNp09_R (DNp09_R (FlyEM-HB:1228264951))\",\n      \"original_label\": \"DNp09_R (FlyEM-HB:1228264951)\"\n    },\n    {\n      \"short_form\": \"VFB_jrmc30nf\",\n      \"label\": \"DNp09_L (MaleCNS:10783) (VFB_jrmc30nf)\",\n      \"original_label\": \"DNp09_L (MaleCNS:10783)\"\n    },\n    {\n      \"short_form\": \"VFB_jrmc30ne\",\n      \"label\": \"DNp09_R (MaleCNS:11177) (VFB_jrmc30ne)\",\n      \"original_label\": \"DNp09_R (MaleCNS:11177)\"\n    },\n    {\n      \"short_form\": \"VFB_jrmc30rb\",\n      \"label\": \"DNp71(DNp09)_L (MaleCNS:519771) (VFB_jrmc30rb)\",\n      \"original_label\": \"DNp71(DNp09)_L (MaleCNS:519771)\"\n",
+      "cmd_ko": [
+        [
+          "for q in \"...\" \"...\"; do ... done",
+          "셸 for 반복문: 검색어 5개를 차례로 $q에 넣어 같은 명령을 반복"
+        ],
+        [
+          "python3 vfb_mcp.py call search_terms",
+          "VFB 사이트 검색창과 똑같은 Solr 검색을 MCP로 호출"
+        ],
+        [
+          "\"query\":\"$q\"",
+          "검색어 (셸 변수 $q가 치환됨)"
+        ],
+        [
+          "\"minimize_results\":true",
+          "결과를 최대 10개, ID·이름만 간단히"
+        ],
+        [
+          "\"filter_types\":[\"Neuron\"]",
+          "뉴런 종류(facet)만 남기고 뇌 영역·유전자 등은 제외"
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "time": "10-11 21:41",
+      "phase": 1,
+      "status": "done",
+      "media": [],
+      "title": "⏸ 진행 중단 → 다른 AI 에이전트로 인계",
+      "cmd": "cat HANDOFF.md      # 인계 문서 (파일 지도, 사이트 규약, VFB 사용법, 뉴런 ID, Phase별 명령 레시피, 함정)\ncat PLAN.md         # 계획 v2",
+      "why": "사용자 요청으로 이 세션의 작업을 여기서 멈춘다. 다음 에이전트는 HANDOFF.md §3(사이트 규약)과 §7(Phase별 레시피)부터 읽으면 된다. 지금까지 완료: 환경 점검, 사이트, 계획 v2, 최신 커넥톰 노트, VFB MCP 연결·도구 11개·뉴런 ID 5개. 미완: VFB 연결성 질의 결과 정리, Phase 2~7 전부.",
+      "out": "# HANDOFF — Fly Brain Lab 인계 문서 (작성 2026-10-11 21:50 KST, Claude Fable 5.1 → 다음 AI 에이전트)\n\n> 이 문서 하나만 읽으면 이어서 진행할 수 있게 썼다. 환경·결정·코드·ID·명령 레시피·함정을 전부 담았다.\n> 로컬 사용자는 **http://localhost:8765 타임라인 사이트**로 진행 상황을 본다. 모든 단계를 `log.py`로 기록하는 것이 이 프로젝트의 핵심 규약이다.\n\n## 0. 한 줄 목표\n초파리 \"몸\"(MuJoCo, flygym-gymnasium)과 \"뇌\"(VFB/커넥톰)를 GPU 없는 Mac M1 Pro 한 대에서 굴려, 초파리가 **지렁이 게임(먹이 찾기)과 마리오 코스(틈·블록 지형)를 학습하는 영상**을 만든다. 각 단계의 명령어·한글 직역·설명·출력·영상을 사이트에 남겨 \"step-by-step 튜토리얼\"이 되게 한다.\n\n## 1. 현재 상태 (완료 / 미완)\n| 항목 | 상태 |\n|---|---|\n| 환경 점검 (M1 Pro, 16GB, Python 3.13 miniforge, uv 0.11) | ✅ |\n| 타임라인 사이트 `site/` + 기록기 `log.py` + 서버 8765 | ✅ 동작 중 |\n| 계획 v2 (7시간 스프린트) `PLAN.md` | ✅ 사이트 Phase 카드에 반영 |\n| 최신 커넥톰 소식 📌노트 (수컷 CNS Cell 2026-09-03, BANC Nature 2026-06-08) | ✅ 사이트 상단 |\n| VFB MCP: Claude Code 등록 + 직접 호출 클라이언트 `vfb_mcp.py` | ✅ 도구 11개 확인 |\n| VFB에서 뉴런 ID 찾기 (단맛 GRN, mn9, DNa02, DNp09) | ✅ 아래 §5 |\n| VFB 연결성 질의 (단맛→주둥이 운동뉴런 경로, DNa02 하류) | ⏳ 백그라운드 실행 중 중단됨. 결과가 있다면 `/tmp/vfb_A.txt ~ vfb_E.txt` |\n| Phase 2~7 (몸 설치, 컨트롤러, 지렁이 RL, 마리오, 뇌→몸) | ❌ 시작 안 함 |\n\n## 2. 파일 지도\n```\nvirtual-fly-brain/\n├─ PLAN.md          # 계획 v2 (Phase 표, 설계 원칙)\n├─ HANDOFF.md       # 이 문서\n├─ log.py           # 타임라인 기록기 (아래 §3)\n├─ vfb_mcp.py       # VFB MCP 최소 클라이언트, 표준 라이브러리만 (§4)\n└─ site/\n   ├─ index.html    # 정적 페이지. timeline.json을 5초마다 fetch해 렌더. 의존성 0\n   ├─ timeline.json # {title, updated, phases[], notes[], steps[]}",
+      "cmd_ko": [
+        [
+          "cat HANDOFF.md",
+          "인계 문서 출력. 사이트에서는 /HANDOFF.txt 로 열 수 있음"
+        ],
+        [
+          "cat PLAN.md",
+          "계획 문서 출력. 사이트에서는 /PLAN.txt"
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "time": "10-11 21:47",
+      "phase": 1,
+      "status": "done",
+      "media": [],
+      "title": "VFB 연결성 질의 결과 (단맛 뉴런 하류, mn9 상류, DNa02 하류, 신경전달물질)",
+      "cmd": "C(){ python3 vfb_mcp.py call \"$@\"; }\nC query_connectivity '{\"upstream_type\":\"FBbt_00049614\",\"group_by_class\":true,\"weight\":5,\"exclude_dbs\":[],\"limit\":15}'   # A\nC query_connectivity '{\"upstream_type\":\"FBbt_00049614\",\"downstream_type\":\"FBbt_00111298\",\"weight\":1,\"exclude_dbs\":[]}'  # B\nC query_connectivity '{\"downstream_type\":\"FBbt_00111298\",\"group_by_class\":true,\"weight\":3,\"exclude_dbs\":[]}'            # C\nC query_connectivity '{\"upstream_type\":\"FBbt_00047573\",\"group_by_class\":true,\"weight\":5,\"exclude_dbs\":[]}'              # D\nC get_predicted_neurotransmitters '{\"neuron_type\":\"FBbt_00047573\",\"exclude_dbs\":[]}'                                     # E",
+      "why": "세션 중단 직전 백그라운드로 밀렸던 질의가 완료돼 결과를 보존한다. A와 C의 교집합이 \"단맛 → 중간뉴런 → 주둥이 뻗기\" 경로의 후보이고, D는 Phase 6에서 DNa02를 회전 명령으로 쓸 때 어느 VNC 뉴런이 받는지의 근거다. 원본 전체는 /tmp/vfb_A.txt~E.txt (재부팅 시 사라지므로 필요하면 복사).",
+      "out": "null,\n  \"summary\": {\n    \"connections\": 0\n  },\n  \"resolved\": {\n    \"upstream\": {\n      \"query\": \"FBbt_00049614\",\n      \"id\": \"FBbt_00049614\",\n      \"label\": \"sugar-sensing neuron\",\n      \"classes_searched\": 30,\n      \"instances\": 33\n    },\n    \"downstream\": {\n      \"query\": \"FBbt_00111298\",\n      \"id\": \"FBbt_00111298\",\n      \"label\": \"proboscis muscle 9 motor neuron\",\n      \"classes_searched\": 1,\n      \"instances\": 7\n    }\n  },\n  \"connections\": []\n}\n\n===== C =====\nTraceback (most recent call last):\n  File \"vfb_mcp.py\", line 30, in <module>\n    res = rpc(\"tools/call\", {\"name\": sys.argv[2], \"arguments\": json.loads(sys.argv[3] if len(sys.argv) > 3 else \"{}\")}, _id=3)\n  File \"vfb_mcp.py\", line 17, in rpc\n    with urllib.request.urlopen(req, timeout=120) as r:\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 189, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 489, in open\n    response = self._open(req, data)\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 506, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n                              '_open', req)\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 466, in _call_chain\n    result = func(*args)\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 1367, in https_open\n    return self.do_open(http.client.HTTPSConnection, req,\n           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                        context=self._context)\n                        ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 132\n===== D =====\n{\n  \"count\": 0,\n  \"offset\": 0,\n  \"limit\": 12,\n  \"returned\": 0,\n  \"ranked_by\": null,\n  \"summary\": {\n    \"connections\": 0\n  },\n  \"warnings\": [\n    \"No connectivity data for 'FBbt_00047573' (FBbt_00047573) or any of its subclasses — no neurons from a connectome dataset are typed to it.\"\n  ],\n  \"resolved\": {\n    \"upstream\": {\n      \"query\": \"FBbt_00047573\",\n      \"id\": \"FBbt_00047573\",\n      \"label\": \"FBbt_00047573\",\n      \"classes_searched\": 1,\n      \"instances\": 0\n    }\n  },\n  \"connections\": []\n}\n\n===== E =====\nTraceback (most recent call last):\n  File \"vfb_mcp.py\", line 30, in <module>\n    res = rpc(\"tools/call\", {\"name\": sys.argv[2], \"arguments\": json.loads(sys.argv[3] if len(sys.argv) > 3 else \"{}\")}, _id=3)\n  File \"vfb_mcp.py\", line 17, in rpc\n    with urllib.request.urlopen(req, timeout=120) as r:\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 189, in urlopen\n    return opener.open(url, data, timeout)\n           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 489, in open\n    response = self._open(req, data)\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 506, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n                              '_open', req)\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 466, in _call_chain\n    result = func(*args)\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 1367, in https_open\n    return self.do_open(http.client.HTTPSConnection, req,\n           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                        context=self._context)\n                        ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/homebrew/Caskroom/miniforge/base/lib/python3.13/urllib/request.py\", line 132\n",
+      "cmd_ko": [
+        [
+          "C(){ python3 vfb_mcp.py call \"$@\"; }",
+          "셸 함수 정의. zsh는 변수에 담은 명령을 단어로 쪼개지 않아 함수로 감싸야 함"
+        ],
+        [
+          "\"upstream_type\":\"FBbt_00049614\"",
+          "시냅스 앞(보내는 쪽) 뉴런 클래스 = 단맛 감각 뉴런"
+        ],
+        [
+          "\"downstream_type\":\"FBbt_00111298\"",
+          "시냅스 뒤(받는 쪽) = 주둥이 근육9 운동뉴런 mn9"
+        ],
+        [
+          "\"group_by_class\":true",
+          "개별 뉴런 대신 세포 유형별로 합산"
+        ],
+        [
+          "\"weight\":5",
+          "시냅스 5개 미만 연결은 잡음으로 보고 제외 (B는 1로 완화)"
+        ],
+        [
+          "\"exclude_dbs\":[]",
+          "어떤 데이터셋도 빼지 않음 = 8개 커넥톰 전부"
+        ],
+        [
+          "get_predicted_neurotransmitters",
+          "전자현미경 이미지에서 기계학습으로 예측한 신경전달물질(흥분/억제) 조회"
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "time": "10-13 11:44",
+      "phase": 0,
+      "status": "done",
+      "media": [],
+      "title": "생물학 입문 학습 화면: 움직이는 설명과 퀴즈 추가",
+      "cmd": "node --check site/app.js\nNODE_PATH=/tmp/fly-brain-ui-check/node_modules node scripts/check-ui.cjs",
+      "why": "생물학을 처음 배우는 사람도 컴퓨터 개념과 연결해 이해하도록 첫 화면을 다섯 장의 학습 흐름으로 바꿨습니다. DNA·mRNA·단백질, 뉴런·시냅스, 커넥톰, 뇌와 몸의 피드백, 규칙과 학습의 차이를 조작 그림과 퀴즈로 설명합니다. 이전 실행 기록·명령어·한글 풀이·조사 노트는 프로젝트 기록 탭에 보존했습니다. 그림은 설명용 모델이며 실제 몸 시뮬레이션이나 강화학습 실험의 완료를 뜻하지 않습니다.",
+      "out": "{\n  \"passed\": 14,\n  \"checks\": [\n    \"DNA → mRNA → 단백질 단계 선택과 자동 재생\",\n    \"오답 해설 → 재시도 → 정답 진행률\",\n    \"새로고침 후 진행률 보존\",\n    \"키보드 슬라이더와 문턱 아래/위 신호 전달\",\n    \"경로 탐색, 연결 끊기, 복구, 재생 중지\",\n    \"먹이 도달, 위치 변경과 방향 반전, 초기화, 자동 반복 일시정지\",\n    \"제어 방법 비교와 다섯 퀴즈 완료\",\n    \"원본 기록 보존, 명령어 풀이, 오류 출력, 갱신 후 펼침 상태 유지\",\n    \"한글/영문 용어 검색과 빈 결과\",\n    \"데스크톱·태블릿·모바일 28개 화면 가로 넘침 없음\",\n    \"동작 줄이기 환경설정 적용\",\n    \"저장소 사용 불가 환경에서도 퀴즈 동작\",\n    \"타임라인 로드 실패 안내와 재시도 복구\",\n    \"브라우저 JavaScript 오류 없음\"\n  ]\n}\n",
+      "cmd_ko": [
+        [
+          "node --check site/app.js",
+          "브라우저에서 실행할 JavaScript 파일의 문법을 검사합니다."
+        ],
+        [
+          "NODE_PATH=/tmp/fly-brain-ui-check/node_modules node scripts/check-ui.cjs",
+          "임시 폴더의 Playwright를 이용해 별도의 Chrome 프로필에서 조작, 퀴즈, 저장, 화면 크기와 오류 복구를 검증합니다."
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "time": "10-14 12:09",
+      "phase": 2,
+      "status": "running",
+      "media": [],
+      "title": "첫날 학습 실험과 10분 시각 기록 시작",
+      "cmd": ".venv/bin/python -m lab.baselines runs/20261014-115448 --workers 4",
+      "why": "실제 몸의 학습 과정과 실패 원인을 재현 가능한 기록으로 남깁니다. 입문 학습과 기존 기록은 유지합니다.",
+      "out": "로컬 실행 준비 기록. 개인 계정 사용량은 공개본에서 제외했습니다.",
+      "cmd_ko": [
+        [
+          ".venv/bin/python -m lab.baselines runs/20261014-115448 --workers 4",
+          "실제 3D 몸으로 무작위·규칙·학습 전 정책을 같은 20개 시작 조건에서 비교합니다."
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "time": "10-14 14:30",
+      "phase": 3,
+      "status": "done",
+      "media": [
+        "artifacts/20261014-115448/media/first-3d-walk.mp4"
+      ],
+      "title": "실제 3D 보행·회전 및 기준선 검증",
+      "why": "좌우 신호의 방향과 기준 성능을 실제 몸으로 먼저 측정했습니다.",
+      "out": "FlyGym 1.3.2 실제 몸의 보행 영상 확보. 1·2·4 worker 비교에서 4개 선택. 같은 평가 seed 20개에서 무작위 6/20, 규칙 20/20 도달. PPO 개선은 아직 판정 전입니다."
+    },
+    {
+      "id": 13,
+      "time": "10-14 15:23",
+      "phase": 4,
+      "status": "done",
+      "media": [],
+      "title": "8765 홈에 실험 영상과 학습 흐름 통합",
+      "why": "첫 화면에서 실제 실험과 원리를 함께 이해하고 시간순으로 따라볼 수 있게 합니다.",
+      "out": "http://localhost:8765/ 기본 화면을 학습 실험으로 변경. 최근 HyperFrames 요약, 6단계 진행, 설명용 SVG 모션, 같은 조건의 기준선 비교, 시간 슬라이더와 연속 재생을 추가했습니다. 실제 장면의 평가 시각과 기록 지연을 구분합니다."
+    }
+  ],
+  "notes": [
+    {
+      "title": "최근 소식: 2026년, 초파리 '전신' 커넥톰이 두 개나 완성됐다",
+      "body": "커넥톰(connectome) = 모든 뉴런과 시냅스 연결을 전자현미경으로 추적한 배선도. 2024년 FlyWire가 암컷 \"뇌만\" 완성했는데, 2026년에는 뇌 + 배신경삭(VNC, 척수에 해당)까지 이어진 전신 지도가 두 개 나왔다.\n\n① 수컷 CNS 커넥톰 — Janelia FlyEM + Cambridge + Google Research\n · 데이터 v1.0 공개 2026-06-08, 논문 \"Sexual dimorphism in the complete Drosophila male central nervous system connectome\" Cell 2026-09-03 (몇 주 전!)\n · 뉴런 166,700개, 시냅스 1억 2,500만 개, 세포 유형 11,710개. 전부 교정(proofread)·주석 완료\n · 수컷 전용 세포 유형 262개 + 암수 구조는 같지만 배선이 다른 유형 114개 = 중추뇌의 4.8%. 성별 차이는 감각·운동 말단이 아니라 고차 중추에 몰려 있다\n · 약 100개의 수컷 전용 중간뉴런이 서로 촘촘히 얽힌 하나의 네트워크를 이뤄 구애 등 수컷 행동 대부분을 조율\n · 같은 날 Cell 동반 논문: 시각 경로 전체 조직도(\"The organization of visual pathways in the Drosophila brain\")\n · 탐색 도구: neuPrint, Neuroglancer, Clio, Cell Type Explorer. 데이터 gs://flyem-male-cns, CC-BY 4.0\n\n② BANC(Brain And Nerve Cord) — Harvard(Wilson·Lee·Drugowitsch) + Princeton FlyWire(Murthy·Seung)\n · \"Distributed control circuits across a brain-and-cord connectome\" Nature 2026-06-08\n · 암컷 성체, 뉴런 약 160,000개. 뇌와 신경삭을 잇는 모든 연결 포함\n · 핵심 발견: 행동 제어에 \"중앙 사령탑\"이 없다. 걷기·비행 같은 복잡한 운동 제어가 부속지 가까운 국소 모듈들에 분산돼 있다 → 우리가 Phase 3에서 쓸 \"하강 신호 2개로 걷기·회전을 조종\" 식의 계층 제어와 맞닿는 결과\n · 데이터: codex.flywire.ai/?dataset=banc\n\n③ 그 외 올해 흐름\n · 2026-03 Eon Systems: FlyWire 커넥톰 위에 단순 뉴런 모델을 얹어 MuJoCo 몸을 폐루프로 제어, 여러 행동 재현 발표(코드 비공개)\n · 2026-10-07 NYU Langone: 커넥톰을 활용해 작업기억(working memory) 회로 PFG↔hΔK 뉴런의 역할 확인\n\n이 프로젝트에서의 의미: VFB MCP의 list_connectome_datasets로 확인해 보니 VFB가 이미 male-cns v1.0(기호 mc)과 BANC(기호 BANC)를 모두 품고 있다 → Phase 1의 연결성 질의가 FlyWire·hemibrain·MANC·수컷 CNS·BANC 8개 데이터셋을 한 번에 비교해 준다. \"수컷 vs 암컷 배선 비교\"는 아직 남이 안 해본 분석이 많은 신선한 데이터다.",
+      "date": "2026-09-03 (Cell) / 2026-06-08 (Nature)",
+      "links": [
+        {
+          "t": "Cell 논문(수컷 CNS)",
+          "u": "https://www.cell.com/cell/fulltext/S0092-8674(26)00942-6"
+        },
+        {
+          "t": "Janelia Male CNS",
+          "u": "https://www.janelia.org/project-team/flyem/male-cns-connectome"
+        },
+        {
+          "t": "Google Research 블로그",
+          "u": "https://research.google/blog/a-connectomics-milestone-mapping-the-complete-male-fruit-fly-brain/"
+        },
+        {
+          "t": "HMS BANC 소식",
+          "u": "https://hms.harvard.edu/news/researchers-publish-first-complete-connectome-fruit-fly-brain-spinal-cord"
+        },
+        {
+          "t": "FlyWire BANC",
+          "u": "https://blog.flywire.ai/?p=1823"
+        },
+        {
+          "t": "NYU 작업기억",
+          "u": "https://www.biospace.com/press-releases/fruit-fly-study-reveals-mechanics-of-working-memory"
+        }
+      ]
+    },
+    {
+      "title": "다음 에이전트용 인계 문서",
+      "body": "진행은 여기서 일시 중단. 이어서 할 에이전트는 아래 두 문서를 먼저 읽는다.\n · HANDOFF.txt — 현재 상태, 파일 지도, 사이트 기록 규약(log.py), VFB MCP 사용법, 찾아둔 뉴런 ID, Phase 2~7 명령 레시피, 함정\n · PLAN.txt — 계획 v2 (Phase 표, 설계 원칙)\n작업 폴더: .",
+      "date": "2026-10-11",
+      "links": [
+        {
+          "t": "HANDOFF.txt",
+          "u": "HANDOFF.txt"
+        },
+        {
+          "t": "PLAN.txt",
+          "u": "PLAN.txt"
+        }
+      ]
+    }
+  ]
+}

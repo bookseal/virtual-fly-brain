@@ -1,0 +1,24 @@
+{
+  "status": "evaluating",
+  "backend": "3d",
+  "activity": "ppo 20회 평가",
+  "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
+  "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
+  "result": "ppo 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
+  "updated_at": "2026-10-14T15:40:36+09:00",
+  "change": "3d-food-near-seed11: dense 보상, seed 11",
+  "training": {
+    "trial": "3d-food-near-seed11",
+    "timesteps": 12920,
+    "steps_this_segment": 2020,
+    "decisions_per_second": 2.558663805774624,
+    "reward_terms_sum": {
+      "approach": 91.67873666574113,
+      "arrival": 180.0,
+      "time": -50.4999999999982,
+      "collision": 0.0,
+      "flip": 0.0
+    },
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000010900.zip"
+  }
+}

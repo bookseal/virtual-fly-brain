@@ -1,0 +1,47 @@
+{
+  "id": "20261014-115448-0014",
+  "index": 14,
+  "recorded_at": "2026-10-14T14:17:11+09:00",
+  "scheduled_epoch": 1791955028.5686998,
+  "elapsed_minutes": 140.05641175111134,
+  "backend": "3d",
+  "status": "evaluating",
+  "title": "구간 영상 렌더 실패",
+  "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
+  "change": "실측으로 좌우 회전 부호를 확인하고 4개 환경을 선택",
+  "result": "3D 몸 실행 확보. 4개 환경에서 2만 행동+평가 예상 약 1.7시간.",
+  "next_action": "무작위·규칙·학습 전 PPO를 같은 조건에서 비교",
+  "training": {},
+  "events": [
+    {
+      "id": "3bedf7164e6249c38ab69001e9e27a59",
+      "at": "2026-10-14T14:15:45+09:00",
+      "epoch": 1791954945.5103302,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 7,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'render', 'runs/20261014-115448/videos/interval-0007', '--output', 'runs/20261014-115448/videos/interval-0007/recap.mp4', '--fps', '24', '--quality', 'delivery', '--workers', '1']' returned non-zero exit status 1."
+    },
+    {
+      "id": "397defe08324458788a0c41b856312f6",
+      "at": "2026-10-14T14:16:11+09:00",
+      "epoch": 1791954971.441538,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 8,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'render', 'runs/20261014-115448/videos/interval-0008', '--output', 'runs/20261014-115448/videos/interval-0008/recap.mp4', '--fps', '24', '--quality', 'delivery', '--workers', '1']' returned non-zero exit status 1."
+    }
+  ],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0014.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T14:18:27+09:00",
+    "video": "artifacts/20261014-115448/videos/interval-0014/recap.mp4"
+  },
+  "actor": "local-script"
+}

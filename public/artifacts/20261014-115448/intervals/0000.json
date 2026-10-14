@@ -1,0 +1,36 @@
+{
+  "id": "20261014-115448-0000",
+  "index": 0,
+  "recorded_at": "2026-10-14T11:57:08+09:00",
+  "scheduled_epoch": 1791946628.5686998,
+  "elapsed_minutes": 6.053845087687174e-05,
+  "backend": "setup",
+  "status": "preparing",
+  "title": "승인된 첫 회차 실행 시작",
+  "question": "이 Mac에서 실제 3D 몸을 얼마나 빠르게 실행할 수 있을까?",
+  "change": "실행 환경과 기록 시스템 준비",
+  "result": "로컬 실행 준비 기록. 개인 계정 사용량은 공개본에서 제외했습니다.",
+  "next_action": "설치 뒤 첫 몸 렌더와 처리량 측정",
+  "training": {},
+  "events": [
+    {
+      "id": "b9e3d839f1d042d49d3487d4c3452b5a",
+      "at": "2026-10-14T11:57:08+09:00",
+      "epoch": 1791946628.571302,
+      "actor": "agent",
+      "kind": "start",
+      "title": "승인된 첫 회차 실행 시작",
+      "command": "uv venv --python 3.12 .venv",
+      "command_ko": "Python 3.12 전용 가상환경을 만듭니다."
+    }
+  ],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0000.svg"
+  ],
+  "render": {
+    "status": "omitted",
+    "reason": "개인 계정 사용량을 담은 준비 영상은 공개하지 않습니다."
+  },
+  "actor": "local-script"
+}

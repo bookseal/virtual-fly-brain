@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fa">
+  <title>Fly Brain Lab — 코드에서 생명으로</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="experiment-flow.js" defer></script>
+  <script src="experiments.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="topbar">
+  <a class="brand" href="#experiments" aria-label="Fly Brain Lab 처음으로"><span class="brand-mark" aria-hidden="true">f<span>•</span></span><span>Fly Brain <b>Lab</b><small>작은 뇌를 이해하는 실험실</small></span></a>
+  <nav class="view-nav" aria-label="주 메뉴"><a href="#learn/1" data-view="learn">쉽게 배우기</a><a href="#experiments" data-view="experiments">학습 실험</a><a href="#project" data-view="project">프로젝트 기록</a><a href="#glossary" data-view="glossary">용어 사전</a></nav>
+  <span class="header-note"><span class="dot"></span> 생물학 처음이어도 괜찮아요</span>
+</header>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="course-label">LEARNING PATH <span>01 — 05</span></div>
+    <h2>코드에서 생명으로</h2><p class="sidebar-desc">알고 있는 컴퓨터 개념에서<br>초파리의 뇌까지, 한 걸음씩.</p>
+    <nav id="lesson-nav" aria-label="학습 순서"></nav>
+    <div class="progress-card"><div><span>개념 확인</span><b id="progress-count">0 / 5</b></div><progress id="course-progress" max="5" value="0" aria-label="정답을 확인한 퀴즈 수"></progress><p id="progress-note">퀴즈는 몇 번이든 다시 풀 수 있어요.</p></div>
+    <div class="sidebar-bottom"><span class="eyebrow">OUR QUESTION</span><p>연결 지도가 있으면,<br>뇌를 실행할 수 있을까?</p><a href="#learn/3">지도와 실행의 차이 알아보기 ↗</a></div>
+  </aside>
+  <main id="main" tabindex="-1"></main>
+</div>
+<footer class="site-footer"><span>FLY BRAIN LAB <span class="footer-dot">/</span> 이해하고, 움직여 보고, 연결하기. <a href="https://github.com/bookseal/virtual-fly-brain" target="_blank" rel="noopener">GitHub ↗</a></span><span id="footer-evidence">그림은 학습용 개념 모델입니다.</span></footer>
+<noscript><p class="no-js">움직이는 실험과 퀴즈에는 JavaScript가 필요합니다. <a href="timeline.json">기존 프로젝트 기록(JSON)</a>은 여기서 볼 수 있습니다.</p></noscript>
+</body>
+</html>

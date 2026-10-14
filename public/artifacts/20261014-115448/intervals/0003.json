@@ -1,0 +1,26 @@
+{
+  "id": "20261014-115448-0003",
+  "index": 3,
+  "recorded_at": "2026-10-14T12:29:52+09:00",
+  "scheduled_epoch": 1791948428.5686998,
+  "elapsed_minutes": 32.72704213460286,
+  "backend": "3d",
+  "status": "gap",
+  "title": "덮개 절전으로 기록 지연",
+  "question": "예정 시각에 실제 계산과 기록이 계속됐는가?",
+  "change": "macOS 전원 로그에서 Clamshell Sleep 확인",
+  "result": "예정 시각보다 2.7분 늦게 저장했습니다. 이 구간을 연속 계산 또는 새 행동 평가로 해석하지 않습니다.",
+  "next_action": "덮개가 열린 상태에서 계산을 재개하고 다음 실시간 기록 확인",
+  "training": {},
+  "events": [],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0003.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T14:19:34+09:00",
+    "video": "artifacts/20261014-115448/videos/interval-0003/recap.mp4"
+  },
+  "actor": "local-script"
+}
