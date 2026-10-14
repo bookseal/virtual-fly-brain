@@ -1,12 +1,12 @@
 {
   "run_id": "20261014-115448",
-  "generated_at": "2026-10-14T14:42:09+09:00",
-  "elapsed_hours": 2.7503508939345678,
+  "generated_at": "2026-10-14T15:57:53+09:00",
+  "elapsed_hours": 4.01249297036065,
   "verdict": {
     "record_system": {
       "status": "partial",
-      "intervals": 17,
-      "rendered": 17,
+      "intervals": 25,
+      "rendered": 25,
       "gaps": 11
     },
     "3d_execution": {
@@ -15,7 +15,20 @@
     },
     "learning_improvement": {
       "status": "not_confirmed",
-      "comparisons": [],
+      "comparisons": [
+        {
+          "trial": "3d-food-near-seed11",
+          "backend": "3d",
+          "before": 0.0,
+          "after": 0.0,
+          "change_pp": 0.0,
+          "fixed_episodes": 20,
+          "comparable_seeds": true,
+          "before_record": "artifacts/20261014-115448/evaluations/1791955321946788000-3d-food-near-seed11-untrained-fixed.json",
+          "after_record": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+          "holdout": []
+        }
+      ],
       "interpretation": "같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다."
     },
     "obstacles": {
