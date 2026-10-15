@@ -27,30 +27,30 @@
     "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
     "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
     "next_action": "10,240 행동 경계와 주기적 고정 평가에서 비교",
-    "updated_at": "2026-10-16T08:31:12+09:00",
+    "updated_at": "2026-10-16T08:42:26+09:00",
     "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
     "training": {
       "trial": "3d-near-ppo-seed47",
-      "timesteps": 2718,
-      "steps_this_segment": 670,
-      "decisions_per_second": 1.985926392453853,
+      "timesteps": 4062,
+      "steps_this_segment": 2014,
+      "decisions_per_second": 1.991749615611683,
       "reward_terms_sum": {
-        "approach": -58.97214736703658,
-        "arrival": 20.0,
-        "time": -16.750000000000117,
+        "approach": -50.62962868848563,
+        "arrival": 60.0,
+        "time": -50.34999999999821,
         "collision": 0.0,
         "flip": 0.0
       },
-      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000002560.zip",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000003840.zip",
       "action_mean": [
-        -0.3431214901048746,
-        0.16697425572896626
+        -0.46453845367767843,
+        0.16400967814424097
       ],
       "action_std": [
-        1.0007603330541424,
-        0.9928385065003946
+        0.9946577061195606,
+        1.018406110048484
       ],
-      "action_clipped_fraction": 0.33059701492537313
+      "action_clipped_fraction": 0.3455809334657398
     }
   },
   "intervals": [
@@ -13735,6 +13735,284 @@
       "record_type": "interval",
       "recording_delay_seconds": 1.503586769104004,
       "last_evaluated_at": "2026-10-16T07:14:39+09:00"
+    },
+    {
+      "id": "20261015-220404-0063",
+      "index": 63,
+      "recorded_at": "2026-10-16T08:34:08+09:00",
+      "scheduled_epoch": 1792107244.360686,
+      "elapsed_minutes": 630.065437912941,
+      "backend": "3d",
+      "status": "training",
+      "title": "보조 worker의 다음 작업 전에 별도 호환성 측정",
+      "question": "같은 학습량에서 두 경로의 먹이 도달률은 어떻게 달라질까?",
+      "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
+      "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+      "next_action": "10,240 행동 경계와 주기적 고정 평가에서 비교",
+      "training": {
+        "trial": "3d-near-ppo-seed47",
+        "timesteps": 3058,
+        "steps_this_segment": 1010,
+        "decisions_per_second": 1.9934363601506457,
+        "reward_terms_sum": {
+          "approach": -30.11935752044439,
+          "arrival": 40.0,
+          "time": -25.249999999999634,
+          "collision": 0.0,
+          "flip": 0.0
+        },
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000002816.zip",
+        "action_mean": [
+          -0.3699315439503972,
+          0.19441237553105792
+        ],
+        "action_std": [
+          0.9903572030733503,
+          1.0157749443988673
+        ],
+        "action_clipped_fraction": 0.3316831683168317
+      },
+      "events": [
+        {
+          "id": "99e78b8f5fca44048b4963e964e27693",
+          "at": "2026-10-16T08:24:53+09:00",
+          "epoch": 1792106693.171504,
+          "actor": "codex-agent",
+          "kind": "research",
+          "title": "먹이가 뒤에 있어도 20곳 모두 도달",
+          "question": "배운 위치 범위를 넓혀도 먹이를 찾을까?",
+          "observation": "거리 8~16 mm, 모든 방향에 놓인 같은 20개 먹이 위치에서 규칙과 모방 후 PPO 정책 모두 20/20회 도달했습니다. PPO 정책은 10,240회 학습한 seed 11 모델이며, 이 평가에서는 업데이트하지 않았습니다. 수치 오류는 0회였습니다.",
+          "interpretation": "가까운 앞쪽 위치에서 배운 규칙이 이 20개 새 위치에도 통했습니다. 전체 위치에서 반드시 성공한다는 뜻은 아니며, 주 실험의 최종 검증 seed와도 별도입니다. 공개 영상은 seed 30000 한 사례이고 이동 경로 그림은 20회 전체입니다.",
+          "next_action": "새 난수 초기화로 맞춘 대조군에서 초기 탐험 폭만 줄여 PPO 단독 실패 원인을 검토합니다. 두 조건을 같은 학습량에서 비교합니다.",
+          "video": "artifacts/20261015-220404/videos/research-0000/recap.mp4",
+          "evidence": "artifacts/20261015-220404/evaluations/1792105726602996000-3d-wide-generalization-seed11-bc-transfer-diagnostic-diagnostic.json",
+          "prediction": {
+            "prompt": "20/20회 성공했다면 어디까지 말할 수 있을까요?",
+            "options": [
+              "이 20개 새 위치에서는 성공했다",
+              "어떤 위치에서도 반드시 성공한다",
+              "초파리의 뇌 전체를 재현했다"
+            ],
+            "answer": 0,
+            "explanation": "같은 20개 조건의 관측 결과입니다. 위치·장애물·초기 상태가 바뀌면 다시 확인해야 합니다."
+          }
+        },
+        {
+          "id": "835702ee33534684aedfa09b332a17e3",
+          "at": "2026-10-16T08:25:25+09:00",
+          "epoch": 1792106725.269901,
+          "actor": "local-script",
+          "kind": "result",
+          "title": "3d bc-ppo: 20/20회 먹이 도달",
+          "evaluation": "artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json",
+          "success_rate": 1.0,
+          "seconds": 106.15574193000793
+        },
+        {
+          "id": "03f5966fa48742bea7a32e3fdde8076a",
+          "at": "2026-10-16T08:25:30+09:00",
+          "epoch": 1792106730.19585,
+          "actor": "local-script",
+          "kind": "command",
+          "title": "검증한 비교 실험 실행",
+          "command": ".venv/bin/python -m lab.learning train runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-ppo-seed47.json --workers 2 --steps 2048 --checkpoint runs/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000002048.zip --deadline 1792145044.360686",
+          "command_ko": "저장된 조건으로 실행하며, 평가에서는 정책을 바꾸지 않습니다."
+        },
+        {
+          "id": "39779b3078ac46eeaad15c90d7d29b72",
+          "at": "2026-10-16T08:25:35+09:00",
+          "epoch": 1792106735.2550762,
+          "actor": "local-script",
+          "kind": "resume",
+          "title": "다음 에피소드부터 정책 학습 재개",
+          "trial": "3d-near-ppo-seed47",
+          "checkpoint": "runs/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000002048.zip",
+          "detail": "정책·optimizer·난수 상태를 읽었습니다. 중단된 rollout은 폐기하고 새 에피소드에서 시작합니다."
+        },
+        {
+          "id": "ac021a7d53d546a9894979903c6c9003",
+          "at": "2026-10-16T08:27:04+09:00",
+          "epoch": 1792106824.859448,
+          "actor": "local-script",
+          "kind": "checkpoint",
+          "title": "10분 정책 체크포인트 저장",
+          "trial": "3d-near-noise-v2-control-seed11",
+          "timesteps": 1106
+        },
+        {
+          "id": "ed9805dcc17f4bbba1d46aecb33114a7",
+          "at": "2026-10-16T08:27:02+09:00",
+          "epoch": 1792106855.485643,
+          "actor": "local-script",
+          "kind": "publication",
+          "title": "공개 스냅샷 배포 확인",
+          "status": "deployed",
+          "commit": "6cc1e502f64fb0dfd8d89070a5095642e1d2db4a",
+          "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/6cc1e502f64fb0dfd8d89070a5095642e1d2db4a",
+          "snapshot_at": "2026-10-15T23:26:54+00:00",
+          "url": "https://bookseal.github.io/virtual-fly-brain/",
+          "verified_at": "2026-10-16T08:27:35+09:00"
+        },
+        {
+          "id": "b17cacedca194ebfbb5e206d8b7501c7",
+          "at": "2026-10-16T08:30:53+09:00",
+          "epoch": 1792107053.0499141,
+          "actor": "local-script",
+          "kind": "maintenance",
+          "title": "보조 실험은 현재 2,048회 작업을 마친 뒤 비교 순서 변경",
+          "detail": "현재 학습 child는 중단하지 않습니다. 모든 조건의 초기 비교를 먼저 확보하고 별도 30회 검증을 마지막으로 옮깁니다."
+        },
+        {
+          "id": "d9f71b8378e841a6b9bc8f0bdf9680cc",
+          "at": "2026-10-16T08:31:17+09:00",
+          "epoch": 1792107077.0414069,
+          "actor": "codex-agent",
+          "kind": "research",
+          "title": "멈췄던 세 번째 seed도 2,048회 경계에 도착",
+          "question": "수치 오류를 처리하고 다시 시작해도 비교 가능한 평가를 남길 수 있을까?",
+          "observation": "중단 체크포인트 1,166회에서 정확히 882회를 더 학습해 2,048회에 저장했습니다. 같은 고정 평가 20회 모두 먹이에 도달했고 수치 오류는 0회였습니다. 원본 체크포인트와 평가를 보존했습니다.",
+          "interpretation": "재시작 이후 동작과 평가를 확보했습니다. 오류 처리 프로토콜과 난수 초기화 문제를 고쳤다는 이력이 있으므로, 완전히 같은 학습 경로를 다시 실행했다고 보지는 않습니다. 앞으로의 탐험 폭 비교에는 수정 후 생성한 새 대조군을 사용합니다.",
+          "next_action": "주 비교는 세 번째 seed의 10,240회까지 계속하고, 보조 비교는 네 조건 모두 2,048회 평가를 먼저 확보합니다. 최종 30개 새 조건은 모든 고정 비교 뒤에 평가합니다.",
+          "evidence": "artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json"
+        },
+        {
+          "id": "ebea0ece32134c8badfc996a578d6b9b",
+          "at": "2026-10-16T08:32:17+09:00",
+          "epoch": 1792107184.805959,
+          "actor": "local-script",
+          "kind": "publication",
+          "title": "공개 스냅샷 배포 확인",
+          "status": "deployed",
+          "commit": "beeb2eb9a6b7cc667f6821de712038e73d22ed08",
+          "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/beeb2eb9a6b7cc667f6821de712038e73d22ed08",
+          "snapshot_at": "2026-10-15T23:32:11+00:00",
+          "url": "https://bookseal.github.io/virtual-fly-brain/",
+          "verified_at": "2026-10-16T08:33:04+09:00"
+        },
+        {
+          "id": "b547cca71c794f0cbc7f25b078c4feb5",
+          "at": "2026-10-16T08:33:15+09:00",
+          "epoch": 1792107195.56653,
+          "actor": "local-script",
+          "kind": "maintenance",
+          "title": "보조 worker의 다음 작업 전에 별도 호환성 측정",
+          "detail": "새 FlyGym API는 격리 환경에서만 확인합니다. 현재 2,048회 학습은 끝까지 실행하고, 그 다음 보조 작업의 빈 worker 범위에서 측정합니다."
+        }
+      ],
+      "evaluation": {
+        "id": "1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed",
+        "evaluated_at": "2026-10-16T08:25:25+09:00",
+        "backend": "3d",
+        "task": "food-near",
+        "policy": "bc-ppo",
+        "policy_family": "3d-near-bc-ppo-seed47",
+        "trial": "3d-near-bc-ppo-seed47",
+        "seed": 47,
+        "timesteps": 2048,
+        "success_rate": 1.0,
+        "successes": 20,
+        "episodes": 20,
+        "mean_steps": 9.65,
+        "mean_success_seconds": 0.48250000000000004,
+        "collision_count": 0,
+        "flip_count": 0,
+        "numerical_failure_count": 0,
+        "seconds": 106.15574193000793,
+        "evaluation_suite": "3094622ba4a9",
+        "selection_holdout": false,
+        "seeds": [
+          10000,
+          10001,
+          10002,
+          10003,
+          10004,
+          10005,
+          10006,
+          10007,
+          10008,
+          10009,
+          10010,
+          10011,
+          10012,
+          10013,
+          10014,
+          10015,
+          10016,
+          10017,
+          10018,
+          10019
+        ],
+        "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed",
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000002048.zip",
+        "config": {
+          "trial": "3d-near-bc-ppo-seed47",
+          "backend": "3d",
+          "task": "food",
+          "curriculum": "near",
+          "reward_mode": "dense",
+          "max_steps": 120,
+          "seed": 47,
+          "action_mode": "normalized",
+          "environment_version": "food-v2-action-affine",
+          "initialization": "behavior-cloning-from-rule",
+          "physics_error_policy": "terminate",
+          "recovery_protocol": "numerical-failure-v1"
+        },
+        "video": "artifacts/20261015-220404/media/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.mp4",
+        "video_seed": 10000,
+        "path_image": "artifacts/20261015-220404/media/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed-paths.png",
+        "record_url": "artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-16T08:23:39+09:00",
+          "version": "a06ea735e505ed76",
+          "path": "artifacts/20261015-220404/source/a06ea735e505ed76",
+          "sha256": {
+            "lab/store.py": "455d575437929650b61dd79479ebb0d028e57f099848561b9057ab5a1f645017",
+            "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/policy_audit.py": "cf5563d07e6c479af16fa52f0789abfd1881871ecc3fe577be7156cc8ca98e9c",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+            "lab/noise_ablation.py": "acac5ea0438f5ad2894642ab75f981f0b94c72d28febf0d7b2d5167429471350",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
+            "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "lab/analyze.py": "c01bd474c8547ce258768f5432e2b48aae8df0d46620854be848f1b7bef5e1e2",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "checkpoint_sha256": "8f6e4ee6a9f99eb3644f44d4a67a862e7c195fbb67f51890fb62368d38b7c0de"
+      },
+      "media": [
+        "artifacts/20261015-220404/media/interval-0063.svg"
+      ],
+      "render": {
+        "status": "done",
+        "completed_at": "2026-10-16T08:34:37+09:00",
+        "video": "artifacts/20261015-220404/videos/interval-0063/recap.mp4",
+        "source_intervals": null
+      },
+      "actor": "local-script",
+      "record_type": "interval",
+      "recording_delay_seconds": 3.9262747764587402,
+      "last_evaluated_at": "2026-10-16T08:25:25+09:00"
     }
   ],
   "evaluations": [
@@ -17050,7 +17328,7 @@
   ],
   "retrospective": {},
   "report": "artifacts/20261015-220404/report.html",
-  "updated_at": "2026-10-16T08:31:17+09:00",
+  "updated_at": "2026-10-16T08:42:33+09:00",
   "journal": {
     "entries": [
       {
@@ -17342,12 +17620,36 @@
         "interpretation": "재시작 이후 동작과 평가를 확보했습니다. 오류 처리 프로토콜과 난수 초기화 문제를 고쳤다는 이력이 있으므로, 완전히 같은 학습 경로를 다시 실행했다고 보지는 않습니다. 앞으로의 탐험 폭 비교에는 수정 후 생성한 새 대조군을 사용합니다.",
         "next_action": "주 비교는 세 번째 seed의 10,240회까지 계속하고, 보조 비교는 네 조건 모두 2,048회 평가를 먼저 확보합니다. 최종 30개 새 조건은 모든 고정 비교 뒤에 평가합니다.",
         "evidence": "artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json"
+      },
+      {
+        "id": "aab4be300330493c9805497f95205f12",
+        "at": "2026-10-16T08:43:47+09:00",
+        "epoch": 1792107827.2959979,
+        "actor": "codex-agent",
+        "kind": "research",
+        "title": "점수를 올렸는데 먹이는 덜 찾는 정책",
+        "question": "보상 함수의 점수와 우리가 원하는 행동은 같은 것일까?",
+        "observation": "학습 seed 11의 같은 20개 평가에서 평균 보상은 −20.92에서 −2.95로 높아졌지만 먹이 도달은 4/20회에서 0/20회로 줄었습니다. 10,240번 학습한 정책의 실제 실패 영상과 경로를 함께 보존했습니다.",
+        "interpretation": "점수는 우리가 설계한 계산식입니다. 먹이 도착뿐 아니라 접근, 시간, 넘어짐을 함께 더하므로 덜 나쁘게 움직이는 정책도 점수는 올릴 수 있습니다. 도착하지 못하는 이유가 보상인지 탐험 크기인지는 아직 분리해서 검증해야 합니다.",
+        "next_action": "수정된 난수 초기화에서 새 대조군과 탐험 폭만 작은 변경군을 같은 학습량으로 비교합니다. 2,048회 첫 평가부터 두 조건을 나란히 남깁니다.",
+        "evidence": "artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json",
+        "video": "artifacts/20261015-220404/videos/research-0001/recap.mp4",
+        "prediction": {
+          "prompt": "로그의 평균 점수만 올랐다면 다음에 무엇을 볼까요?",
+          "options": [
+            "실제 먹이 도달 횟수와 이동 경로",
+            "학습 성공이라고 발표한다",
+            "잘된 영상 하나만 고른다"
+          ],
+          "answer": 0,
+          "explanation": "목표 행동을 직접 측정해야 합니다. 보상 점수 개선과 목표 달성은 별도로 확인합니다."
+        }
       }
     ]
   },
   "research": {
     "window_start": "2026-10-08",
-    "window_end": "2026-10-15",
+    "window_end": "2026-10-16",
     "items": [
       {
         "title": "HyperFrames 0.8.159–0.8.162",
@@ -17384,7 +17686,19 @@
         "decision": "이번 주 수정본 · 후속 가설로 보관",
         "finding": "관찰의 시간적 흐름을 LSTM으로 읽고 시범의 움직임을 판별하는 AMP를 PPO와 함께 학습합니다. Aside에서 제출 이력을, 논문 본문에서 방법을 확인했습니다.",
         "application": "초파리 검증 논문이 아닙니다. 현재 단순 모방 초기화와도 다른 방식입니다. 지금 비교는 유지하고, 다리 상태나 이전 관찰이 빠져서 생기는 실패가 있는지 후속 진단 후보로 남깁니다."
+      },
+      {
+        "title": "조사 범위 보완: FlyGym 2.1의 별도 API",
+        "published_at": "2026-06-24 · 이번 주 발표 아님",
+        "checked_at": "2026-10-16T08:38:49+09:00",
+        "url": "https://github.com/NeLy-EPFL/flygym/releases/tag/v2.1.0",
+        "decision": "격리 환경에서 실제 실행 확인",
+        "finding": "Aside로 공식 저장소를 확인했습니다. 앞선 1.3.2 확인은 구형 API fork인 flygym-gymnasium에 한정됐습니다. 본 저장소는 2.1.0에서 dm-control을 MuJoCo MjSpec으로 바꾸었으며 기존 API와 호환되지 않습니다.",
+        "application": "현재 비교의 MuJoCo 3.2.7은 유지합니다. 별도 환경에 FlyGym 2.1.0 / MuJoCo 3.9.0을 설치해 고정 신호 보행, CPU 처리 시간, 실제 영상 생성을 검증했습니다. 공식 속도 향상 수치를 이 Mac의 결과로 대신 쓰지 않습니다."
       }
+    ],
+    "history": [
+      "artifacts/20261015-220404/research-history/20261016-0838.json"
     ]
   },
   "diagnostics": {
@@ -18336,12 +18650,12 @@
   },
   "deployment": {
     "status": "deployed",
-    "at": "2026-10-16T08:27:02+09:00",
-    "commit": "6cc1e502f64fb0dfd8d89070a5095642e1d2db4a",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/6cc1e502f64fb0dfd8d89070a5095642e1d2db4a",
-    "snapshot_at": "2026-10-15T23:26:54+00:00",
+    "at": "2026-10-16T08:32:17+09:00",
+    "commit": "beeb2eb9a6b7cc667f6821de712038e73d22ed08",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/beeb2eb9a6b7cc667f6821de712038e73d22ed08",
+    "snapshot_at": "2026-10-15T23:32:11+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T08:27:35+09:00"
+    "verified_at": "2026-10-16T08:33:04+09:00"
   },
   "analysis": {
     "at": "2026-10-16T08:29:00+09:00",
@@ -19394,19 +19708,675 @@
   },
   "noise-ablation": {
     "status": "running",
-    "at": "2026-10-16T08:16:48+09:00",
+    "at": "2026-10-16T08:36:49+09:00",
     "trial": "3d-near-noise-v2-control-seed11",
     "initial_log_std": 0.0,
     "arm": "control",
     "protocol": "seeded-rng-v2",
+    "current_target": 2048,
     "online_budget_per_seed": 10240,
     "holdout_seed_start": 92000,
     "deadline_epoch": 1792154044.360686
   },
+  "compatibility": {
+    "at": "2026-10-16T08:36:49+09:00",
+    "title": "FlyGym 2.1 CPU 호환성 점검",
+    "records": [
+      {
+        "status": "completed",
+        "started_at": "2026-10-16T08:36:14+09:00",
+        "flavor": "modern",
+        "purpose": "CPU API compatibility and fixed-command walking; not learned behavior",
+        "source": "https://github.com/NeLy-EPFL/flygym/blob/v2.1.0/tutorials/4d_turning_controller.ipynb",
+        "probe_source_sha256": "a9f2a4c935192e5c89a0c6578b33203f603ac3933a482557f3bd18f34ada9bf1",
+        "architecture": "arm64",
+        "python": "3.12.13",
+        "versions": {
+          "flygym": "2.1.0",
+          "mujoco": "3.9.0",
+          "numpy": "2.5.4"
+        },
+        "command": "python -m lab.compatibility_probe runs/20261015-220404 --flavor modern --seconds 1.0 --repeats 3 --video",
+        "limitation": "몸·제어기 구현과 초기 안정화 방식이 다릅니다. 같은 학습 과제의 속도 향상 비율로 해석하지 않습니다. 주 실험 2 worker가 실행 중인 Mac에서 측정했습니다.",
+        "source_version": {
+          "at": "2026-10-16T08:36:14+09:00",
+          "version": "ffb0c4197a43e40e",
+          "path": "artifacts/20261015-220404/source/ffb0c4197a43e40e",
+          "sha256": {
+            "lab/store.py": "96f822b6c4f36e917b24ce9d25efc3a103d245030d7efaec27e4afeead98bba9",
+            "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/policy_audit.py": "cf5563d07e6c479af16fa52f0789abfd1881871ecc3fe577be7156cc8ca98e9c",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/compatibility_probe.py": "a9f2a4c935192e5c89a0c6578b33203f603ac3933a482557f3bd18f34ada9bf1",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+            "lab/noise_ablation.py": "456f95f1aeb4b122d3fad9fe17735f926e40fba01eabb0ccb16dc0f8475922d1",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
+            "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "lab/analyze.py": "5e8fa16fe6b350ed823c56ee6dd31d1939df07b9a2a475771747384c742cd7d5",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "requirements": "artifacts/20261015-220404/compatibility/flygym2/requirements.lock.txt",
+        "record_url": "artifacts/20261015-220404/compatibility/flygym2/modern.json",
+        "completed_at": "2026-10-16T08:36:48+09:00",
+        "setup_seconds": 0.1726559169983375,
+        "cold_probe": {
+          "seed": 0,
+          "simulation_seconds": 0.1,
+          "wall_seconds": 0.5170332499983488,
+          "physics_steps": 1000,
+          "equivalent_50ms_decisions_per_second": 3.8682231752143355,
+          "path_xyz": [
+            [
+              0.5528896009980355,
+              -1.0685963107817793e-05,
+              1.1588775431357388
+            ],
+            [
+              0.638537427040481,
+              0.22216530123973513,
+              0.8918780225955664
+            ],
+            [
+              0.9793393988258378,
+              0.32143549579352837,
+              0.9774288240420199
+            ]
+          ],
+          "rendered": false
+        },
+        "rows": [
+          {
+            "seed": 0,
+            "simulation_seconds": 1.0,
+            "wall_seconds": 5.38394258399785,
+            "physics_steps": 10000,
+            "equivalent_50ms_decisions_per_second": 3.7147498674008865,
+            "path_xyz": [
+              [
+                0.5528896009980355,
+                -1.0685963107817793e-05,
+                1.1588775431357388
+              ],
+              [
+                0.638537427040481,
+                0.22216530123973513,
+                0.8918780225955664
+              ],
+              [
+                0.9793393988258378,
+                0.32143549579352837,
+                0.9774288240420199
+              ],
+              [
+                1.380810404896266,
+                0.6327541504608087,
+                0.8556085759047226
+              ],
+              [
+                1.9720049337518037,
+                0.42667765590351353,
+                0.9799058177759522
+              ],
+              [
+                2.4068921375847,
+                0.7696747166938688,
+                1.1222786293776588
+              ],
+              [
+                2.9460137540816125,
+                0.7816831569767643,
+                1.1407577718748545
+              ],
+              [
+                3.4704897887693473,
+                0.8525543213960599,
+                1.1018658436715176
+              ],
+              [
+                4.066032753205095,
+                1.152480931228632,
+                1.103860360877162
+              ],
+              [
+                4.741738439481039,
+                0.9552306870318426,
+                1.1011637723845489
+              ],
+              [
+                5.226137603274659,
+                1.308965946490351,
+                1.1645890154038057
+              ],
+              [
+                5.780697848188411,
+                1.3035369878144727,
+                1.1647073048351775
+              ],
+              [
+                6.3131482002721775,
+                1.3773764739351397,
+                1.1055994183504396
+              ],
+              [
+                6.912193710066293,
+                1.6681733965006333,
+                1.1043859077749316
+              ],
+              [
+                7.587436779366143,
+                1.4630275754991882,
+                1.1004903603678966
+              ],
+              [
+                8.07557892836869,
+                1.812230325670264,
+                1.1637496680874346
+              ],
+              [
+                8.629539470308073,
+                1.7977397273982039,
+                1.1626662804712893
+              ],
+              [
+                9.16211192519739,
+                1.8652835494586468,
+                1.102787478840379
+              ],
+              [
+                9.763840590992396,
+                2.1429205452484528,
+                1.1022868832560861
+              ],
+              [
+                10.43500854605611,
+                1.9295415643775717,
+                1.1014726996066402
+              ],
+              [
+                10.928301172686675,
+                2.273558473245359,
+                1.164132264311011
+              ]
+            ],
+            "rendered": false
+          },
+          {
+            "seed": 1,
+            "simulation_seconds": 1.0,
+            "wall_seconds": 5.00093091600138,
+            "physics_steps": 10000,
+            "equivalent_50ms_decisions_per_second": 3.9992554058298215,
+            "path_xyz": [
+              [
+                0.5528896009980355,
+                -1.0685963107817793e-05,
+                1.1588775431357388
+              ],
+              [
+                0.7816366558026046,
+                -0.0573359188924217,
+                1.0050705834528735
+              ],
+              [
+                1.1612732491157405,
+                -0.0219466256231555,
+                0.9940474380279312
+              ],
+              [
+                1.9116039296280039,
+                0.013603875296734918,
+                0.6758417488203846
+              ],
+              [
+                2.214330118044758,
+                -0.05269433078997669,
+                1.0635555524420452
+              ],
+              [
+                2.83418627010741,
+                0.04689006146891854,
+                0.947073273193419
+              ],
+              [
+                3.3435526488193297,
+                -0.29121955037000796,
+                0.9970828065154231
+              ],
+              [
+                3.8191134781789735,
+                -0.18698871489958413,
+                1.1145075181818225
+              ],
+              [
+                4.359919043713477,
+                -0.23335354729258903,
+                1.1093364966672183
+              ],
+              [
+                4.958167640476929,
+                -0.39990444538350545,
+                1.085983884208192
+              ],
+              [
+                5.601008484271445,
+                -0.15727480624237544,
+                1.0919511233078762
+              ],
+              [
+                6.170143436681716,
+                -0.5079476468366577,
+                1.148357449204723
+              ],
+              [
+                6.690282141185814,
+                -0.39468109884522534,
+                1.17072951043295
+              ],
+              [
+                7.24555062965953,
+                -0.45863151266310664,
+                1.1254731823481507
+              ],
+              [
+                7.848279479279461,
+                -0.6146229385502808,
+                1.0874207317013975
+              ],
+              [
+                8.49326832838187,
+                -0.37328842758681996,
+                1.0933037092371114
+              ],
+              [
+                9.064807655077177,
+                -0.7221667915404013,
+                1.1478777002891911
+              ],
+              [
+                9.582887799190727,
+                -0.6065528455133085,
+                1.1696414486380595
+              ],
+              [
+                10.139215792804924,
+                -0.6654084448703873,
+                1.126544804836525
+              ],
+              [
+                10.743129678128662,
+                -0.8256696831189249,
+                1.0896085580070898
+              ],
+              [
+                11.388628914753433,
+                -0.583745753491646,
+                1.0949365867449008
+              ]
+            ],
+            "rendered": false
+          },
+          {
+            "seed": 2,
+            "simulation_seconds": 1.0,
+            "wall_seconds": 5.053450624996913,
+            "physics_steps": 10000,
+            "equivalent_50ms_decisions_per_second": 3.9576917801610496,
+            "path_xyz": [
+              [
+                0.5528896009980355,
+                -1.0685963107817793e-05,
+                1.1588775431357388
+              ],
+              [
+                0.8195123635547341,
+                0.0009595733150589147,
+                1.0408185993209138
+              ],
+              [
+                1.2696218123243568,
+                -0.2713055925441337,
+                0.9767946674755835
+              ],
+              [
+                1.7106467207762643,
+                -0.26982309756434053,
+                0.9868923799754665
+              ],
+              [
+                2.188874494674195,
+                -0.29529146284470315,
+                1.0094589847169684
+              ],
+              [
+                2.7713051088926184,
+                -0.5349780638631707,
+                1.0440140239736548
+              ],
+              [
+                3.396370420481034,
+                -0.3190318320493481,
+                1.0698703441567434
+              ],
+              [
+                3.9148142637408068,
+                -0.6671404997255933,
+                1.1481166436590935
+              ],
+              [
+                4.451323843668917,
+                -0.6207941328869511,
+                1.1638157392404578
+              ],
+              [
+                4.9848503178696575,
+                -0.6793285469062417,
+                1.116675486911432
+              ],
+              [
+                5.599119160625272,
+                -0.9153868561117383,
+                1.0996684992775259
+              ],
+              [
+                6.261233988813357,
+                -0.6882101907675375,
+                1.096106186321905
+              ],
+              [
+                6.78445227277543,
+                -1.041729777586911,
+                1.1582717267203477
+              ],
+              [
+                7.3241657781386085,
+                -0.9868114913124081,
+                1.1694111683779544
+              ],
+              [
+                7.856551685374473,
+                -1.0488874516611355,
+                1.1153769326232967
+              ],
+              [
+                8.472690413630465,
+                -1.275054703700481,
+                1.0984532507937503
+              ],
+              [
+                9.131777343605416,
+                -1.0392142839679925,
+                1.0929125432591655
+              ],
+              [
+                9.659512204598675,
+                -1.3878930910993443,
+                1.1558720234096627
+              ],
+              [
+                10.1974667679481,
+                -1.327447380977842,
+                1.1686804180061734
+              ],
+              [
+                10.73226508138875,
+                -1.3832284192845943,
+                1.1154809617841073
+              ],
+              [
+                11.350138542806611,
+                -1.6061811920378628,
+                1.0995974986582473
+              ]
+            ],
+            "rendered": false
+          }
+        ],
+        "median_decisions_per_second": 3.9576917801610496,
+        "rendered_probe": {
+          "seed": 0,
+          "simulation_seconds": 2.0,
+          "wall_seconds": 10.40855841699522,
+          "physics_steps": 20000,
+          "equivalent_50ms_decisions_per_second": 3.8429913536045026,
+          "path_xyz": [
+            [
+              0.5528896009980355,
+              -1.0685963107817793e-05,
+              1.1588775431357388
+            ],
+            [
+              0.638537427040481,
+              0.22216530123973513,
+              0.8918780225955664
+            ],
+            [
+              0.9793393988258378,
+              0.32143549579352837,
+              0.9774288240420199
+            ],
+            [
+              1.380810404896266,
+              0.6327541504608087,
+              0.8556085759047226
+            ],
+            [
+              1.9720049337518037,
+              0.42667765590351353,
+              0.9799058177759522
+            ],
+            [
+              2.4068921375847,
+              0.7696747166938688,
+              1.1222786293776588
+            ],
+            [
+              2.9460137540816125,
+              0.7816831569767643,
+              1.1407577718748545
+            ],
+            [
+              3.4704897887693473,
+              0.8525543213960599,
+              1.1018658436715176
+            ],
+            [
+              4.066032753205095,
+              1.152480931228632,
+              1.103860360877162
+            ],
+            [
+              4.741738439481039,
+              0.9552306870318426,
+              1.1011637723845489
+            ],
+            [
+              5.226137603274659,
+              1.308965946490351,
+              1.1645890154038057
+            ],
+            [
+              5.780697848188411,
+              1.3035369878144727,
+              1.1647073048351775
+            ],
+            [
+              6.3131482002721775,
+              1.3773764739351397,
+              1.1055994183504396
+            ],
+            [
+              6.912193710066293,
+              1.6681733965006333,
+              1.1043859077749316
+            ],
+            [
+              7.587436779366143,
+              1.4630275754991882,
+              1.1004903603678966
+            ],
+            [
+              8.07557892836869,
+              1.812230325670264,
+              1.1637496680874346
+            ],
+            [
+              8.629539470308073,
+              1.7977397273982039,
+              1.1626662804712893
+            ],
+            [
+              9.16211192519739,
+              1.8652835494586468,
+              1.102787478840379
+            ],
+            [
+              9.763840590992396,
+              2.1429205452484528,
+              1.1022868832560861
+            ],
+            [
+              10.43500854605611,
+              1.9295415643775717,
+              1.1014726996066402
+            ],
+            [
+              10.928301172686675,
+              2.273558473245359,
+              1.164132264311011
+            ],
+            [
+              11.482225728604444,
+              2.2531634031364254,
+              1.1636953039795064
+            ],
+            [
+              12.018098662251724,
+              2.312582767152777,
+              1.1054216095153884
+            ],
+            [
+              12.624950482269075,
+              2.5892949070232003,
+              1.1047593904647757
+            ],
+            [
+              13.296868894835782,
+              2.368299999889634,
+              1.1016379019203635
+            ],
+            [
+              13.792566940299423,
+              2.7106367427792297,
+              1.1636853950898878
+            ],
+            [
+              14.345919750271129,
+              2.6797872396218385,
+              1.1610410044061727
+            ],
+            [
+              14.88097732462688,
+              2.7360315674877778,
+              1.1023109140146687
+            ],
+            [
+              15.486908126401746,
+              3.004430636404038,
+              1.100327733356462
+            ],
+            [
+              16.154510024318437,
+              2.7765560808699123,
+              1.0960690389362981
+            ],
+            [
+              16.653972735200657,
+              3.1086527828675146,
+              1.1612362382853152
+            ],
+            [
+              17.207102899416086,
+              3.072718712081796,
+              1.1595135894505024
+            ],
+            [
+              17.74238814155078,
+              3.1241251015295983,
+              1.1018549402897966
+            ],
+            [
+              18.352739371955863,
+              3.3876245902899678,
+              1.103775182959361
+            ],
+            [
+              19.017678412438013,
+              3.1490395981875916,
+              1.098373642838264
+            ],
+            [
+              19.52093528300307,
+              3.480309099415717,
+              1.160584768476204
+            ],
+            [
+              20.07309878190178,
+              3.4377047544539434,
+              1.159722485655547
+            ],
+            [
+              20.6093361628853,
+              3.484118776841438,
+              1.1019629097006254
+            ],
+            [
+              21.222607239216973,
+              3.742301364356809,
+              1.1040728645409468
+            ],
+            [
+              21.885317603428017,
+              3.4995366912155137,
+              1.1010489192914075
+            ],
+            [
+              22.39245311361082,
+              3.829049646377021,
+              1.1620530071368753
+            ]
+          ],
+          "rendered": true
+        },
+        "video": "artifacts/20261015-220404/media/flygym-2.1-walking-probe.mp4"
+      },
+      {}
+    ],
+    "separate_from_learning": true
+  },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-15T23:32:11+00:00",
-    "snapshot_epoch": 1792107132.2415118,
+    "exported_at": "2026-10-15T23:43:48+00:00",
+    "snapshot_epoch": 1792107829.321634,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
   },
@@ -19802,6 +20772,7 @@
     "artifacts/20261015-220404/source/dce13159ba1c0f31/sha256.json",
     "artifacts/20261015-220404/source/e98396aa4f9e2482/sha256.json",
     "artifacts/20261015-220404/source/f82d94273833163f/sha256.json",
-    "artifacts/20261015-220404/source/fd62fbb99ea948bf/sha256.json"
+    "artifacts/20261015-220404/source/fd62fbb99ea948bf/sha256.json",
+    "artifacts/20261015-220404/source/ffb0c4197a43e40e/sha256.json"
   ]
 }

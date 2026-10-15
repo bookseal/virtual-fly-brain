@@ -1,10 +1,11 @@
 {
   "status": "running",
-  "at": "2026-10-16T08:16:48+09:00",
+  "at": "2026-10-16T08:36:49+09:00",
   "trial": "3d-near-noise-v2-control-seed11",
   "initial_log_std": 0.0,
   "arm": "control",
   "protocol": "seeded-rng-v2",
+  "current_target": 2048,
   "online_budget_per_seed": 10240,
   "holdout_seed_start": 92000,
   "deadline_epoch": 1792154044.360686
