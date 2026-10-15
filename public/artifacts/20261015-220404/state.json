@@ -1,10 +1,34 @@
 {
-  "status": "evaluating",
+  "status": "training",
   "backend": "3d",
-  "activity": "untrained 20회 평가",
-  "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
-  "change": "정규화한 행동을 기존 제어기의 신호 범위로 변환",
-  "result": "untrained 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
-  "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
-  "updated_at": "2026-10-15T22:36:02+09:00"
+  "activity": "3d-near-ppo-seed11 정책 학습",
+  "question": "같은 학습량에서 두 경로의 먹이 도달률은 어떻게 달라질까?",
+  "change": "3d-near-ppo-seed11: 정규화한 행동, dense 보상",
+  "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+  "next_action": "2,048 행동 경계와 주기적 고정 평가에서 비교",
+  "updated_at": "2026-10-15T22:54:59+09:00",
+  "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
+  "training": {
+    "trial": "3d-near-ppo-seed11",
+    "timesteps": 242,
+    "steps_this_segment": 242,
+    "decisions_per_second": 2.091905716568808,
+    "reward_terms_sum": {
+      "approach": -20.118801790623962,
+      "arrival": 20.0,
+      "time": -6.0500000000000185,
+      "collision": 0.0,
+      "flip": 0.0
+    },
+    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000000000.zip",
+    "action_mean": [
+      -0.013044686413135317,
+      -0.11177854849726024
+    ],
+    "action_std": [
+      1.0460984820771926,
+      0.9937622950682241
+    ],
+    "action_clipped_fraction": 0.32231404958677684
+  }
 }
