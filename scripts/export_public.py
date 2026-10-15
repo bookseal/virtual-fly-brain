@@ -6,7 +6,7 @@ machine paths are excluded. Original full episode data stays in evaluation JSON.
 import argparse,copy,datetime as dt,html,json,re,shutil,sys,time,tempfile,os
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-PRIVATE_KEYS={'quota','quota_start','quota_latest','pid','child','resets_at','used_percent','increase_pp','budget_pp','expand_stop_pp','recorder_heartbeat','probe','log','traceback','command_ko_private'}
+PRIVATE_KEYS={'model_allowance','quota','quota_start','quota_latest','pid','child','resets_at','used_percent','increase_pp','budget_pp','expand_stop_pp','recorder_heartbeat','probe','log','traceback','command_ko_private'}
 LOCAL_NAMES=[]
 if (ROOT/'HANDOFF.md').exists():LOCAL_NAMES=re.findall(r'사용자\([^,]+,\s*([^)]+)\)',(ROOT/'HANDOFF.md').read_text())
 PRIVATE_TEXT=re.compile(r'구독|주간.{0,20}(한도|사용)|시작 시 주간|account/rateLimits|used_percent|resets_at')

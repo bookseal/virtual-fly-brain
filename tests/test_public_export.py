@@ -5,9 +5,9 @@ spec=importlib.util.spec_from_file_location('export_public',Path(__file__).resol
 export=importlib.util.module_from_spec(spec);spec.loader.exec_module(export)
 
 def test_private_metadata_and_local_identity_are_removed():
-    data={'quota':{'used_percent':40},'pid':123,'seed':11,'command':str(export.ROOT)+'/lab/learning.py','detail':'사용자(local, SAMPLE PERSON)'}
+    data={'model_allowance':{'ceiling_percent':91},'quota':{'used_percent':40},'pid':123,'seed':11,'command':str(export.ROOT)+'/lab/learning.py','detail':'사용자(local, SAMPLE PERSON)'}
     cleaned=export.clean(data)
-    assert 'quota' not in cleaned and 'pid' not in cleaned and cleaned['seed']==11
+    assert 'model_allowance' not in cleaned and 'quota' not in cleaned and 'pid' not in cleaned and cleaned['seed']==11
     assert str(export.ROOT) not in cleaned['command'] and 'SAMPLE PERSON' not in cleaned['detail']
 
 def test_export_preserves_snapshot_evidence_and_valid_svg(tmp_path,monkeypatch):
