@@ -1,10 +1,10 @@
 {
-  "status": "preparing",
+  "status": "evaluating",
   "backend": "3d",
-  "activity": "입력 보정 완료 · 학습 비교 준비",
-  "question": "기본 출력이 보행 가능한 신호가 되면 학습이 달라질까?",
+  "activity": "untrained 20회 평가",
+  "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
   "change": "정규화한 행동을 기존 제어기의 신호 범위로 변환",
-  "result": "다섯 고정 신호의 실제 3D 영상·경로를 확보했습니다. 학습 개선은 아직 평가하지 않았습니다.",
-  "next_action": "PPO 단독과 규칙 모방 후 PPO를 동일 조건에서 시작",
-  "updated_at": "2026-10-15T22:11:41+09:00"
+  "result": "untrained 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
+  "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
+  "updated_at": "2026-10-15T22:36:02+09:00"
 }

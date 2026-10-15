@@ -1,0 +1,1333 @@
+{
+  "at": "2026-10-15T22:32:01+09:00",
+  "backend": "3d",
+  "train_seeds": [
+    200000,
+    200001,
+    200002,
+    200003,
+    200004,
+    200005,
+    200006,
+    200007,
+    200008,
+    200009,
+    200010,
+    200011,
+    200012,
+    200013,
+    200014,
+    200015,
+    200016,
+    200017,
+    200018,
+    200019,
+    200020,
+    200021,
+    200022,
+    200023,
+    200024,
+    200025,
+    200026,
+    200027,
+    200028,
+    200029,
+    200030,
+    200031,
+    200032,
+    200033,
+    200034,
+    200035,
+    200036,
+    200037,
+    200038,
+    200039,
+    200040,
+    200041,
+    200042,
+    200043,
+    200044,
+    200045,
+    200046,
+    200047,
+    200048,
+    200049,
+    200050,
+    200051,
+    200052,
+    200053,
+    200054,
+    200055,
+    200056,
+    200057,
+    200058,
+    200059,
+    200060,
+    200061,
+    200062,
+    200063,
+    200064,
+    200065,
+    200066,
+    200067,
+    200068,
+    200069,
+    200070,
+    200071,
+    200072,
+    200073,
+    200074,
+    200075,
+    200076,
+    200077,
+    200078,
+    200079,
+    200080,
+    200081,
+    200082,
+    200083,
+    200084,
+    200085,
+    200086,
+    200087,
+    200088,
+    200089,
+    200090,
+    200091,
+    200092,
+    200093,
+    200094,
+    200095,
+    200096,
+    200097,
+    200098,
+    200099,
+    200100,
+    200101,
+    200102,
+    200103,
+    200104,
+    200105,
+    200106,
+    200107,
+    200108,
+    200109,
+    200110,
+    200111,
+    200112,
+    200113,
+    200114,
+    200115,
+    200116,
+    200117,
+    200118,
+    200119,
+    200120,
+    200121,
+    200122,
+    200123,
+    200124,
+    200125,
+    200126,
+    200127,
+    200128,
+    200129,
+    200130,
+    200131,
+    200132,
+    200133,
+    200134,
+    200135,
+    200136,
+    200137,
+    200138,
+    200139,
+    200140,
+    200141,
+    200142,
+    200143,
+    200144,
+    200145,
+    200146,
+    200147,
+    200148,
+    200149,
+    200150,
+    200151,
+    200152,
+    200153,
+    200154,
+    200155,
+    200156,
+    200157,
+    200158,
+    200159,
+    200160,
+    200161,
+    200162,
+    200163,
+    200164,
+    200165,
+    200166,
+    200167,
+    200168,
+    200169,
+    200170,
+    200171,
+    200172,
+    200173,
+    200174,
+    200175,
+    200176,
+    200177,
+    200178,
+    200179,
+    200180,
+    200181,
+    200182,
+    200183,
+    200184,
+    200185,
+    200186,
+    200187,
+    200188,
+    200189,
+    200190,
+    200191,
+    200192,
+    200193,
+    200194,
+    200195,
+    200196,
+    200197,
+    200198,
+    200199
+  ],
+  "validation_seeds": [
+    210000,
+    210001,
+    210002,
+    210003,
+    210004,
+    210005,
+    210006,
+    210007,
+    210008,
+    210009,
+    210010,
+    210011,
+    210012,
+    210013,
+    210014,
+    210015,
+    210016,
+    210017,
+    210018,
+    210019
+  ],
+  "episodes": [
+    {
+      "seed": 200000,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200001,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200002,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200003,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200004,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200005,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200006,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200007,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200008,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200009,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200010,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200011,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200012,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200013,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200014,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200015,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200016,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200017,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200018,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200019,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200020,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200021,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200022,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200023,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200024,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200025,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200026,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200027,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200028,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200029,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200030,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200031,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200032,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200033,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200034,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200035,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200036,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200037,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200038,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200039,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200040,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200041,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200042,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200043,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200044,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200045,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200046,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200047,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200048,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200049,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200050,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200051,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200052,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200053,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200054,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200055,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200056,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200057,
+      "samples": 16,
+      "success": true
+    },
+    {
+      "seed": 200058,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200059,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200060,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200061,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200062,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200063,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200064,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200065,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200066,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200067,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200068,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200069,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200070,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200071,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200072,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200073,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200074,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200075,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200076,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200077,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200078,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200079,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200080,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200081,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200082,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200083,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200084,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200085,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200086,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200087,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200088,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200089,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200090,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200091,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200092,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200093,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200094,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200095,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200096,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200097,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200098,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200099,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200100,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200101,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200102,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200103,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200104,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200105,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200106,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200107,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200108,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200109,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200110,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200111,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200112,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200113,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200114,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200115,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200116,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200117,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200118,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200119,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200120,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200121,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200122,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200123,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200124,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200125,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200126,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200127,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200128,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200129,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200130,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200131,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200132,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200133,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200134,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200135,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200136,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200137,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200138,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200139,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200140,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200141,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200142,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200143,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200144,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200145,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200146,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200147,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200148,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200149,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200150,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200151,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200152,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200153,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200154,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200155,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200156,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200157,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200158,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200159,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200160,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200161,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200162,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200163,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200164,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200165,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200166,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200167,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200168,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200169,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200170,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200171,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200172,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200173,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200174,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200175,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200176,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200177,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200178,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200179,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200180,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200181,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200182,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200183,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200184,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200185,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 200186,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200187,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200188,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 200189,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200190,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 200191,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200192,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200193,
+      "samples": 11,
+      "success": true
+    },
+    {
+      "seed": 200194,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 200195,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 200196,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 200197,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200198,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 200199,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 210000,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 210001,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 210002,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 210003,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 210004,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 210005,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 210006,
+      "samples": 9,
+      "success": true
+    },
+    {
+      "seed": 210007,
+      "samples": 15,
+      "success": true
+    },
+    {
+      "seed": 210008,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 210009,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 210010,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 210011,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 210012,
+      "samples": 10,
+      "success": true
+    },
+    {
+      "seed": 210013,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 210014,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 210015,
+      "samples": 13,
+      "success": true
+    },
+    {
+      "seed": 210016,
+      "samples": 8,
+      "success": true
+    },
+    {
+      "seed": 210017,
+      "samples": 14,
+      "success": true
+    },
+    {
+      "seed": 210018,
+      "samples": 12,
+      "success": true
+    },
+    {
+      "seed": 210019,
+      "samples": 13,
+      "success": true
+    }
+  ],
+  "total_actions": 2555,
+  "seconds": 1131.6734478473663,
+  "source": "rule controller actual rollouts"
+}

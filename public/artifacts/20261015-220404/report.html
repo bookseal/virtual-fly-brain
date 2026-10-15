@@ -1,0 +1,35 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly Brain Lab 공개 보고서</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:32px auto;padding:20px;background:#f7f8fa;color:#22313e}section{padding:18px;background:white;border:1px solid #ddd;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}</style><h1>실험 결과 · 공개 기록</h1><p>생성 시각 2026-10-15T22:47:48+09:00. 공개 시점의 관측 결과입니다.</p><section><h2>10분 시각 기록 · pass</h2><pre>{
+  &quot;status&quot;: &quot;pass&quot;,
+  &quot;intervals&quot;: 5,
+  &quot;rendered&quot;: 5,
+  &quot;gaps&quot;: 0
+}</pre></section><section><h2>실제 3D 몸 실행 · pass</h2><pre>{
+  &quot;status&quot;: &quot;pass&quot;,
+  &quot;evidence&quot;: &quot;artifacts/20261015-220404/media/1792070388818900000-3d-near-ppo-seed11-rule-fixed.mp4&quot;
+}</pre></section><section><h2>정책의 학습 개선 · not_confirmed</h2><pre>{
+  &quot;status&quot;: &quot;not_confirmed&quot;,
+  &quot;comparisons&quot;: [],
+  &quot;interpretation&quot;: &quot;같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다.&quot;
+}</pre></section><section><h2>장애물 회피 · not_started</h2><pre>{
+  &quot;status&quot;: &quot;not_started&quot;,
+  &quot;holdout_results&quot;: []
+}</pre></section><section><h2>세 학습 seed의 같은 학습량 비교 · not_confirmed</h2><pre>{
+  &quot;status&quot;: &quot;not_confirmed&quot;,
+  &quot;matched_budgets&quot;: [
+    {
+      &quot;online_timesteps&quot;: 10240,
+      &quot;completed_pairs&quot;: 0,
+      &quot;planned_pairs&quot;: 3,
+      &quot;pairs&quot;: [],
+      &quot;mean_difference_pp&quot;: null
+    },
+    {
+      &quot;online_timesteps&quot;: 20480,
+      &quot;completed_pairs&quot;: 0,
+      &quot;planned_pairs&quot;: 3,
+      &quot;pairs&quot;: [],
+      &quot;mean_difference_pp&quot;: null
+    }
+  ],
+  &quot;interpretation&quot;: &quot;같은 온라인 행동 예산과 평가 조건에서만 seed별 차이를 계산합니다. B 경로는 별도 시범 비용이 있으며, 세 seed의 차이를 통계적 확정으로 해석하지 않습니다.&quot;
+}</pre></section><p><a href="report.json">보고서 JSON</a> · <a href="../../#experiments">실험 타임라인으로</a></p></html>

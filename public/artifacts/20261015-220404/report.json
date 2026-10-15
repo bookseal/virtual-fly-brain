@@ -1,0 +1,61 @@
+{
+  "run_id": "20261015-220404",
+  "generated_at": "2026-10-15T22:47:48+09:00",
+  "elapsed_hours": 0.7289218908548355,
+  "verdict": {
+    "record_system": {
+      "status": "pass",
+      "intervals": 5,
+      "rendered": 5,
+      "gaps": 0
+    },
+    "3d_execution": {
+      "status": "pass",
+      "evidence": "artifacts/20261015-220404/media/1792070388818900000-3d-near-ppo-seed11-rule-fixed.mp4"
+    },
+    "learning_improvement": {
+      "status": "not_confirmed",
+      "comparisons": [],
+      "interpretation": "같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다."
+    },
+    "obstacles": {
+      "status": "not_started",
+      "holdout_results": []
+    },
+    "replication": {
+      "status": "not_confirmed",
+      "matched_budgets": [
+        {
+          "online_timesteps": 10240,
+          "completed_pairs": 0,
+          "planned_pairs": 3,
+          "pairs": [],
+          "mean_difference_pp": null
+        },
+        {
+          "online_timesteps": 20480,
+          "completed_pairs": 0,
+          "planned_pairs": 3,
+          "pairs": [],
+          "mean_difference_pp": null
+        }
+      ],
+      "interpretation": "같은 온라인 행동 예산과 평가 조건에서만 seed별 차이를 계산합니다. B 경로는 별도 시범 비용이 있으며, 세 seed의 차이를 통계적 확정으로 해석하지 않습니다."
+    }
+  },
+  "errors": [],
+  "remaining": [
+    "실제 초파리 뇌 전체와 생물학적 가소성은 이번 정책 학습의 대상이 아닙니다.",
+    "서로 다른 환경 seed와 새로운 조건에서 반복 검증이 필요합니다."
+  ],
+  "reproduction": "See README.md and per-evaluation config/seeds/checkpoint/actions.",
+  "publication": {
+    "status": "deployed",
+    "at": "2026-10-15T22:19:52+09:00",
+    "commit": "4855bd65f130d395544d17049dc00ea8a8e4d4d0",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/4855bd65f130d395544d17049dc00ea8a8e4d4d0",
+    "snapshot_at": "2026-10-15T13:19:50+00:00",
+    "url": "https://bookseal.github.io/virtual-fly-brain/",
+    "verified_at": "2026-10-15T22:20:39+09:00"
+  }
+}
