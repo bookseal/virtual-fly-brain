@@ -4,31 +4,31 @@
   "activity": "ppo 20회 평가",
   "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
   "change": "3d-near-ppo-seed11: 정규화한 행동, dense 보상",
-  "result": "3d ppo: 동일 조건 20회 중 0회 도달. 학습량 8,192회.",
+  "result": "ppo 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
   "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
-  "updated_at": "2026-10-16T00:49:25+09:00",
+  "updated_at": "2026-10-16T01:05:02+09:00",
   "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
   "training": {
     "trial": "3d-near-ppo-seed11",
-    "timesteps": 8176,
-    "steps_this_segment": 2032,
-    "decisions_per_second": 2.2545838613791513,
+    "timesteps": 10222,
+    "steps_this_segment": 2030,
+    "decisions_per_second": 2.2083915603301225,
     "reward_terms_sum": {
-      "approach": 53.569944510281836,
-      "arrival": 160.0,
-      "time": -50.799999999998185,
+      "approach": 75.9571505361508,
+      "arrival": 100.0,
+      "time": -50.74999999999819,
       "collision": 0.0,
       "flip": 0.0
     },
-    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000007490.zip",
+    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000009520.zip",
     "action_mean": [
-      -0.710113471945909,
-      -0.562612442754385
+      -0.8771808859896777,
+      -0.6574962459394498
     ],
     "action_std": [
-      0.988432422607359,
-      0.959162941959821
+      1.0298849093567402,
+      0.9980074507317015
     ],
-    "action_clipped_fraction": 0.406496062992126
+    "action_clipped_fraction": 0.4541871921182266
   }
 }
