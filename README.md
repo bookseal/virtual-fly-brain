@@ -65,7 +65,7 @@ git push
 ## 검증
 
 ```sh
-.venv/bin/python -m pytest -q tests/test_lab.py
+.venv/bin/python -m pytest -q
 FLY_UI_BASE=http://localhost:8765 NODE_PATH=/path/to/node_modules node scripts/check-ui.cjs
 FLY_UI_BASE=http://localhost:8765 NODE_PATH=/path/to/node_modules node scripts/check-experiments.cjs
 ```
@@ -94,3 +94,5 @@ FLY_UI_BASE=http://localhost:8765 NODE_PATH=/path/to/node_modules node scripts/c
 기록기는 10분, 공개기는 30분 주기로 동작합니다. 공개기는 별도 detached checkout에서 검증한 `public/` 자료만 커밋·push하고, 실제 Pages manifest 반영을 확인합니다. 개발 중인 코드를 자동으로 커밋하지 않습니다. 로컬 개발 checkout이 자동 공개 커밋보다 뒤처졌다면, 개발 커밋을 만든 뒤 `git fetch origin`과 `git rebase origin/main`으로 먼저 합칩니다. 충돌 시 강제 push하지 않습니다.
 
 대화가 끊겨도 로컬 프로세스는 계속됩니다. 자동 진행은 미리 정한 규칙이며, GPT가 계속 분석하고 있다는 뜻은 아닙니다. 노트북 절전·프로세스 종료·네트워크 장애로 생긴 공백은 공개 기록에 표시합니다. `runs/YOUR_RUN_ID/STOP` 파일을 만들면 학습이 안전 경계에서 중단됩니다. 최종 회고 렌더와 공개 확인까지 끝난 뒤 프로세스가 종료됩니다.
+
+공개 비교표는 학습 seed 11·29·47의 같은 온라인 행동량(10,240회·20,480회)을 따로 비교합니다. 각 경로의 초기 정책과 새로운 조건 30회 결과도 분리합니다. 평가 JSON의 `source_version`은 당시 코드의 해시와 경로를 가리킵니다. 공개 manifest의 `reproduction_sources`에서 정확한 소스 파일 목록을, `demonstrations`에서 시범 배열과 seed 구분을 확인할 수 있습니다. 소스 스냅샷은 원본 바이트와 SHA-256 일치를 검사한 뒤 공개합니다.

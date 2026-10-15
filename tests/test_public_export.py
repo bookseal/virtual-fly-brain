@@ -57,3 +57,16 @@ def test_public_demonstrations_retain_disjoint_seeds_and_arrays(tmp_path,monkeyp
     with np.load(output/'artifacts/demo/demonstrations/200000.npz') as z:
         np.testing.assert_array_equal(z['actions'],[[.3,.4]])
     assert export.read(output/m['demonstrations']['manifest'])['validation_seeds']==[210000]
+
+def test_source_snapshot_is_hash_verified_before_publication(tmp_path,monkeypatch):
+    import hashlib
+    monkeypatch.setattr(export,'ROOT',tmp_path)
+    export.write(tmp_path/'site/timeline.json',{})
+    run=tmp_path/'runs/code';export.write(run/'manifest.json',{'run':{'started_at':'2026'},'state':{}})
+    source=run/'source/v1/lab/envs.py';source.parent.mkdir(parents=True);source.write_text('value = 7\n')
+    export.write(run/'source/v1/sha256.json',{'lab/envs.py':hashlib.sha256(source.read_bytes()).hexdigest()})
+    output=tmp_path/'public';output.mkdir();m=export.export_run(run,output)
+    assert len(m['reproduction_sources'])==1
+    assert (output/'artifacts/code/source/v1/lab/envs.py').read_bytes()==source.read_bytes()
+    source.write_text('modified = True\n')
+    with pytest.raises(ValueError,match='hash mismatch'):export.export_run(run,output)

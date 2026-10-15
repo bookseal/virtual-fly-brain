@@ -61,7 +61,9 @@ def publish(run):
         dest=ROOT/'site/experiments/index.json'
         with lock(ROOT/'site/experiments/.index.lock'):
             idx=read(dest,{'runs':[]});entry={'run_id':run.name,'started_at':config.get('started_at'),'manifest':asset(run,run/'manifest.json')}
-            idx['runs']=[entry]+[r for r in idx['runs'] if r['run_id']!=run.name];idx['updated_at']=now();atomic(dest,idx)
+            idx['runs']=[entry]+[r for r in idx['runs'] if r['run_id']!=run.name]
+            idx['runs'].sort(key=lambda r:r.get('started_at',''),reverse=True)
+            idx['updated_at']=now();atomic(dest,idx)
 
 def evidence_svg(run,interval):
     """A factual status card, never a synthetic animal rollout."""

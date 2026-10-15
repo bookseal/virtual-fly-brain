@@ -6,7 +6,7 @@ machine paths are excluded. Original full episode data stays in evaluation JSON.
 import argparse,copy,datetime as dt,html,json,re,shutil,sys,time,tempfile,os
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-PRIVATE_KEYS={'quota','quota_start','quota_latest','pid','child','resets_at','used_percent','increase_pp','budget_pp','expand_stop_pp','recorder_heartbeat','source_version','probe','log','traceback','command_ko_private'}
+PRIVATE_KEYS={'quota','quota_start','quota_latest','pid','child','resets_at','used_percent','increase_pp','budget_pp','expand_stop_pp','recorder_heartbeat','probe','log','traceback','command_ko_private'}
 LOCAL_NAMES=[]
 if (ROOT/'HANDOFF.md').exists():LOCAL_NAMES=re.findall(r'사용자\([^,]+,\s*([^)]+)\)',(ROOT/'HANDOFF.md').read_text())
 PRIVATE_TEXT=re.compile(r'구독|주간.{0,20}(한도|사용)|시작 시 주간|account/rateLimits|used_percent|resets_at')
@@ -27,7 +27,7 @@ def clean(value):
     return value
 def brief(e):return {k:v for k,v in e.items() if k!='episodes_raw'} if e else e
 def public_report(dest,report):
-    esc=lambda v:html.escape(str(v));labels={'record_system':'10분 시각 기록','3d_execution':'실제 3D 몸 실행','learning_improvement':'정책의 학습 개선','obstacles':'장애물 회피'}
+    esc=lambda v:html.escape(str(v));labels={'record_system':'10분 시각 기록','3d_execution':'실제 3D 몸 실행','learning_improvement':'정책의 학습 개선','obstacles':'장애물 회피','replication':'세 학습 seed의 같은 학습량 비교'}
     body=f'<h1>실험 결과 · 공개 기록</h1><p>생성 시각 {esc(report.get("generated_at",""))}. 공개 시점의 관측 결과입니다.</p>'
     for k,v in report.get('verdict',{}).items():body+=f'<section><h2>{esc(labels.get(k,k))} · {esc(v.get("status"))}</h2><pre>{esc(json.dumps(v,ensure_ascii=False,indent=2))}</pre></section>'
     body+='<p><a href="report.json">보고서 JSON</a> · <a href="../../#experiments">실험 타임라인으로</a></p>'
@@ -91,6 +91,22 @@ def export_run(run,output):
     demo=dest/'demonstrations/manifest.json'
     if demo.exists():
         m['demonstrations']={'manifest':f'artifacts/{run.name}/demonstrations/manifest.json','download_pattern':f'artifacts/{run.name}/demonstrations/{{seed}}.npz','note':'실제 시범의 관찰값과 행동값. train_seeds와 validation_seeds는 manifest에 분리되어 있습니다.'}
+    # Immutable source bytes must keep their recorded hashes. Audit instead of
+    # rewriting source text, which would invalidate exact reproduction.
+    sources=[]
+    for version in sorted((run/'source').glob('*')):
+        if not version.is_dir() or not (version/'sha256.json').exists():continue
+        import hashlib
+        hashes=read(version/'sha256.json')
+        for name,digest in hashes.items():
+            relative=Path(name)
+            if relative.is_absolute() or '..' in relative.parts:raise ValueError('Source path escapes snapshot')
+            src=version/relative
+            if hashlib.sha256(src.read_bytes()).hexdigest()!=digest:raise ValueError('Source snapshot hash mismatch')
+            target=dest/'source'/version.name/relative;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(src,target)
+        write(dest/'source'/version.name/'sha256.json',hashes)
+        sources.append(f'artifacts/{run.name}/source/{version.name}/sha256.json')
+    m['reproduction_sources']=sources
     m['report']=None
     if (run/'report.json').exists():
         report=clean(read(run/'report.json'));write(dest/'report.json',report);public_report(dest,report);m['report']=f'artifacts/{run.name}/report.html'
@@ -117,7 +133,7 @@ def build(output):
     return output
 def audit(root):
     for p in root.rglob('*'):
-        if not p.is_file() or p.suffix not in {'.json','.jsonl','.txt','.html','.svg','.md','.js','.css'}:continue
+        if not p.is_file() or p.suffix not in {'.json','.jsonl','.txt','.html','.svg','.md','.js','.css','.py'}:continue
         text=p.read_text()
         if SECRET.search(text) or ('/Users/'+Path.home().name) in text or any(n in text for n in LOCAL_NAMES):raise ValueError(f'Private material: {p}')
         if p.suffix=='.json':

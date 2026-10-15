@@ -91,9 +91,19 @@ def main():
             for policy in ('rule','random'):
                 if not evaluations(run,configs[0],policy):
                     if not assess(run,configs[0],policy,None,train_end):break
-            for c in configs:
-                if not prepare(run,c,train_end):break
-                if not train_to(run,c,10240,train_end):break
+            # Establish both starting points before the first member of a pair
+            # consumes the full online budget. Early checkpoints cover both routes.
+            continue_training=True
+            for offset in range(0,len(configs),2):
+                pair=configs[offset:offset+2]
+                for c in pair:
+                    if not prepare(run,c,train_end):continue_training=False;break
+                if not continue_training:break
+                for target in (2048,10240):
+                    for c in pair:
+                        if not train_to(run,c,target,train_end):continue_training=False;break
+                    if not continue_training:break
+                if not continue_training:break
             # Matched online budgets; never extend only the winning route.
             if time.time()<origin+17*3600:
                 for c in configs:
