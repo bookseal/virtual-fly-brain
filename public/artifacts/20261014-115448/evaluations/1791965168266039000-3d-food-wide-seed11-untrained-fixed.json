@@ -20265,5 +20265,28 @@
       "obstacle": null
     }
   ],
+  "source_version": {
+    "at": "2026-10-14T17:06:08+09:00",
+    "version": "b567ed3c72241631",
+    "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+    "sha256": {
+      "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+      "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+      "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+      "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+      "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+      "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+      "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+      "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+      "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+      "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+      "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+      "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+      "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+      "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+      "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+      "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+    }
+  },
   "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
 }

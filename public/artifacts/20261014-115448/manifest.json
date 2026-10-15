@@ -1367,7 +1367,30 @@
           "within_1e-5": true,
           "checkpoint_recomputed": true,
           "max_action_error": 0.0,
-          "seconds": 17.847646951675415
+          "seconds": 17.847646951675415,
+          "source_version": {
+            "at": "2026-10-14T14:33:33+09:00",
+            "version": "d6152f5a3ad90e83",
+            "path": "artifacts/20261014-115448/source/d6152f5a3ad90e83",
+            "sha256": {
+              "lab/store.py": "5b98edd8a3d00d1687a87be369bb418fc055678d2e7b0128373abf42ec0581e6",
+              "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+              "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+              "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+              "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+              "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+              "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+              "lab/campaign.py": "673d8b6e99cba79d5f0a17de24ff51f98177bb1830c801e549857a5327adc532",
+              "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+              "lab/manage.py": "8f52210ee3c3cae19b14b8d9871a9bedcd30ce392696cd673101738270ccbbed",
+              "lab/learning.py": "5418b5a7a09175a9706d1fc8abb7c11f50d8373a2c9208d99234f4aff82a6893",
+              "lab/video.py": "d2f279f9955d971f36eaa3d266af6a47b0545be7cc44ef9db5b98993ff1e9968",
+              "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+              "lab/report.py": "5adc0e04c30dfbda131fce4651bc1ad713255fd9306d2df0dbc97c9815c48471",
+              "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+              "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+            }
+          }
         },
         {
           "id": "50ea251a18984f0ab92b0db9b0f70f34",
@@ -2862,6 +2885,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T15:40:36+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
       },
       "media": [
@@ -3016,6 +3062,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T15:40:36+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
       },
       "media": [
@@ -3174,6 +3243,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T15:40:36+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
       },
       "media": [
@@ -3342,6 +3434,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T15:40:36+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
       },
       "media": [
@@ -3546,6 +3661,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T15:40:36+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
       },
       "media": [
@@ -3729,6 +3867,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T15:40:36+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
       },
       "media": [
@@ -3933,6 +4094,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791963822475031000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791963822475031000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T16:43:42+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -4132,6 +4316,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791963822475031000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791963822475031000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T16:43:42+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -4239,6 +4446,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791963822475031000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791963822475031000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T16:43:42+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -4379,6 +4609,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -4583,6 +4836,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -4751,6 +5027,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -4894,6 +5193,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -5091,6 +5413,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -5299,6 +5644,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -5471,6 +5839,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -5654,6 +6045,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -5782,6 +6196,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -5926,6 +6363,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -6111,6 +6571,29 @@
         "video_seed": 90000,
         "path_image": "artifacts/20261014-115448/media/1791972108653457000-3d-food-near-seed11-ppo-holdout-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791972108653457000-3d-food-near-seed11-ppo-holdout.json",
+        "source_version": {
+          "at": "2026-10-14T19:01:48+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -6228,6 +6711,29 @@
         "video_seed": 90000,
         "path_image": "artifacts/20261014-115448/media/1791972108653457000-3d-food-near-seed11-ppo-holdout-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791972108653457000-3d-food-near-seed11-ppo-holdout.json",
+        "source_version": {
+          "at": "2026-10-14T19:01:48+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -6408,6 +6914,29 @@
         "video_seed": 90000,
         "path_image": "artifacts/20261014-115448/media/1791972108653457000-3d-food-near-seed11-ppo-holdout-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791972108653457000-3d-food-near-seed11-ppo-holdout.json",
+        "source_version": {
+          "at": "2026-10-14T19:01:48+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -6681,6 +7210,29 @@
       "video_seed": 10000,
       "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
       "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+      "source_version": {
+        "at": "2026-10-14T15:40:36+09:00",
+        "version": "b567ed3c72241631",
+        "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+        "sha256": {
+          "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+          "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+          "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+        }
+      },
       "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
     },
     {
@@ -6747,6 +7299,29 @@
       "video_seed": 10000,
       "path_image": "artifacts/20261014-115448/media/1791963822475031000-3d-food-near-seed11-ppo-fixed-paths.png",
       "record_url": "artifacts/20261014-115448/evaluations/1791963822475031000-3d-food-near-seed11-ppo-fixed.json",
+      "source_version": {
+        "at": "2026-10-14T16:43:42+09:00",
+        "version": "b567ed3c72241631",
+        "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+        "sha256": {
+          "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+          "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+          "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+        }
+      },
       "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
     },
     {
@@ -6813,6 +7388,29 @@
       "video_seed": 10000,
       "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
       "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+      "source_version": {
+        "at": "2026-10-14T17:06:08+09:00",
+        "version": "b567ed3c72241631",
+        "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+        "sha256": {
+          "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+          "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+          "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+        }
+      },
       "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
     },
     {
@@ -6889,6 +7487,29 @@
       "video_seed": 90000,
       "path_image": "artifacts/20261014-115448/media/1791972108653457000-3d-food-near-seed11-ppo-holdout-paths.png",
       "record_url": "artifacts/20261014-115448/evaluations/1791972108653457000-3d-food-near-seed11-ppo-holdout.json",
+      "source_version": {
+        "at": "2026-10-14T19:01:48+09:00",
+        "version": "b567ed3c72241631",
+        "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+        "sha256": {
+          "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+          "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+          "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+        }
+      },
       "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
     }
   ],
@@ -7275,6 +7896,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T15:40:36+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
       },
       "media": [
@@ -7488,6 +8132,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791963822475031000-3d-food-near-seed11-ppo-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791963822475031000-3d-food-near-seed11-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T16:43:42+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -7707,6 +8374,29 @@
         "video_seed": 10000,
         "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
         "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+        "source_version": {
+          "at": "2026-10-14T17:06:08+09:00",
+          "version": "b567ed3c72241631",
+          "path": "artifacts/20261014-115448/source/b567ed3c72241631",
+          "sha256": {
+            "lab/store.py": "ff7d606bf6a40a8bfff996c09f754b5b23fe45c12d684b04166dd2769021dc47",
+            "lab/envs.py": "7c06c31e2d396d08ae74a7fecab722099f75d8bf43188722cb6b71b8fa173e91",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/recorder.py": "518ff08283baab78e9790853a63e9d5038b2c6cf120d715422dfe85962df11cd",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/replay.py": "08a28dff3d8013a4fc30cb9f4614f9844d71f7959830baa1a7509ac54db1c802",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/learning.py": "b087a3da184e5a751b8e0610825ce779834050a28cf185575e590cd878f6e935",
+            "lab/video.py": "561c2fcd92d3e5ce841a3f24360742b8903b2ae6132761459ca19fdb2068783c",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "8475e06dd208d26cb84844b74845cd22815770d29140937a7e3b951c59ca1faf",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "b8579b6ca58dc85c06d8877e2715b29d1aa008e162eaf3d6cb6c31c7483a4678"
+          }
+        },
         "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
       },
       "media": [
@@ -7750,24 +8440,34 @@
     ]
   },
   "report": "artifacts/20261014-115448/report.html",
-  "updated_at": "2026-10-15T22:29:16+09:00",
+  "updated_at": "2026-10-15T22:45:00+09:00",
   "journal": {},
   "research": {},
   "diagnostics": {},
   "deployment": {
     "status": "deployed",
-    "at": "2026-10-15T22:27:53+09:00",
-    "commit": "4921feb3b3a54ff5d4d5fb1ebef48ec1857df625",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/4921feb3b3a54ff5d4d5fb1ebef48ec1857df625",
-    "snapshot_at": "2026-10-15T13:27:48+00:00",
+    "at": "2026-10-15T22:42:56+09:00",
+    "commit": "bb3b1d699b05d6ac46177556b8b394ea864e709b",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/bb3b1d699b05d6ac46177556b8b394ea864e709b",
+    "snapshot_at": "2026-10-15T13:42:52+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-15T22:28:24+09:00"
+    "verified_at": "2026-10-15T22:45:00+09:00"
   },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-15T13:42:52+00:00",
-    "snapshot_epoch": 1792071773.517477,
+    "exported_at": "2026-10-15T13:51:42+00:00",
+    "snapshot_epoch": 1792072302.949516,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
-  }
+  },
+  "reproduction_sources": [
+    "artifacts/20261014-115448/source/09c67a3bbb0305c2/sha256.json",
+    "artifacts/20261014-115448/source/2026-10-14T142641_0900/sha256.json",
+    "artifacts/20261014-115448/source/6a7da3b8615cc0d8/sha256.json",
+    "artifacts/20261014-115448/source/814eee79d13cb6e5/sha256.json",
+    "artifacts/20261014-115448/source/ae715a3d886ee6d9/sha256.json",
+    "artifacts/20261014-115448/source/af043d8d7aa8558e/sha256.json",
+    "artifacts/20261014-115448/source/b567ed3c72241631/sha256.json",
+    "artifacts/20261014-115448/source/d6152f5a3ad90e83/sha256.json"
+  ]
 }
