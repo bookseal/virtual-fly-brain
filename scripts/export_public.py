@@ -69,6 +69,14 @@ def export_run(run,output):
         p=run/(name+'.json')
         if p.exists():
             m[name]=clean(read(p));visit(m[name]);write(dest/(name+'.json'),m[name])
+    m['initializations']=[]
+    for p in sorted((run/'trials').glob('*-imitation.json')):
+        value=clean(read(p));value['record_url']=f'artifacts/{run.name}/trials/{p.name}'
+        m['initializations'].append(value);write(dest/'trials'/p.name,value);visit(value)
+    m['replay_checks']=[]
+    for p in sorted((run/'replay').glob('*.json')):
+        value=clean(read(p));value['record_url']=f'artifacts/{run.name}/replay/{p.name}'
+        m['replay_checks'].append(value);write(dest/'replay'/p.name,value)
     if (run/'report.json').exists():visit(clean(read(run/'report.json')))
     for ref in sorted(references):
         rel=Path(ref).relative_to(Path('artifacts')/run.name)
