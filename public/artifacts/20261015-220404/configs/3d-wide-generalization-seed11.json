@@ -1,0 +1,15 @@
+{
+  "trial": "3d-wide-generalization-seed11",
+  "backend": "3d",
+  "task": "food",
+  "curriculum": "wide",
+  "reward_mode": "dense",
+  "max_steps": 120,
+  "seed": 11,
+  "action_mode": "normalized",
+  "environment_version": "food-v2-action-affine",
+  "initialization": "behavior-cloning-from-rule",
+  "physics_error_policy": "terminate",
+  "recovery_protocol": "numerical-failure-v1",
+  "purpose": "supplementary generalization diagnosis; not the final holdout"
+}

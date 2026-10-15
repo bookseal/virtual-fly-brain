@@ -92,6 +92,46 @@
         "answer": 0,
         "explanation": "탐험과 정책 업데이트가 이미 잘하던 행동을 바꿀 수 있습니다. 초기 20/20을 보존하고 같은 조건의 후속 결과와 비교합니다."
       }
+    },
+    {
+      "id": "f9d7319d0b0f485687c24d7af7dafb7f",
+      "at": "2026-10-16T08:00:34+09:00",
+      "epoch": 1792105234.4731379,
+      "actor": "codex-agent",
+      "kind": "research",
+      "title": "07:24 수치 오류로 중단 · 원인을 남기고 재개",
+      "question": "시뮬레이터 계산이 깨지면 실험 전체를 멈춰야 할까?",
+      "observation": "MuJoCo가 DOF 68의 QACC 수치 불안정을 보고한 뒤 worker가 종료됐습니다. seed 47 모방 후 PPO는 마지막 heartbeat에서 1,192회 행동했지만 저장된 모델은 초기 상태였습니다. seed 11·29의 10,240회 결과는 보존돼 있습니다.",
+      "interpretation": "정책 실패와 수치 계산 실패를 구분해야 합니다. 실패한 회차의 마지막 유효 관찰값으로 종료하고 계산 실패 벌점 -5를 별도 항목으로 기록합니다. 이것은 복구 프로토콜 변경이며, 기존 결과 파일은 바꾸지 않습니다.",
+      "next_action": "저장된 seed 47 초기 모델부터 다시 시작합니다. 이후에는 각 업데이트 직후 체크포인트를 남기고 계산 실패의 행동 순서를 보존합니다.",
+      "evidence": "artifacts/20261015-220404/config-history/20261016-physics-recovery.json",
+      "lost_actions_at_least": 1192,
+      "protocol_change": "physics_error_policy: raise → terminate; numerical_failure reward=-5",
+      "references": [
+        "https://mujoco.readthedocs.io/en/stable/modeling.html#simulation-stability"
+      ]
+    },
+    {
+      "id": "98d18e02c08e4dca8d20e806d6180fd2",
+      "at": "2026-10-16T08:06:04+09:00",
+      "epoch": 1792105564.911842,
+      "actor": "codex-agent",
+      "kind": "research",
+      "title": "점수 개선과 도달률 악화가 동시에 나타났다",
+      "question": "우리가 준 점수가 정말 원하는 행동을 가리키고 있을까?",
+      "observation": "같은 20개 평가 조건에서 seed 11의 PPO는 평균 보상 -20.92→-2.95, 도달 4/20→0/20이었습니다. seed 29는 보상 -20.62→3.18, 도달 4/20→1/20이었습니다. 모두 10,240회 학습 시점이며 모방 후 PPO는 두 seed에서 20/20입니다.",
+      "interpretation": "평가 보상 합계의 개선과 목적지 도착은 같지 않습니다. 이동 신호와 마지막 거리를 보면 크게 벗어나는 행동을 줄이면서 이동 자체를 줄이는 해가 생겼을 가능성이 있습니다. 보상 설계가 유일한 원인이라고 확정하지는 않습니다.",
+      "next_action": "주 비교를 보존한 채 더 넓은 먹이 위치를 별도 진단합니다. 후속 변경 실험은 보상 또는 탐험 크기 중 한 요소만 바꿔 비교합니다.",
+      "evidence": "artifacts/20261015-220404/analysis.json",
+      "prediction": {
+        "prompt": "점수는 올라가는데 먹이 도달률은 떨어집니다. 어느 수치를 우선 확인할까요?",
+        "options": [
+          "실제 도달률과 실패 경로를 점수와 함께 본다",
+          "점수가 올랐으니 성공으로 판정한다"
+        ],
+        "answer": 0,
+        "explanation": "보상은 우리가 만든 학습 신호이고 도달률은 실제 목표의 측정값입니다. 둘이 어긋나면 보상과 행동을 함께 살펴봐야 합니다."
+      }
     }
   ]
 }

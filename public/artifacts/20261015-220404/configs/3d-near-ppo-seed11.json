@@ -8,5 +8,7 @@
   "seed": 11,
   "action_mode": "normalized",
   "environment_version": "food-v2-action-affine",
-  "initialization": "random"
+  "initialization": "random",
+  "physics_error_policy": "terminate",
+  "recovery_protocol": "numerical-failure-v1"
 }

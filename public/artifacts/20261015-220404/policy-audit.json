@@ -1,0 +1,350 @@
+{
+  "at": "2026-10-16T08:06:03+09:00",
+  "kind": "fixed-demonstration-observation-audit",
+  "observations": 240,
+  "validation_seeds": [
+    210000,
+    210001,
+    210002,
+    210003,
+    210004,
+    210005,
+    210006,
+    210007,
+    210008,
+    210009,
+    210010,
+    210011,
+    210012,
+    210013,
+    210014,
+    210015,
+    210016,
+    210017,
+    210018,
+    210019
+  ],
+  "limitation": "시범 관찰값에서 정책 출력을 검사합니다. 실제 정책이 방문하는 상태 분포나 성공률을 대신하지 않습니다.",
+  "rows": [
+    {
+      "seed": 11,
+      "route": "ppo",
+      "timesteps": 0,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000000000.zip",
+      "unclipped_mean_signal": [
+        0.498231440782547,
+        0.5019146203994751
+      ],
+      "clipped_mean_signal": [
+        0.498231440782547,
+        0.5019146203994751
+      ],
+      "std": [
+        1.0,
+        1.0
+      ],
+      "teacher_mse": 0.14082489907741547,
+      "expected_clipped_fraction": 0.3173116147518158
+    },
+    {
+      "seed": 11,
+      "route": "ppo",
+      "timesteps": 2048,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000002048.zip",
+      "unclipped_mean_signal": [
+        0.14350327849388123,
+        0.29960426688194275
+      ],
+      "clipped_mean_signal": [
+        0.14350327849388123,
+        0.29960426688194275
+      ],
+      "std": [
+        1.0126374959945679,
+        0.9958312511444092
+      ],
+      "teacher_mse": 0.3959748148918152,
+      "expected_clipped_fraction": 0.339391827583313
+    },
+    {
+      "seed": 11,
+      "route": "ppo",
+      "timesteps": 8192,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000008192.zip",
+      "unclipped_mean_signal": [
+        -0.28014612197875977,
+        0.0432250052690506
+      ],
+      "clipped_mean_signal": [
+        -0.2790208160877228,
+        0.0432250052690506
+      ],
+      "std": [
+        1.0111883878707886,
+        0.9736319184303284
+      ],
+      "teacher_mse": 0.9382218718528748,
+      "expected_clipped_fraction": 0.40663349628448486
+    },
+    {
+      "seed": 11,
+      "route": "ppo",
+      "timesteps": 10240,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000010240.zip",
+      "unclipped_mean_signal": [
+        -0.3353331685066223,
+        -0.314318984746933
+      ],
+      "clipped_mean_signal": [
+        -0.3242695927619934,
+        -0.3101946711540222
+      ],
+      "std": [
+        1.0010690689086914,
+        0.9788249135017395
+      ],
+      "teacher_mse": 1.339324712753296,
+      "expected_clipped_fraction": 0.46537068486213684
+    },
+    {
+      "seed": 11,
+      "route": "bc-ppo",
+      "timesteps": 0,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed11/step-000000000.zip",
+      "unclipped_mean_signal": [
+        0.8248581290245056,
+        0.7727909088134766
+      ],
+      "clipped_mean_signal": [
+        0.823874294757843,
+        0.7726548314094543
+      ],
+      "std": [
+        1.0,
+        1.0
+      ],
+      "teacher_mse": 0.0016626401338726282,
+      "expected_clipped_fraction": 0.3495660126209259
+    },
+    {
+      "seed": 11,
+      "route": "bc-ppo",
+      "timesteps": 2048,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed11/step-000002048.zip",
+      "unclipped_mean_signal": [
+        0.8494271039962769,
+        0.8455823063850403
+      ],
+      "clipped_mean_signal": [
+        0.8474269509315491,
+        0.8439995646476746
+      ],
+      "std": [
+        0.9860805869102478,
+        0.9956321716308594
+      ],
+      "teacher_mse": 0.006510753650218248,
+      "expected_clipped_fraction": 0.3547205626964569
+    },
+    {
+      "seed": 11,
+      "route": "bc-ppo",
+      "timesteps": 8192,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed11/step-000008192.zip",
+      "unclipped_mean_signal": [
+        1.1003447771072388,
+        1.201590657234192
+      ],
+      "clipped_mean_signal": [
+        1.0676168203353882,
+        1.1669286489486694
+      ],
+      "std": [
+        0.9793967604637146,
+        0.979076087474823
+      ],
+      "teacher_mse": 0.1586424559354782,
+      "expected_clipped_fraction": 0.42641839385032654
+    },
+    {
+      "seed": 11,
+      "route": "bc-ppo",
+      "timesteps": 10240,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed11/step-000010240.zip",
+      "unclipped_mean_signal": [
+        1.3904098272323608,
+        1.332642912864685
+      ],
+      "clipped_mean_signal": [
+        1.2996547222137451,
+        1.2365608215332031
+      ],
+      "std": [
+        0.9794650673866272,
+        0.9615315794944763
+      ],
+      "teacher_mse": 0.3869852125644684,
+      "expected_clipped_fraction": 0.4907774329185486
+    },
+    {
+      "seed": 29,
+      "route": "ppo",
+      "timesteps": 0,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed29/step-000000000.zip",
+      "unclipped_mean_signal": [
+        0.4996615946292877,
+        0.4987185299396515
+      ],
+      "clipped_mean_signal": [
+        0.4996615946292877,
+        0.4987185299396515
+      ],
+      "std": [
+        1.0,
+        1.0
+      ],
+      "teacher_mse": 0.14111833274364471,
+      "expected_clipped_fraction": 0.31731101870536804
+    },
+    {
+      "seed": 29,
+      "route": "ppo",
+      "timesteps": 2048,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed29/step-000002048.zip",
+      "unclipped_mean_signal": [
+        0.39494091272354126,
+        0.34987154603004456
+      ],
+      "clipped_mean_signal": [
+        0.39494091272354126,
+        0.34987154603004456
+      ],
+      "std": [
+        1.000106930732727,
+        0.9927207827568054
+      ],
+      "teacher_mse": 0.23290710151195526,
+      "expected_clipped_fraction": 0.3202233910560608
+    },
+    {
+      "seed": 29,
+      "route": "ppo",
+      "timesteps": 8192,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed29/step-000008192.zip",
+      "unclipped_mean_signal": [
+        -0.20880836248397827,
+        -0.15141135454177856
+      ],
+      "clipped_mean_signal": [
+        -0.15573075413703918,
+        -0.12300191819667816
+      ],
+      "std": [
+        0.9962430596351624,
+        0.9832926392555237
+      ],
+      "teacher_mse": 1.1536152362823486,
+      "expected_clipped_fraction": 0.44062691926956177
+    },
+    {
+      "seed": 29,
+      "route": "ppo",
+      "timesteps": 10240,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed29/step-000010240.zip",
+      "unclipped_mean_signal": [
+        -0.1282350718975067,
+        -0.008858966641128063
+      ],
+      "clipped_mean_signal": [
+        -0.06205960363149643,
+        0.015838639810681343
+      ],
+      "std": [
+        0.9915158748626709,
+        0.9720185399055481
+      ],
+      "teacher_mse": 1.0269283056259155,
+      "expected_clipped_fraction": 0.42598915100097656
+    },
+    {
+      "seed": 29,
+      "route": "bc-ppo",
+      "timesteps": 0,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed29/step-000000000.zip",
+      "unclipped_mean_signal": [
+        0.8130185008049011,
+        0.7868238091468811
+      ],
+      "clipped_mean_signal": [
+        0.8122517466545105,
+        0.7867668271064758
+      ],
+      "std": [
+        1.0,
+        1.0
+      ],
+      "teacher_mse": 0.0013480914058163762,
+      "expected_clipped_fraction": 0.34939005970954895
+    },
+    {
+      "seed": 29,
+      "route": "bc-ppo",
+      "timesteps": 2048,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed29/step-000002048.zip",
+      "unclipped_mean_signal": [
+        1.0010054111480713,
+        0.9427775740623474
+      ],
+      "clipped_mean_signal": [
+        0.9953799843788147,
+        0.9337265491485596
+      ],
+      "std": [
+        1.0161436796188354,
+        1.0038748979568481
+      ],
+      "teacher_mse": 0.037306081503629684,
+      "expected_clipped_fraction": 0.38527193665504456
+    },
+    {
+      "seed": 29,
+      "route": "bc-ppo",
+      "timesteps": 8192,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed29/step-000008192.zip",
+      "unclipped_mean_signal": [
+        0.942707896232605,
+        1.0862066745758057
+      ],
+      "clipped_mean_signal": [
+        0.9218257665634155,
+        1.0284234285354614
+      ],
+      "std": [
+        1.0036356449127197,
+        0.993137538433075
+      ],
+      "teacher_mse": 0.12117362022399902,
+      "expected_clipped_fraction": 0.4098162353038788
+    },
+    {
+      "seed": 29,
+      "route": "bc-ppo",
+      "timesteps": 10240,
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed29/step-000010240.zip",
+      "unclipped_mean_signal": [
+        1.1575027704238892,
+        1.0519217252731323
+      ],
+      "clipped_mean_signal": [
+        1.098218560218811,
+        0.975443422794342
+      ],
+      "std": [
+        0.9963834881782532,
+        0.9822682738304138
+      ],
+      "teacher_mse": 0.21370697021484375,
+      "expected_clipped_fraction": 0.4364325702190399
+    }
+  ]
+}

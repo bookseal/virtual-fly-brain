@@ -1,0 +1,30 @@
+{
+  "id": "20261015-220404-0058",
+  "index": 58,
+  "recorded_at": "2026-10-16T07:57:29+09:00",
+  "scheduled_epoch": 1792104244.360686,
+  "elapsed_minutes": 593.4203572154045,
+  "backend": "3d",
+  "status": "gap",
+  "title": "기록기 중단 구간 · 원본 사건만 복구",
+  "question": "이 시각에 기록기가 응답했는가?",
+  "change": "예약 시각에 기록을 저장하지 못했습니다.",
+  "result": "이전 상태를 현재 상태로 추정하지 않았습니다. 원본 사건 시각을 확인하세요.",
+  "next_action": "복구 후 다음 구간부터 실시간 기록을 이어갑니다.",
+  "training": {},
+  "events": [],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261015-220404/media/interval-0058.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-16T07:57:48+09:00",
+    "video": "artifacts/20261015-220404/videos/interval-0058/recap.mp4",
+    "source_intervals": null
+  },
+  "actor": "local-script",
+  "record_type": "interval",
+  "recording_delay_seconds": 805.2214329242706,
+  "last_evaluated_at": "2026-10-16T07:14:39+09:00"
+}

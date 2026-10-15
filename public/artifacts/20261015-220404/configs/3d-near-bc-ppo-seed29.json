@@ -8,5 +8,7 @@
   "seed": 29,
   "action_mode": "normalized",
   "environment_version": "food-v2-action-affine",
-  "initialization": "behavior-cloning-from-rule"
+  "initialization": "behavior-cloning-from-rule",
+  "physics_error_policy": "terminate",
+  "recovery_protocol": "numerical-failure-v1"
 }

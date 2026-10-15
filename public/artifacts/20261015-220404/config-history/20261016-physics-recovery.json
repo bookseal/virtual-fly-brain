@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-16T08:00:34+09:00",
+  "configs": [
+    {
+      "trial": "3d-near-ppo-seed47",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 47,
+      "action_mode": "normalized",
+      "environment_version": "food-v2-action-affine",
+      "initialization": "random"
+    },
+    {
+      "trial": "3d-near-ppo-seed11",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 11,
+      "action_mode": "normalized",
+      "environment_version": "food-v2-action-affine",
+      "initialization": "random"
+    },
+    {
+      "trial": "3d-near-bc-ppo-seed29",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 29,
+      "action_mode": "normalized",
+      "environment_version": "food-v2-action-affine",
+      "initialization": "behavior-cloning-from-rule"
+    },
+    {
+      "trial": "3d-near-bc-ppo-seed11",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 11,
+      "action_mode": "normalized",
+      "environment_version": "food-v2-action-affine",
+      "initialization": "behavior-cloning-from-rule"
+    },
+    {
+      "trial": "3d-near-bc-ppo-seed47",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 47,
+      "action_mode": "normalized",
+      "environment_version": "food-v2-action-affine",
+      "initialization": "behavior-cloning-from-rule"
+    },
+    {
+      "trial": "3d-near-ppo-seed29",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 29,
+      "action_mode": "normalized",
+      "environment_version": "food-v2-action-affine",
+      "initialization": "random"
+    }
+  ],
+  "reason": "Numerical failure termination v1; prior files and evaluations retained"
+}
