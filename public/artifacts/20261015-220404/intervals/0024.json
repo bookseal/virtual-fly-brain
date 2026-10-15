@@ -180,7 +180,10 @@
     "artifacts/20261015-220404/media/interval-0024.svg"
   ],
   "render": {
-    "status": "queued"
+    "status": "done",
+    "completed_at": "2026-10-16T02:05:28+09:00",
+    "video": "artifacts/20261015-220404/videos/interval-0024/recap.mp4",
+    "source_intervals": null
   },
   "actor": "local-script",
   "record_type": "interval",
