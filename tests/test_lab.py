@@ -187,6 +187,35 @@ def test_noise_ablation_changes_only_initial_log_std(run):
     assert store.read(run/'state.json')['activity']=='primary'
     assert not (run/'trainer-heartbeat.json').exists()
 
+def test_noise_campaign_pairs_early_results_and_keeps_holdout_last(run,monkeypatch):
+    import pickle,sys
+    from lab import noise_ablation as campaign
+    store.atomic(run/'quota.json',{'gate':'continue'})
+    for seed in (11,29):store.atomic(run/'configs'/f'3d-near-ppo-seed{seed}.json',{'seed':seed,'backend':'2d','trial':f'3d-near-ppo-seed{seed}'})
+    calls=[]
+    def fake_job(run,args,deadline):
+        args=list(map(str,args));c=store.read(args[args.index('--config')+1]);trial=c['trial'];cp=campaign.latest_checkpoint(run,trial)
+        steps=store.read(str(cp).removesuffix('.zip')+'.json',{}).get('timesteps',0) if cp else 0
+        if args[0]=='train':
+            steps+=int(args[args.index('--steps')+1]);path=run/'checkpoints'/trial/f'step-{steps:09d}'
+            path.parent.mkdir(parents=True,exist_ok=True);path.with_suffix('.zip').write_bytes(b'fake model for orchestration test')
+            store.atomic(str(path)+'.json',{'timesteps':steps})
+            with open(str(path)+'.rng.pkl','wb') as f:pickle.dump({'env':[np.random.default_rng(c['seed']+i).bit_generator.state for i in range(2)]},f)
+        else:
+            holdout='--tag' in args;calls.append((trial,steps,holdout))
+            store.atomic(run/'evaluations'/f'{len(calls):03d}.json',{'trial':trial,'timesteps':steps,'selection_holdout':holdout})
+        return True
+    monkeypatch.setattr(campaign,'job',fake_job)
+    monkeypatch.setattr(campaign,'initial_equivalence',lambda *args:{'all_other_parameters_identical':True})
+    monkeypatch.setattr(sys,'argv',['noise_ablation',str(run)])
+    campaign.main()
+    assert len(calls)==12
+    assert [steps for _,steps,holdout in calls if not holdout]==[2048]*4+[10240]*4
+    assert [holdout for _,_,holdout in calls]==[False]*8+[True]*4
+    assert store.read(run/'noise-ablation.json')['status']=='completed'
+    campaign.main()
+    assert len(calls)==12, 'Restart must not repeat completed fixed or holdout evaluations'
+
 def test_imitation_initializes_policy_without_online_training(run):
     from lab.imitation import collect,clone
     c={'trial':'bc-test','backend':'2d','task':'food','curriculum':'near','reward_mode':'dense','max_steps':60,'seed':11,'action_mode':'normalized'}
