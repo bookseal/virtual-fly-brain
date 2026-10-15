@@ -6,7 +6,7 @@ from .store import *
 from .envs import FoodEnv,rule_action,env_options,teacher_action
 
 def seed_digest(seeds):return hashlib.sha256(json.dumps(seeds).encode()).hexdigest()[:12]
-def checkpoint(model,env,path,config):
+def checkpoint(model,env,path,config,source=None):
     import torch
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)
     prior=read(str(path)+'.json',{})
@@ -15,7 +15,7 @@ def checkpoint(model,env,path,config):
     rng={'python':random.getstate(),'numpy':np.random.get_state(),'torch':torch.get_rng_state(),'env':env.env_method('export_rng')}
     with open(str(path)+'.rng.pkl.tmp','wb') as f:pickle.dump(rng,f)
     os.replace(str(path)+'.rng.pkl.tmp',str(path)+'.rng.pkl')
-    atomic(str(path)+'.json',{'at':now(),'timesteps':model.num_timesteps,'config':config,'normalization':'fixed observation divisors; no running statistics','resume_boundary':'new episode; partial on-policy rollout discarded','optimizer':'included in SB3 zip','gradient_updates':model._n_updates,'source_version':read(path.parents[2]/'source-version.json',{})})
+    atomic(str(path)+'.json',{'at':now(),'timesteps':model.num_timesteps,'config':config,'normalization':'fixed observation divisors; no running statistics','resume_boundary':'new episode; partial on-policy rollout discarded','optimizer':'included in SB3 zip','gradient_updates':model._n_updates,'source_version':source if source is not None else read(path.parents[2]/'source-version.json',{})})
 
 def build_vec(config,workers):
     from stable_baselines3.common.vec_env import SubprocVecEnv,DummyVecEnv
@@ -23,12 +23,12 @@ def build_vec(config,workers):
     calls=[partial(FoodEnv,**env_options(config)) for _ in range(workers)]
     return SubprocVecEnv(calls,start_method='spawn') if workers>1 else DummyVecEnv(calls)
 
-def train(run,config,steps,workers=1,resume=None,deadline=None):
+def train(run,config,steps,workers=1,resume=None,deadline=None,background=False):
     import torch
     torch.set_num_threads(1)
     from stable_baselines3 import PPO
     from stable_baselines3.common.callbacks import BaseCallback
-    run=Path(run);preserve_source(run);trial=config['trial'];dest=run/'checkpoints'/trial;dest.mkdir(parents=True,exist_ok=True);env=build_vec(config,workers)
+    run=Path(run);source=preserve_source(run);trial=config['trial'];dest=run/'checkpoints'/trial;dest.mkdir(parents=True,exist_ok=True);env=build_vec(config,workers)
     stop={'value':False}
     def sig(*_):stop['value']=True
     signal.signal(signal.SIGTERM,sig);signal.signal(signal.SIGINT,sig)
@@ -41,9 +41,13 @@ def train(run,config,steps,workers=1,resume=None,deadline=None):
             for i,r in enumerate(rng['env']):env.env_method('restore_rng',r,indices=i)
             env._seeds=[None]*workers
         event(run,'resume','다음 에피소드부터 정책 학습 재개',trial=trial,checkpoint=str(resume),detail='정책·optimizer·난수 상태를 읽었습니다. 중단된 rollout은 폐기하고 새 에피소드에서 시작합니다.')
-    else:model=PPO('MlpPolicy',env,seed=config['seed'],device='cpu',n_steps=128,batch_size=64,n_epochs=5,learning_rate=3e-4,gamma=.99,gae_lambda=.95,ent_coef=.01,policy_kwargs={'net_arch':[64,64]},verbose=0)
+    else:
+        model=PPO('MlpPolicy',env,seed=config['seed'],device='cpu',n_steps=128,batch_size=64,n_epochs=5,learning_rate=3e-4,gamma=.99,gae_lambda=.95,ent_coef=.01,policy_kwargs={'net_arch':[64,64],'log_std_init':float(config.get('initial_log_std',0.))},verbose=0)
+        # VecEnv.seed() only schedules the next reset; initialize each RNG before
+        # saving step zero so a resumed zero-step checkpoint uses the same stream.
+        for i in range(workers):env.env_method('initialize_rng',config['seed']+i,indices=i)
     started=time.time();initial=model.num_timesteps
-    checkpoint(model,env,dest/f'step-{initial:09d}',config)
+    checkpoint(model,env,dest/f'step-{initial:09d}',config,source)
     class RecorderCallback(BaseCallback):
         def __init__(self):super().__init__();self.saved=time.time();self.beat=0;self.terms={};self.action_samples=[]
         def _on_rollout_start(self):
@@ -52,7 +56,7 @@ def train(run,config,steps,workers=1,resume=None,deadline=None):
                 atomic(run/'trials'/f'{trial}-optimizer.json',{'at':now(),'timesteps':self.model.num_timesteps,'gradient_updates':self.model._n_updates,'metrics':metrics})
                 # Save after an optimizer update, before the next rollout. A
                 # worker crash can then lose at most one unfinished rollout.
-                checkpoint(self.model,env,dest/f'step-{self.model.num_timesteps:09d}',config)
+                checkpoint(self.model,env,dest/f'step-{self.model.num_timesteps:09d}',config,source)
         def _on_step(self):
             raw=np.asarray(self.locals.get('actions',[]))
             if raw.size:self.action_samples.extend(raw.reshape(-1,2).tolist())
@@ -61,7 +65,8 @@ def train(run,config,steps,workers=1,resume=None,deadline=None):
                 for k,v in info.get('reward_terms',{}).items():self.terms[k]=self.terms.get(k,0)+float(v)
                 if info.get('numerical_failure'):
                     path=run/'failures'/f'{time.time_ns()}.json'
-                    atomic(path,{'at':now(),'trial':trial,'timesteps':self.model.num_timesteps,'config':config,'info':info})
+                    safe_info={k:(v.tolist() if isinstance(v,np.ndarray) else v) for k,v in info.items()}
+                    atomic(path,{'at':now(),'trial':trial,'timesteps':self.model.num_timesteps,'config':config,'info':safe_info})
                     event(run,'error','수치 시뮬레이션 실패 · 해당 에피소드 종료',trial=trial,timesteps=self.model.num_timesteps,evidence=asset(run,path),detail='성공·넘어짐과 구분합니다. 마지막 유효 관찰값으로 종료하고 다음 에피소드에서 재시작합니다.')
             if time.time()-self.beat>10:
                 self.beat=time.time();progress={'trial':trial,'timesteps':self.model.num_timesteps,'steps_this_segment':self.model.num_timesteps-initial,'decisions_per_second':(self.model.num_timesteps-initial)/max(.1,time.time()-started),'reward_terms_sum':self.terms,'checkpoint':asset(run,dest/f'step-{initial:09d}.zip')}
@@ -69,14 +74,30 @@ def train(run,config,steps,workers=1,resume=None,deadline=None):
                     actions=np.asarray(self.action_samples);progress['action_mean']=actions.mean(0).tolist();progress['action_std']=actions.std(0).tolist();progress['action_clipped_fraction']=float(np.mean((actions<env.action_space.low)|(actions>env.action_space.high)))
                 saved_files=sorted(dest.glob('step-*.zip'))
                 if saved_files:progress['checkpoint']=asset(run,saved_files[-1])
-                update_state(run,status='training',backend=config['backend'],activity=f'{trial} 정책 학습',training=progress,result='정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.')
-                atomic(run/'trainer-heartbeat.json',{'pid':os.getpid(),'at':now(),'epoch':time.time(),**progress})
+                if not background:update_state(run,status='training',backend=config['backend'],activity=f'{trial} 정책 학습',training=progress,result='정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.')
+                heartbeat={'pid':os.getpid(),'at':now(),'epoch':time.time(),**progress}
+                atomic(run/'trials'/f'{trial}-heartbeat.json',heartbeat)
+                if not background:atomic(run/'trainer-heartbeat.json',heartbeat)
             if time.time()-self.saved>=600:
-                checkpoint(self.model,env,dest/f'step-{self.model.num_timesteps:09d}',config);self.saved=time.time();event(run,'checkpoint','10분 정책 체크포인트 저장',trial=trial,timesteps=self.model.num_timesteps)
+                checkpoint(self.model,env,dest/f'step-{self.model.num_timesteps:09d}',config,source);self.saved=time.time();event(run,'checkpoint','10분 정책 체크포인트 저장',trial=trial,timesteps=self.model.num_timesteps)
             return not stop['value'] and not (deadline and time.time()>=deadline) and not (run/'STOP').exists()
     try:
-        model.learn(total_timesteps=steps,reset_num_timesteps=False,callback=RecorderCallback())
-        output=dest/f'step-{model.num_timesteps:09d}';checkpoint(model,env,output,config)
+        if steps<0 or steps%workers or steps==1:raise ValueError('Steps must be zero or at least two and divisible by workers')
+        # SB3 rounds a learn() request up to a complete rollout. After an
+        # interrupted checkpoint, a short first rollout restores the exact
+        # requested action budget without silently overshooting the comparison.
+        normal_rollout=128;capacity=normal_rollout*workers;remainder=steps%capacity
+        parts=([(remainder//workers,remainder)] if remainder else [])+([(normal_rollout,steps-remainder)] if steps-remainder else [])
+        callback=RecorderCallback()
+        try:
+            for rollout_steps,count in parts:
+                model.n_steps=rollout_steps
+                model.rollout_buffer=model.rollout_buffer_class(rollout_steps,model.observation_space,model.action_space,device=model.device,gamma=model.gamma,gae_lambda=model.gae_lambda,n_envs=model.n_envs,**model.rollout_buffer_kwargs)
+                model.learn(total_timesteps=count,reset_num_timesteps=False,callback=callback)
+                if stop['value'] or (run/'STOP').exists() or (deadline and time.time()>=deadline):break
+        finally:
+            model.n_steps=normal_rollout
+        output=dest/f'step-{model.num_timesteps:09d}';checkpoint(model,env,output,config,source)
         result={'at':now(),'trial':trial,'checkpoint':str(output)+'.zip','timesteps':model.num_timesteps,'seconds':time.time()-started,'stopped':stop['value'],'config':config};atomic(run/'trials'/f'{trial}.json',result);event(run,'training','학습 구간 저장',**result);return result
     finally:env.close()
 
@@ -164,8 +185,8 @@ def evaluate(run,config,policy='random',modelpath=None,seeds=None,workers=1,tag=
     publish(run);return out
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=['train','evaluate']);p.add_argument('run');p.add_argument('--config',required=True);p.add_argument('--steps',type=int,default=2048);p.add_argument('--workers',type=int,default=1);p.add_argument('--checkpoint');p.add_argument('--policy',default='ppo');p.add_argument('--seed-start',type=int,default=10000);p.add_argument('--episodes',type=int,default=20);p.add_argument('--tag',default='fixed');p.add_argument('--deadline',type=float);p.add_argument('--background-evaluation',action='store_true');a=p.parse_args();config=read(a.config)
-    if a.mode=='train':out=train(Path(a.run).resolve(),config,a.steps,a.workers,a.checkpoint,a.deadline)
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=['train','evaluate']);p.add_argument('run');p.add_argument('--config',required=True);p.add_argument('--steps',type=int,default=2048);p.add_argument('--workers',type=int,default=1);p.add_argument('--checkpoint');p.add_argument('--policy',default='ppo');p.add_argument('--seed-start',type=int,default=10000);p.add_argument('--episodes',type=int,default=20);p.add_argument('--tag',default='fixed');p.add_argument('--deadline',type=float);p.add_argument('--background-evaluation',action='store_true');p.add_argument('--background-training',action='store_true');a=p.parse_args();config=read(a.config)
+    if a.mode=='train':out=train(Path(a.run).resolve(),config,a.steps,a.workers,a.checkpoint,a.deadline,background=a.background_training)
     else:out=evaluate(Path(a.run).resolve(),config,a.policy,a.checkpoint,list(range(a.seed_start,a.seed_start+a.episodes)),a.workers,a.tag,background=a.background_evaluation)
     print(json.dumps({k:v for k,v in out.items() if k!='episodes_raw'},ensure_ascii=False))
 if __name__=='__main__':main()

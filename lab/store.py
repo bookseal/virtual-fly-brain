@@ -55,7 +55,7 @@ def publish(run):
         snaps=[read(p,{}) for p in sorted((run/'intervals').glob('*.json'))]
         evals=[read(p,{}) for p in sorted((run/'evaluations').glob('*.json'))]
         manifest={'schema_version':1,'run':config,'state':state,'intervals':snaps,'evaluations':evals,'quota':read(run/'quota.json',{}),'recorder_heartbeat':read(run/'recorder-heartbeat.json',{}),'summaries':[read(p,{}) for p in sorted((run/'summaries').glob('*.json'))],'retrospective':read(run/'retrospective.json',{}),'report':asset(run,run/'report.html') if (run/'report.html').exists() else None,'updated_at':now()}
-        for name in ('journal','research','diagnostics','deployment','analysis','policy-audit'):
+        for name in ('journal','research','diagnostics','deployment','analysis','policy-audit','generalization','noise-ablation'):
             manifest[name]=read(run/(name+'.json'),{})
         atomic(run/'manifest.json',manifest)
         dest=ROOT/'site/experiments/index.json'

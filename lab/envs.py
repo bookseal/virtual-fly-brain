@@ -110,6 +110,7 @@ class FoodEnv(gym.Env):
         cv2.putText(frame,f'step {self.steps} | distance {self.distance:.2f}',(18,458),cv2.FONT_HERSHEY_SIMPLEX,.55,(45,55,65),1)
         return frame
     def export_rng(self):return self.np_random.bit_generator.state
+    def initialize_rng(self,seed):self.np_random=np.random.default_rng(seed)
     def restore_rng(self,state):self.np_random.bit_generator.state=state
     def close(self):
         if self.sim:self.sim.close()

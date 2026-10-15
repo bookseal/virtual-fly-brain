@@ -31,3 +31,7 @@
 .analysis-story{margin-top:32px;padding:28px;background:#f6f3eb;border-radius:16px}.analysis-story h3{font-size:1.6rem;margin:12px 0}.analysis-story p{line-height:1.8;max-width:1000px}.analysis-story img{width:100%;height:auto;border:1px solid #ddd7cb;border-radius:12px}.analysis-story .meta{font-size:13px}
 
 .analysis-failures{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0}.analysis-failures article{padding:18px;background:#fffefa;border:1px solid #ddd7cb;border-radius:12px}.analysis-failures h4{font-size:18px;margin:0 0 14px}.analysis-failures video{width:100%;border-radius:8px}@media(max-width:640px){.analysis-failures{grid-template-columns:1fr}.analysis-story{padding:20px 16px}}
+
+.secondary-experiments{margin-top:32px;padding:28px;background:#f2f6f2;border:1px solid #d1ded6;border-radius:16px}.secondary-experiments h3{font-size:1.5rem;margin:16px 0}.secondary-experiments p{line-height:1.8}.generalization-scores{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0 32px}.generalization-scores article{padding:20px;background:white;border-radius:12px;display:flex;flex-direction:column;gap:12px}.generalization-scores strong{font-size:32px}.generalization-scores span{font-size:13px;color:#53655b}@media(max-width:640px){.secondary-experiments{padding:20px 16px}.generalization-scores{grid-template-columns:1fr}}
+
+.decision-film{margin:24px 0 0}.decision-film video{width:100%;display:block;border-radius:12px;background:#eef3f4}.decision-film figcaption{font-size:13px;color:var(--muted);margin-top:8px}

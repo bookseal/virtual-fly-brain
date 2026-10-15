@@ -53,6 +53,15 @@ def test_checkpoint_optimizer_and_resume(run):
     with zipfile.ZipFile(b['checkpoint']) as z:assert 'policy.optimizer.pth' in z.namelist()
     assert Path(b['checkpoint'].removesuffix('.zip')+'.rng.pkl').exists()
 
+def test_partial_resume_reaches_exact_comparison_budget(run):
+    from lab.learning import train
+    c={'trial':'partial','backend':'2d','task':'food','curriculum':'near','reward_mode':'dense','max_steps':12,'seed':11}
+    a=train(run,c,170,1)
+    b=train(run,c,256-170,1,a['checkpoint'])
+    assert a['timesteps']==170 and b['timesteps']==256
+    from stable_baselines3 import PPO
+    assert PPO.load(b['checkpoint']).n_steps==128
+
 def test_quota_unavailable(monkeypatch):
     import lab.quota as quota
     def fail(*a,**kw):raise FileNotFoundError('injected')
@@ -122,6 +131,23 @@ def test_physics_failure_is_explicit_and_finite():
     env.sim=ProgrammingError();env.physics_error_policy='terminate'
     with pytest.raises(ValueError):env.step([.8,.8])
 
+def test_vector_training_records_physics_failures_and_continues(run,monkeypatch):
+    from dm_control.rl.control import PhysicsError
+    from stable_baselines3.common.vec_env import DummyVecEnv
+    from lab import learning
+    class BrokenPhysics:
+        def step(self,action):raise PhysicsError('injected BADQACC')
+    class InjectedEnv(FoodEnv):
+        def reset(self,**kwargs):
+            self.sim=None;out=super().reset(**kwargs);self.sim=BrokenPhysics();return out
+        def close(self):pass
+    monkeypatch.setattr(learning,'build_vec',lambda c,w:DummyVecEnv([lambda:InjectedEnv('2d',physics_error_policy='terminate')]))
+    c={'trial':'recover','backend':'2d','task':'food','curriculum':'near','reward_mode':'dense','max_steps':12,'seed':11}
+    result=learning.train(run,c,4,1)
+    failures=[store.read(p) for p in (run/'failures').glob('*.json')]
+    assert result['timesteps']==4 and len(failures)==4
+    assert all(isinstance(r['info']['terminal_observation'],list) and not r['info']['success'] for r in failures)
+
 def test_completed_evaluation_episode_survives_retry(run):
     from lab.learning import eval_worker
     progress=run/'progress'
@@ -141,6 +167,25 @@ def test_supplementary_evaluation_keeps_primary_training_state(run):
     assert result['seeds']==[30000] and not result['selection_holdout']
     assert store.read(run/'state.json')['activity']=='primary comparison'
     assert store.read(run/'latest-evaluation.json')['id']=='primary'
+
+def test_noise_ablation_changes_only_initial_log_std(run):
+    import torch
+    from stable_baselines3 import PPO
+    from lab.learning import train
+    c={'trial':'noise-control','backend':'2d','task':'food','curriculum':'near','reward_mode':'dense','max_steps':12,'seed':11,'action_mode':'normalized'}
+    store.update_state(run,status='training',activity='primary')
+    a=train(run,c,0,1,background=True)
+    b=train(run,{**c,'trial':'noise-variant','initial_log_std':-1.},0,1,background=True)
+    original=PPO.load(a['checkpoint']).policy.state_dict();variant=PPO.load(b['checkpoint']).policy.state_dict()
+    import pickle
+    with open(a['checkpoint'].removesuffix('.zip')+'.rng.pkl','rb') as f:rng=pickle.load(f)
+    assert rng['env'][0]==np.random.default_rng(11).bit_generator.state
+    assert torch.equal(variant['log_std'],torch.full((2,),-1.))
+    for key in original:
+        if key!='log_std':assert torch.equal(original[key],variant[key]),key
+    train(run,{**c,'trial':'background-training'},128,1,background=True)
+    assert store.read(run/'state.json')['activity']=='primary'
+    assert not (run/'trainer-heartbeat.json').exists()
 
 def test_imitation_initializes_policy_without_online_training(run):
     from lab.imitation import collect,clone
