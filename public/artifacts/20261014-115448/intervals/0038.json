@@ -1,0 +1,76 @@
+{
+  "id": "20261014-115448-0038",
+  "index": 38,
+  "recorded_at": "2026-10-14T18:29:43+09:00",
+  "scheduled_epoch": 1791969428.5686998,
+  "elapsed_minutes": 392.576972536246,
+  "backend": "3d",
+  "status": "gap",
+  "title": "기록기 중단 구간 · 원본 사건만 복구",
+  "question": "이 시각에 기록기가 응답했는가?",
+  "change": "예약 시각에 기록을 저장하지 못했습니다.",
+  "result": "이전 상태를 현재 상태로 추정하지 않았습니다. 원본 사건 시각을 확인하세요.",
+  "next_action": "복구 후 다음 구간부터 실시간 기록을 이어갑니다.",
+  "training": {},
+  "events": [
+    {
+      "id": "786512431fa647768aca6b6de590e95c",
+      "at": "2026-10-14T18:07:53+09:00",
+      "epoch": 1791968873.403161,
+      "actor": "local-script",
+      "kind": "checkpoint",
+      "title": "10분 정책 체크포인트 저장",
+      "trial": "3d-food-wide-seed11",
+      "timesteps": 25332
+    },
+    {
+      "id": "dac270ee37524a519900a3ff30929ce0",
+      "at": "2026-10-14T18:07:56+09:00",
+      "epoch": 1791968876.802783,
+      "actor": "local-script",
+      "kind": "review",
+      "title": "30분 자동 검토",
+      "method": "predefined-rules; no model call",
+      "state": {
+        "status": "training",
+        "backend": "3d",
+        "activity": "3d-food-wide-seed11 정책 학습",
+        "question": "먹이까지의 거리가 줄어드는 행동을 보상하면 도달률이 높아질까?",
+        "next_action": "한 시간마다 학습에 쓰지 않은 20개 시작 조건으로 평가",
+        "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+        "updated_at": "2026-10-14T18:07:53+09:00",
+        "change": "3d-food-wide-seed11: dense 보상, seed 11",
+        "training": {
+          "trial": "3d-food-wide-seed11",
+          "timesteps": 25332,
+          "steps_this_segment": 1120,
+          "decisions_per_second": 0.8268634241142352,
+          "reward_terms_sum": {
+            "approach": 134.54141839819732,
+            "arrival": 140.0,
+            "time": -27.999999999999478,
+            "collision": 0.0,
+            "flip": 0.0
+          },
+          "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-wide-seed11/step-000024212.zip"
+        }
+      },
+      "latest_evaluation": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+      "decision": "2만 행동+평가가 4시간을 넘을 수 있음. 다음 구간 경계에서 2D 병행 조건 확인.",
+      "model_work_gate": "continue"
+    }
+  ],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0038.svg"
+  ],
+  "render": {
+    "status": "failed",
+    "failed_at": "2026-10-14T19:01:50+09:00",
+    "error": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0038']' returned non-zero exit status 1."
+  },
+  "actor": "local-script",
+  "record_type": "interval",
+  "recording_delay_seconds": 754.6183521747589,
+  "last_evaluated_at": "2026-10-14T17:19:21+09:00"
+}

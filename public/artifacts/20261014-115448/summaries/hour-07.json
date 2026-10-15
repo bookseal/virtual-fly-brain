@@ -1,0 +1,181 @@
+{
+  "id": "20261014-115448-0042",
+  "index": 7,
+  "recorded_at": "2026-10-14T19:01:53+09:00",
+  "scheduled_epoch": 1791971828.5686998,
+  "elapsed_minutes": 424.75091821750004,
+  "backend": "3d",
+  "status": "evaluating",
+  "title": "사용량 확인",
+  "question": "7번째 한 시간 동안 무엇이 달라졌을까?",
+  "change": "구간 37 → 42. 3d-food-wide-seed11: dense 보상, seed 11",
+  "result": "ppo 정책의 30개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다. 이 시간의 기록 지연 2개.",
+  "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
+  "training": {
+    "trial": "3d-food-wide-seed11",
+    "timesteps": 25380,
+    "steps_this_segment": 1168,
+    "decisions_per_second": 0.4386613814767226,
+    "reward_terms_sum": {
+      "approach": 138.9374248218679,
+      "arrival": 140.0,
+      "time": -29.19999999999941,
+      "collision": 0.0,
+      "flip": 0.0
+    },
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-wide-seed11/step-000024212.zip"
+  },
+  "events": [
+    {
+      "id": "698b615fdf004e1ba0b5be8c044b0452",
+      "at": "2026-10-14T18:47:31+09:00",
+      "epoch": 1791971251.814896,
+      "actor": "local-script",
+      "kind": "command",
+      "title": "정해진 실험 구간 실행",
+      "command": ".venv/bin/python -m lab.learning evaluate runs/20261014-115448 --config runs/20261014-115448/configs/3d-food-wide-seed11.json --checkpoint runs/20261014-115448/checkpoints/3d-food-wide-seed11/step-000025380.zip --policy ppo --workers 4",
+      "command_ko": "저장된 설정으로 로컬 CPU에서 학습 또는 평가합니다."
+    },
+    {
+      "id": "0598ae5bbaf248be84d687e95e4e3c70",
+      "at": "2026-10-14T18:47:31+09:00",
+      "epoch": 1791971251.962144,
+      "actor": "local-script",
+      "kind": "stop",
+      "title": "실행 시간 경계에서 안전 저장 요청"
+    },
+    {
+      "id": "33959f7465744030b704cbf88d9bac6f",
+      "at": "2026-10-14T18:47:31+09:00",
+      "epoch": 1791971251.9827,
+      "actor": "local-script",
+      "kind": "review",
+      "title": "30분 자동 검토",
+      "method": "predefined-rules; no model call",
+      "state": {
+        "status": "training",
+        "backend": "3d",
+        "activity": "3d-food-wide-seed11 정책 학습",
+        "question": "먹이까지의 거리가 줄어드는 행동을 보상하면 도달률이 높아질까?",
+        "next_action": "한 시간마다 학습에 쓰지 않은 20개 시작 조건으로 평가",
+        "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+        "updated_at": "2026-10-14T18:29:41+09:00",
+        "change": "3d-food-wide-seed11: dense 보상, seed 11",
+        "training": {
+          "trial": "3d-food-wide-seed11",
+          "timesteps": 25380,
+          "steps_this_segment": 1168,
+          "decisions_per_second": 0.4386613814767226,
+          "reward_terms_sum": {
+            "approach": 138.9374248218679,
+            "arrival": 140.0,
+            "time": -29.19999999999941,
+            "collision": 0.0,
+            "flip": 0.0
+          },
+          "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-wide-seed11/step-000024212.zip"
+        }
+      },
+      "latest_evaluation": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+      "decision": "2만 행동+평가가 4시간을 넘을 수 있음. 다음 구간 경계에서 2D 병행 조건 확인.",
+      "model_work_gate": "quota_unknown"
+    },
+    {
+      "id": "cdeeb610c7f6480cb661cecb5ba13bcf",
+      "at": "2026-10-14T18:47:32+09:00",
+      "epoch": 1791971252.6569989,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 37,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0037']' returned non-zero exit status 1."
+    }
+  ],
+  "evaluation": {
+    "id": "1791965168266039000-3d-food-wide-seed11-untrained-fixed",
+    "evaluated_at": "2026-10-14T17:19:21+09:00",
+    "backend": "3d",
+    "task": "food-wide",
+    "policy": "untrained",
+    "policy_family": "3d-food-wide-seed11",
+    "trial": "3d-food-wide-seed11",
+    "seed": 11,
+    "timesteps": 20116,
+    "success_rate": 0.0,
+    "successes": 0,
+    "episodes": 20,
+    "mean_steps": 120.0,
+    "mean_success_seconds": null,
+    "collision_count": 0,
+    "flip_count": 0,
+    "seconds": 793.3397512435913,
+    "evaluation_suite": "3094622ba4a9",
+    "selection_holdout": false,
+    "seeds": [
+      10000,
+      10001,
+      10002,
+      10003,
+      10004,
+      10005,
+      10006,
+      10007,
+      10008,
+      10009,
+      10010,
+      10011,
+      10012,
+      10013,
+      10014,
+      10015,
+      10016,
+      10017,
+      10018,
+      10019
+    ],
+    "progress_dir": "artifacts/20261014-115448/evaluation-progress/1791965168266039000-3d-food-wide-seed11-untrained-fixed",
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000020116.zip",
+    "config": {
+      "trial": "3d-food-wide-seed11",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "wide",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 11,
+      "policy_layers": [
+        64,
+        64
+      ],
+      "decision_seconds": 0.05,
+      "physics_timestep": 0.0001,
+      "observation": "known target and obstacle coordinates; not olfaction"
+    },
+    "video": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed.mp4",
+    "video_seed": 10000,
+    "path_image": "artifacts/20261014-115448/media/1791965168266039000-3d-food-wide-seed11-untrained-fixed-paths.png",
+    "record_url": "artifacts/20261014-115448/evaluations/1791965168266039000-3d-food-wide-seed11-untrained-fixed.json",
+    "checkpoint_sha256": "da45ebf8417e76020c82b7c19b272f6524ae2dbae90865274ba522ec60a34f4e"
+  },
+  "media": [
+    "artifacts/20261014-115448/media/interval-0042.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T19:21:46+09:00",
+    "video": "artifacts/20261014-115448/videos/hour-0007/recap.mp4"
+  },
+  "actor": "local-script",
+  "record_type": "interval",
+  "recording_delay_seconds": 285.05509305000305,
+  "last_evaluated_at": "2026-10-14T17:19:21+09:00",
+  "summary_kind": "hour",
+  "source_intervals": [
+    "20261014-115448-0037",
+    "20261014-115448-0038",
+    "20261014-115448-0039",
+    "20261014-115448-0040",
+    "20261014-115448-0041",
+    "20261014-115448-0042"
+  ]
+}

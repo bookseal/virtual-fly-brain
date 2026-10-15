@@ -1,0 +1,29 @@
+{
+  "id": "20261014-115448-0036",
+  "index": 36,
+  "recorded_at": "2026-10-14T18:07:51+09:00",
+  "scheduled_epoch": 1791968228.5686998,
+  "elapsed_minutes": 370.7186373869578,
+  "backend": "3d",
+  "status": "gap",
+  "title": "기록기 중단 구간 · 원본 사건만 복구",
+  "question": "이 시각에 기록기가 응답했는가?",
+  "change": "예약 시각에 기록을 저장하지 못했습니다.",
+  "result": "이전 상태를 현재 상태로 추정하지 않았습니다. 원본 사건 시각을 확인하세요.",
+  "next_action": "복구 후 다음 구간부터 실시간 기록을 이어갑니다.",
+  "training": {},
+  "events": [],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0036.svg"
+  ],
+  "render": {
+    "status": "failed",
+    "failed_at": "2026-10-14T18:29:42+09:00",
+    "error": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0036']' returned non-zero exit status 1."
+  },
+  "actor": "local-script",
+  "record_type": "interval",
+  "recording_delay_seconds": 643.1182432174683,
+  "last_evaluated_at": "2026-10-14T17:19:21+09:00"
+}

@@ -129,8 +129,9 @@
     "artifacts/20261014-115448/media/interval-0024.svg"
   ],
   "render": {
-    "status": "rendering",
-    "started_at": "2026-10-14T15:57:44+09:00"
+    "status": "done",
+    "completed_at": "2026-10-14T15:58:22+09:00",
+    "video": "artifacts/20261014-115448/videos/hour-0004/recap.mp4"
   },
   "actor": "local-script",
   "record_type": "interval",

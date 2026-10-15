@@ -1,0 +1,87 @@
+{
+  "id": "20261014-115448-0040",
+  "index": 40,
+  "recorded_at": "2026-10-14T18:47:35+09:00",
+  "scheduled_epoch": 1791970628.5686998,
+  "elapsed_minutes": 410.4454293847084,
+  "backend": "3d",
+  "status": "gap",
+  "title": "기록기 중단 구간 · 원본 사건만 복구",
+  "question": "이 시각에 기록기가 응답했는가?",
+  "change": "예약 시각에 기록을 저장하지 못했습니다.",
+  "result": "이전 상태를 현재 상태로 추정하지 않았습니다. 원본 사건 시각을 확인하세요.",
+  "next_action": "복구 후 다음 구간부터 실시간 기록을 이어갑니다.",
+  "training": {},
+  "events": [
+    {
+      "id": "aabdea0d54514b85a166c00cbec47165",
+      "at": "2026-10-14T18:29:41+09:00",
+      "epoch": 1791970181.152849,
+      "actor": "local-script",
+      "kind": "stop",
+      "title": "실행 시간 경계에서 안전 저장 요청"
+    },
+    {
+      "id": "e89125c5545a47e191a564b1f8f17339",
+      "at": "2026-10-14T18:29:41+09:00",
+      "epoch": 1791970181.2428658,
+      "actor": "local-script",
+      "kind": "checkpoint",
+      "title": "10분 정책 체크포인트 저장",
+      "trial": "3d-food-wide-seed11",
+      "timesteps": 25380
+    },
+    {
+      "id": "4883484fef4a48a1a1e7e2ff8d355a9d",
+      "at": "2026-10-14T18:29:41+09:00",
+      "epoch": 1791970181.245334,
+      "actor": "local-script",
+      "kind": "training",
+      "title": "학습 구간 저장",
+      "trial": "3d-food-wide-seed11",
+      "checkpoint": "runs/20261014-115448/checkpoints/3d-food-wide-seed11/step-000025380.zip",
+      "timesteps": 25380,
+      "seconds": 2662.6659212112427,
+      "stopped": true,
+      "config": {
+        "trial": "3d-food-wide-seed11",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "wide",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 11,
+        "policy_layers": [
+          64,
+          64
+        ],
+        "decision_seconds": 0.05,
+        "physics_timestep": 0.0001,
+        "observation": "known target and obstacle coordinates; not olfaction"
+      }
+    },
+    {
+      "id": "cd7c3ff5bfe544f7a77736407dcf6a2b",
+      "at": "2026-10-14T18:29:43+09:00",
+      "epoch": 1791970183.334234,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "구간 영상 렌더 실패",
+      "interval": 36,
+      "detail": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0036']' returned non-zero exit status 1."
+    }
+  ],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261014-115448/media/interval-0040.svg"
+  ],
+  "render": {
+    "status": "failed",
+    "failed_at": "2026-10-14T19:16:08+09:00",
+    "error": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0040']' returned non-zero exit status 1."
+  },
+  "actor": "local-script",
+  "record_type": "interval",
+  "recording_delay_seconds": 626.7257630825043,
+  "last_evaluated_at": "2026-10-14T17:19:21+09:00"
+}

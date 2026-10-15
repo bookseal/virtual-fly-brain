@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-14T16:56:17+09:00",
+  "timesteps": 0,
+  "config": {
+    "trial": "3d-food-near-seed29",
+    "backend": "3d",
+    "task": "food",
+    "curriculum": "near",
+    "reward_mode": "dense",
+    "max_steps": 120,
+    "seed": 29,
+    "policy_layers": [
+      64,
+      64
+    ],
+    "decision_seconds": 0.05,
+    "physics_timestep": 0.0001,
+    "observation": "known target and obstacle coordinates; not olfaction"
+  },
+  "normalization": "fixed observation divisors; no running statistics",
+  "resume_boundary": "new episode; partial on-policy rollout discarded",
+  "optimizer": "included in SB3 zip",
+  "gradient_updates": 0
+}

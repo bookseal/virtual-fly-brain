@@ -60,7 +60,14 @@ def export_run(run,output):
     for p in sorted((run/'evaluations').glob('*.json')):
         e=clean(read(p));write(dest/'evaluations'/p.name,e);visit(e)
     m['evaluations']=[brief(e) for e in m.get('evaluations',[])]
+    omitted={r['id'] for r in m.get('intervals',[]) if r.get('render',{}).get('status')=='omitted'}
+    if omitted.intersection(m.get('retrospective',{}).get('source_intervals',[])):
+        m['retrospective']={'status':'omitted','reason':'공개 제외 구간을 포함한 회고는 공개용 재편집 후 제공합니다.'}
     visit(m.get('retrospective',{}));visit(m.get('state',{}))
+    for name in ('research','journal','diagnostics','deployment'):
+        p=run/(name+'.json')
+        if p.exists():
+            m[name]=clean(read(p));visit(m[name]);write(dest/(name+'.json'),m[name])
     if (run/'report.json').exists():visit(clean(read(run/'report.json')))
     for ref in sorted(references):
         rel=Path(ref).relative_to(Path('artifacts')/run.name)
@@ -84,7 +91,11 @@ def export_run(run,output):
     if (run/'report.json').exists():
         report=clean(read(run/'report.json'));write(dest/'report.json',report);public_report(dest,report);m['report']=f'artifacts/{run.name}/report.html'
     write(dest/'state.json',m['state']);write(dest/'manifest.json',m)
-    write(output/'experiments/index.json',{'runs':[{'run_id':run.name,'started_at':m['run']['started_at'],'manifest':f'artifacts/{run.name}/manifest.json'}],'updated_at':exported_at})
+    index=output/'experiments/index.json'
+    prior=read(index).get('runs',[]) if index.exists() else []
+    entries=[r for r in prior if r['run_id']!=run.name]+[{'run_id':run.name,'started_at':m['run']['started_at'],'manifest':f'artifacts/{run.name}/manifest.json'}]
+    entries.sort(key=lambda r:r.get('started_at',''),reverse=True)
+    write(index,{'runs':entries,'updated_at':exported_at})
     write(output/'timeline.json',clean(read(ROOT/'site/timeline.json')))
     for name in ['PLAN','HANDOFF']:
         src=ROOT/'site'/f'{name}.txt'
@@ -119,7 +130,12 @@ def main():
     if a.run:
         # Failed audits never replace a previously reviewed public snapshot.
         with tempfile.TemporaryDirectory(prefix='.public-export-',dir=ROOT) as temporary:
-            output=Path(temporary)/'snapshot';output.mkdir();m=export_run(a.run,output);audit(output)
+            output=Path(temporary)/'snapshot'
+            if (ROOT/'public').exists():shutil.copytree(ROOT/'public',output)
+            else:output.mkdir()
+            current=output/'artifacts'/a.run.name
+            if current.exists():shutil.rmtree(current)
+            m=export_run(a.run,output);audit(output)
             previous=Path(temporary)/'previous';public=ROOT/'public'
             if public.exists():os.replace(public,previous)
             try:os.replace(output,public)

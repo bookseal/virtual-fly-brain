@@ -22,6 +22,8 @@ def main():
                     q['increase_pp']=max(0,q['used_percent']-base['used_percent']) if same else None
                     q['gate']='stop_new_model_work' if not same or q['increase_pp']>=60 else 'continue'
                     if same and q['increase_pp']>=70:q['gate']='budget_reached'
+                    if cfg.get('reserve_percent') is not None:
+                        q['gate']='stop_new_model_work' if q['used_percent']>=100-cfg['reserve_percent'] else 'continue'
                 else:q['gate']='quota_unknown'
                 atomic(run/'quota.json',q);event(run,'quota','사용량 확인',quota=q);publish(run)
             atomic(run/'recorder-heartbeat.json',{'pid':os.getpid(),'at':now(),'epoch':time.time()})

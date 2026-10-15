@@ -1,0 +1,154 @@
+{
+  "id": "20261014-115448-0025",
+  "index": 25,
+  "recorded_at": "2026-10-14T16:07:12+09:00",
+  "scheduled_epoch": 1791961628.5686998,
+  "elapsed_minutes": 250.07106143633524,
+  "backend": "3d",
+  "status": "training",
+  "title": "10분 정책 체크포인트 저장",
+  "question": "먹이까지의 거리가 줄어드는 행동을 보상하면 도달률이 높아질까?",
+  "change": "3d-food-near-seed11: dense 보상, seed 11",
+  "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+  "next_action": "한 시간마다 학습에 쓰지 않은 20개 시작 조건으로 평가",
+  "training": {
+    "trial": "3d-food-near-seed11",
+    "timesteps": 14916,
+    "steps_this_segment": 1968,
+    "decisions_per_second": 2.9330139800955726,
+    "reward_terms_sum": {
+      "approach": 99.60238035826048,
+      "arrival": 220.0,
+      "time": -49.199999999998276,
+      "collision": 0.0,
+      "flip": 0.0
+    },
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000012948.zip"
+  },
+  "events": [
+    {
+      "id": "fed53b81840d409f8199efb3a586ec87",
+      "at": "2026-10-14T16:05:42+09:00",
+      "epoch": 1791961542.364426,
+      "actor": "local-script",
+      "kind": "review",
+      "title": "30분 자동 검토",
+      "method": "predefined-rules; no model call",
+      "state": {
+        "status": "training",
+        "backend": "3d",
+        "activity": "3d-food-near-seed11 정책 학습",
+        "question": "먹이까지의 거리가 줄어드는 행동을 보상하면 도달률이 높아질까?",
+        "next_action": "한 시간마다 학습에 쓰지 않은 20개 시작 조건으로 평가",
+        "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+        "updated_at": "2026-10-14T16:05:40+09:00",
+        "change": "3d-food-near-seed11: dense 보상, seed 11",
+        "training": {
+          "trial": "3d-food-near-seed11",
+          "timesteps": 14688,
+          "steps_this_segment": 1740,
+          "decisions_per_second": 2.981059488158358,
+          "reward_terms_sum": {
+            "approach": 87.24289293274828,
+            "arrival": 220.0,
+            "time": -43.4999999999986,
+            "collision": 0.0,
+            "flip": 0.0
+          },
+          "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000012948.zip"
+        }
+      },
+      "latest_evaluation": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+      "decision": "기존 설정 유지; 다음 고정 평가에서 판단",
+      "model_work_gate": "continue"
+    },
+    {
+      "id": "54711f8b543c42338e563c48e2de9412",
+      "at": "2026-10-14T16:05:58+09:00",
+      "epoch": 1791961558.1125388,
+      "actor": "local-script",
+      "kind": "checkpoint",
+      "title": "10분 정책 체크포인트 저장",
+      "trial": "3d-food-near-seed11",
+      "timesteps": 14732
+    }
+  ],
+  "evaluation": {
+    "id": "1791960036714128000-3d-food-near-seed11-ppo-fixed",
+    "evaluated_at": "2026-10-14T15:55:48+09:00",
+    "backend": "3d",
+    "task": "food-near",
+    "policy": "ppo",
+    "policy_family": "3d-food-near-seed11",
+    "trial": "3d-food-near-seed11",
+    "seed": 11,
+    "timesteps": 12948,
+    "success_rate": 0.0,
+    "successes": 0,
+    "episodes": 20,
+    "mean_steps": 120.0,
+    "mean_success_seconds": null,
+    "collision_count": 0,
+    "flip_count": 0,
+    "seconds": 911.8642330169678,
+    "evaluation_suite": "3094622ba4a9",
+    "selection_holdout": false,
+    "seeds": [
+      10000,
+      10001,
+      10002,
+      10003,
+      10004,
+      10005,
+      10006,
+      10007,
+      10008,
+      10009,
+      10010,
+      10011,
+      10012,
+      10013,
+      10014,
+      10015,
+      10016,
+      10017,
+      10018,
+      10019
+    ],
+    "progress_dir": "artifacts/20261014-115448/evaluation-progress/1791960036714128000-3d-food-near-seed11-ppo-fixed",
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000012948.zip",
+    "config": {
+      "trial": "3d-food-near-seed11",
+      "backend": "3d",
+      "task": "food",
+      "curriculum": "near",
+      "reward_mode": "dense",
+      "max_steps": 120,
+      "seed": 11,
+      "policy_layers": [
+        64,
+        64
+      ],
+      "decision_seconds": 0.05,
+      "physics_timestep": 0.0001,
+      "observation": "known target and obstacle coordinates; not olfaction"
+    },
+    "video": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed.mp4",
+    "video_seed": 10000,
+    "path_image": "artifacts/20261014-115448/media/1791960036714128000-3d-food-near-seed11-ppo-fixed-paths.png",
+    "record_url": "artifacts/20261014-115448/evaluations/1791960036714128000-3d-food-near-seed11-ppo-fixed.json",
+    "checkpoint_sha256": "cb37a45e3ce75c821666cd59a96795f7e56c4c4cbd7057663f80c4851f3b0f76"
+  },
+  "media": [
+    "artifacts/20261014-115448/media/interval-0025.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-14T16:07:52+09:00",
+    "video": "artifacts/20261014-115448/videos/interval-0025/recap.mp4"
+  },
+  "actor": "local-script",
+  "record_type": "interval",
+  "recording_delay_seconds": 4.263686180114746,
+  "last_evaluated_at": "2026-10-14T15:55:48+09:00"
+}

@@ -1,24 +1,26 @@
 {
-  "status": "training",
+  "status": "completed",
   "backend": "3d",
-  "activity": "3d-food-near-seed11 정책 학습",
-  "question": "먹이까지의 거리가 줄어드는 행동을 보상하면 도달률이 높아질까?",
-  "next_action": "한 시간마다 학습에 쓰지 않은 20개 시작 조건으로 평가",
-  "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
-  "updated_at": "2026-10-14T15:57:43+09:00",
-  "change": "3d-food-near-seed11: dense 보상, seed 11",
+  "activity": "첫날 회차 종료",
+  "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
+  "next_action": "타임라인과 최종 보고서에서 실패 원인과 다음 실험을 확인",
+  "result": "실제 성과와 미완료 항목은 최종 보고서에서 각각 판정했습니다.",
+  "updated_at": "2026-10-14T19:54:57+09:00",
+  "change": "3d-food-wide-seed11: dense 보상, seed 11",
   "training": {
-    "trial": "3d-food-near-seed11",
-    "timesteps": 13340,
-    "steps_this_segment": 392,
-    "decisions_per_second": 3.662239561277303,
+    "trial": "3d-food-wide-seed11",
+    "timesteps": 25380,
+    "steps_this_segment": 1168,
+    "decisions_per_second": 0.4386613814767226,
     "reward_terms_sum": {
-      "approach": 33.375152189798875,
-      "arrival": 60.0,
-      "time": -9.800000000000072,
+      "approach": 138.9374248218679,
+      "arrival": 140.0,
+      "time": -29.19999999999941,
       "collision": 0.0,
       "flip": 0.0
     },
-    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-near-seed11/step-000012948.zip"
-  }
+    "checkpoint": "artifacts/20261014-115448/checkpoints/3d-food-wide-seed11/step-000024212.zip"
+  },
+  "ended_at": "2026-10-14T19:54:57+09:00",
+  "ended_epoch": 1791975297.485151
 }
