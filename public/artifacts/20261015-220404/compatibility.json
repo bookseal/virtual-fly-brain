@@ -651,5 +651,7 @@
     },
     {}
   ],
-  "separate_from_learning": true
+  "separate_from_learning": true,
+  "pending_note": "기존 API의 같은 고정 신호 측정은 현재 평가가 끝나 worker가 비면 실행합니다. 아직 두 버전의 직접 비교 수치는 없습니다.",
+  "launch_failure": "artifacts/20261015-220404/compatibility/flygym2/legacy-launch-failure.json"
 }

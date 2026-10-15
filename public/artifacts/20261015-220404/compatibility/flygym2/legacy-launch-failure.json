@@ -1,0 +1,7 @@
+{
+  "status": "launch_failed",
+  "at": "2026-10-16T08:37:31+09:00",
+  "error": "ModuleNotFoundError: numpy",
+  "cause": "Probe launcher resolved the venv Python symlink to the base interpreter. This is a launcher error, not a simulator failure.",
+  "corrected_command": ".venv/bin/python -m lab.compatibility_probe runs/20261015-220404 --flavor legacy --seconds 1 --repeats 3"
+}
