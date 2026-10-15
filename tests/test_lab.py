@@ -93,6 +93,15 @@ def test_render_failure_keeps_original_evidence(run,monkeypatch):
     r=store.read(run/'intervals/0000.json');assert r['render']['status']=='failed';assert r['media']
     assert any(e['kind']=='error' for e in store.events(run))
 
+def test_diagnostic_composition_does_not_invent_evaluation_success(run,monkeypatch):
+    from lab import video
+    monkeypatch.setattr(video,'TEMPLATE',Path(__file__).resolve().parents[1]/'video/interval-template');monkeypatch.setattr(video,'ROOT',store.ROOT)
+    (store.ROOT/'site').mkdir();(store.ROOT/'site/artifacts').symlink_to(store.ROOT/'runs',target_is_directory=True)
+    row=store.snapshot(run,0,1);row['observation']={'metric_label':'고정 신호 보행 · 학습 평가 아님'}
+    dest=video.composition(run,row,run/'probe-composition');doc=(dest/'index.html').read_text()
+    assert '고정 신호 보행 · 학습 평가 아님' in doc
+    assert '% ·' not in doc and '마지막 평가 시각 기준' not in doc
+
 def test_evaluation_checkpoint_seed_and_progress(run):
     from lab.learning import train,evaluate
     c={'trial':'eval-test','backend':'2d','task':'food','curriculum':'near','reward_mode':'dense','max_steps':12,'seed':11}

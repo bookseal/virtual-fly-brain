@@ -47,7 +47,7 @@ def legacy(seconds,repeats):
     from .envs import FoodEnv
     setup=time.perf_counter();env=FoodEnv('3d');setup_seconds=time.perf_counter()-setup
     def rollout(seed,duration):
-        env.reset(seed=seed);path=[env.pos.tolist()];start=time.perf_counter();count=round(duration/1e-4)
+        env.reset(seed=seed);path=[env.sim.get_observation()['fly'][0].tolist()];start=time.perf_counter();count=round(duration/1e-4)
         for i in range(count):
             raw,_,_,_,_=env.sim.step(np.array([.8,.8]))
             if (i+1)%500==0:path.append(raw['fly'][0].tolist())
