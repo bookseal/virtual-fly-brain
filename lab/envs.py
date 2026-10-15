@@ -8,11 +8,13 @@ import numpy as np
 
 class FoodEnv(gym.Env):
     metadata={'render_modes':['rgb_array'],'render_fps':20}
-    def __init__(self,backend='2d',task='food',curriculum='near',reward_mode='dense',max_steps=160,render_mode=None,action_mode='raw'):
+    def __init__(self,backend='2d',task='food',curriculum='near',reward_mode='dense',max_steps=160,render_mode=None,action_mode='raw',physics_error_policy='raise'):
         self.backend,self.task,self.curriculum,self.reward_mode=backend,task,curriculum,reward_mode
         self.max_steps=max_steps;self.render_mode=render_mode;self.dt=.05
         if action_mode not in ('raw','normalized'):raise ValueError('Unknown action mode')
         self.action_mode=action_mode
+        if physics_error_policy not in ('raise','terminate'):raise ValueError('Unknown physics error policy')
+        self.physics_error_policy=physics_error_policy
         self.action_space=gym.spaces.Box(-1.,1.,(2,),dtype=np.float32) if action_mode=='normalized' else gym.spaces.Box(-.5,1.5,(2,),dtype=np.float32)
         self.observation_space=gym.spaces.Box(-np.inf,np.inf,(8,),dtype=np.float32)
         self.sim=None;self.camera=None
@@ -40,7 +42,8 @@ class FoodEnv(gym.Env):
         self.obstacle=self.target*.5 if self.task=='obstacles' else np.array([100.,100.])
         self.pos=np.zeros(2);self.heading=0.;self.last_info={}
         if self.sim:
-            raw,info=self.sim.reset(seed=int(self.np_random.integers(0,2**31)))
+            self.physics_seed=int(self.np_random.integers(0,2**31))
+            raw,info=self.sim.reset(seed=self.physics_seed)
             self.sim.physics.bind(self.target_geom).pos[:2]=self.target
             if self.obstacle_geom:self.sim.physics.bind(self.obstacle_geom).pos[:2]=self.obstacle
             self._raw(raw)
@@ -62,10 +65,22 @@ class FoodEnv(gym.Env):
         action=policy_action+.5 if self.action_mode=='normalized' else policy_action
         before=self.distance;oldpos=self.pos.copy();oldheading=self.heading;flip=False;collision=False
         if self.sim:
-            for _ in range(500):
-                raw,_,term,trunc,info=self.sim.step(action);flip=flip or bool(info.get('flip',False))
-                if self.camera:self.sim.render()
-                if flip:break
+            from dm_control.rl.control import PhysicsError
+            try:
+                for substep in range(500):
+                    raw,_,term,trunc,info=self.sim.step(action);flip=flip or bool(info.get('flip',False))
+                    if self.camera:self.sim.render()
+                    if flip:break
+            except PhysicsError as exc:
+                if self.physics_error_policy=='raise':raise
+                # The failed numerical state is not a biological fall and must
+                # never enter the policy as a NaN observation or a success.
+                self.steps+=1
+                terms={'approach':0.,'arrival':0.,'time':-.025,'collision':0.,'flip':0.,'numerical_failure':-5.}
+                self.path.append(self.pos.tolist());self.actions.append(action.tolist());self.policy_actions.append(policy_action.tolist())
+                self.last_info=self._info(False,terms)
+                self.last_info.update(numerical_failure=True,physics_error=str(exc),physics_seed=getattr(self,'physics_seed',None),physics_substep=substep,observation_is_last_valid=True,failure_actions=list(self.policy_actions))
+                return self._obs(),sum(terms.values()),True,False,self.last_info
             self._raw(raw);self.w=math.atan2(math.sin(self.heading-oldheading),math.cos(self.heading-oldheading))/self.dt
             if self.task=='obstacles':
                 obstacle_id=self.sim.physics.model.name2id('obstacle','geom')
@@ -104,7 +119,7 @@ def rule_action(obs):
     return np.clip(np.array([.8-turn,.8+turn]),-.5,1.5).astype(np.float32)
 
 def env_options(config):
-    return {k:v for k,v in config.items() if k in ['backend','task','curriculum','reward_mode','max_steps','action_mode']}
+    return {k:v for k,v in config.items() if k in ['backend','task','curriculum','reward_mode','max_steps','action_mode','physics_error_policy']}
 
 def teacher_action(env,obs):
     raw=rule_action(obs)

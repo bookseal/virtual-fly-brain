@@ -105,6 +105,23 @@ def test_normalized_actions_preserve_physical_control():
         np.testing.assert_allclose(a.actions[-1],b.actions[-1])
     assert b.policy_actions[-1]==[-1.,1.]
 
+def test_physics_failure_is_explicit_and_finite():
+    from dm_control.rl.control import PhysicsError
+    class BrokenPhysics:
+        def step(self,action):raise PhysicsError('injected BADQACC')
+    env=FoodEnv('2d',physics_error_policy='terminate');before,_=env.reset(seed=11);env.sim=BrokenPhysics()
+    obs,reward,terminated,truncated,info=env.step([.8,.8])
+    np.testing.assert_array_equal(obs,before)
+    assert np.isfinite(obs).all() and terminated and not truncated
+    assert not info['success'] and info['numerical_failure'] and info['flips']==0
+    assert reward==sum(info['reward_terms'].values()) and info['failure_actions']==[[.8,.8]]
+    env.physics_error_policy='raise'
+    with pytest.raises(PhysicsError):env.step([.8,.8])
+    class ProgrammingError:
+        def step(self,action):raise ValueError('injected coding error')
+    env.sim=ProgrammingError();env.physics_error_policy='terminate'
+    with pytest.raises(ValueError):env.step([.8,.8])
+
 def test_completed_evaluation_episode_survives_retry(run):
     from lab.learning import eval_worker
     progress=run/'progress'
@@ -114,6 +131,16 @@ def test_completed_evaluation_episode_survives_retry(run):
     assert (progress/'10000.episode.json').exists()
     second=eval_worker(args)
     assert first==second
+
+def test_supplementary_evaluation_keeps_primary_training_state(run):
+    from lab.learning import evaluate
+    store.update_state(run,status='training',activity='primary comparison',training={'timesteps':512})
+    store.atomic(run/'latest-evaluation.json',{'id':'primary'})
+    c={'trial':'diagnostic','backend':'2d','task':'food','curriculum':'wide','reward_mode':'dense','max_steps':4,'seed':11}
+    result=evaluate(run,c,'rule',seeds=[30000],workers=1,tag='diagnostic',background=True)
+    assert result['seeds']==[30000] and not result['selection_holdout']
+    assert store.read(run/'state.json')['activity']=='primary comparison'
+    assert store.read(run/'latest-evaluation.json')['id']=='primary'
 
 def test_imitation_initializes_policy_without_online_training(run):
     from lab.imitation import collect,clone

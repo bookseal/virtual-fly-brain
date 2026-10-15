@@ -50,12 +50,19 @@ def train(run,config,steps,workers=1,resume=None,deadline=None):
             metrics={k:float(v) for k,v in self.model.logger.name_to_value.items() if k.startswith('train/') and isinstance(v,(int,float,np.number)) and np.isfinite(v)}
             if metrics:
                 atomic(run/'trials'/f'{trial}-optimizer.json',{'at':now(),'timesteps':self.model.num_timesteps,'gradient_updates':self.model._n_updates,'metrics':metrics})
+                # Save after an optimizer update, before the next rollout. A
+                # worker crash can then lose at most one unfinished rollout.
+                checkpoint(self.model,env,dest/f'step-{self.model.num_timesteps:09d}',config)
         def _on_step(self):
             raw=np.asarray(self.locals.get('actions',[]))
             if raw.size:self.action_samples.extend(raw.reshape(-1,2).tolist())
             self.action_samples=self.action_samples[-4096:]
             for info in self.locals.get('infos',[]):
                 for k,v in info.get('reward_terms',{}).items():self.terms[k]=self.terms.get(k,0)+float(v)
+                if info.get('numerical_failure'):
+                    path=run/'failures'/f'{time.time_ns()}.json'
+                    atomic(path,{'at':now(),'trial':trial,'timesteps':self.model.num_timesteps,'config':config,'info':info})
+                    event(run,'error','수치 시뮬레이션 실패 · 해당 에피소드 종료',trial=trial,timesteps=self.model.num_timesteps,evidence=asset(run,path),detail='성공·넘어짐과 구분합니다. 마지막 유효 관찰값으로 종료하고 다음 에피소드에서 재시작합니다.')
             if time.time()-self.beat>10:
                 self.beat=time.time();progress={'trial':trial,'timesteps':self.model.num_timesteps,'steps_this_segment':self.model.num_timesteps-initial,'decisions_per_second':(self.model.num_timesteps-initial)/max(.1,time.time()-started),'reward_terms_sum':self.terms,'checkpoint':asset(run,dest/f'step-{initial:09d}.zip')}
                 if self.action_samples:
@@ -126,10 +133,10 @@ def paths_plot(rows,path,title):
         if r.get('obstacle'):ax.add_patch(plt.Circle(r['obstacle'],1.2,color='#6f7882',alpha=.15))
     ax.scatter(0,0,color='#213546',s=50,label='Start');ax.set_aspect('equal',adjustable='datalim');ax.grid(alpha=.2);ax.set_xlabel('x (mm in 3D; proxy units in 2D)');ax.set_ylabel('y');ax.set_title(title);fig.tight_layout();fig.savefig(path,dpi=140);plt.close(fig)
 
-def evaluate(run,config,policy='random',modelpath=None,seeds=None,workers=1,tag='fixed',timesteps=0):
+def evaluate(run,config,policy='random',modelpath=None,seeds=None,workers=1,tag='fixed',timesteps=0,background=False):
     run=Path(run);source=preserve_source(run);timesteps=read(str(modelpath).removesuffix('.zip')+'.json',{}).get('timesteps',timesteps) if modelpath else timesteps;seeds=seeds or list(range(10000,10020));stamp=f'{time.time_ns()}-{config["trial"]}-{policy}-{tag}';video=run/'media'/f'{stamp}.mp4';path=run/'media'/f'{stamp}-paths.png'
     event(run,'evaluation','동일 조건 행동 평가 시작',trial=config['trial'],policy=policy,seeds=seeds,backend=config['backend'],task=config['task'],command=f'.venv/bin/python -m lab.learning evaluate {run} --config {run}/configs/{config["trial"]}.json --policy {policy}'+(f' --checkpoint {modelpath}' if modelpath else '')+f' --seed-start {seeds[0]} --episodes {len(seeds)} --workers {workers}',command_ko='학습에 쓰지 않은 고정 시작 조건에서 먹이 도달 횟수를 셉니다. 모델을 평가 중에 업데이트하지 않습니다.')
-    update_state(run,status='evaluating',backend=config['backend'],activity=f'{policy} {len(seeds)}회 평가',question='같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?',result=f'{policy} 정책의 {len(seeds)}개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.',next_action='모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장')
+    if not background:update_state(run,status='evaluating',backend=config['backend'],activity=f'{policy} {len(seeds)}회 평가',question='같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?',result=f'{policy} 정책의 {len(seeds)}개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.',next_action='모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장')
     tasks=[]
     for i in range(min(workers,len(seeds))):tasks.append((config,seeds[i::workers],policy,modelpath,str(video) if i==0 else None,str(run/'evaluation-progress'/stamp)))
     start=time.time()
@@ -144,12 +151,21 @@ def evaluate(run,config,policy='random',modelpath=None,seeds=None,workers=1,tag=
                 event(run,'error','평가 worker 종료 · 완료 에피소드 보존 후 재시도',workers=retry_workers,progress_dir=asset(run,run/'evaluation-progress'/stamp))
                 if retry_workers==1:raise
     rows.sort(key=lambda r:r['seed']);paths_plot(rows,path,f'{config["backend"]} / {config["curriculum"]} / {policy} / {timesteps} steps')
-    record=run/'evaluations'/f'{stamp}.json';n=len(rows);success=sum(r['success'] for r in rows);out={'id':stamp,'evaluated_at':now(),'backend':config['backend'],'task':config['task']+'-'+config['curriculum'],'policy':policy,'policy_family':config['trial'] if modelpath else policy,'trial':config['trial'],'seed':config['seed'],'timesteps':timesteps,'success_rate':success/n,'successes':success,'episodes':n,'mean_steps':float(np.mean([r['steps'] for r in rows])),'mean_success_seconds':float(np.mean([r['steps']*.05 for r in rows if r['success']])) if success else None,'collision_count':sum(r['info'].get('collisions',0) for r in rows),'flip_count':sum(r['info'].get('flips',0) for r in rows),'seconds':time.time()-start,'evaluation_suite':seed_digest(seeds),'selection_holdout':tag=='holdout','seeds':seeds,'progress_dir':asset(run,run/'evaluation-progress'/stamp),'checkpoint':asset(run,Path(modelpath)) if modelpath and Path(modelpath).is_relative_to(run) else modelpath,'config':config,'video':asset(run,video) if video.exists() else None,'video_seed':seeds[0],'path_image':asset(run,path),'record_url':asset(run,record),'episodes_raw':rows,'source_version':source,'checkpoint_sha256':hashlib.sha256(Path(modelpath).read_bytes()).hexdigest() if modelpath else None}
-    atomic(record,out);atomic(run/'latest-evaluation.json',out);event(run,'result',f'{config["backend"]} {policy}: {success}/{n}회 먹이 도달',evaluation=out['record_url'],success_rate=out['success_rate'],seconds=out['seconds']);update_state(run,result=f'{config["backend"]} {policy}: 동일 조건 {n}회 중 {success}회 도달. 학습량 {timesteps:,}회.');publish(run);return out
+    record=run/'evaluations'/f'{stamp}.json';n=len(rows);success=sum(r['success'] for r in rows);out={'id':stamp,'evaluated_at':now(),'backend':config['backend'],'task':config['task']+'-'+config['curriculum'],'policy':policy,'policy_family':config['trial'] if modelpath else policy,'trial':config['trial'],'seed':config['seed'],'timesteps':timesteps,'success_rate':success/n,'successes':success,'episodes':n,'mean_steps':float(np.mean([r['steps'] for r in rows])),'mean_success_seconds':float(np.mean([r['steps']*.05 for r in rows if r['success']])) if success else None,'collision_count':sum(r['info'].get('collisions',0) for r in rows),'flip_count':sum(r['info'].get('flips',0) for r in rows),'numerical_failure_count':sum(bool(r['info'].get('numerical_failure') or r.get('error')) for r in rows),'seconds':time.time()-start,'evaluation_suite':seed_digest(seeds),'selection_holdout':tag=='holdout','seeds':seeds,'progress_dir':asset(run,run/'evaluation-progress'/stamp),'checkpoint':asset(run,Path(modelpath)) if modelpath and Path(modelpath).is_relative_to(run) else modelpath,'config':config,'video':asset(run,video) if video.exists() else None,'video_seed':seeds[0],'path_image':asset(run,path),'record_url':asset(run,record),'episodes_raw':rows,'source_version':source,'checkpoint_sha256':hashlib.sha256(Path(modelpath).read_bytes()).hexdigest() if modelpath else None}
+    atomic(record,out)
+    if not background:atomic(run/'latest-evaluation.json',out)
+    event(run,'result',f'{config["backend"]} {policy}: {success}/{n}회 먹이 도달',evaluation=out['record_url'],success_rate=out['success_rate'],seconds=out['seconds'])
+    if not background:update_state(run,result=f'{config["backend"]} {policy}: 동일 조건 {n}회 중 {success}회 도달. 학습량 {timesteps:,}회.')
+    if read(run/'run.json',{}).get('schema_version',1)>=2:
+        try:
+            from .analyze import analyze
+            analyze(run)
+        except Exception as exc:event(run,'error','평가 결과는 보존 · 분석 차트 갱신 실패',detail=str(exc))
+    publish(run);return out
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=['train','evaluate']);p.add_argument('run');p.add_argument('--config',required=True);p.add_argument('--steps',type=int,default=2048);p.add_argument('--workers',type=int,default=1);p.add_argument('--checkpoint');p.add_argument('--policy',default='ppo');p.add_argument('--seed-start',type=int,default=10000);p.add_argument('--episodes',type=int,default=20);p.add_argument('--tag',default='fixed');p.add_argument('--deadline',type=float);a=p.parse_args();config=read(a.config)
+    p=argparse.ArgumentParser();p.add_argument('mode',choices=['train','evaluate']);p.add_argument('run');p.add_argument('--config',required=True);p.add_argument('--steps',type=int,default=2048);p.add_argument('--workers',type=int,default=1);p.add_argument('--checkpoint');p.add_argument('--policy',default='ppo');p.add_argument('--seed-start',type=int,default=10000);p.add_argument('--episodes',type=int,default=20);p.add_argument('--tag',default='fixed');p.add_argument('--deadline',type=float);p.add_argument('--background-evaluation',action='store_true');a=p.parse_args();config=read(a.config)
     if a.mode=='train':out=train(Path(a.run).resolve(),config,a.steps,a.workers,a.checkpoint,a.deadline)
-    else:out=evaluate(Path(a.run).resolve(),config,a.policy,a.checkpoint,list(range(a.seed_start,a.seed_start+a.episodes)),a.workers,a.tag)
+    else:out=evaluate(Path(a.run).resolve(),config,a.policy,a.checkpoint,list(range(a.seed_start,a.seed_start+a.episodes)),a.workers,a.tag,background=a.background_evaluation)
     print(json.dumps({k:v for k,v in out.items() if k!='episodes_raw'},ensure_ascii=False))
 if __name__=='__main__':main()
