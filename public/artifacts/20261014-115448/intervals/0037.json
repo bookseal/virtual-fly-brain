@@ -96,12 +96,19 @@
     "artifacts/20261014-115448/media/interval-0037.svg"
   ],
   "render": {
-    "status": "failed",
-    "failed_at": "2026-10-14T18:47:32+09:00",
-    "error": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0037']' returned non-zero exit status 1."
+    "status": "done",
+    "completed_at": "2026-10-15T22:22:16+09:00",
+    "video": "artifacts/20261014-115448/videos/interval-0037/recap.mp4"
   },
   "actor": "local-script",
   "record_type": "interval",
   "recording_delay_seconds": 55.25285506248474,
-  "last_evaluated_at": "2026-10-14T17:19:21+09:00"
+  "last_evaluated_at": "2026-10-14T17:19:21+09:00",
+  "render_history": [
+    {
+      "status": "failed",
+      "failed_at": "2026-10-14T18:47:32+09:00",
+      "error": "Command '['video/node_modules/.bin/hyperframes', 'check', 'runs/20261014-115448/videos/interval-0037']' returned non-zero exit status 1."
+    }
+  ]
 }

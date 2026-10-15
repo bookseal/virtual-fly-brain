@@ -1,12 +1,12 @@
 {
   "run_id": "20261014-115448",
-  "generated_at": "2026-10-14T19:58:02+09:00",
-  "elapsed_hours": 8.014960128068925,
+  "generated_at": "2026-10-15T22:27:45+09:00",
+  "elapsed_hours": 34.510259613129826,
   "verdict": {
     "record_system": {
       "status": "partial",
       "intervals": 49,
-      "rendered": 44,
+      "rendered": 49,
       "gaps": 14
     },
     "3d_execution": {
@@ -19,6 +19,7 @@
         {
           "trial": "3d-food-near-seed11",
           "backend": "3d",
+          "initial_policy": "untrained",
           "before": 0.0,
           "after": 0.0,
           "change_pp": 0.0,
@@ -263,5 +264,6 @@
     "실제 초파리 뇌 전체와 생물학적 가소성은 이번 정책 학습의 대상이 아닙니다.",
     "서로 다른 환경 seed와 새로운 조건에서 반복 검증이 필요합니다."
   ],
-  "reproduction": "See EXPERIMENTS.md and per-evaluation config/seeds/checkpoint/actions."
+  "reproduction": "See README.md and per-evaluation config/seeds/checkpoint/actions.",
+  "publication": {}
 }
