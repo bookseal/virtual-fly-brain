@@ -7750,15 +7750,23 @@
     ]
   },
   "report": "artifacts/20261014-115448/report.html",
-  "updated_at": "2026-10-15T22:27:45+09:00",
+  "updated_at": "2026-10-15T22:29:16+09:00",
   "journal": {},
   "research": {},
   "diagnostics": {},
-  "deployment": {},
+  "deployment": {
+    "status": "deployed",
+    "at": "2026-10-15T22:27:53+09:00",
+    "commit": "4921feb3b3a54ff5d4d5fb1ebef48ec1857df625",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/4921feb3b3a54ff5d4d5fb1ebef48ec1857df625",
+    "snapshot_at": "2026-10-15T13:27:48+00:00",
+    "url": "https://bookseal.github.io/virtual-fly-brain/",
+    "verified_at": "2026-10-15T22:28:24+09:00"
+  },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-15T13:27:48+00:00",
-    "snapshot_epoch": 1792070868.624382,
+    "exported_at": "2026-10-15T13:42:52+00:00",
+    "snapshot_epoch": 1792071773.517477,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
   }

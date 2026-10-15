@@ -1,7 +1,7 @@
 {
   "run_id": "20261014-115448",
-  "generated_at": "2026-10-15T22:27:45+09:00",
-  "elapsed_hours": 34.510259613129826,
+  "generated_at": "2026-10-15T22:42:49+09:00",
+  "elapsed_hours": 7.963587903115484,
   "verdict": {
     "record_system": {
       "status": "partial",
@@ -265,5 +265,13 @@
     "서로 다른 환경 seed와 새로운 조건에서 반복 검증이 필요합니다."
   ],
   "reproduction": "See README.md and per-evaluation config/seeds/checkpoint/actions.",
-  "publication": {}
+  "publication": {
+    "status": "deployed",
+    "at": "2026-10-15T22:27:53+09:00",
+    "commit": "4921feb3b3a54ff5d4d5fb1ebef48ec1857df625",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/4921feb3b3a54ff5d4d5fb1ebef48ec1857df625",
+    "snapshot_at": "2026-10-15T13:27:48+00:00",
+    "url": "https://bookseal.github.io/virtual-fly-brain/",
+    "verified_at": "2026-10-15T22:28:24+09:00"
+  }
 }
