@@ -133,8 +133,10 @@
     "artifacts/20261015-220404/media/interval-0020.svg"
   ],
   "render": {
-    "status": "rendering",
-    "started_at": "2026-10-16T01:24:07+09:00"
+    "status": "done",
+    "completed_at": "2026-10-16T01:24:27+09:00",
+    "video": "artifacts/20261015-220404/videos/interval-0020/recap.mp4",
+    "source_intervals": null
   },
   "actor": "local-script",
   "record_type": "interval",
