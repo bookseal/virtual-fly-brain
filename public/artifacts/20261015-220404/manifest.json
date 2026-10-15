@@ -20,37 +20,37 @@
     "summary_hours": 2
   },
   "state": {
-    "status": "training",
+    "status": "blocked",
     "backend": "3d",
-    "activity": "3d-near-bc-ppo-seed47 정책 학습",
+    "activity": "코드 검토 필요 · 기록과 공개는 계속",
     "question": "같은 학습량에서 두 경로의 먹이 도달률은 어떻게 달라질까?",
     "change": "3d-near-bc-ppo-seed47: 정규화한 행동, dense 보상",
-    "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
-    "next_action": "2,048 행동 경계와 주기적 고정 평가에서 비교",
-    "updated_at": "2026-10-16T08:07:18+09:00",
+    "result": "lab.learning failed; inspect job-v2-1792105262984344000.log",
+    "next_action": "실패 로그 확인 후 재개",
+    "updated_at": "2026-10-16T08:11:31+09:00",
     "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
     "training": {
       "trial": "3d-near-bc-ppo-seed47",
-      "timesteps": 712,
-      "steps_this_segment": 712,
-      "decisions_per_second": 1.9180914190384375,
+      "timesteps": 1184,
+      "steps_this_segment": 1184,
+      "decisions_per_second": 1.9364330560722316,
       "reward_terms_sum": {
-        "approach": 104.84193483280472,
-        "arrival": 280.0,
-        "time": -17.800000000000058,
+        "approach": 188.04664475189085,
+        "arrival": 540.0,
+        "time": -29.599999999999387,
         "collision": 0.0,
-        "flip": 0.0
+        "flip": -5.0
       },
-      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000512.zip",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000001166.zip",
       "action_mean": [
-        0.43866123174306715,
-        0.14207514580286873
+        0.4955877016921452,
+        0.19657465693150722
       ],
       "action_std": [
-        1.1820456246825688,
-        1.2523622653195798
+        1.2116742455165883,
+        1.2187765657138232
       ],
-      "action_clipped_fraction": 0.4234550561797753
+      "action_clipped_fraction": 0.4282094594594595
     }
   },
   "intervals": [
@@ -14846,6 +14846,207 @@
         }
       },
       "checkpoint_sha256": "254692ef80127075944b5e4d83b7d3c4e124c208da41e7d0e8a2ee535bdcb54a"
+    },
+    {
+      "id": "1792105476133971000-3d-wide-generalization-seed11-rule-diagnostic",
+      "evaluated_at": "2026-10-16T08:08:44+09:00",
+      "backend": "3d",
+      "task": "food-wide",
+      "policy": "rule",
+      "policy_family": "rule",
+      "trial": "3d-wide-generalization-seed11",
+      "seed": 11,
+      "timesteps": 0,
+      "success_rate": 1.0,
+      "successes": 20,
+      "episodes": 20,
+      "mean_steps": 25.1,
+      "mean_success_seconds": 1.2550000000000001,
+      "collision_count": 0,
+      "flip_count": 0,
+      "seconds": 248.2282178401947,
+      "evaluation_suite": "c6a0b9c1af29",
+      "selection_holdout": false,
+      "seeds": [
+        30000,
+        30001,
+        30002,
+        30003,
+        30004,
+        30005,
+        30006,
+        30007,
+        30008,
+        30009,
+        30010,
+        30011,
+        30012,
+        30013,
+        30014,
+        30015,
+        30016,
+        30017,
+        30018,
+        30019
+      ],
+      "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792105476133971000-3d-wide-generalization-seed11-rule-diagnostic",
+      "checkpoint": null,
+      "config": {
+        "trial": "3d-wide-generalization-seed11",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "wide",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 11,
+        "action_mode": "normalized",
+        "environment_version": "food-v2-action-affine",
+        "initialization": "behavior-cloning-from-rule",
+        "physics_error_policy": "terminate",
+        "recovery_protocol": "numerical-failure-v1",
+        "purpose": "supplementary generalization diagnosis; not the final holdout"
+      },
+      "video": "artifacts/20261015-220404/media/1792105476133971000-3d-wide-generalization-seed11-rule-diagnostic.mp4",
+      "video_seed": 30000,
+      "path_image": "artifacts/20261015-220404/media/1792105476133971000-3d-wide-generalization-seed11-rule-diagnostic-paths.png",
+      "record_url": "artifacts/20261015-220404/evaluations/1792105476133971000-3d-wide-generalization-seed11-rule-diagnostic.json",
+      "source_version": {
+        "at": "2026-10-16T08:04:36+09:00",
+        "version": "27d74e5522635997",
+        "path": "artifacts/20261015-220404/source/27d74e5522635997",
+        "sha256": {
+          "lab/store.py": "9abc20894b0ec74f2214c930c3611cfee96e863e17152b95be6adb26f4949176",
+          "lab/envs.py": "396a85c1580b11624105c3e07e66ffd58bb2a28dae425d6b12c31268c931bb79",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+          "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/policy_audit.py": "6ecc5e3fd5d5fa81aa5e9f9ac5090b7ffe2764cbdf6ea93b9ff99694c29e5c7e",
+          "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+          "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+          "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+          "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+          "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+          "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+          "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+          "lab/learning.py": "adfd9bbd0582606a7c12944728e4e80729065fd519fff2cbc6b31e0febfe0644",
+          "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+          "lab/analyze.py": "c96383bee87f4307255896ca70fa67add160306301b1edfb636ebf5b4a1c5810",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+        }
+      },
+      "checkpoint_sha256": null
+    },
+    {
+      "id": "1792105726602996000-3d-wide-generalization-seed11-bc-transfer-diagnostic-diagnostic",
+      "evaluated_at": "2026-10-16T08:12:27+09:00",
+      "backend": "3d",
+      "task": "food-wide",
+      "policy": "bc-transfer-diagnostic",
+      "policy_family": "3d-wide-generalization-seed11",
+      "trial": "3d-wide-generalization-seed11",
+      "seed": 11,
+      "timesteps": 10240,
+      "success_rate": 1.0,
+      "successes": 20,
+      "episodes": 20,
+      "mean_steps": 21.25,
+      "mean_success_seconds": 1.0625,
+      "collision_count": 0,
+      "flip_count": 0,
+      "numerical_failure_count": 0,
+      "seconds": 221.34631395339966,
+      "evaluation_suite": "c6a0b9c1af29",
+      "selection_holdout": false,
+      "seeds": [
+        30000,
+        30001,
+        30002,
+        30003,
+        30004,
+        30005,
+        30006,
+        30007,
+        30008,
+        30009,
+        30010,
+        30011,
+        30012,
+        30013,
+        30014,
+        30015,
+        30016,
+        30017,
+        30018,
+        30019
+      ],
+      "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792105726602996000-3d-wide-generalization-seed11-bc-transfer-diagnostic-diagnostic",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed11/step-000010240.zip",
+      "config": {
+        "trial": "3d-wide-generalization-seed11",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "wide",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 11,
+        "action_mode": "normalized",
+        "environment_version": "food-v2-action-affine",
+        "initialization": "behavior-cloning-from-rule",
+        "physics_error_policy": "terminate",
+        "recovery_protocol": "numerical-failure-v1",
+        "purpose": "supplementary generalization diagnosis; not the final holdout"
+      },
+      "video": "artifacts/20261015-220404/media/1792105726602996000-3d-wide-generalization-seed11-bc-transfer-diagnostic-diagnostic.mp4",
+      "video_seed": 30000,
+      "path_image": "artifacts/20261015-220404/media/1792105726602996000-3d-wide-generalization-seed11-bc-transfer-diagnostic-diagnostic-paths.png",
+      "record_url": "artifacts/20261015-220404/evaluations/1792105726602996000-3d-wide-generalization-seed11-bc-transfer-diagnostic-diagnostic.json",
+      "source_version": {
+        "at": "2026-10-16T08:08:46+09:00",
+        "version": "e98396aa4f9e2482",
+        "path": "artifacts/20261015-220404/source/e98396aa4f9e2482",
+        "sha256": {
+          "lab/store.py": "9abc20894b0ec74f2214c930c3611cfee96e863e17152b95be6adb26f4949176",
+          "lab/envs.py": "396a85c1580b11624105c3e07e66ffd58bb2a28dae425d6b12c31268c931bb79",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+          "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/policy_audit.py": "cf5563d07e6c479af16fa52f0789abfd1881871ecc3fe577be7156cc8ca98e9c",
+          "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+          "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+          "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+          "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+          "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+          "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+          "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+          "lab/learning.py": "7f80833195d1b782263cce92959e96c532b7e58e66df3c231e3b5bcb31b3dc1d",
+          "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+          "lab/analyze.py": "c01bd474c8547ce258768f5432e2b48aae8df0d46620854be848f1b7bef5e1e2",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+        }
+      },
+      "checkpoint_sha256": "3ab4cd23644629ba0f0870d23a08e667a1bb32196824a8f747b7ab075a27e670"
     }
   ],
   "summaries": [
@@ -15891,7 +16092,7 @@
   ],
   "retrospective": {},
   "report": "artifacts/20261015-220404/report.html",
-  "updated_at": "2026-10-16T08:07:22+09:00",
+  "updated_at": "2026-10-16T08:12:30+09:00",
   "journal": {
     "entries": [
       {
@@ -16025,6 +16226,35 @@
           ],
           "answer": 0,
           "explanation": "보상은 우리가 만든 학습 신호이고 도달률은 실제 목표의 측정값입니다. 둘이 어긋나면 보상과 행동을 함께 살펴봐야 합니다."
+        }
+      },
+      {
+        "id": "f8ef89954d0d467c97ca58bee9fe6036",
+        "at": "2026-10-16T08:10:43+09:00",
+        "epoch": 1792105843.681078,
+        "actor": "codex-agent",
+        "kind": "research",
+        "title": "다음 변경은 하나만: 초기 탐험 폭",
+        "question": "신호의 무작위 흔들림이 너무 커서 움직임을 배우기 어려운 걸까?",
+        "observation": "초기 PPO의 표준편차는 1.0이며 정책 행동 범위는 -1~1입니다. 같은 시범 검증 관찰값에서 범위를 넘을 확률은 초기 약 31.7%였습니다. 이것은 실제 성공률이 아니라 정책 분포에서 계산한 값입니다.",
+        "interpretation": "보상과 별개로 탐험 폭이 걷기 제어에 너무 큰지 시험할 가치가 있습니다. 초기 표준편차만 약 0.368로 낮추고, 평균 정책의 초기 가중치·보상·네트워크·optimizer 설정은 동일하게 둡니다. 이후 표준편차는 기존처럼 학습됩니다.",
+        "next_action": "넓은 먹이 진단이 worker 두 개를 반환하면 별도 trial에서 seed 11·29를 각 10,240회 학습합니다. 2,048회와 10,240회에 고정 평가, 마지막에는 선택에 쓰지 않은 92000~92029 조건을 평가합니다.",
+        "evidence": "artifacts/20261015-220404/policy-audit.json",
+        "preregistered": {
+          "factor": "initial_log_std",
+          "baseline": 0,
+          "variant": -1,
+          "seeds": [
+            11,
+            29
+          ],
+          "online_steps": 10240,
+          "holdout_seeds": [
+            92000,
+            92029
+          ],
+          "workers": 2,
+          "primary_comparison_unchanged": true
         }
       }
     ]
@@ -17020,15 +17250,15 @@
   },
   "deployment": {
     "status": "deployed",
-    "at": "2026-10-16T07:10:49+09:00",
-    "commit": "52528dbda9e68ba6b4282e65158cfa25a62b2914",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/52528dbda9e68ba6b4282e65158cfa25a62b2914",
-    "snapshot_at": "2026-10-15T22:10:44+00:00",
+    "at": "2026-10-16T08:07:47+09:00",
+    "commit": "d7414d9c0bea7d23251a6505839ec2dd243c27fc",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/d7414d9c0bea7d23251a6505839ec2dd243c27fc",
+    "snapshot_at": "2026-10-15T23:07:41+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T07:12:06+09:00"
+    "verified_at": "2026-10-16T08:08:35+09:00"
   },
   "analysis": {
-    "at": "2026-10-16T08:06:53+09:00",
+    "at": "2026-10-16T08:12:28+09:00",
     "title": "점수가 오르는데, 왜 먹이에는 도착하지 못할까?",
     "chart": "artifacts/20261015-220404/media/reward-versus-arrival.png",
     "measurement": "같은 20개 평가 조건에서 성공률과 에피소드 보상 합계를 따로 계산했습니다. 학습 중 로그의 점수가 아니라 저장된 평가의 실제 결과입니다.",
@@ -18036,8 +18266,8 @@
   },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-15T23:07:41+00:00",
-    "snapshot_epoch": 1792105662.504832,
+    "exported_at": "2026-10-15T23:13:08+00:00",
+    "snapshot_epoch": 1792105989.1808152,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
   },
@@ -18394,6 +18624,8 @@
     "artifacts/20261015-220404/source/9e7083a49b3776da/sha256.json",
     "artifacts/20261015-220404/source/b4839e4e9e31be56/sha256.json",
     "artifacts/20261015-220404/source/c2a404e01baafcb7/sha256.json",
+    "artifacts/20261015-220404/source/dce13159ba1c0f31/sha256.json",
+    "artifacts/20261015-220404/source/e98396aa4f9e2482/sha256.json",
     "artifacts/20261015-220404/source/f82d94273833163f/sha256.json",
     "artifacts/20261015-220404/source/fd62fbb99ea948bf/sha256.json"
   ]

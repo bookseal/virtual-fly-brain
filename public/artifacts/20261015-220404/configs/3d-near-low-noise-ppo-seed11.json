@@ -1,0 +1,16 @@
+{
+  "trial": "3d-near-low-noise-ppo-seed11",
+  "backend": "3d",
+  "task": "food",
+  "curriculum": "near",
+  "reward_mode": "dense",
+  "max_steps": 120,
+  "seed": 11,
+  "action_mode": "normalized",
+  "environment_version": "food-v2-action-affine",
+  "initialization": "random",
+  "physics_error_policy": "terminate",
+  "recovery_protocol": "numerical-failure-v1",
+  "initial_log_std": -1.0,
+  "purpose": "one-factor initial exploration ablation"
+}
