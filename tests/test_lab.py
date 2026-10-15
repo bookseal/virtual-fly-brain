@@ -93,4 +93,36 @@ def test_evaluation_checkpoint_seed_and_progress(run):
     assert a['timesteps']==saved['timesteps'] and a['checkpoint_sha256']==b['checkpoint_sha256']
     assert a['evaluation_suite']==b['evaluation_suite']
     assert [r['path'] for r in a['episodes_raw']]==[r['path'] for r in b['episodes_raw']]
-    assert len(list((run/'evaluation-progress').glob('*/*.json')))==4
+    assert len(list((run/'evaluation-progress').glob('*/*.episode.json')))==4
+    assert len([p for p in (run/'evaluation-progress').glob('*/*.json') if not p.name.endswith('.episode.json')])==4
+
+def test_normalized_actions_preserve_physical_control():
+    a=FoodEnv('2d',action_mode='raw');b=FoodEnv('2d',action_mode='normalized')
+    a.reset(seed=31);b.reset(seed=31)
+    for action in [[.8,.8],[.4,1.2],[-.5,1.5]]:
+        x=a.step(action);y=b.step(np.array(action)-.5)
+        np.testing.assert_allclose(x[0],y[0],atol=1e-6)
+        np.testing.assert_allclose(a.actions[-1],b.actions[-1])
+    assert b.policy_actions[-1]==[-1.,1.]
+
+def test_completed_evaluation_episode_survives_retry(run):
+    from lab.learning import eval_worker
+    progress=run/'progress'
+    c={'backend':'2d','task':'food','curriculum':'near','max_steps':20}
+    args=(c,[10000],'rule',None,None,str(progress))
+    first=eval_worker(args)
+    assert (progress/'10000.episode.json').exists()
+    second=eval_worker(args)
+    assert first==second
+
+def test_imitation_initializes_policy_without_online_training(run):
+    from lab.imitation import collect,clone
+    c={'trial':'bc-test','backend':'2d','task':'food','curriculum':'near','reward_mode':'dense','max_steps':60,'seed':11,'action_mode':'normalized'}
+    demo=collect(run,c,workers=1,episodes=10)
+    result=clone(run,c,epochs=20)
+    assert set(demo['train_seeds']).isdisjoint(demo['validation_seeds'])
+    assert result['online_timesteps']==0 and result['train_samples']>0
+    assert result['history'][-1]['validation_mse']<result['history'][0]['validation_mse']
+    from stable_baselines3 import PPO
+    model=PPO.load(result['checkpoint'])
+    assert model.num_timesteps==0 and model.action_space.low.tolist()==[-1.,-1.]

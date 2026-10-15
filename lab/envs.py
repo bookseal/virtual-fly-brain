@@ -8,10 +8,12 @@ import numpy as np
 
 class FoodEnv(gym.Env):
     metadata={'render_modes':['rgb_array'],'render_fps':20}
-    def __init__(self,backend='2d',task='food',curriculum='near',reward_mode='dense',max_steps=160,render_mode=None):
+    def __init__(self,backend='2d',task='food',curriculum='near',reward_mode='dense',max_steps=160,render_mode=None,action_mode='raw'):
         self.backend,self.task,self.curriculum,self.reward_mode=backend,task,curriculum,reward_mode
         self.max_steps=max_steps;self.render_mode=render_mode;self.dt=.05
-        self.action_space=gym.spaces.Box(-.5,1.5,(2,),dtype=np.float32)
+        if action_mode not in ('raw','normalized'):raise ValueError('Unknown action mode')
+        self.action_mode=action_mode
+        self.action_space=gym.spaces.Box(-1.,1.,(2,),dtype=np.float32) if action_mode=='normalized' else gym.spaces.Box(-.5,1.5,(2,),dtype=np.float32)
         self.observation_space=gym.spaces.Box(-np.inf,np.inf,(8,),dtype=np.float32)
         self.sim=None;self.camera=None
         if backend=='3d':self._build_3d()
@@ -42,7 +44,7 @@ class FoodEnv(gym.Env):
             self.sim.physics.bind(self.target_geom).pos[:2]=self.target
             if self.obstacle_geom:self.sim.physics.bind(self.obstacle_geom).pos[:2]=self.obstacle
             self._raw(raw)
-        self.distance=float(np.linalg.norm(self.target-self.pos));self.path=[self.pos.tolist()];self.actions=[]
+        self.distance=float(np.linalg.norm(self.target-self.pos));self.path=[self.pos.tolist()];self.actions=[];self.policy_actions=[]
         return self._obs(),self._info(False,{})
     def _raw(self,raw):
         self.pos=np.array(raw['fly'][0][:2],dtype=float);o=raw['fly_orientation'];self.heading=math.atan2(o[1],o[0]);self.v=float(np.linalg.norm(raw['fly'][1][:2]))
@@ -56,7 +58,9 @@ class FoodEnv(gym.Env):
     def _info(self,success,terms):
         return {'success':bool(success),'distance':self.distance,'collisions':self.collisions,'flips':self.flips,'elapsed_sim_seconds':self.steps*self.dt,'reward_terms':terms,'position':self.pos.tolist(),'target':self.target.tolist(),'heading':self.heading}
     def step(self,action):
-        action=np.clip(np.asarray(action,dtype=float),-.5,1.5);before=self.distance;oldpos=self.pos.copy();oldheading=self.heading;flip=False;collision=False
+        policy_action=np.clip(np.asarray(action,dtype=float),self.action_space.low,self.action_space.high)
+        action=policy_action+.5 if self.action_mode=='normalized' else policy_action
+        before=self.distance;oldpos=self.pos.copy();oldheading=self.heading;flip=False;collision=False
         if self.sim:
             for _ in range(500):
                 raw,_,term,trunc,info=self.sim.step(action);flip=flip or bool(info.get('flip',False))
@@ -74,7 +78,7 @@ class FoodEnv(gym.Env):
         self.steps+=1;self.distance=float(np.linalg.norm(self.target-self.pos));success=self.distance<1.2
         self.collisions+=int(collision);self.flips+=int(flip)
         terms={'approach':(before-self.distance) if self.reward_mode=='dense' else 0.,'arrival':20.*success,'time':-.025,'collision':-1.*collision,'flip':-5.*flip}
-        self.path.append(self.pos.tolist());self.actions.append(action.tolist());self.last_info=self._info(success,terms)
+        self.path.append(self.pos.tolist());self.actions.append(action.tolist());self.policy_actions.append(policy_action.tolist());self.last_info=self._info(success,terms)
         return self._obs(),float(sum(terms.values())),bool(success or flip),bool(self.steps>=self.max_steps),self.last_info
     def render(self):
         if self.sim:
@@ -98,3 +102,10 @@ class FoodEnv(gym.Env):
 def rule_action(obs):
     angle=math.atan2(float(obs[1]),float(obs[0]));turn=np.clip(angle*1.2,-.9,.9)
     return np.clip(np.array([.8-turn,.8+turn]),-.5,1.5).astype(np.float32)
+
+def env_options(config):
+    return {k:v for k,v in config.items() if k in ['backend','task','curriculum','reward_mode','max_steps','action_mode']}
+
+def teacher_action(env,obs):
+    raw=rule_action(obs)
+    return raw-.5 if env.action_mode=='normalized' else raw

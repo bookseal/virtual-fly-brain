@@ -75,3 +75,22 @@ FLY_UI_BASE=http://localhost:8765 NODE_PATH=/path/to/node_modules node scripts/c
 ## 출처
 
 이 저장소는 독립적인 학습 프로젝트입니다. Virtual Fly Brain의 공식 서비스는 [virtualflybrain.org](https://www.virtualflybrain.org/)이며, 실제 몸과 학습 도구는 [FlyGym](https://github.com/NeLy-EPFL/flygym-gymnasium), [MuJoCo](https://github.com/google-deepmind/mujoco), [Stable-Baselines3](https://github.com/DLR-RM/stable-baselines3)를 사용합니다. 영상은 [HyperFrames](https://github.com/heygen-com/hyperframes)로 구성합니다. 외부 라이브러리와 글꼴은 각 프로젝트의 라이선스를 따릅니다.
+
+## 두 번째 회차: 참여형 연구 다큐
+
+연구 기록은 질문 → 관찰 → 해석 → 다음 선택 순서로 보존합니다. 고정 신호 5종의 실제 3D 보정 영상, 예상 선택 퀴즈, 원문을 확인한 기술 노트가 실험 타임라인과 연결됩니다. 주소의 `#experiments?run=RUN_ID&interval=INTERVAL_ID`로 특정 기록을 공유할 수 있습니다.
+
+이번 비교는 원래 제어 신호 범위 `[-0.5, 1.5]`를 유지하면서 정책 출력 `[-1, 1]`에 `0.5`를 더해 전달합니다. 예전 모델은 `raw` 설정으로 재생해야 합니다. PPO 단독과 규칙 시범 모방 후 PPO를 동일한 환경·온라인 학습량으로 비교하며, 모방 수집량은 별도로 셉니다. 시범은 실제 3D 몸에서 수집하고, 학습·시범 검증·정책 평가 seed를 분리합니다.
+
+실행 명령은 이미 생성된 회차 설정을 대상으로 합니다.
+
+```sh
+.venv/bin/python -m lab.campaign_v2 runs/YOUR_RUN_ID
+.venv/bin/python -m lab.recorder runs/YOUR_RUN_ID
+.venv/bin/python -m lab.video runs/YOUR_RUN_ID
+.venv/bin/python -m lab.publisher runs/YOUR_RUN_ID
+```
+
+기록기는 10분, 공개기는 30분 주기로 동작합니다. 공개기는 별도 detached checkout에서 검증한 `public/` 자료만 커밋·push하고, 실제 Pages manifest 반영을 확인합니다. 개발 중인 코드를 자동으로 커밋하지 않습니다. 로컬 개발 checkout이 자동 공개 커밋보다 뒤처졌다면, 개발 커밋을 만든 뒤 `git fetch origin`과 `git rebase origin/main`으로 먼저 합칩니다. 충돌 시 강제 push하지 않습니다.
+
+대화가 끊겨도 로컬 프로세스는 계속됩니다. 자동 진행은 미리 정한 규칙이며, GPT가 계속 분석하고 있다는 뜻은 아닙니다. 노트북 절전·프로세스 종료·네트워크 장애로 생긴 공백은 공개 기록에 표시합니다. `runs/YOUR_RUN_ID/STOP` 파일을 만들면 학습이 안전 경계에서 중단됩니다. 최종 회고 렌더와 공개 확인까지 끝난 뒤 프로세스가 종료됩니다.

@@ -1,0 +1,41 @@
+{
+  "id": "20261015-220404-0000",
+  "index": 0,
+  "recorded_at": "2026-10-15T22:04:06+09:00",
+  "scheduled_epoch": 1792069444.360686,
+  "elapsed_minutes": 0.036889084180196124,
+  "backend": "setup",
+  "status": "preparing",
+  "title": "승인된 24시간 연구 시작",
+  "question": "규칙 제어는 성공하는데 PPO가 실패하는 이유는 무엇일까?",
+  "change": "첫 회차 최종 결과 공개와 새 24시간 기록 시작",
+  "result": "새 회차의 학습 평가는 아직 없습니다.",
+  "next_action": "행동 신호·보상·평가 처리를 점검",
+  "training": {},
+  "events": [
+    {
+      "id": "6a6744808ab9416f8d17d3042690b499",
+      "at": "2026-10-15T22:04:06+09:00",
+      "epoch": 1792069446.5731761,
+      "actor": "gpt-6.1-sol",
+      "kind": "decision",
+      "title": "승인된 24시간 연구 시작",
+      "question": "어떤 실패 원인을 먼저 검증할까?",
+      "observation": "첫 회차 규칙 20/20, PPO 0/20, 새 조건 0/30.",
+      "interpretation": "행동 신호와 탐색의 차이를 먼저 진단한다. 원인은 아직 확정하지 않았다.",
+      "next_action": "중간 기록·공개 자동화 후 진단 실험"
+    }
+  ],
+  "evaluation": null,
+  "media": [
+    "artifacts/20261015-220404/media/interval-0000.svg"
+  ],
+  "render": {
+    "status": "done",
+    "completed_at": "2026-10-15T22:11:35+09:00",
+    "video": "artifacts/20261015-220404/videos/interval-0000/recap.mp4"
+  },
+  "actor": "local-script",
+  "record_type": "start",
+  "recording_delay_seconds": 2.2133450508117676
+}

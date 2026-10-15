@@ -1,0 +1,12 @@
+{
+  "trial": "3d-near-bc-ppo-seed29",
+  "backend": "3d",
+  "task": "food",
+  "curriculum": "near",
+  "reward_mode": "dense",
+  "max_steps": 120,
+  "seed": 29,
+  "action_mode": "normalized",
+  "environment_version": "food-v2-action-affine",
+  "initialization": "behavior-cloning-from-rule"
+}

@@ -31,3 +31,15 @@ def test_public_audit_rejects_credentials_and_account_data(tmp_path):
     with pytest.raises(ValueError):export.audit(tmp_path)
     file.write_text(json.dumps({'value':'github_pat_'+'a'*30}))
     with pytest.raises(ValueError):export.audit(tmp_path)
+
+def test_export_retains_other_runs_and_omits_private_retrospective(tmp_path,monkeypatch):
+    monkeypatch.setattr(export,'ROOT',tmp_path)
+    (tmp_path/'site').mkdir();export.write(tmp_path/'site/timeline.json',{})
+    output=tmp_path/'public';export.write(output/'experiments/index.json',{'runs':[{'run_id':'old','started_at':'2025','manifest':'artifacts/old/manifest.json'}]})
+    export.write(output/'artifacts/old/manifest.json',{'proof':'keep'})
+    run=tmp_path/'runs/new';run.mkdir(parents=True)
+    export.write(run/'manifest.json',{'run':{'started_at':'2026'},'state':{},'intervals':[{'id':'private','index':0,'result':'시작 시 주간 사용량','render':{'status':'done','video':'artifacts/new/private.mp4'}}],'retrospective':{'status':'done','video':'artifacts/new/recap.mp4','source_intervals':['private']}})
+    m=export.export_run(run,output)
+    assert [x['run_id'] for x in export.read(output/'experiments/index.json')['runs']]==['new','old']
+    assert export.read(output/'artifacts/old/manifest.json')['proof']=='keep'
+    assert m['retrospective']['status']=='omitted' and 'video' not in m['retrospective']

@@ -208,7 +208,7 @@ async function loadTimeline(){
 function route({focus=false}={}){
  cleanup();cleanup=()=>{};
  const hash=location.hash.slice(1),match=hash.match(/^learn\/([1-5])$/);
- if(hash==='project'||/^step-\d+$/.test(hash)||hash==='end')view='project';else if(hash==='experiments'||!hash)view='experiments';else if(hash==='glossary')view='glossary';else{view='learn';chapter=match?Number(match[1]):1;}
+ if(hash==='project'||/^step-\d+$/.test(hash)||hash==='end')view='project';else if(hash.split('?')[0]==='experiments'||!hash)view='experiments';else if(hash==='glossary')view='glossary';else{view='learn';chapter=match?Number(match[1]):1;}
  document.querySelector('.layout').classList.toggle('lab-layout',view==='experiments');
  $('#footer-evidence').textContent=view==='experiments'?'실제 시뮬레이션 영상과 설명용 모션을 구분해 표시합니다.':'그림은 학습용 개념 모델입니다.';
  updateNav();if(view==='learn')renderLesson();else if(view==='project')renderProject();else if(view==='experiments')cleanup=window.mountExperiments();else renderGlossary();

@@ -3,7 +3,7 @@ import argparse,concurrent.futures,hashlib,json,os,pickle,random,signal,time
 from pathlib import Path
 import numpy as np
 from .store import *
-from .envs import FoodEnv,rule_action
+from .envs import FoodEnv,rule_action,env_options,teacher_action
 
 def seed_digest(seeds):return hashlib.sha256(json.dumps(seeds).encode()).hexdigest()[:12]
 def checkpoint(model,env,path,config):
@@ -20,7 +20,7 @@ def checkpoint(model,env,path,config):
 def build_vec(config,workers):
     from stable_baselines3.common.vec_env import SubprocVecEnv,DummyVecEnv
     from functools import partial
-    calls=[partial(FoodEnv,**{k:v for k,v in config.items() if k in ['backend','task','curriculum','reward_mode','max_steps']}) for _ in range(workers)]
+    calls=[partial(FoodEnv,**env_options(config)) for _ in range(workers)]
     return SubprocVecEnv(calls,start_method='spawn') if workers>1 else DummyVecEnv(calls)
 
 def train(run,config,steps,workers=1,resume=None,deadline=None):
@@ -45,12 +45,23 @@ def train(run,config,steps,workers=1,resume=None,deadline=None):
     started=time.time();initial=model.num_timesteps
     checkpoint(model,env,dest/f'step-{initial:09d}',config)
     class RecorderCallback(BaseCallback):
-        def __init__(self):super().__init__();self.saved=time.time();self.beat=0;self.terms={}
+        def __init__(self):super().__init__();self.saved=time.time();self.beat=0;self.terms={};self.action_samples=[]
+        def _on_rollout_start(self):
+            metrics={k:float(v) for k,v in self.model.logger.name_to_value.items() if k.startswith('train/') and isinstance(v,(int,float,np.number)) and np.isfinite(v)}
+            if metrics:
+                atomic(run/'trials'/f'{trial}-optimizer.json',{'at':now(),'timesteps':self.model.num_timesteps,'gradient_updates':self.model._n_updates,'metrics':metrics})
         def _on_step(self):
+            raw=np.asarray(self.locals.get('actions',[]))
+            if raw.size:self.action_samples.extend(raw.reshape(-1,2).tolist())
+            self.action_samples=self.action_samples[-4096:]
             for info in self.locals.get('infos',[]):
                 for k,v in info.get('reward_terms',{}).items():self.terms[k]=self.terms.get(k,0)+float(v)
             if time.time()-self.beat>10:
                 self.beat=time.time();progress={'trial':trial,'timesteps':self.model.num_timesteps,'steps_this_segment':self.model.num_timesteps-initial,'decisions_per_second':(self.model.num_timesteps-initial)/max(.1,time.time()-started),'reward_terms_sum':self.terms,'checkpoint':asset(run,dest/f'step-{initial:09d}.zip')}
+                if self.action_samples:
+                    actions=np.asarray(self.action_samples);progress['action_mean']=actions.mean(0).tolist();progress['action_std']=actions.std(0).tolist();progress['action_clipped_fraction']=float(np.mean((actions<env.action_space.low)|(actions>env.action_space.high)))
+                saved_files=sorted(dest.glob('step-*.zip'))
+                if saved_files:progress['checkpoint']=asset(run,saved_files[-1])
                 update_state(run,status='training',backend=config['backend'],activity=f'{trial} 정책 학습',training=progress,result='정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.')
                 atomic(run/'trainer-heartbeat.json',{'pid':os.getpid(),'at':now(),'epoch':time.time(),**progress})
             if time.time()-self.saved>=600:
@@ -73,13 +84,16 @@ def eval_worker(args):
     rows=[];env=None
     try:
         for j,seed in enumerate(seeds):
+            cached=read(Path(progress_dir)/f'{seed}.episode.json') if progress_dir else None
+            if cached:
+                rows.append(cached);continue
             capture=video_path is not None and j==0
-            if env is None:env=FoodEnv(**{k:v for k,v in config.items() if k in ['backend','task','curriculum','reward_mode','max_steps']},render_mode='rgb_array' if capture else None)
+            if env is None:env=FoodEnv(**env_options(config),render_mode='rgb_array' if capture else None)
             obs,info=env.reset(seed=seed);rng=np.random.default_rng(seed+4000000);total=0.;terms={};frames=[];error=None
             for step in range(config.get('max_steps',160)):
                 if model:action,_=model.predict(obs,deterministic=True)
-                elif policy=='rule':action=rule_action(obs)
-                else:action=rng.uniform(-.5,1.5,2)
+                elif policy=='rule':action=teacher_action(env,obs)
+                else:action=rng.uniform(env.action_space.low,env.action_space.high)
                 try:obs,r,term,trunc,info=env.step(action)
                 except Exception as exc:error=repr(exc);break
                 total+=r
@@ -89,12 +103,14 @@ def eval_worker(args):
                     frame=env.render()
                     if frame is not None:frames.append(frame.copy())
                 if term or trunc:break
-            row={'seed':seed,'success':bool(info.get('success',False)) and not error,'steps':step+1,'reward':total,'reward_terms':terms,'info':info,'error':error,'path':env.path,'actions':env.actions,'target':env.target.tolist(),'obstacle':env.obstacle.tolist() if config['task']=='obstacles' else None}
+            row={'seed':seed,'success':bool(info.get('success',False)) and not error,'steps':step+1,'reward':total,'reward_terms':terms,'info':info,'error':error,'path':env.path,'actions':env.actions,'policy_actions':env.policy_actions,'target':env.target.tolist(),'obstacle':env.obstacle.tolist() if config['task']=='obstacles' else None}
             if capture and frames:
                 import imageio.v2 as imageio
                 imageio.mimsave(video_path,frames,fps=20,macro_block_size=1);row['video_path']=video_path
             rows.append(row)
-            if progress_dir:atomic(Path(progress_dir)/f'{seed}.json',{'seed':seed,'step':step+1,'status':'done','success':row['success'],'at':now(),'error':error})
+            if progress_dir:
+                atomic(Path(progress_dir)/f'{seed}.episode.json',row)
+                atomic(Path(progress_dir)/f'{seed}.json',{'seed':seed,'step':step+1,'status':'done','success':row['success'],'at':now(),'error':error})
             if capture:env.close();env=None
     finally:
         if env:env.close()
@@ -120,7 +136,13 @@ def evaluate(run,config,policy='random',modelpath=None,seeds=None,workers=1,tag=
     if workers==1:rows=eval_worker(tasks[0])
     else:
         import multiprocessing as mp
-        with concurrent.futures.ProcessPoolExecutor(max_workers=workers,mp_context=mp.get_context('spawn')) as pool:rows=[r for batch in pool.map(eval_worker,tasks) for r in batch]
+        for retry_workers in sorted(set([workers,max(1,workers//2),1]),reverse=True):
+            try:
+                with concurrent.futures.ProcessPoolExecutor(max_workers=retry_workers,mp_context=mp.get_context('spawn')) as pool:rows=[r for batch in pool.map(eval_worker,tasks) for r in batch]
+                break
+            except concurrent.futures.process.BrokenProcessPool:
+                event(run,'error','평가 worker 종료 · 완료 에피소드 보존 후 재시도',workers=retry_workers,progress_dir=asset(run,run/'evaluation-progress'/stamp))
+                if retry_workers==1:raise
     rows.sort(key=lambda r:r['seed']);paths_plot(rows,path,f'{config["backend"]} / {config["curriculum"]} / {policy} / {timesteps} steps')
     record=run/'evaluations'/f'{stamp}.json';n=len(rows);success=sum(r['success'] for r in rows);out={'id':stamp,'evaluated_at':now(),'backend':config['backend'],'task':config['task']+'-'+config['curriculum'],'policy':policy,'policy_family':config['trial'] if modelpath else policy,'trial':config['trial'],'seed':config['seed'],'timesteps':timesteps,'success_rate':success/n,'successes':success,'episodes':n,'mean_steps':float(np.mean([r['steps'] for r in rows])),'mean_success_seconds':float(np.mean([r['steps']*.05 for r in rows if r['success']])) if success else None,'collision_count':sum(r['info'].get('collisions',0) for r in rows),'flip_count':sum(r['info'].get('flips',0) for r in rows),'seconds':time.time()-start,'evaluation_suite':seed_digest(seeds),'selection_holdout':tag=='holdout','seeds':seeds,'progress_dir':asset(run,run/'evaluation-progress'/stamp),'checkpoint':asset(run,Path(modelpath)) if modelpath and Path(modelpath).is_relative_to(run) else modelpath,'config':config,'video':asset(run,video) if video.exists() else None,'video_seed':seeds[0],'path_image':asset(run,path),'record_url':asset(run,record),'episodes_raw':rows,'source_version':source,'checkpoint_sha256':hashlib.sha256(Path(modelpath).read_bytes()).hexdigest() if modelpath else None}
     atomic(record,out);atomic(run/'latest-evaluation.json',out);event(run,'result',f'{config["backend"]} {policy}: {success}/{n}회 먹이 도달',evaluation=out['record_url'],success_rate=out['success_rate'],seconds=out['seconds']);update_state(run,result=f'{config["backend"]} {policy}: 동일 조건 {n}회 중 {success}회 도달. 학습량 {timesteps:,}회.');publish(run);return out
