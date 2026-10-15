@@ -1,34 +1,34 @@
 {
-  "status": "evaluating",
+  "status": "training",
   "backend": "3d",
-  "activity": "bc-ppo 20회 평가",
+  "activity": "3d-near-ppo-seed11 정책 학습",
   "question": "같은 학습량에서 두 경로의 먹이 도달률은 어떻게 달라질까?",
   "change": "3d-near-ppo-seed11: 정규화한 행동, dense 보상",
-  "result": "3d bc-ppo: 동일 조건 20회 중 20회 도달. 학습량 2,048회.",
+  "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
   "next_action": "10,240 행동 경계와 주기적 고정 평가에서 비교",
-  "updated_at": "2026-10-15T23:44:26+09:00",
+  "updated_at": "2026-10-16T00:14:26+09:00",
   "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
   "training": {
-    "trial": "3d-near-bc-ppo-seed11",
-    "timesteps": 2030,
-    "steps_this_segment": 2030,
-    "decisions_per_second": 2.071646106929445,
+    "trial": "3d-near-ppo-seed11",
+    "timesteps": 6030,
+    "steps_this_segment": 1934,
+    "decisions_per_second": 2.195341908803226,
     "reward_terms_sum": {
-      "approach": 314.8745795567975,
-      "arrival": 960.0,
-      "time": -50.74999999999819,
+      "approach": 23.326558437947753,
+      "arrival": 140.0,
+      "time": -48.349999999998325,
       "collision": 0.0,
       "flip": 0.0
     },
-    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed11/step-000001250.zip",
+    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed11/step-000005404.zip",
     "action_mean": [
-      0.5569168354939724,
-      0.14916727253341397
+      -0.586652986474158,
+      -0.4617208665412116
     ],
     "action_std": [
-      1.1812418123027397,
-      1.1689377601310067
+      1.0290866970926997,
+      0.9913552212605815
     ],
-    "action_clipped_fraction": 0.42339901477832514
+    "action_clipped_fraction": 0.3841778697001034
   }
 }
