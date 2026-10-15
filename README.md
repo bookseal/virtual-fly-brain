@@ -21,7 +21,7 @@ Python 표준 라이브러리만 있으면 됩니다.
 git clone https://github.com/bookseal/virtual-fly-brain.git
 cd virtual-fly-brain
 python3 scripts/export_public.py --build _site
-python3 -m http.server 8765 --directory _site
+python3 -m lab.server --directory _site
 ```
 
 브라우저에서 http://localhost:8765/ 를 엽니다. 프로젝트 하위 경로에서도 영상과 원본 기록을 열 수 있도록 상대 경로를 사용합니다.
@@ -82,7 +82,7 @@ FLY_UI_BASE=http://localhost:8765 NODE_PATH=/path/to/node_modules node scripts/c
 
 이번 비교는 원래 제어 신호 범위 `[-0.5, 1.5]`를 유지하면서 정책 출력 `[-1, 1]`에 `0.5`를 더해 전달합니다. 예전 모델은 `raw` 설정으로 재생해야 합니다. PPO 단독과 규칙 시범 모방 후 PPO를 동일한 환경·온라인 학습량으로 비교하며, 모방 수집량은 별도로 셉니다. 시범은 실제 3D 몸에서 수집하고, 학습·시범 검증·정책 평가 seed를 분리합니다.
 
-실행 명령은 이미 생성된 회차 설정을 대상으로 합니다.
+`.venv/bin/python -m lab.start_day2 --start`는 새 회차 설정을 만들고 기록·시범 수집·비교·공개 프로세스를 시작합니다. 미완료 회차가 있으면 중복 실행을 막습니다. 아래 명령은 이미 생성된 회차 설정을 대상으로 합니다.
 
 ```sh
 .venv/bin/python -m lab.campaign_v2 runs/YOUR_RUN_ID

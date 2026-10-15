@@ -60,6 +60,7 @@ def export_run(run,output):
     for p in sorted((run/'evaluations').glob('*.json')):
         e=clean(read(p));write(dest/'evaluations'/p.name,e);visit(e)
     m['evaluations']=[brief(e) for e in m.get('evaluations',[])]
+    if (run/'retrospective-public.json').exists():m['retrospective']=clean(read(run/'retrospective-public.json'))
     omitted={r['id'] for r in m.get('intervals',[]) if r.get('render',{}).get('status')=='omitted'}
     if omitted.intersection(m.get('retrospective',{}).get('source_intervals',[])):
         m['retrospective']={'status':'omitted','reason':'공개 제외 구간을 포함한 회고는 공개용 재편집 후 제공합니다.'}
@@ -81,12 +82,15 @@ def export_run(run,output):
             svg=src.read_text();svg=re.sub(r'(?<=>)[^<>]*(?=<)',lambda m:clean(m.group()),svg);target.write_text(svg)
         else:shutil.copyfile(src,target)
     # Publish reproducible trial configs and the checkpoints' optimizer/RNG metadata.
-    for directory in ['configs','checkpoints']:
+    for directory in ['configs','checkpoints','demonstrations']:
         for src in (run/directory).rglob('*'):
-            if not src.is_file() or '.partial' in src.name or src.suffix not in {'.json','.zip','.pkl'}:continue
+            if not src.is_file() or '.partial' in src.name or src.suffix not in {'.json','.zip','.pkl','.npz'}:continue
             target=dest/src.relative_to(run);target.parent.mkdir(parents=True,exist_ok=True)
             if src.suffix=='.json':write(target,clean(read(src)))
             else:shutil.copyfile(src,target)
+    demo=dest/'demonstrations/manifest.json'
+    if demo.exists():
+        m['demonstrations']={'manifest':f'artifacts/{run.name}/demonstrations/manifest.json','download_pattern':f'artifacts/{run.name}/demonstrations/{{seed}}.npz','note':'실제 시범의 관찰값과 행동값. train_seeds와 validation_seeds는 manifest에 분리되어 있습니다.'}
     m['report']=None
     if (run/'report.json').exists():
         report=clean(read(run/'report.json'));write(dest/'report.json',report);public_report(dest,report);m['report']=f'artifacts/{run.name}/report.html'

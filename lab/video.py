@@ -1,5 +1,5 @@
 """One serialized HyperFrames render queue; interval cards are already published."""
-import argparse,html,os,shutil,subprocess,time,signal
+import argparse,html,os,shutil,subprocess,time,signal,re,functools
 from pathlib import Path
 from .store import *
 CLI=ROOT/'video/node_modules/.bin/hyperframes';TEMPLATE=ROOT/'video/interval-template'
@@ -41,7 +41,10 @@ def composition(run,row,dest,duration=24):
 
 def patch_interval(run,p,patch):
     with lock(run/'.snapshot.lock'):
-        row=read(p,{});row['render']=patch;atomic(p,row)
+        row=read(p,{})
+        if patch.get('status')=='rendering' and row.get('render',{}).get('status') in ['failed','done']:
+            row.setdefault('render_history',[]).append(row['render'])
+        row['render']=patch;atomic(p,row)
     publish(run)
 
 def run_checked(command,log,timeout,env=None):
@@ -55,6 +58,27 @@ def run_checked(command,log,timeout,env=None):
         except ProcessLookupError:pass
         process.wait();raise
 
+def chapter_film(run,row,dest,output):
+    """Three real interval films, preserving their original times and captions."""
+    candidates=[read(p) for p in sorted((run/'intervals').glob('*.json'))]
+    candidates=[r for r in candidates if r['id'] in row.get('source_intervals',[]) and r.get('render',{}).get('status')=='done']
+    if len(candidates)<3:raise RuntimeError('At least three completed interval films are required for a chapter')
+    chosen=[candidates[0],candidates[len(candidates)//2],candidates[-1]]
+    if not (dest/'assets').exists():(dest/'assets').symlink_to(TEMPLATE/'assets',target_is_directory=True)
+    clips=''
+    for i,r in enumerate(chosen):
+        shutil.copy(ROOT/'site'/r['render']['video'],dest/f'part-{i}.mp4')
+        clips+=f'<video id="part-{i}" class="clip" src="part-{i}.mp4" muted data-start="{i*24}" data-duration="24" data-track-index="0"></video>'
+    (dest/'index.html').write_text(f'<html lang="ko"><head><meta charset="utf-8"><script src="assets/gsap.min.js"></script><style>html,body{{margin:0;width:1280px;height:720px;background:#f7f8fa}}#root{{width:100%;height:100%;position:relative}}.clip{{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}}</style></head><body><div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="72">{clips}</div><script>window.__timelines["main"]=gsap.timeline({{paused:true}});</script></body></html>')
+    return [r['id'] for r in chosen]
+
+def serialized_render(fn):
+    @functools.wraps(fn)
+    def wrapped(*args,**kwargs):
+        with lock(ROOT/'runs/.global-render.lock'):return fn(*args,**kwargs)
+    return wrapped
+
+@serialized_render
 def render_one(run,p,check=True,kind='interval'):
     row=read(p);dest=run/'videos'/f'{kind}-{row["index"]:04d}';dest.mkdir(parents=True,exist_ok=True)
     output=dest/'recap.mp4'
@@ -64,39 +88,44 @@ def render_one(run,p,check=True,kind='interval'):
     env={**os.environ,'HYPERFRAMES_RENDER_DETACHED':'1','DO_NOT_TRACK':'1'}
     log=dest/'render.log'
     try:
-        composition(run,row,dest,duration=40 if kind=='hour' else 24)
+        source_intervals=None
+        if kind=='hour' and read(run/'run.json',{}).get('schema_version',1)>=2:
+            source_intervals=chapter_film(run,row,dest,output)
+        else:composition(run,row,dest,duration=40 if kind=='hour' else 24)
         with log.open('a') as f:
-            if check:run_checked([str(CLI),'check',str(dest)],f,180,env)
+            if check:run_checked([str(CLI),'check',str(dest),'--timeout','30000'],f,180,env)
             run_checked([str(CLI),'render',str(dest),'--output',str(output),'--fps','24','--quality','delivery','--workers','1'],f,540,env)
         meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration,size','-of','json',str(output)]))
         if float(meta['format']['duration'])<23:raise RuntimeError('render shorter than 23 seconds')
-        patch_interval(run,p,{'status':'done','completed_at':now(),'video':asset(run,output),'probe':meta,'composition':asset(run,dest/'index.html')})
+        patch_interval(run,p,{'status':'done','completed_at':now(),'video':asset(run,output),'probe':meta,'composition':asset(run,dest/'index.html'),'source_intervals':source_intervals})
     except Exception as exc:
         patch_interval(run,p,{'status':'failed','failed_at':now(),'error':str(exc),'log':asset(run,log)});event(run,'error','구간 영상 렌더 실패',interval=row['index'],detail=str(exc))
 
 def summaries(run):
-    cfg=read(run/'run.json');hours=int((time.time()-cfg['started_epoch'])//3600)
+    cfg=read(run/'run.json');end=read(run/'state.json',{}).get('ended_epoch',time.time());hours=int((end-cfg['started_epoch'])//3600);stride=cfg.get('summary_hours',1)
     rows=[read(p) for p in sorted((run/'intervals').glob('*.json'))]
-    for hour in range(1,hours+1):
+    for hour in range(stride,hours+1,stride):
         p=run/'summaries'/f'hour-{hour:02d}.json'
         if p.exists():continue
-        group=[r for r in rows if (hour-1)*3600 < r['scheduled_epoch']-cfg['started_epoch']<=hour*3600]
+        group=[r for r in rows if (hour-stride)*3600 < r['scheduled_epoch']-cfg['started_epoch']<=hour*3600]
         if not group:continue
-        first,last=group[0],group[-1];row=dict(last);row.update(index=hour,question=f'{hour}번째 한 시간 동안 무엇이 달라졌을까?',change=f'구간 {first["index"]} → {last["index"]}. '+last['change'],result=last['result']+f' 이 시간의 기록 지연 {sum(r.get("status")=="gap" for r in group)}개.',render={'status':'queued'},summary_kind='hour',source_intervals=[r['id'] for r in group]);atomic(p,row)
+        first,last=group[0],group[-1];row=dict(last);row.update(index=hour,question=f'시작 후 {hour-stride}~{hour}시간, 무엇이 달라졌을까?',change=f'구간 {first["index"]} → {last["index"]}. '+last['change'],result=last['result']+f' 이 시간의 기록 지연 {sum(r.get("status")=="gap" for r in group)}개.',render={'status':'queued'},summary_kind='hour',source_intervals=[r['id'] for r in group]);atomic(p,row)
     for p in sorted((run/'summaries').glob('hour-*.json')):
         if read(p).get('render',{}).get('status')=='queued':render_one(run,p,kind='hour');return
 
-def retrospective(run):
-    marker=run/'retrospective.json'
+@serialized_render
+def retrospective(run,public_only=False):
+    marker=run/('retrospective-public.json' if public_only else 'retrospective.json')
     if read(marker,{}).get('status') in ['done','failed']:return
     rows=[read(p) for p in sorted((run/'intervals').glob('*.json'))];rows=[r for r in rows if r.get('render',{}).get('status')=='done']
+    if public_only:rows=[r for r in rows if not re.search(r'구독|주간.{0,20}(한도|사용)|시작 시 주간|account/rateLimits|used_percent|resets_at',str(r.get('result','')))]
     if not rows:return
     # Preserve chronological order; include start, known failures, evaluation changes and end.
     important=[0,len(rows)-1]+[i for i,r in enumerate(rows) if r.get('status')=='gap' or r.get('evaluation') and (i==0 or rows[i-1].get('evaluation',{} )!=r.get('evaluation'))]
     def spaced(n,k):return [round(i*(n-1)/(k-1)) for i in range(k)]
     important+=spaced(len(rows),10);chosen=sorted(set(important))
     if len(chosen)>10:chosen=[chosen[i] for i in spaced(len(chosen),10)]
-    selected=[rows[i] for i in chosen];dest=run/'videos/retrospective';dest.mkdir(parents=True,exist_ok=True);duration=len(selected)*24
+    selected=[rows[i] for i in chosen];dest=run/'videos'/('retrospective-public' if public_only else 'retrospective');dest.mkdir(parents=True,exist_ok=True);duration=len(selected)*24
     # If fewer than eight interval videos exist, say the run was too short; never pad fake history.
     if duration<180:atomic(marker,{'status':'failed','reason':'Fewer than 8 usable interval videos; full 3–5 minute recap not supported by evidence'});return
     (dest/'assets').symlink_to(TEMPLATE/'assets',target_is_directory=True) if not (dest/'assets').exists() else None

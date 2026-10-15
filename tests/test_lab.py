@@ -126,3 +126,19 @@ def test_imitation_initializes_policy_without_online_training(run):
     from stable_baselines3 import PPO
     model=PPO.load(result['checkpoint'])
     assert model.num_timesteps==0 and model.action_space.low.tolist()==[-1.,-1.]
+
+def test_preview_byte_ranges(tmp_path):
+    import threading,http.server,urllib.request,urllib.error
+    from functools import partial
+    from lab.server import RangeHandler
+    (tmp_path/'clip.mp4').write_bytes(b'0123456789')
+    server=http.server.ThreadingHTTPServer(('127.0.0.1',0),partial(RangeHandler,directory=str(tmp_path)))
+    thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+    url=f'http://127.0.0.1:{server.server_port}/clip.mp4'
+    try:
+        for header,expected in [('bytes=2-5',b'2345'),('bytes=-3',b'789'),('bytes=7-',b'789')]:
+            with urllib.request.urlopen(urllib.request.Request(url,headers={'Range':header})) as r:
+                assert r.status==206 and r.read()==expected and r.headers['Accept-Ranges']=='bytes'
+        with pytest.raises(urllib.error.HTTPError) as e:urllib.request.urlopen(urllib.request.Request(url,headers={'Range':'bytes=99-'}))
+        assert e.value.code==416
+    finally:server.shutdown();server.server_close();thread.join()

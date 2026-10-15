@@ -43,3 +43,17 @@ def test_export_retains_other_runs_and_omits_private_retrospective(tmp_path,monk
     assert [x['run_id'] for x in export.read(output/'experiments/index.json')['runs']]==['new','old']
     assert export.read(output/'artifacts/old/manifest.json')['proof']=='keep'
     assert m['retrospective']['status']=='omitted' and 'video' not in m['retrospective']
+
+def test_public_demonstrations_retain_disjoint_seeds_and_arrays(tmp_path,monkeypatch):
+    import numpy as np
+    monkeypatch.setattr(export,'ROOT',tmp_path)
+    export.write(tmp_path/'site/timeline.json',{})
+    run=tmp_path/'runs/demo'
+    export.write(run/'manifest.json',{'run':{'started_at':'2026'},'state':{}})
+    export.write(run/'demonstrations/manifest.json',{'train_seeds':[200000],'validation_seeds':[210000]})
+    np.savez_compressed(run/'demonstrations/200000.npz',observations=[[1.,2.]],actions=[[.3,.4]])
+    output=tmp_path/'public';output.mkdir()
+    m=export.export_run(run,output);export.audit(output)
+    with np.load(output/'artifacts/demo/demonstrations/200000.npz') as z:
+        np.testing.assert_array_equal(z['actions'],[[.3,.4]])
+    assert export.read(output/m['demonstrations']['manifest'])['validation_seeds']==[210000]
