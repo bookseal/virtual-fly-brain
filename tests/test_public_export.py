@@ -70,3 +70,15 @@ def test_source_snapshot_is_hash_verified_before_publication(tmp_path,monkeypatc
     assert (output/'artifacts/code/source/v1/lab/envs.py').read_bytes()==source.read_bytes()
     source.write_text('modified = True\n')
     with pytest.raises(ValueError,match='hash mismatch'):export.export_run(run,output)
+
+def test_compatibility_evidence_includes_video_and_exact_dependencies(tmp_path,monkeypatch):
+    monkeypatch.setattr(export,'ROOT',tmp_path);export.write(tmp_path/'site/timeline.json',{})
+    run=tmp_path/'runs/probe';export.write(run/'manifest.json',{'run':{'started_at':'2026'},'state':{}})
+    dependencies=run/'compatibility/requirements.lock.txt';dependencies.parent.mkdir(parents=True);dependencies.write_text('flygym==2.1.0\nmujoco==3.9.0\n')
+    video=run/'media/probe.mp4';video.parent.mkdir();video.write_bytes(b'media fixture')
+    export.write(run/'compatibility.json',{'records':[{'status':'completed','requirements':'artifacts/probe/compatibility/requirements.lock.txt','video':'artifacts/probe/media/probe.mp4','pid':1}]})
+    output=tmp_path/'public';output.mkdir();m=export.export_run(run,output);export.audit(output)
+    record=m['compatibility']['records'][0]
+    assert 'pid' not in record
+    assert (output/record['requirements']).read_bytes()==dependencies.read_bytes()
+    assert (output/record['video']).read_bytes()==video.read_bytes()

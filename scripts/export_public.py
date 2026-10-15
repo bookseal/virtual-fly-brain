@@ -65,7 +65,7 @@ def export_run(run,output):
     if omitted.intersection(m.get('retrospective',{}).get('source_intervals',[])):
         m['retrospective']={'status':'omitted','reason':'공개 제외 구간을 포함한 회고는 공개용 재편집 후 제공합니다.'}
     visit(m.get('retrospective',{}));visit(m.get('state',{}))
-    for name in ('research','journal','diagnostics','deployment','analysis','policy-audit','generalization','noise-ablation'):
+    for name in ('research','journal','diagnostics','deployment','analysis','policy-audit','generalization','noise-ablation','compatibility'):
         p=run/(name+'.json')
         if p.exists():
             m[name]=clean(read(p));visit(m[name]);write(dest/(name+'.json'),m[name])
@@ -87,7 +87,7 @@ def export_run(run,output):
         if '..' in rel.parts:raise ValueError('Path escapes run')
         src=run/rel;target=dest/rel
         if not src.is_file() or target.exists():continue
-        if src.suffix not in {'.mp4','.png','.svg','.json','.zip','.pkl'}:continue
+        if src.suffix not in {'.mp4','.png','.svg','.json','.zip','.pkl','.txt'}:continue
         target.parent.mkdir(parents=True,exist_ok=True)
         if src.suffix=='.json':write(target,clean(read(src)))
         elif src.suffix=='.svg':

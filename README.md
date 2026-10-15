@@ -110,3 +110,7 @@ FLY_UI_BASE=http://localhost:8765 NODE_PATH=/path/to/node_modules node scripts/c
 ```
 
 보조 실험은 주 실험의 상태·최근 평가를 덮어쓰지 않으며, 주 실험 2 worker와 보조 실험 2 worker를 함께 사용하는 범위로 실행합니다. 이미 실행 중인 보조 실험과 겹쳐 직접 실행하지 마세요. 요약 영상, 관찰과 해석, 원본 결과는 모두 같은 연구 노트에 연결됩니다.
+
+연구자의 선택에도 `#experiments?run=RUN_ID&decision=DECISION_ID`로 직접 연결할 수 있습니다. ‘같은 먹이, 다른 선택’에서는 저장된 원본 평가 두 개를 불러와 같은 seed와 먹이 위치를 짝짓고, 측정 경로를 0.05초 단위로 재생합니다. 새로운 시뮬레이션이나 보간으로 만든 경로가 아닙니다.
+
+별도 `lab.compatibility_probe`는 FlyGym 2.1의 CPU API와 렌더링 호환성을 확인합니다. 기존 학습 환경을 업그레이드하지 않으며, 이 프로브의 고정 신호 보행을 학습 성공률과 섞지 않습니다. 가상 시간 1초의 보행을 세 번 측정하고 설치·초기 실행·렌더 시간을 나눠 기록합니다. 몸·제어기와 초기 안정화 방식이 달라 두 버전의 시간을 같은 과제의 성능 배수로 해석할 수 없습니다. 공개 `compatibility/flygym2/` 아래의 원본 JSON과 각 `requirements.lock.txt`를 확인하세요.

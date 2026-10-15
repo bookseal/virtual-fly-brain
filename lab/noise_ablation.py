@@ -7,6 +7,15 @@ from .campaign import latest_checkpoint
 
 
 def job(run,args,deadline):
+    # A bounded compatibility probe can borrow these two worker slots between
+    # jobs; never interrupt or overlap an already running rollout/evaluation.
+    while (run/'PAUSE_NOISE').exists():
+        if time.time()>=deadline or (run/'STOP').exists():return False
+        if time.time()>=read(run/'PAUSE_NOISE',{}).get('expires_epoch',0):
+            (run/'PAUSE_NOISE').unlink(missing_ok=True)
+            event(run,'maintenance','호환성 측정 대기 시간 종료 · 보조 비교 재개')
+            break
+        time.sleep(3)
     command=[str(ROOT/'.venv/bin/python'),'-m','lab.learning',*map(str,args)]
     path=run/'logs'/f'noise-ablation-{time.time_ns()}.log'
     event(run,'command','초기 탐험 폭 변경 실험',command=' '.join(command),command_ko='주 비교와 다른 trial에 저장합니다. 초기 탐험 폭 외의 학습 조건은 유지합니다.')
