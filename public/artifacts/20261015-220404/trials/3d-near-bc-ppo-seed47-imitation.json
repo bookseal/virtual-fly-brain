@@ -1,0 +1,83 @@
+{
+  "at": "2026-10-16T06:40:32+09:00",
+  "trial": "3d-near-bc-ppo-seed47",
+  "checkpoint": "runs/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip",
+  "epochs": 80,
+  "train_samples": 2315,
+  "validation_samples": 240,
+  "history": [
+    {
+      "epoch": 1,
+      "validation_mse": 0.05361052230000496
+    },
+    {
+      "epoch": 6,
+      "validation_mse": 0.036551836878061295
+    },
+    {
+      "epoch": 11,
+      "validation_mse": 0.0036128461360931396
+    },
+    {
+      "epoch": 16,
+      "validation_mse": 0.0035909281577914953
+    },
+    {
+      "epoch": 21,
+      "validation_mse": 0.0035210612695664167
+    },
+    {
+      "epoch": 26,
+      "validation_mse": 0.0032675510738044977
+    },
+    {
+      "epoch": 31,
+      "validation_mse": 0.003188573755323887
+    },
+    {
+      "epoch": 36,
+      "validation_mse": 0.003018887247890234
+    },
+    {
+      "epoch": 41,
+      "validation_mse": 0.002881883643567562
+    },
+    {
+      "epoch": 46,
+      "validation_mse": 0.0026593878865242004
+    },
+    {
+      "epoch": 51,
+      "validation_mse": 0.002445660065859556
+    },
+    {
+      "epoch": 56,
+      "validation_mse": 0.0022018856834620237
+    },
+    {
+      "epoch": 61,
+      "validation_mse": 0.0019707700703293085
+    },
+    {
+      "epoch": 66,
+      "validation_mse": 0.0017613001400604844
+    },
+    {
+      "epoch": 71,
+      "validation_mse": 0.0014967556344345212
+    },
+    {
+      "epoch": 76,
+      "validation_mse": 0.0012958839070051908
+    },
+    {
+      "epoch": 80,
+      "validation_mse": 0.0011374704772606492
+    }
+  ],
+  "online_timesteps": 0,
+  "seconds": 1.675137996673584,
+  "demonstration_manifest": "artifacts/20261015-220404/demonstrations/manifest.json",
+  "initialization": "behavior-cloning-from-rule",
+  "record_url": "artifacts/20261015-220404/trials/3d-near-bc-ppo-seed47-imitation.json"
+}

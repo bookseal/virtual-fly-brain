@@ -22,35 +22,35 @@
   "state": {
     "status": "evaluating",
     "backend": "3d",
-    "activity": "untrained 20회 평가",
+    "activity": "ppo 20회 평가",
     "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
-    "change": "3d-near-bc-ppo-seed29: 정규화한 행동, dense 보상",
-    "result": "untrained 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
+    "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
+    "result": "ppo 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
     "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
-    "updated_at": "2026-10-16T06:25:54+09:00",
+    "updated_at": "2026-10-16T06:57:57+09:00",
     "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
     "training": {
-      "trial": "3d-near-bc-ppo-seed29",
-      "timesteps": 10234,
-      "steps_this_segment": 2042,
-      "decisions_per_second": 2.0951768992074276,
+      "trial": "3d-near-ppo-seed47",
+      "timesteps": 2034,
+      "steps_this_segment": 2034,
+      "decisions_per_second": 2.1854236021195828,
       "reward_terms_sum": {
-        "approach": 633.2317094115418,
-        "arrival": 2040.0,
-        "time": -51.04999999999817,
+        "approach": -252.24498837814738,
+        "arrival": 140.0,
+        "time": -50.84999999999818,
         "collision": 0.0,
         "flip": 0.0
       },
-      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed29/step-000009466.zip",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000001316.zip",
       "action_mean": [
-        0.43286476816241354,
-        0.6289148355389961
+        -0.12422231364845973,
+        0.014324355406712763
       ],
       "action_std": [
-        1.2918735299043347,
-        1.3080074900614735
+        1.004637423601071,
+        1.0276754489441644
       ],
-      "action_clipped_fraction": 0.48334965719882467
+      "action_clipped_fraction": 0.3316125860373648
     }
   },
   "intervals": [
@@ -11373,6 +11373,649 @@
       "record_type": "interval",
       "recording_delay_seconds": 3.9939358234405518,
       "last_evaluated_at": "2026-10-16T06:25:44+09:00"
+    },
+    {
+      "id": "20261015-220404-0052",
+      "index": 52,
+      "recorded_at": "2026-10-16T06:44:06+09:00",
+      "scheduled_epoch": 1792100644.360686,
+      "elapsed_minutes": 520.0411565502485,
+      "backend": "3d",
+      "status": "training",
+      "title": "다음 에피소드부터 정책 학습 재개",
+      "question": "같은 학습량에서 두 경로의 먹이 도달률은 어떻게 달라질까?",
+      "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
+      "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+      "next_action": "2,048 행동 경계와 주기적 고정 평가에서 비교",
+      "training": {
+        "trial": "3d-near-ppo-seed47",
+        "timesteps": 234,
+        "steps_this_segment": 234,
+        "decisions_per_second": 2.213773008652565,
+        "reward_terms_sum": {
+          "approach": -39.30207455591251,
+          "arrival": 0.0,
+          "time": -5.850000000000016,
+          "collision": 0.0,
+          "flip": 0.0
+        },
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000000000.zip",
+        "action_mean": [
+          -0.14461693994931749,
+          -0.022191373145796806
+        ],
+        "action_std": [
+          1.0329255756385847,
+          1.0165066875252715
+        ],
+        "action_clipped_fraction": 0.344017094017094
+      },
+      "events": [
+        {
+          "id": "9c221ceed58245bd93dcbbadd33c3790",
+          "at": "2026-10-16T06:40:27+09:00",
+          "epoch": 1792100427.6575959,
+          "actor": "local-script",
+          "kind": "result",
+          "title": "3d untrained: 4/20회 먹이 도달",
+          "evaluation": "artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json",
+          "success_rate": 0.2,
+          "seconds": 873.2243428230286
+        },
+        {
+          "id": "43a885111ae94ca7a32e0c420c610c72",
+          "at": "2026-10-16T06:40:29+09:00",
+          "epoch": 1792100429.997679,
+          "actor": "local-script",
+          "kind": "command",
+          "title": "검증한 비교 실험 실행",
+          "command": ".venv/bin/python -m lab.imitation clone runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-bc-ppo-seed47.json",
+          "command_ko": "저장된 조건으로 실행하며, 평가에서는 정책을 바꾸지 않습니다."
+        },
+        {
+          "id": "57b96dbbb7f145ce8fa93363297bfbfc",
+          "at": "2026-10-16T06:40:32+09:00",
+          "epoch": 1792100432.569,
+          "actor": "local-script",
+          "kind": "result",
+          "title": "시범 모방 초기화 완료 · 실제 평가로 확인 필요",
+          "trial": "3d-near-bc-ppo-seed47",
+          "train_samples": 2315,
+          "validation_mse": 0.0011374704772606492
+        },
+        {
+          "id": "53bb8c4c31364006b455db9b377e727c",
+          "at": "2026-10-16T06:40:33+09:00",
+          "epoch": 1792100433.075412,
+          "actor": "local-script",
+          "kind": "command",
+          "title": "검증한 비교 실험 실행",
+          "command": ".venv/bin/python -m lab.learning evaluate runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-bc-ppo-seed47.json --policy bc-initial --workers 2 --checkpoint runs/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip",
+          "command_ko": "저장된 조건으로 실행하며, 평가에서는 정책을 바꾸지 않습니다."
+        },
+        {
+          "id": "e4a194f9fb044f71b297b7a46d940fa4",
+          "at": "2026-10-16T06:40:33+09:00",
+          "epoch": 1792100433.162653,
+          "actor": "local-script",
+          "kind": "evaluation",
+          "title": "동일 조건 행동 평가 시작",
+          "trial": "3d-near-bc-ppo-seed47",
+          "policy": "bc-initial",
+          "seeds": [
+            10000,
+            10001,
+            10002,
+            10003,
+            10004,
+            10005,
+            10006,
+            10007,
+            10008,
+            10009,
+            10010,
+            10011,
+            10012,
+            10013,
+            10014,
+            10015,
+            10016,
+            10017,
+            10018,
+            10019
+          ],
+          "backend": "3d",
+          "task": "food",
+          "command": ".venv/bin/python -m lab.learning evaluate runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-bc-ppo-seed47.json --policy bc-initial --checkpoint runs/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip --seed-start 10000 --episodes 20 --workers 2",
+          "command_ko": "학습에 쓰지 않은 고정 시작 조건에서 먹이 도달 횟수를 셉니다. 모델을 평가 중에 업데이트하지 않습니다."
+        },
+        {
+          "id": "1161505b974c4a9c9729f080e4685360",
+          "at": "2026-10-16T06:40:10+09:00",
+          "epoch": 1792100442.877204,
+          "actor": "local-script",
+          "kind": "publication",
+          "title": "공개 스냅샷 배포 확인",
+          "status": "deployed",
+          "commit": "92202f19279973f546dbc1ea8798df7f483ab236",
+          "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/92202f19279973f546dbc1ea8798df7f483ab236",
+          "snapshot_at": "2026-10-15T21:40:05+00:00",
+          "url": "https://bookseal.github.io/virtual-fly-brain/",
+          "verified_at": "2026-10-16T06:40:42+09:00"
+        },
+        {
+          "id": "494ae2bd3683482f9828ad2de5024654",
+          "at": "2026-10-16T06:42:13+09:00",
+          "epoch": 1792100533.6501179,
+          "actor": "local-script",
+          "kind": "result",
+          "title": "3d bc-initial: 20/20회 먹이 도달",
+          "evaluation": "artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json",
+          "success_rate": 1.0,
+          "seconds": 100.4812707901001
+        },
+        {
+          "id": "13f3b0b0af9542238fa915b159ccbc26",
+          "at": "2026-10-16T06:42:15+09:00",
+          "epoch": 1792100535.418116,
+          "actor": "local-script",
+          "kind": "command",
+          "title": "검증한 비교 실험 실행",
+          "command": ".venv/bin/python -m lab.learning train runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-ppo-seed47.json --workers 2 --steps 2048 --checkpoint runs/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000000000.zip --deadline 1792145044.360686",
+          "command_ko": "저장된 조건으로 실행하며, 평가에서는 정책을 바꾸지 않습니다."
+        },
+        {
+          "id": "88d0f0cf841641f5a2997b5d4b0bc14a",
+          "at": "2026-10-16T06:42:19+09:00",
+          "epoch": 1792100539.292039,
+          "actor": "local-script",
+          "kind": "resume",
+          "title": "다음 에피소드부터 정책 학습 재개",
+          "trial": "3d-near-ppo-seed47",
+          "checkpoint": "runs/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000000000.zip",
+          "detail": "정책·optimizer·난수 상태를 읽었습니다. 중단된 rollout은 폐기하고 새 에피소드에서 시작합니다."
+        }
+      ],
+      "evaluation": {
+        "id": "1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+        "evaluated_at": "2026-10-16T06:42:13+09:00",
+        "backend": "3d",
+        "task": "food-near",
+        "policy": "bc-initial",
+        "policy_family": "3d-near-bc-ppo-seed47",
+        "trial": "3d-near-bc-ppo-seed47",
+        "seed": 47,
+        "timesteps": 0,
+        "success_rate": 1.0,
+        "successes": 20,
+        "episodes": 20,
+        "mean_steps": 11.2,
+        "mean_success_seconds": 0.56,
+        "collision_count": 0,
+        "flip_count": 0,
+        "seconds": 100.4812707901001,
+        "evaluation_suite": "3094622ba4a9",
+        "selection_holdout": false,
+        "seeds": [
+          10000,
+          10001,
+          10002,
+          10003,
+          10004,
+          10005,
+          10006,
+          10007,
+          10008,
+          10009,
+          10010,
+          10011,
+          10012,
+          10013,
+          10014,
+          10015,
+          10016,
+          10017,
+          10018,
+          10019
+        ],
+        "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip",
+        "config": {
+          "trial": "3d-near-bc-ppo-seed47",
+          "backend": "3d",
+          "task": "food",
+          "curriculum": "near",
+          "reward_mode": "dense",
+          "max_steps": 120,
+          "seed": 47,
+          "action_mode": "normalized",
+          "environment_version": "food-v2-action-affine",
+          "initialization": "behavior-cloning-from-rule"
+        },
+        "video": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.mp4",
+        "video_seed": 10000,
+        "path_image": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed-paths.png",
+        "record_url": "artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json",
+        "source_version": {
+          "at": "2026-10-16T06:40:33+09:00",
+          "version": "fd62fbb99ea948bf",
+          "path": "artifacts/20261015-220404/source/fd62fbb99ea948bf",
+          "sha256": {
+            "lab/store.py": "ab327c06b6c690012115322bfa17003fc1b4543d745ec0bc4164a3f91153014b",
+            "lab/envs.py": "c3f58e969762ef9833a28c3d21e891e816abe2e761e335fe88f0c199461e6d52",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "e3521f423360dcf6ea3093d18f224dd29c716f4c3f5ae987bcda842323a60f4f",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "0bfd8c9f8070b9700d341bf7ff6d783ed0cd193e1fdc309a41da57c87dab5677",
+            "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "checkpoint_sha256": "87aee08534d8f401602412b4818a2b5118b5bd330d6ce2963f969e05ae2ce042"
+      },
+      "media": [
+        "artifacts/20261015-220404/media/interval-0052.svg"
+      ],
+      "render": {
+        "status": "done",
+        "completed_at": "2026-10-16T06:44:27+09:00",
+        "video": "artifacts/20261015-220404/videos/interval-0052/recap.mp4",
+        "source_intervals": null
+      },
+      "actor": "local-script",
+      "record_type": "interval",
+      "recording_delay_seconds": 2.469393014907837,
+      "last_evaluated_at": "2026-10-16T06:42:13+09:00"
+    },
+    {
+      "id": "20261015-220404-0053",
+      "index": 53,
+      "recorded_at": "2026-10-16T06:54:08+09:00",
+      "scheduled_epoch": 1792101244.360686,
+      "elapsed_minutes": 530.0740769505501,
+      "backend": "3d",
+      "status": "training",
+      "title": "10분 정책 체크포인트 저장",
+      "question": "같은 학습량에서 두 경로의 먹이 도달률은 어떻게 달라질까?",
+      "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
+      "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+      "next_action": "2,048 행동 경계와 주기적 고정 평가에서 비교",
+      "training": {
+        "trial": "3d-near-ppo-seed47",
+        "timesteps": 1534,
+        "steps_this_segment": 1534,
+        "decisions_per_second": 2.192759212727144,
+        "reward_terms_sum": {
+          "approach": -204.3455544498636,
+          "arrival": 100.0,
+          "time": -38.34999999999889,
+          "collision": 0.0,
+          "flip": 0.0
+        },
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000001316.zip",
+        "action_mean": [
+          -0.10344472856107842,
+          0.00767873035503413
+        ],
+        "action_std": [
+          1.0288199073507465,
+          1.037061759048539
+        ],
+        "action_clipped_fraction": 0.341264667535854
+      },
+      "events": [
+        {
+          "id": "309f89ba41204aa2a30f0d3d70b652fd",
+          "at": "2026-10-16T06:52:19+09:00",
+          "epoch": 1792101139.878457,
+          "actor": "local-script",
+          "kind": "checkpoint",
+          "title": "10분 정책 체크포인트 저장",
+          "trial": "3d-near-ppo-seed47",
+          "timesteps": 1316
+        }
+      ],
+      "evaluation": {
+        "id": "1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+        "evaluated_at": "2026-10-16T06:42:13+09:00",
+        "backend": "3d",
+        "task": "food-near",
+        "policy": "bc-initial",
+        "policy_family": "3d-near-bc-ppo-seed47",
+        "trial": "3d-near-bc-ppo-seed47",
+        "seed": 47,
+        "timesteps": 0,
+        "success_rate": 1.0,
+        "successes": 20,
+        "episodes": 20,
+        "mean_steps": 11.2,
+        "mean_success_seconds": 0.56,
+        "collision_count": 0,
+        "flip_count": 0,
+        "seconds": 100.4812707901001,
+        "evaluation_suite": "3094622ba4a9",
+        "selection_holdout": false,
+        "seeds": [
+          10000,
+          10001,
+          10002,
+          10003,
+          10004,
+          10005,
+          10006,
+          10007,
+          10008,
+          10009,
+          10010,
+          10011,
+          10012,
+          10013,
+          10014,
+          10015,
+          10016,
+          10017,
+          10018,
+          10019
+        ],
+        "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip",
+        "config": {
+          "trial": "3d-near-bc-ppo-seed47",
+          "backend": "3d",
+          "task": "food",
+          "curriculum": "near",
+          "reward_mode": "dense",
+          "max_steps": 120,
+          "seed": 47,
+          "action_mode": "normalized",
+          "environment_version": "food-v2-action-affine",
+          "initialization": "behavior-cloning-from-rule"
+        },
+        "video": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.mp4",
+        "video_seed": 10000,
+        "path_image": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed-paths.png",
+        "record_url": "artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json",
+        "source_version": {
+          "at": "2026-10-16T06:40:33+09:00",
+          "version": "fd62fbb99ea948bf",
+          "path": "artifacts/20261015-220404/source/fd62fbb99ea948bf",
+          "sha256": {
+            "lab/store.py": "ab327c06b6c690012115322bfa17003fc1b4543d745ec0bc4164a3f91153014b",
+            "lab/envs.py": "c3f58e969762ef9833a28c3d21e891e816abe2e761e335fe88f0c199461e6d52",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "e3521f423360dcf6ea3093d18f224dd29c716f4c3f5ae987bcda842323a60f4f",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "0bfd8c9f8070b9700d341bf7ff6d783ed0cd193e1fdc309a41da57c87dab5677",
+            "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "checkpoint_sha256": "87aee08534d8f401602412b4818a2b5118b5bd330d6ce2963f969e05ae2ce042"
+      },
+      "media": [
+        "artifacts/20261015-220404/media/interval-0053.svg"
+      ],
+      "render": {
+        "status": "done",
+        "completed_at": "2026-10-16T06:54:31+09:00",
+        "video": "artifacts/20261015-220404/videos/interval-0053/recap.mp4",
+        "source_intervals": null
+      },
+      "actor": "local-script",
+      "record_type": "interval",
+      "recording_delay_seconds": 4.444617033004761,
+      "last_evaluated_at": "2026-10-16T06:42:13+09:00"
+    },
+    {
+      "id": "20261015-220404-0054",
+      "index": 54,
+      "recorded_at": "2026-10-16T07:04:05+09:00",
+      "scheduled_epoch": 1792101844.360686,
+      "elapsed_minutes": 540.022943965594,
+      "backend": "3d",
+      "status": "evaluating",
+      "title": "동일 조건 행동 평가 시작",
+      "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
+      "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
+      "result": "ppo 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
+      "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
+      "training": {
+        "trial": "3d-near-ppo-seed47",
+        "timesteps": 2034,
+        "steps_this_segment": 2034,
+        "decisions_per_second": 2.1854236021195828,
+        "reward_terms_sum": {
+          "approach": -252.24498837814738,
+          "arrival": 140.0,
+          "time": -50.84999999999818,
+          "collision": 0.0,
+          "flip": 0.0
+        },
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000001316.zip",
+        "action_mean": [
+          -0.12422231364845973,
+          0.014324355406712763
+        ],
+        "action_std": [
+          1.004637423601071,
+          1.0276754489441644
+        ],
+        "action_clipped_fraction": 0.3316125860373648
+      },
+      "events": [
+        {
+          "id": "53a0a44f01234843911a1f160a7c14fb",
+          "at": "2026-10-16T06:57:56+09:00",
+          "epoch": 1792101476.5502179,
+          "actor": "local-script",
+          "kind": "training",
+          "title": "학습 구간 저장",
+          "trial": "3d-near-ppo-seed47",
+          "checkpoint": "runs/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000002048.zip",
+          "timesteps": 2048,
+          "seconds": 937.2575478553772,
+          "stopped": false,
+          "config": {
+            "trial": "3d-near-ppo-seed47",
+            "backend": "3d",
+            "task": "food",
+            "curriculum": "near",
+            "reward_mode": "dense",
+            "max_steps": 120,
+            "seed": 47,
+            "action_mode": "normalized",
+            "environment_version": "food-v2-action-affine",
+            "initialization": "random"
+          }
+        },
+        {
+          "id": "4855c2e05e424981a8d3667f6f81848c",
+          "at": "2026-10-16T06:57:57+09:00",
+          "epoch": 1792101477.488529,
+          "actor": "local-script",
+          "kind": "command",
+          "title": "검증한 비교 실험 실행",
+          "command": ".venv/bin/python -m lab.learning evaluate runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-ppo-seed47.json --policy ppo --workers 2 --checkpoint runs/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000002048.zip",
+          "command_ko": "저장된 조건으로 실행하며, 평가에서는 정책을 바꾸지 않습니다."
+        },
+        {
+          "id": "d7f76958c850476799c6d3df8090797e",
+          "at": "2026-10-16T06:57:57+09:00",
+          "epoch": 1792101477.619265,
+          "actor": "local-script",
+          "kind": "evaluation",
+          "title": "동일 조건 행동 평가 시작",
+          "trial": "3d-near-ppo-seed47",
+          "policy": "ppo",
+          "seeds": [
+            10000,
+            10001,
+            10002,
+            10003,
+            10004,
+            10005,
+            10006,
+            10007,
+            10008,
+            10009,
+            10010,
+            10011,
+            10012,
+            10013,
+            10014,
+            10015,
+            10016,
+            10017,
+            10018,
+            10019
+          ],
+          "backend": "3d",
+          "task": "food",
+          "command": ".venv/bin/python -m lab.learning evaluate runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-ppo-seed47.json --policy ppo --checkpoint runs/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000002048.zip --seed-start 10000 --episodes 20 --workers 2",
+          "command_ko": "학습에 쓰지 않은 고정 시작 조건에서 먹이 도달 횟수를 셉니다. 모델을 평가 중에 업데이트하지 않습니다."
+        }
+      ],
+      "evaluation": {
+        "id": "1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+        "evaluated_at": "2026-10-16T06:42:13+09:00",
+        "backend": "3d",
+        "task": "food-near",
+        "policy": "bc-initial",
+        "policy_family": "3d-near-bc-ppo-seed47",
+        "trial": "3d-near-bc-ppo-seed47",
+        "seed": 47,
+        "timesteps": 0,
+        "success_rate": 1.0,
+        "successes": 20,
+        "episodes": 20,
+        "mean_steps": 11.2,
+        "mean_success_seconds": 0.56,
+        "collision_count": 0,
+        "flip_count": 0,
+        "seconds": 100.4812707901001,
+        "evaluation_suite": "3094622ba4a9",
+        "selection_holdout": false,
+        "seeds": [
+          10000,
+          10001,
+          10002,
+          10003,
+          10004,
+          10005,
+          10006,
+          10007,
+          10008,
+          10009,
+          10010,
+          10011,
+          10012,
+          10013,
+          10014,
+          10015,
+          10016,
+          10017,
+          10018,
+          10019
+        ],
+        "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip",
+        "config": {
+          "trial": "3d-near-bc-ppo-seed47",
+          "backend": "3d",
+          "task": "food",
+          "curriculum": "near",
+          "reward_mode": "dense",
+          "max_steps": 120,
+          "seed": 47,
+          "action_mode": "normalized",
+          "environment_version": "food-v2-action-affine",
+          "initialization": "behavior-cloning-from-rule"
+        },
+        "video": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.mp4",
+        "video_seed": 10000,
+        "path_image": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed-paths.png",
+        "record_url": "artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json",
+        "source_version": {
+          "at": "2026-10-16T06:40:33+09:00",
+          "version": "fd62fbb99ea948bf",
+          "path": "artifacts/20261015-220404/source/fd62fbb99ea948bf",
+          "sha256": {
+            "lab/store.py": "ab327c06b6c690012115322bfa17003fc1b4543d745ec0bc4164a3f91153014b",
+            "lab/envs.py": "c3f58e969762ef9833a28c3d21e891e816abe2e761e335fe88f0c199461e6d52",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "e3521f423360dcf6ea3093d18f224dd29c716f4c3f5ae987bcda842323a60f4f",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "0bfd8c9f8070b9700d341bf7ff6d783ed0cd193e1fdc309a41da57c87dab5677",
+            "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "checkpoint_sha256": "87aee08534d8f401602412b4818a2b5118b5bd330d6ce2963f969e05ae2ce042"
+      },
+      "media": [
+        "artifacts/20261015-220404/media/interval-0054.svg"
+      ],
+      "render": {
+        "status": "done",
+        "completed_at": "2026-10-16T07:04:30+09:00",
+        "video": "artifacts/20261015-220404/videos/interval-0054/recap.mp4",
+        "source_intervals": null
+      },
+      "actor": "local-script",
+      "record_type": "interval",
+      "recording_delay_seconds": 1.3766379356384277,
+      "last_evaluated_at": "2026-10-16T06:42:13+09:00"
     }
   ],
   "evaluations": [
@@ -13059,6 +13702,194 @@
         }
       },
       "checkpoint_sha256": "00029fb6b365e5eaf66b6d0f9595712f5c5e7b787d6947229c2755d25d1355f7"
+    },
+    {
+      "id": "1792099554404588000-3d-near-ppo-seed47-untrained-fixed",
+      "evaluated_at": "2026-10-16T06:40:27+09:00",
+      "backend": "3d",
+      "task": "food-near",
+      "policy": "untrained",
+      "policy_family": "3d-near-ppo-seed47",
+      "trial": "3d-near-ppo-seed47",
+      "seed": 47,
+      "timesteps": 0,
+      "success_rate": 0.2,
+      "successes": 4,
+      "episodes": 20,
+      "mean_steps": 99.85,
+      "mean_success_seconds": 0.9625,
+      "collision_count": 0,
+      "flip_count": 0,
+      "seconds": 873.2243428230286,
+      "evaluation_suite": "3094622ba4a9",
+      "selection_holdout": false,
+      "seeds": [
+        10000,
+        10001,
+        10002,
+        10003,
+        10004,
+        10005,
+        10006,
+        10007,
+        10008,
+        10009,
+        10010,
+        10011,
+        10012,
+        10013,
+        10014,
+        10015,
+        10016,
+        10017,
+        10018,
+        10019
+      ],
+      "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792099554404588000-3d-near-ppo-seed47-untrained-fixed",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000000000.zip",
+      "config": {
+        "trial": "3d-near-ppo-seed47",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "near",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 47,
+        "action_mode": "normalized",
+        "environment_version": "food-v2-action-affine",
+        "initialization": "random"
+      },
+      "video": "artifacts/20261015-220404/media/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.mp4",
+      "video_seed": 10000,
+      "path_image": "artifacts/20261015-220404/media/1792099554404588000-3d-near-ppo-seed47-untrained-fixed-paths.png",
+      "record_url": "artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json",
+      "source_version": {
+        "at": "2026-10-16T06:25:54+09:00",
+        "version": "fd62fbb99ea948bf",
+        "path": "artifacts/20261015-220404/source/fd62fbb99ea948bf",
+        "sha256": {
+          "lab/store.py": "ab327c06b6c690012115322bfa17003fc1b4543d745ec0bc4164a3f91153014b",
+          "lab/envs.py": "c3f58e969762ef9833a28c3d21e891e816abe2e761e335fe88f0c199461e6d52",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+          "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+          "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+          "lab/recorder.py": "e3521f423360dcf6ea3093d18f224dd29c716f4c3f5ae987bcda842323a60f4f",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+          "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+          "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+          "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+          "lab/learning.py": "0bfd8c9f8070b9700d341bf7ff6d783ed0cd193e1fdc309a41da57c87dab5677",
+          "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+        }
+      },
+      "checkpoint_sha256": "981a8d5dbd1c4ef2244e9576c3d09eb5c3f00aad3401057e1588222b24b7d677"
+    },
+    {
+      "id": "1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+      "evaluated_at": "2026-10-16T06:42:13+09:00",
+      "backend": "3d",
+      "task": "food-near",
+      "policy": "bc-initial",
+      "policy_family": "3d-near-bc-ppo-seed47",
+      "trial": "3d-near-bc-ppo-seed47",
+      "seed": 47,
+      "timesteps": 0,
+      "success_rate": 1.0,
+      "successes": 20,
+      "episodes": 20,
+      "mean_steps": 11.2,
+      "mean_success_seconds": 0.56,
+      "collision_count": 0,
+      "flip_count": 0,
+      "seconds": 100.4812707901001,
+      "evaluation_suite": "3094622ba4a9",
+      "selection_holdout": false,
+      "seeds": [
+        10000,
+        10001,
+        10002,
+        10003,
+        10004,
+        10005,
+        10006,
+        10007,
+        10008,
+        10009,
+        10010,
+        10011,
+        10012,
+        10013,
+        10014,
+        10015,
+        10016,
+        10017,
+        10018,
+        10019
+      ],
+      "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip",
+      "config": {
+        "trial": "3d-near-bc-ppo-seed47",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "near",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 47,
+        "action_mode": "normalized",
+        "environment_version": "food-v2-action-affine",
+        "initialization": "behavior-cloning-from-rule"
+      },
+      "video": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.mp4",
+      "video_seed": 10000,
+      "path_image": "artifacts/20261015-220404/media/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed-paths.png",
+      "record_url": "artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json",
+      "source_version": {
+        "at": "2026-10-16T06:40:33+09:00",
+        "version": "fd62fbb99ea948bf",
+        "path": "artifacts/20261015-220404/source/fd62fbb99ea948bf",
+        "sha256": {
+          "lab/store.py": "ab327c06b6c690012115322bfa17003fc1b4543d745ec0bc4164a3f91153014b",
+          "lab/envs.py": "c3f58e969762ef9833a28c3d21e891e816abe2e761e335fe88f0c199461e6d52",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+          "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+          "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+          "lab/recorder.py": "e3521f423360dcf6ea3093d18f224dd29c716f4c3f5ae987bcda842323a60f4f",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+          "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+          "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+          "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+          "lab/learning.py": "0bfd8c9f8070b9700d341bf7ff6d783ed0cd193e1fdc309a41da57c87dab5677",
+          "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+        }
+      },
+      "checkpoint_sha256": "87aee08534d8f401602412b4818a2b5118b5bd330d6ce2963f969e05ae2ce042"
     }
   ],
   "summaries": [
@@ -13900,7 +14731,7 @@
   ],
   "retrospective": {},
   "report": "artifacts/20261015-220404/report.html",
-  "updated_at": "2026-10-16T06:35:10+09:00",
+  "updated_at": "2026-10-16T07:05:12+09:00",
   "journal": {
     "entries": [
       {
@@ -14989,17 +15820,17 @@
   },
   "deployment": {
     "status": "deployed",
-    "at": "2026-10-16T06:09:31+09:00",
-    "commit": "1cd695c24c0e42ae0d071272ea662cb483faed26",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/1cd695c24c0e42ae0d071272ea662cb483faed26",
-    "snapshot_at": "2026-10-15T21:09:26+00:00",
+    "at": "2026-10-16T06:40:10+09:00",
+    "commit": "92202f19279973f546dbc1ea8798df7f483ab236",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/92202f19279973f546dbc1ea8798df7f483ab236",
+    "snapshot_at": "2026-10-15T21:40:05+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T06:10:03+09:00"
+    "verified_at": "2026-10-16T06:40:42+09:00"
   },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-15T21:40:05+00:00",
-    "snapshot_epoch": 1792100406.179404,
+    "exported_at": "2026-10-15T22:10:44+00:00",
+    "snapshot_epoch": 1792102245.315902,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
   },
@@ -15169,6 +16000,89 @@
       "demonstration_manifest": "artifacts/20261015-220404/demonstrations/manifest.json",
       "initialization": "behavior-cloning-from-rule",
       "record_url": "artifacts/20261015-220404/trials/3d-near-bc-ppo-seed29-imitation.json"
+    },
+    {
+      "at": "2026-10-16T06:40:32+09:00",
+      "trial": "3d-near-bc-ppo-seed47",
+      "checkpoint": "runs/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000000000.zip",
+      "epochs": 80,
+      "train_samples": 2315,
+      "validation_samples": 240,
+      "history": [
+        {
+          "epoch": 1,
+          "validation_mse": 0.05361052230000496
+        },
+        {
+          "epoch": 6,
+          "validation_mse": 0.036551836878061295
+        },
+        {
+          "epoch": 11,
+          "validation_mse": 0.0036128461360931396
+        },
+        {
+          "epoch": 16,
+          "validation_mse": 0.0035909281577914953
+        },
+        {
+          "epoch": 21,
+          "validation_mse": 0.0035210612695664167
+        },
+        {
+          "epoch": 26,
+          "validation_mse": 0.0032675510738044977
+        },
+        {
+          "epoch": 31,
+          "validation_mse": 0.003188573755323887
+        },
+        {
+          "epoch": 36,
+          "validation_mse": 0.003018887247890234
+        },
+        {
+          "epoch": 41,
+          "validation_mse": 0.002881883643567562
+        },
+        {
+          "epoch": 46,
+          "validation_mse": 0.0026593878865242004
+        },
+        {
+          "epoch": 51,
+          "validation_mse": 0.002445660065859556
+        },
+        {
+          "epoch": 56,
+          "validation_mse": 0.0022018856834620237
+        },
+        {
+          "epoch": 61,
+          "validation_mse": 0.0019707700703293085
+        },
+        {
+          "epoch": 66,
+          "validation_mse": 0.0017613001400604844
+        },
+        {
+          "epoch": 71,
+          "validation_mse": 0.0014967556344345212
+        },
+        {
+          "epoch": 76,
+          "validation_mse": 0.0012958839070051908
+        },
+        {
+          "epoch": 80,
+          "validation_mse": 0.0011374704772606492
+        }
+      ],
+      "online_timesteps": 0,
+      "seconds": 1.675137996673584,
+      "demonstration_manifest": "artifacts/20261015-220404/demonstrations/manifest.json",
+      "initialization": "behavior-cloning-from-rule",
+      "record_url": "artifacts/20261015-220404/trials/3d-near-bc-ppo-seed47-imitation.json"
     }
   ],
   "replay_checks": [
