@@ -6,29 +6,29 @@
   "change": "3d-near-ppo-seed29: 정규화한 행동, dense 보상",
   "result": "ppo 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
   "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
-  "updated_at": "2026-10-16T04:22:32+09:00",
+  "updated_at": "2026-10-16T04:57:11+09:00",
   "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
   "training": {
     "trial": "3d-near-ppo-seed29",
-    "timesteps": 8174,
+    "timesteps": 10222,
     "steps_this_segment": 2030,
-    "decisions_per_second": 2.2486397465201,
+    "decisions_per_second": 2.2215690049966157,
     "reward_terms_sum": {
-      "approach": 75.24344369115681,
+      "approach": 97.16674227007229,
       "arrival": 120.0,
       "time": -50.74999999999819,
       "collision": 0.0,
-      "flip": 0.0
+      "flip": -5.0
     },
-    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed29/step-000007490.zip",
+    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed29/step-000009540.zip",
     "action_mean": [
-      -0.7316715823018493,
-      -0.6121769497813335
+      -0.7569122392519061,
+      -0.6948315583074837
     ],
     "action_std": [
-      1.0420292060025893,
-      1.0414020141532734
+      1.0643473542535955,
+      1.0361233021674865
     ],
-    "action_clipped_fraction": 0.42339901477832514
+    "action_clipped_fraction": 0.4445812807881773
   }
 }
