@@ -5,7 +5,7 @@ const {chromium}=require('playwright');
  page.on('pageerror',e=>errors.push(String(e)));
  const base=process.env.FLY_UI_BASE||'http://localhost:8765';
  await page.goto(base+'/#experiments?run=20261015-220404',{waitUntil:'domcontentloaded'});
- await page.locator('[data-path-load]').waitFor();
+ await page.locator('[data-path-load]').waitFor();const beforeJump=page.url();await page.locator('[data-jump="[data-trajectory-explorer]"]').click();if(page.url()!==beforeJump)throw Error('Jump changed experiment route');
  // A failed download must preserve a working retry button.
  let fail=true;await page.route('**/evaluations/*.json',route=>{if(fail)return route.abort();return route.continue();});
  await page.locator('[data-path-load]').click();
@@ -34,6 +34,6 @@ const {chromium}=require('playwright');
  if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile overflow');
  await page.locator('.trajectory-explorer').screenshot({path:'runs/20261015-220404/media/path-explorer-mobile.png'});
  if(await page.locator('[data-path-play]').getAttribute('aria-pressed')!=='false')throw Error('Unexpected automatic motion');
- if(errors.length)throw Error(errors.join('\n'));
+ await page.locator('[data-path-play]').click();await page.evaluate(()=>{location.hash='#learn/1';});await page.locator('#cell-play').waitFor();await page.waitForTimeout(200);if(errors.length)throw Error(errors.join('\n'));
  await browser.close();console.log('Measured paths: retry, 20 paired conditions, playback/pause/seek, condition isolation, wide results, mobile, no autoplay/errors PASS');
 })().catch(e=>{console.error(e);process.exit(1)});
