@@ -14376,6 +14376,211 @@
       "record_type": "interval",
       "recording_delay_seconds": 4.242051839828491,
       "last_evaluated_at": "2026-10-16T08:25:25+09:00"
+    },
+    {
+      "id": "20261015-220404-0065",
+      "index": 65,
+      "recorded_at": "2026-10-16T08:54:05+09:00",
+      "scheduled_epoch": 1792108444.360686,
+      "elapsed_minutes": 650.0212137023608,
+      "backend": "3d",
+      "status": "evaluating",
+      "title": "공개 스냅샷 배포 확인",
+      "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
+      "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
+      "result": "ppo 정책의 20개 고정 조건을 평가 중입니다. 아직 최종 집계 전입니다.",
+      "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
+      "training": {
+        "trial": "3d-near-ppo-seed47",
+        "timesteps": 4082,
+        "steps_this_segment": 2034,
+        "decisions_per_second": 1.9908796586713131,
+        "reward_terms_sum": {
+          "approach": -53.74255424878778,
+          "arrival": 60.0,
+          "time": -50.84999999999818,
+          "collision": 0.0,
+          "flip": 0.0
+        },
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000003840.zip",
+        "action_mean": [
+          -0.4628406725420947,
+          0.16157473077321738
+        ],
+        "action_std": [
+          0.993980075636877,
+          1.0198251548415749
+        ],
+        "action_clipped_fraction": 0.34636184857423796
+      },
+      "events": [
+        {
+          "id": "abcd937ec844499f9eec60c577fd3720",
+          "at": "2026-10-16T08:43:54+09:00",
+          "epoch": 1792107866.262395,
+          "actor": "local-script",
+          "kind": "publication",
+          "title": "공개 스냅샷 배포 확인",
+          "status": "deployed",
+          "commit": "b268cb4000df44576b0d417d4d27c6bde8335521",
+          "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/b268cb4000df44576b0d417d4d27c6bde8335521",
+          "snapshot_at": "2026-10-15T23:43:48+00:00",
+          "url": "https://bookseal.github.io/virtual-fly-brain/",
+          "verified_at": "2026-10-16T08:44:26+09:00"
+        },
+        {
+          "id": "4d592e2f966347d0a50ea66acf320c62",
+          "at": "2026-10-16T08:47:44+09:00",
+          "epoch": 1792108064.452297,
+          "actor": "codex-agent",
+          "kind": "research",
+          "title": "조사 범위를 바로잡고 새 API를 별도로 실행",
+          "question": "기존 라이브러리의 후속 버전을 놓친 것은 아닐까?",
+          "observation": "Aside에서 본 저장소를 확인하니 FlyGym 2.1이 6월 24일 공개되어 있었습니다. 앞선 확인은 1.x API를 유지하는 flygym-gymnasium fork에 한정됐습니다. 별도 Python 환경에 2.1.0과 MuJoCo 3.9.0을 설치해 고정 신호 보행을 세 번 실행하고 실제 영상을 만들었습니다.",
+          "interpretation": "이번 주 신기술로 소개할 항목은 아닙니다. 이 Mac에서 설치와 실행이 된다는 것은 확인했지만 기존 PPO 정책을 그대로 옮길 수 있다는 뜻은 아닙니다. 이 실험은 먹이 찾기 평가가 아니며 공식 속도 향상 주장도 재현했다고 보지 않습니다.",
+          "next_action": "기존 엔진의 같은 고정 신호 측정은 현재 평가 뒤 빈 worker에서 수행합니다. 주 비교는 원래 엔진을 유지하며, 후속 API 이식은 별도 실험으로 다룹니다.",
+          "evidence": "artifacts/20261015-220404/compatibility/flygym2/modern.json",
+          "video": "artifacts/20261015-220404/videos/research-0002/recap.mp4",
+          "prediction": {
+            "prompt": "새 라이브러리가 더 빠르다고 소개되면 바로 바꿔도 될까요?",
+            "options": [
+              "별도 환경에서 실행과 조건 차이를 확인한다",
+              "진행 중인 비교의 엔진부터 교체한다",
+              "공식 배수를 우리 실험 결과로 적는다"
+            ],
+            "answer": 0,
+            "explanation": "실제 실행 가능성, 의존성, 몸과 제어기 차이를 확인해야 속도 수치와 학습 결과를 해석할 수 있습니다."
+          }
+        },
+        {
+          "id": "b245721236c94fa8ab2e750fa4db3dfb",
+          "at": "2026-10-16T08:49:16+09:00",
+          "epoch": 1792108188.446075,
+          "actor": "local-script",
+          "kind": "publication",
+          "title": "공개 스냅샷 배포 확인",
+          "status": "deployed",
+          "commit": "b287c2120c50172dabf235dd4925f77e174fddf8",
+          "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/b287c2120c50172dabf235dd4925f77e174fddf8",
+          "snapshot_at": "2026-10-15T23:49:09+00:00",
+          "url": "https://bookseal.github.io/virtual-fly-brain/",
+          "verified_at": "2026-10-16T08:49:48+09:00"
+        }
+      ],
+      "evaluation": {
+        "id": "1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed",
+        "evaluated_at": "2026-10-16T08:25:25+09:00",
+        "backend": "3d",
+        "task": "food-near",
+        "policy": "bc-ppo",
+        "policy_family": "3d-near-bc-ppo-seed47",
+        "trial": "3d-near-bc-ppo-seed47",
+        "seed": 47,
+        "timesteps": 2048,
+        "success_rate": 1.0,
+        "successes": 20,
+        "episodes": 20,
+        "mean_steps": 9.65,
+        "mean_success_seconds": 0.48250000000000004,
+        "collision_count": 0,
+        "flip_count": 0,
+        "numerical_failure_count": 0,
+        "seconds": 106.15574193000793,
+        "evaluation_suite": "3094622ba4a9",
+        "selection_holdout": false,
+        "seeds": [
+          10000,
+          10001,
+          10002,
+          10003,
+          10004,
+          10005,
+          10006,
+          10007,
+          10008,
+          10009,
+          10010,
+          10011,
+          10012,
+          10013,
+          10014,
+          10015,
+          10016,
+          10017,
+          10018,
+          10019
+        ],
+        "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed",
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000002048.zip",
+        "config": {
+          "trial": "3d-near-bc-ppo-seed47",
+          "backend": "3d",
+          "task": "food",
+          "curriculum": "near",
+          "reward_mode": "dense",
+          "max_steps": 120,
+          "seed": 47,
+          "action_mode": "normalized",
+          "environment_version": "food-v2-action-affine",
+          "initialization": "behavior-cloning-from-rule",
+          "physics_error_policy": "terminate",
+          "recovery_protocol": "numerical-failure-v1"
+        },
+        "video": "artifacts/20261015-220404/media/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.mp4",
+        "video_seed": 10000,
+        "path_image": "artifacts/20261015-220404/media/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed-paths.png",
+        "record_url": "artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-16T08:23:39+09:00",
+          "version": "a06ea735e505ed76",
+          "path": "artifacts/20261015-220404/source/a06ea735e505ed76",
+          "sha256": {
+            "lab/store.py": "455d575437929650b61dd79479ebb0d028e57f099848561b9057ab5a1f645017",
+            "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/policy_audit.py": "cf5563d07e6c479af16fa52f0789abfd1881871ecc3fe577be7156cc8ca98e9c",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+            "lab/noise_ablation.py": "acac5ea0438f5ad2894642ab75f981f0b94c72d28febf0d7b2d5167429471350",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
+            "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "lab/analyze.py": "c01bd474c8547ce258768f5432e2b48aae8df0d46620854be848f1b7bef5e1e2",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "checkpoint_sha256": "8f6e4ee6a9f99eb3644f44d4a67a862e7c195fbb67f51890fb62368d38b7c0de"
+      },
+      "media": [
+        "artifacts/20261015-220404/media/interval-0065.svg"
+      ],
+      "render": {
+        "status": "done",
+        "completed_at": "2026-10-16T08:54:29+09:00",
+        "video": "artifacts/20261015-220404/videos/interval-0065/recap.mp4",
+        "source_intervals": null
+      },
+      "actor": "local-script",
+      "record_type": "interval",
+      "recording_delay_seconds": 1.2728221416473389,
+      "last_evaluated_at": "2026-10-16T08:25:25+09:00"
     }
   ],
   "evaluations": [
@@ -16646,6 +16851,111 @@
         }
       },
       "checkpoint_sha256": "8f6e4ee6a9f99eb3644f44d4a67a862e7c195fbb67f51890fb62368d38b7c0de"
+    },
+    {
+      "id": "1792107412038746000-3d-near-noise-v2-control-seed11-ppo-noise-control-fixed",
+      "evaluated_at": "2026-10-16T08:55:39+09:00",
+      "backend": "3d",
+      "task": "food-near",
+      "policy": "ppo-noise-control",
+      "policy_family": "3d-near-noise-v2-control-seed11",
+      "trial": "3d-near-noise-v2-control-seed11",
+      "seed": 11,
+      "timesteps": 2048,
+      "success_rate": 0.2,
+      "successes": 4,
+      "episodes": 20,
+      "mean_steps": 101.95,
+      "mean_success_seconds": 1.4875,
+      "collision_count": 0,
+      "flip_count": 0,
+      "numerical_failure_count": 0,
+      "seconds": 1127.1490750312805,
+      "evaluation_suite": "3094622ba4a9",
+      "selection_holdout": false,
+      "seeds": [
+        10000,
+        10001,
+        10002,
+        10003,
+        10004,
+        10005,
+        10006,
+        10007,
+        10008,
+        10009,
+        10010,
+        10011,
+        10012,
+        10013,
+        10014,
+        10015,
+        10016,
+        10017,
+        10018,
+        10019
+      ],
+      "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792107412038746000-3d-near-noise-v2-control-seed11-ppo-noise-control-fixed",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-noise-v2-control-seed11/step-000002048.zip",
+      "config": {
+        "trial": "3d-near-noise-v2-control-seed11",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "near",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 11,
+        "action_mode": "normalized",
+        "environment_version": "food-v2-action-affine",
+        "initialization": "random",
+        "physics_error_policy": "terminate",
+        "recovery_protocol": "numerical-failure-v1",
+        "initial_log_std": 0.0,
+        "training_rng_protocol": "explicit-seed-before-checkpoint-v2",
+        "purpose": "one-factor initial exploration ablation with fresh seeded control"
+      },
+      "video": "artifacts/20261015-220404/media/1792107412038746000-3d-near-noise-v2-control-seed11-ppo-noise-control-fixed.mp4",
+      "video_seed": 10000,
+      "path_image": "artifacts/20261015-220404/media/1792107412038746000-3d-near-noise-v2-control-seed11-ppo-noise-control-fixed-paths.png",
+      "record_url": "artifacts/20261015-220404/evaluations/1792107412038746000-3d-near-noise-v2-control-seed11-ppo-noise-control-fixed.json",
+      "source_version": {
+        "at": "2026-10-16T08:36:52+09:00",
+        "version": "ffb0c4197a43e40e",
+        "path": "artifacts/20261015-220404/source/ffb0c4197a43e40e",
+        "sha256": {
+          "lab/store.py": "96f822b6c4f36e917b24ce9d25efc3a103d245030d7efaec27e4afeead98bba9",
+          "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
+          "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+          "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+          "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+          "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+          "lab/policy_audit.py": "cf5563d07e6c479af16fa52f0789abfd1881871ecc3fe577be7156cc8ca98e9c",
+          "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+          "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+          "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+          "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+          "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+          "lab/compatibility_probe.py": "a9f2a4c935192e5c89a0c6578b33203f603ac3933a482557f3bd18f34ada9bf1",
+          "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+          "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+          "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+          "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+          "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+          "lab/noise_ablation.py": "456f95f1aeb4b122d3fad9fe17735f926e40fba01eabb0ccb16dc0f8475922d1",
+          "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+          "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+          "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+          "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+          "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
+          "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+          "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+          "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+          "lab/analyze.py": "5e8fa16fe6b350ed823c56ee6dd31d1939df07b9a2a475771747384c742cd7d5",
+          "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+          "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+        }
+      },
+      "checkpoint_sha256": "05c7f20531f3320682a91050a3d01511ab42188514d5e6bf66b3e6eb23e06abb"
     }
   ],
   "summaries": [
@@ -17691,7 +18001,7 @@
   ],
   "retrospective": {},
   "report": "artifacts/20261015-220404/report.html",
-  "updated_at": "2026-10-16T08:47:44+09:00",
+  "updated_at": "2026-10-16T08:57:32+09:00",
   "journal": {
     "entries": [
       {
@@ -18031,6 +18341,32 @@
           "answer": 0,
           "explanation": "실제 실행 가능성, 의존성, 몸과 제어기 차이를 확인해야 속도 수치와 학습 결과를 해석할 수 있습니다."
         }
+      },
+      {
+        "id": "0c20ae6627cd46aa921d0afd30b27a4e",
+        "at": "2026-10-16T08:56:52+09:00",
+        "epoch": 1792108612.667223,
+        "actor": "codex-agent",
+        "kind": "research",
+        "title": "새 대조군 첫 평가: 4/20회 도달",
+        "question": "난수 초기화를 맞춘 대조군은 2,048회 후 더 잘 도착할까?",
+        "observation": "새 대조군의 고정 평가 20회 중 4회가 도달했습니다. 초기 정책도 같은 20개 위치에서 4회 도달했으며, 둘 다 성공한 위치는 4개, 초기 정책만 성공한 위치는 0개, 새 대조군만 성공한 위치는 0개였습니다.",
+        "interpretation": "도달 횟수 기준 개선은 아직 확인하지 못했습니다. 초기 정책과의 결정적 평균 행동 동등성은 체크포인트 비교로 확인했고, 새 대조군은 수정된 환경 난수 초기화를 사용했습니다. 이 수치를 과거 다른 난수 실행과 엄밀한 단일 요인 비교로 섞지 않습니다.",
+        "next_action": "같은 수정된 초기화에서 탐험 폭만 작은 조건을 실행해 2,048회 결과를 나란히 비교합니다. 최종 새 조건 30회는 모든 고정 비교가 끝난 뒤 사용합니다.",
+        "evidence": "artifacts/20261015-220404/evaluations/1792107412038746000-3d-near-noise-v2-control-seed11-ppo-noise-control-fixed.json"
+      },
+      {
+        "id": "b2b2bde8a55e4fb2be3f5c471a22a7d7",
+        "at": "2026-10-16T08:57:31+09:00",
+        "epoch": 1792108651.923219,
+        "actor": "codex-agent",
+        "kind": "research",
+        "title": "두 API의 실행 확인을 마치고 보조 학습 재개",
+        "question": "실제로 측정한 시간은 어디까지 비교할 수 있을까?",
+        "observation": "가상 시간 1초의 고정 신호 보행을 각각 3회 실행했습니다. 렌더링을 뺀 계산 시간 중앙값은 새 API 5.05초, 기존 API 16.74초였습니다. 두 실행 모두 완료했고, 기존 환경과 새 환경의 의존성 검사도 통과했습니다. 보조 worker 대기를 해제했습니다.",
+        "interpretation": "이 Mac에서 두 환경이 실행된다는 증거입니다. 몸·제어기·초기 안정화 구현이 다르고 측정 때의 주 실험 부하도 같다고 보장할 수 없어, 같은 학습 과제의 속도 개선 배수로 해석하지 않습니다. 공식 소개 수치를 검증했다고도 하지 않습니다.",
+        "next_action": "주 비교의 엔진을 유지하고, 작은 탐험 폭 조건의 2,048회 학습을 이어갑니다. 새 API의 학습 환경 이식에는 관찰·행동·보상과 모델 전이를 따로 검증해야 합니다.",
+        "evidence": "artifacts/20261015-220404/compatibility/flygym2/legacy.json"
       }
     ]
   },
@@ -19037,15 +19373,15 @@
   },
   "deployment": {
     "status": "deployed",
-    "at": "2026-10-16T08:43:54+09:00",
-    "commit": "b268cb4000df44576b0d417d4d27c6bde8335521",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/b268cb4000df44576b0d417d4d27c6bde8335521",
-    "snapshot_at": "2026-10-15T23:43:48+00:00",
+    "at": "2026-10-16T08:49:16+09:00",
+    "commit": "b287c2120c50172dabf235dd4925f77e174fddf8",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/b287c2120c50172dabf235dd4925f77e174fddf8",
+    "snapshot_at": "2026-10-15T23:49:09+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T08:44:26+09:00"
+    "verified_at": "2026-10-16T08:49:48+09:00"
   },
   "analysis": {
-    "at": "2026-10-16T08:29:00+09:00",
+    "at": "2026-10-16T08:55:39+09:00",
     "title": "점수가 오르는데, 왜 먹이에는 도착하지 못할까?",
     "chart": "artifacts/20261015-220404/media/reward-versus-arrival.png",
     "comparison_budget": 10240,
@@ -20095,10 +20431,10 @@
   },
   "noise-ablation": {
     "status": "running",
-    "at": "2026-10-16T08:36:49+09:00",
-    "trial": "3d-near-noise-v2-control-seed11",
-    "initial_log_std": 0.0,
-    "arm": "control",
+    "at": "2026-10-16T08:55:42+09:00",
+    "trial": "3d-near-noise-v2-small-seed11",
+    "initial_log_std": -1.0,
+    "arm": "small",
     "protocol": "seeded-rng-v2",
     "current_target": 2048,
     "online_budget_per_seed": 10240,
@@ -20106,7 +20442,7 @@
     "deadline_epoch": 1792154044.360686
   },
   "compatibility": {
-    "at": "2026-10-16T08:36:49+09:00",
+    "at": "2026-10-16T08:56:42+09:00",
     "title": "FlyGym 2.1 CPU 호환성 점검",
     "records": [
       {
@@ -20756,16 +21092,447 @@
         },
         "video": "artifacts/20261015-220404/media/flygym-2.1-walking-probe.mp4"
       },
-      {}
+      {
+        "status": "completed",
+        "started_at": "2026-10-16T08:55:43+09:00",
+        "flavor": "legacy",
+        "purpose": "CPU API compatibility and fixed-command walking; not learned behavior",
+        "source": "https://github.com/NeLy-EPFL/flygym/blob/v2.1.0/tutorials/4d_turning_controller.ipynb",
+        "probe_source_sha256": "dd4205a22733ff34421dcca45ee85882a94808aba0f9d00442e01618322cd8df",
+        "architecture": "arm64",
+        "python": "3.12.13",
+        "versions": {
+          "flygym-gymnasium": "1.3.2",
+          "mujoco": "3.2.7",
+          "numpy": "2.0.2"
+        },
+        "command": "python -m lab.compatibility_probe runs/20261015-220404 --flavor legacy --seconds 1.0 --repeats 3",
+        "limitation": "몸·제어기 구현과 초기 안정화 방식이 다릅니다. 같은 학습 과제의 속도 향상 비율로 해석하지 않습니다. 주 실험 2 worker가 실행 중인 Mac에서 측정했습니다.",
+        "source_version": {
+          "at": "2026-10-16T08:55:43+09:00",
+          "version": "7f6e2d4f35f69f92",
+          "path": "artifacts/20261015-220404/source/7f6e2d4f35f69f92",
+          "sha256": {
+            "lab/store.py": "96f822b6c4f36e917b24ce9d25efc3a103d245030d7efaec27e4afeead98bba9",
+            "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/policy_audit.py": "cf5563d07e6c479af16fa52f0789abfd1881871ecc3fe577be7156cc8ca98e9c",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/compatibility_probe.py": "dd4205a22733ff34421dcca45ee85882a94808aba0f9d00442e01618322cd8df",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+            "lab/noise_ablation.py": "456f95f1aeb4b122d3fad9fe17735f926e40fba01eabb0ccb16dc0f8475922d1",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
+            "lab/video.py": "c8db83b82a7d7bfba2228b488e338847f9b5c789bea10f446dca20b846a63161",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "lab/analyze.py": "5e8fa16fe6b350ed823c56ee6dd31d1939df07b9a2a475771747384c742cd7d5",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "requirements": "artifacts/20261015-220404/compatibility/flygym2/legacy-requirements.lock.txt",
+        "record_url": "artifacts/20261015-220404/compatibility/flygym2/legacy.json",
+        "completed_at": "2026-10-16T08:56:42+09:00",
+        "setup_seconds": 2.032821041000716,
+        "cold_probe": {
+          "seed": 0,
+          "simulation_seconds": 0.1,
+          "wall_seconds": 1.846859958001005,
+          "physics_steps": 1000,
+          "equivalent_50ms_decisions_per_second": 1.0829191413975696,
+          "path_xyz": [
+            [
+              0.01634914241731167,
+              0.0073094856925308704,
+              1.781416416168213
+            ],
+            [
+              0.3327557444572449,
+              0.012187757529318333,
+              1.0627717971801758
+            ],
+            [
+              0.7664504051208496,
+              0.05090543255209923,
+              1.0495588779449463
+            ]
+          ],
+          "rendered": false
+        },
+        "rows": [
+          {
+            "seed": 0,
+            "simulation_seconds": 1.0,
+            "wall_seconds": 16.35388783399685,
+            "physics_steps": 10000,
+            "equivalent_50ms_decisions_per_second": 1.2229507871775618,
+            "path_xyz": [
+              [
+                0.01634914241731167,
+                0.0073094856925308704,
+                1.781416416168213
+              ],
+              [
+                0.3327557444572449,
+                0.012187757529318333,
+                1.0627717971801758
+              ],
+              [
+                0.7664504051208496,
+                0.05090543255209923,
+                1.0495588779449463
+              ],
+              [
+                1.3401834964752197,
+                -0.05436263233423233,
+                1.0758585929870605
+              ],
+              [
+                1.9389036893844604,
+                0.17933058738708496,
+                1.1145267486572266
+              ],
+              [
+                2.525726795196533,
+                0.019614502787590027,
+                1.152748465538025
+              ],
+              [
+                3.063995838165283,
+                0.10294493287801743,
+                1.1511199474334717
+              ],
+              [
+                3.650679111480713,
+                0.10468839108943939,
+                1.1152766942977905
+              ],
+              [
+                4.335974216461182,
+                -0.004966826643794775,
+                1.1180658340454102
+              ],
+              [
+                4.9843831062316895,
+                0.27580392360687256,
+                1.1529722213745117
+              ],
+              [
+                5.5112833976745605,
+                0.09818597137928009,
+                1.1812113523483276
+              ],
+              [
+                6.084082126617432,
+                0.18798838555812836,
+                1.176340937614441
+              ],
+              [
+                6.702771186828613,
+                0.19041872024536133,
+                1.1311876773834229
+              ],
+              [
+                7.329485893249512,
+                0.11405375599861145,
+                1.1181774139404297
+              ],
+              [
+                7.98568058013916,
+                0.3690141439437866,
+                1.1465555429458618
+              ],
+              [
+                8.568523406982422,
+                0.19892750680446625,
+                1.1806094646453857
+              ],
+              [
+                9.155939102172852,
+                0.27442917227745056,
+                1.1370640993118286
+              ],
+              [
+                9.76224422454834,
+                0.26140400767326355,
+                1.115513563156128
+              ],
+              [
+                10.408653259277344,
+                0.15272341668605804,
+                1.1300561428070068
+              ],
+              [
+                11.062438011169434,
+                0.4081096351146698,
+                1.1452827453613281
+              ],
+              [
+                11.62833309173584,
+                0.219636470079422,
+                1.1707963943481445
+              ]
+            ],
+            "rendered": false
+          },
+          {
+            "seed": 1,
+            "simulation_seconds": 1.0,
+            "wall_seconds": 16.741003542003455,
+            "physics_steps": 10000,
+            "equivalent_50ms_decisions_per_second": 1.194671511168352,
+            "path_xyz": [
+              [
+                0.01634914241731167,
+                0.0073094856925308704,
+                1.781416416168213
+              ],
+              [
+                0.27939024567604065,
+                -0.010969167575240135,
+                1.0237669944763184
+              ],
+              [
+                0.5280570387840271,
+                -0.08493106812238693,
+                1.1013386249542236
+              ],
+              [
+                0.9490681886672974,
+                -0.038235656917095184,
+                1.0096969604492188
+              ],
+              [
+                1.4311249256134033,
+                0.031274788081645966,
+                1.019848108291626
+              ],
+              [
+                2.0340940952301025,
+                0.19404171407222748,
+                1.0639612674713135
+              ],
+              [
+                2.615320920944214,
+                -0.02666580118238926,
+                1.087846040725708
+              ],
+              [
+                3.087606430053711,
+                0.12896423041820526,
+                1.1719160079956055
+              ],
+              [
+                3.7103240489959717,
+                0.11819587647914886,
+                1.1485099792480469
+              ],
+              [
+                4.345712184906006,
+                0.13292163610458374,
+                1.1089338064193726
+              ],
+              [
+                4.986476898193359,
+                0.33190274238586426,
+                1.1401736736297607
+              ],
+              [
+                5.643993854522705,
+                0.10863970220088959,
+                1.1478652954101562
+              ],
+              [
+                6.143125057220459,
+                0.28675299882888794,
+                1.1791526079177856
+              ],
+              [
+                6.7746734619140625,
+                0.24048371613025665,
+                1.1664754152297974
+              ],
+              [
+                7.349409103393555,
+                0.2752563953399658,
+                1.10731041431427
+              ],
+              [
+                8.053252220153809,
+                0.4439384639263153,
+                1.1303461790084839
+              ],
+              [
+                8.719143867492676,
+                0.18194012343883514,
+                1.1544910669326782
+              ],
+              [
+                9.216909408569336,
+                0.3273163437843323,
+                1.2005103826522827
+              ],
+              [
+                9.833815574645996,
+                0.27768340706825256,
+                1.1693910360336304
+              ],
+              [
+                10.44571304321289,
+                0.26854804158210754,
+                1.099938988685608
+              ],
+              [
+                11.107816696166992,
+                0.42719244956970215,
+                1.128109097480774
+              ]
+            ],
+            "rendered": false
+          },
+          {
+            "seed": 2,
+            "simulation_seconds": 1.0,
+            "wall_seconds": 21.73846237500402,
+            "physics_steps": 10000,
+            "equivalent_50ms_decisions_per_second": 0.9200282731586853,
+            "path_xyz": [
+              [
+                0.01634914241731167,
+                0.0073094856925308704,
+                1.781416416168213
+              ],
+              [
+                0.3294815123081207,
+                -0.10976146906614304,
+                1.0921471118927002
+              ],
+              [
+                0.8008058667182922,
+                -0.142281174659729,
+                0.9846215844154358
+              ],
+              [
+                1.219897747039795,
+                -0.1887304037809372,
+                0.9700215458869934
+              ],
+              [
+                1.79963219165802,
+                -0.10525976866483688,
+                1.0422571897506714
+              ],
+              [
+                2.3665404319763184,
+                -0.41408249735832214,
+                1.1130380630493164
+              ],
+              [
+                2.8278379440307617,
+                -0.33322057127952576,
+                1.1592111587524414
+              ],
+              [
+                3.3987603187561035,
+                -0.45920315384864807,
+                1.1731070280075073
+              ],
+              [
+                4.0200724601745605,
+                -0.5275723934173584,
+                1.1088463068008423
+              ],
+              [
+                4.620648384094238,
+                -0.517133355140686,
+                1.1016548871994019
+              ],
+              [
+                4.837770938873291,
+                -0.38052794337272644,
+                1.0897040367126465
+              ],
+              [
+                5.231520175933838,
+                -0.4306357800960541,
+                1.164763331413269
+              ],
+              [
+                5.254371166229248,
+                -0.3712826073169708,
+                0.8772680759429932
+              ],
+              [
+                5.3671674728393555,
+                -0.6764900088310242,
+                0.9341424107551575
+              ],
+              [
+                5.631152153015137,
+                0.05537717416882515,
+                1.294101357460022
+              ],
+              [
+                5.5533576011657715,
+                -0.44626274704933167,
+                0.9575340151786804
+              ],
+              [
+                5.990610122680664,
+                -0.3421092927455902,
+                1.3170138597488403
+              ],
+              [
+                6.4812774658203125,
+                -0.5845509171485901,
+                1.0980228185653687
+              ],
+              [
+                6.968367576599121,
+                -0.7191795706748962,
+                1.1431525945663452
+              ],
+              [
+                7.4627556800842285,
+                -0.8408167958259583,
+                1.1298818588256836
+              ],
+              [
+                7.76875114440918,
+                -1.4995105266571045,
+                1.146780014038086
+              ]
+            ],
+            "rendered": false
+          }
+        ],
+        "median_decisions_per_second": 1.194671511168352,
+        "rendered_probe": null,
+        "video": null
+      }
     ],
     "separate_from_learning": true,
-    "pending_note": "기존 API의 같은 고정 신호 측정은 현재 평가가 끝나 worker가 비면 실행합니다. 아직 두 버전의 직접 비교 수치는 없습니다.",
     "launch_failure": "artifacts/20261015-220404/compatibility/flygym2/legacy-launch-failure.json"
   },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-15T23:49:09+00:00",
-    "snapshot_epoch": 1792108150.7283251,
+    "exported_at": "2026-10-15T23:58:32+00:00",
+    "snapshot_epoch": 1792108713.729074,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
   },
@@ -21051,6 +21818,22 @@
       "note": "결정적 평가의 평균 행동은 동일합니다. 새 20회 평가를 실행했다고 표현하지 않고 기존 초기 평가를 참조합니다.",
       "environment_rng_matches_declared_seeds": true,
       "record_url": "artifacts/20261015-220404/trials/3d-near-noise-v2-control-seed11-initial-equivalence.json"
+    },
+    {
+      "all_other_parameters_identical": true,
+      "original_log_std": [
+        0.0,
+        0.0
+      ],
+      "variant_log_std": [
+        -1.0,
+        -1.0
+      ],
+      "original_checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-noise-v2-control-seed11/step-000000000.zip",
+      "variant_checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-noise-v2-small-seed11/step-000000000.zip",
+      "note": "결정적 평가의 평균 행동은 동일합니다. 새 20회 평가를 실행했다고 표현하지 않고 기존 초기 평가를 참조합니다.",
+      "environment_rng_matches_declared_seeds": true,
+      "record_url": "artifacts/20261015-220404/trials/3d-near-noise-v2-small-seed11-initial-equivalence.json"
     }
   ],
   "replay_checks": [
@@ -21154,6 +21937,7 @@
     "artifacts/20261015-220404/source/10b662c18405cdde/sha256.json",
     "artifacts/20261015-220404/source/27d74e5522635997/sha256.json",
     "artifacts/20261015-220404/source/33278d7e1a509387/sha256.json",
+    "artifacts/20261015-220404/source/7f6e2d4f35f69f92/sha256.json",
     "artifacts/20261015-220404/source/9e7083a49b3776da/sha256.json",
     "artifacts/20261015-220404/source/a06ea735e505ed76/sha256.json",
     "artifacts/20261015-220404/source/b4839e4e9e31be56/sha256.json",
