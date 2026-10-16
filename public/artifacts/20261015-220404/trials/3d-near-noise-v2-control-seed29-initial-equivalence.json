@@ -1,0 +1,16 @@
+{
+  "all_other_parameters_identical": true,
+  "original_log_std": [
+    0.0,
+    0.0
+  ],
+  "variant_log_std": [
+    0.0,
+    0.0
+  ],
+  "original_checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed29/step-000000000.zip",
+  "variant_checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-noise-v2-control-seed29/step-000000000.zip",
+  "note": "결정적 평가의 평균 행동은 동일합니다. 새 20회 평가를 실행했다고 표현하지 않고 기존 초기 평가를 참조합니다.",
+  "environment_rng_matches_declared_seeds": true,
+  "record_url": "artifacts/20261015-220404/trials/3d-near-noise-v2-control-seed29-initial-equivalence.json"
+}

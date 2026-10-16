@@ -1,9 +1,9 @@
 {
   "status": "running",
-  "at": "2026-10-16T08:55:42+09:00",
-  "trial": "3d-near-noise-v2-small-seed11",
-  "initial_log_std": -1.0,
-  "arm": "small",
+  "at": "2026-10-16T09:30:56+09:00",
+  "trial": "3d-near-noise-v2-control-seed29",
+  "initial_log_std": 0.0,
+  "arm": "control",
   "protocol": "seeded-rng-v2",
   "current_target": 2048,
   "online_budget_per_seed": 10240,
