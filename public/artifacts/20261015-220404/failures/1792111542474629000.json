@@ -1,0 +1,136 @@
+{
+  "at": "2026-10-16T09:45:42+09:00",
+  "trial": "3d-near-noise-v2-control-seed29",
+  "timesteps": 1748,
+  "config": {
+    "trial": "3d-near-noise-v2-control-seed29",
+    "backend": "3d",
+    "task": "food",
+    "curriculum": "near",
+    "reward_mode": "dense",
+    "max_steps": 120,
+    "seed": 29,
+    "action_mode": "normalized",
+    "environment_version": "food-v2-action-affine",
+    "initialization": "random",
+    "physics_error_policy": "terminate",
+    "recovery_protocol": "numerical-failure-v1",
+    "initial_log_std": 0.0,
+    "training_rng_protocol": "explicit-seed-before-checkpoint-v2",
+    "purpose": "one-factor initial exploration ablation with fresh seeded control"
+  },
+  "info": {
+    "success": false,
+    "distance": 1.328514892224332,
+    "collisions": 0,
+    "flips": 0,
+    "elapsed_sim_seconds": 0.9,
+    "reward_terms": {
+      "approach": 0.0,
+      "arrival": 0.0,
+      "time": -0.025,
+      "collision": 0.0,
+      "flip": 0.0,
+      "numerical_failure": -5.0
+    },
+    "position": [
+      4.407692909240723,
+      -0.4483058750629425
+    ],
+    "target": [
+      5.664426351471021,
+      -0.8790875762084464
+    ],
+    "heading": 0.08017237373874493,
+    "numerical_failure": true,
+    "physics_error": "Physics state is invalid. Warning(s) raised: mjWARN_BADQACC",
+    "physics_seed": 485855927,
+    "physics_substep": 389,
+    "observation_is_last_valid": true,
+    "failure_actions": [
+      [
+        1.0,
+        -0.39707133173942566
+      ],
+      [
+        0.324514240026474,
+        1.0
+      ],
+      [
+        -0.11107157170772552,
+        -0.3721722960472107
+      ],
+      [
+        -0.6062201261520386,
+        0.39674291014671326
+      ],
+      [
+        0.1013403832912445,
+        -0.6248512864112854
+      ],
+      [
+        -0.45973676443099976,
+        -0.4921420216560364
+      ],
+      [
+        -0.4231666326522827,
+        0.28066936135292053
+      ],
+      [
+        -0.08071471750736237,
+        -0.7698335647583008
+      ],
+      [
+        1.0,
+        1.0
+      ],
+      [
+        -0.42677170038223267,
+        0.8507786989212036
+      ],
+      [
+        -0.9255496859550476,
+        0.849502682685852
+      ],
+      [
+        -0.031262099742889404,
+        -1.0
+      ],
+      [
+        0.4806050658226013,
+        -0.4012068510055542
+      ],
+      [
+        -0.2694254219532013,
+        -1.0
+      ],
+      [
+        -0.46187910437583923,
+        -1.0
+      ],
+      [
+        -1.0,
+        0.7000542283058167
+      ],
+      [
+        -0.355532705783844,
+        0.12965530157089233
+      ],
+      [
+        1.0,
+        -1.0
+      ]
+    ],
+    "TimeLimit.truncated": false,
+    "terminal_observation": [
+      0.07613730430603027,
+      -0.033127836883068085,
+      0.08303218334913254,
+      0.3675357699394226,
+      0.08214064687490463,
+      0.0,
+      0.0,
+      1.0
+    ]
+  }
+}

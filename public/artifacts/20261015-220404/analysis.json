@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-16T09:30:53+09:00",
+  "at": "2026-10-16T10:04:46+09:00",
   "title": "점수가 오르는데, 왜 먹이에는 도착하지 못할까?",
   "chart": "artifacts/20261015-220404/media/reward-versus-arrival.png",
   "comparison_budget": 10240,
@@ -710,6 +710,42 @@
       "video": "artifacts/20261015-220404/media/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.mp4",
       "video_seed": 10000,
       "path_image": "artifacts/20261015-220404/media/1792107765481822000-3d-near-ppo-seed47-ppo-fixed-paths.png",
+      "config": {
+        "trial": "3d-near-ppo-seed47",
+        "backend": "3d",
+        "task": "food",
+        "curriculum": "near",
+        "reward_mode": "dense",
+        "max_steps": 120,
+        "seed": 47,
+        "action_mode": "normalized",
+        "environment_version": "food-v2-action-affine",
+        "initialization": "random",
+        "physics_error_policy": "terminate",
+        "recovery_protocol": "numerical-failure-v1"
+      }
+    },
+    {
+      "seed": 47,
+      "policy": "ppo",
+      "route": "ppo",
+      "timesteps": 10240,
+      "evaluated_at": "2026-10-16T10:04:46+09:00",
+      "successes": 20,
+      "episodes": 20,
+      "success_rate": 1.0,
+      "mean_return": 24.28955174288468,
+      "mean_final_distance_mm": 1.072620813043088,
+      "mean_control": [
+        0.06072835098257509,
+        0.7369659357909429
+      ],
+      "mean_steps": 59.0,
+      "numerical_failures": 0,
+      "record_url": "artifacts/20261015-220404/evaluations/1792112042717220000-3d-near-ppo-seed47-ppo-fixed.json",
+      "video": "artifacts/20261015-220404/media/1792112042717220000-3d-near-ppo-seed47-ppo-fixed.mp4",
+      "video_seed": 10000,
+      "path_image": "artifacts/20261015-220404/media/1792112042717220000-3d-near-ppo-seed47-ppo-fixed-paths.png",
       "config": {
         "trial": "3d-near-ppo-seed47",
         "backend": "3d",
