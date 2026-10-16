@@ -1,7 +1,7 @@
 {
   "run_id": "20261015-220404",
-  "generated_at": "2026-10-16T09:17:49+09:00",
-  "elapsed_hours": 11.22928128639857,
+  "generated_at": "2026-10-16T09:19:26+09:00",
+  "elapsed_hours": 11.256054000258446,
   "verdict": {
     "record_system": {
       "status": "partial",
@@ -170,14 +170,18 @@
               }
             }
           ],
-          "mean_difference_pp": 97.5
+          "evaluation_protocol_count": 1,
+          "mean_difference_pp": 97.5,
+          "aggregation_note": "평가 규약이 여러 개이면 seed별 쌍은 보존하되 하나의 평균으로 합치지 않습니다."
         },
         {
           "online_timesteps": 20480,
           "completed_pairs": 0,
           "planned_pairs": 3,
           "pairs": [],
-          "mean_difference_pp": null
+          "evaluation_protocol_count": 0,
+          "mean_difference_pp": null,
+          "aggregation_note": "평가 규약이 여러 개이면 seed별 쌍은 보존하되 하나의 평균으로 합치지 않습니다."
         }
       ],
       "interpretation": "같은 온라인 행동 예산과 평가 조건에서만 seed별 차이를 계산합니다. B 경로는 별도 시범 비용이 있으며, 세 seed의 차이를 통계적 확정으로 해석하지 않습니다."
@@ -237,11 +241,11 @@
   "reproduction": "See README.md and per-evaluation config/seeds/checkpoint/actions.",
   "publication": {
     "status": "deployed",
-    "at": "2026-10-16T09:05:14+09:00",
-    "commit": "7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
-    "snapshot_at": "2026-10-16T00:05:05+00:00",
+    "at": "2026-10-16T09:18:23+09:00",
+    "commit": "fb0cf5b926ed2a211569709fb6e4b460884b5129",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/fb0cf5b926ed2a211569709fb6e4b460884b5129",
+    "snapshot_at": "2026-10-16T00:17:55+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T09:06:03+09:00"
+    "verified_at": "2026-10-16T09:19:00+09:00"
   }
 }

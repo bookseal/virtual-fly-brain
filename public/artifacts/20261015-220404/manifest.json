@@ -27,30 +27,30 @@
     "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
     "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
     "next_action": "10,240 행동 경계와 주기적 고정 평가에서 비교",
-    "updated_at": "2026-10-16T09:14:42+09:00",
+    "updated_at": "2026-10-16T09:19:39+09:00",
     "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
     "training": {
       "trial": "3d-near-ppo-seed47",
-      "timesteps": 5558,
-      "steps_this_segment": 1462,
-      "decisions_per_second": 1.9878642006667524,
+      "timesteps": 6120,
+      "steps_this_segment": 2024,
+      "decisions_per_second": 1.961152440377842,
       "reward_terms_sum": {
-        "approach": -11.107621032141028,
-        "arrival": 60.0,
-        "time": -36.549999999998995,
+        "approach": -10.808765764433584,
+        "arrival": 80.0,
+        "time": -50.5999999999982,
         "collision": 0.0,
         "flip": 0.0
       },
-      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000005376.zip",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000005888.zip",
       "action_mean": [
-        -0.5268914981066121,
-        0.101287969233909
+        -0.5386735047600251,
+        0.12607098956272123
       ],
       "action_std": [
-        0.9710677388579754,
-        1.0264459646897315
+        0.9847279163514052,
+        1.0190149238227786
       ],
-      "action_clipped_fraction": 0.34610123119015046
+      "action_clipped_fraction": 0.3493083003952569
     }
   },
   "intervals": [
@@ -18707,7 +18707,7 @@
   ],
   "retrospective": {},
   "report": "artifacts/20261015-220404/report.html",
-  "updated_at": "2026-10-16T09:14:48+09:00",
+  "updated_at": "2026-10-16T09:19:40+09:00",
   "journal": {
     "entries": [
       {
@@ -19096,6 +19096,19 @@
           "answer": 0,
           "explanation": "입력과 출력의 관계를 확인했습니다. 실제 몸에서의 움직임과 목표 달성 여부는 별도의 행동 평가가 필요합니다."
         }
+      },
+      {
+        "id": "00e135bad6484121ab18312a4658346e",
+        "at": "2026-10-16T09:19:40+09:00",
+        "epoch": 1792109980.414538,
+        "actor": "codex-agent",
+        "kind": "research",
+        "title": "같은 시작 위치만으로는 공정한 비교가 아닙니다",
+        "question": "오류 처리나 학습량이 달라져도 하나의 점수로 비교해도 될까?",
+        "observation": "기존 보고서는 평가 seed와 행동 예산을 맞췄지만, 수치 오류 처리 등 평가 규약의 차이를 별도로 검사하지 않았습니다. 보고서에 보상·행동 범위·에피소드 길이·수치 오류 처리·환경 버전 검사를 추가했습니다.",
+        "interpretation": "서로 다른 규약의 결과도 원본으로 보존합니다. 다만 개선 판정과 여러 seed의 평균에서 혼합하지 않습니다. 최종 새 조건 평가에는 실제 학습 행동 횟수를 표시합니다.",
+        "next_action": "현재 탐험 폭 비교의 20회 평가를 기다리고, 새 조건 평가에서는 학습량까지 함께 확인합니다.",
+        "evidence": "artifacts/20261015-220404/report.json"
       }
     ]
   },
@@ -20102,12 +20115,12 @@
   },
   "deployment": {
     "status": "deployed",
-    "at": "2026-10-16T09:05:14+09:00",
-    "commit": "7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
-    "snapshot_at": "2026-10-16T00:05:05+00:00",
+    "at": "2026-10-16T09:18:23+09:00",
+    "commit": "fb0cf5b926ed2a211569709fb6e4b460884b5129",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/fb0cf5b926ed2a211569709fb6e4b460884b5129",
+    "snapshot_at": "2026-10-16T00:17:55+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T09:06:03+09:00"
+    "verified_at": "2026-10-16T09:19:00+09:00"
   },
   "analysis": {
     "at": "2026-10-16T09:02:14+09:00",
@@ -43980,8 +43993,8 @@
   },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-16T00:17:55+00:00",
-    "snapshot_epoch": 1792109877.620821,
+    "exported_at": "2026-10-16T00:20:07+00:00",
+    "snapshot_epoch": 1792110008.476497,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
   },
@@ -44393,6 +44406,7 @@
     "artifacts/20261015-220404/source/b4839e4e9e31be56/sha256.json",
     "artifacts/20261015-220404/source/c2a404e01baafcb7/sha256.json",
     "artifacts/20261015-220404/source/c8ee4f69a231e543/sha256.json",
+    "artifacts/20261015-220404/source/cd049f8fe9660d16/sha256.json",
     "artifacts/20261015-220404/source/dce13159ba1c0f31/sha256.json",
     "artifacts/20261015-220404/source/e98396aa4f9e2482/sha256.json",
     "artifacts/20261015-220404/source/eb02b8d6a1118720/sha256.json",
