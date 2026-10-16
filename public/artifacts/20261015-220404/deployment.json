@@ -1,9 +1,9 @@
 {
   "status": "deployed",
-  "at": "2026-10-16T12:10:09+09:00",
-  "commit": "7b32ea605491c5e01b2baf7c4184a543cd97b8ca",
-  "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/7b32ea605491c5e01b2baf7c4184a543cd97b8ca",
-  "snapshot_at": "2026-10-16T03:10:00+00:00",
+  "at": "2026-10-16T12:40:52+09:00",
+  "commit": "3a400280dfb8913eb89ad67ce30b07a20a17516c",
+  "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/3a400280dfb8913eb89ad67ce30b07a20a17516c",
+  "snapshot_at": "2026-10-16T03:40:45+00:00",
   "url": "https://bookseal.github.io/virtual-fly-brain/",
-  "verified_at": "2026-10-16T12:10:42+09:00"
+  "verified_at": "2026-10-16T12:41:25+09:00"
 }
