@@ -2,6 +2,16 @@ import argparse,html,json,time
 from pathlib import Path
 from .store import *
 
+def evaluation_contract(row):
+    """Defaults are the historical FoodEnv defaults, not today's run config."""
+    config=row.get('config',{})
+    defaults={'curriculum':'near','reward_mode':'dense','max_steps':160,
+              'action_mode':'raw','physics_error_policy':'raise',
+              'environment_version':None}
+    return {'evaluation_suite':row.get('evaluation_suite'),
+            'backend':row.get('backend'),'task':row.get('task'),
+            **{key:config.get(key,value) for key,value in defaults.items()}}
+
 def paired_seed_results(rows):
     """Compare only equal online budgets and identical evaluation suites."""
     result=[]
@@ -11,9 +21,10 @@ def paired_seed_results(rows):
             candidates=[r for r in rows if r.get('backend')=='3d' and r.get('task')=='food-near' and r.get('seed')==seed and r.get('timesteps')==steps and not r.get('selection_holdout')]
             a=next((r for r in reversed(candidates) if r['policy']=='ppo' and r.get('config',{}).get('initialization')=='random'),None)
             b=next((r for r in reversed(candidates) if r['policy']=='bc-ppo' and r.get('config',{}).get('initialization')=='behavior-cloning-from-rule'),None)
-            if a and b and a['evaluation_suite']==b['evaluation_suite']:
-                pairs.append({'seed':seed,'ppo':a['success_rate'],'bc_ppo':b['success_rate'],'difference_pp':round((b['success_rate']-a['success_rate'])*100,1),'records':[a['record_url'],b['record_url']]})
-        result.append({'online_timesteps':steps,'completed_pairs':len(pairs),'planned_pairs':3,'pairs':pairs,'mean_difference_pp':round(sum(p['difference_pp'] for p in pairs)/len(pairs),1) if pairs else None})
+            if a and b and evaluation_contract(a)==evaluation_contract(b):
+                pairs.append({'seed':seed,'ppo':a['success_rate'],'bc_ppo':b['success_rate'],'difference_pp':round((b['success_rate']-a['success_rate'])*100,1),'records':[a['record_url'],b['record_url']],'evaluation_contract':evaluation_contract(a)})
+        protocols={json.dumps(p['evaluation_contract'],sort_keys=True) for p in pairs}
+        result.append({'online_timesteps':steps,'completed_pairs':len(pairs),'planned_pairs':3,'pairs':pairs,'evaluation_protocol_count':len(protocols),'mean_difference_pp':round(sum(p['difference_pp'] for p in pairs)/len(pairs),1) if pairs and len(protocols)==1 else None,'aggregation_note':'평가 규약이 여러 개이면 seed별 쌍은 보존하되 하나의 평균으로 합치지 않습니다.'})
     return result
 
 def build_report(run):
@@ -21,10 +32,10 @@ def build_report(run):
     for trial in sorted(set(r['trial'] for r in rows)):
         rs=[r for r in rows if r['trial']==trial];before=next((r for r in rs if r['policy'] in ['untrained','bc-initial','transfer-initial']),None);after=[r for r in rs if r['policy'] in ['ppo','bc-ppo'] and not r.get('selection_holdout')]
         if before and after:
-            last=after[-1];comparisons.append({'trial':trial,'backend':last['backend'],'initial_policy':before['policy'],'before':before['success_rate'],'after':last['success_rate'],'change_pp':round(100*(last['success_rate']-before['success_rate']),1),'fixed_episodes':last['episodes'],'comparable_seeds':before['evaluation_suite']==last['evaluation_suite'],'before_record':before['record_url'],'after_record':last['record_url'],'holdout':[{k:r[k] for k in ['success_rate','episodes','record_url']} for r in rs if r.get('selection_holdout')]})
+            last=after[-1];comparisons.append({'trial':trial,'backend':last['backend'],'initial_policy':before['policy'],'before':before['success_rate'],'after':last['success_rate'],'change_pp':round(100*(last['success_rate']-before['success_rate']),1),'fixed_episodes':last['episodes'],'comparable_seeds':before['evaluation_suite']==last['evaluation_suite'],'comparable_protocol':evaluation_contract(before)==evaluation_contract(last),'before_timesteps':before['timesteps'],'after_timesteps':last['timesteps'],'before_record':before['record_url'],'after_record':last['record_url'],'holdout':[{k:r[k] for k in ['success_rate','episodes','record_url','timesteps']} for r in rs if r.get('selection_holdout')]})
     if not smoke.get('video'):
         smoke=next((r for r in rows if r.get('backend')=='3d' and r.get('video')),(read(run/'diagnostics.json',{}).get('rows') or [{}])[0])
-    errors=[e for e in events(run) if e['kind']=='error'];improvements=[c for c in comparisons if c['change_pp']>0 and c['comparable_seeds']];obs=[r for r in rows if r['task'].startswith('obstacles') and r.get('selection_holdout')]
+    errors=[e for e in events(run) if e['kind']=='error'];improvements=[c for c in comparisons if c['change_pp']>0 and c['comparable_protocol']];obs=[r for r in rows if r['task'].startswith('obstacles') and r.get('selection_holdout')]
     verdict={'record_system':{'status':'pass' if snaps and not any(s.get('status')=='gap' or s.get('render',{}).get('status')!='done' for s in snaps) else 'partial','intervals':len(snaps),'rendered':sum(s.get('render',{}).get('status')=='done' for s in snaps),'gaps':sum(s.get('status')=='gap' for s in snaps)},'3d_execution':{'status':'pass' if smoke.get('video') else 'not_confirmed','evidence':smoke.get('video')},'learning_improvement':{'status':'observed' if improvements else 'not_confirmed','comparisons':comparisons,'interpretation':'同条件の観測差'.replace('同条件の観測差','같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다.')},'obstacles':{'status':'observed' if any(r['success_rate']>=.7 for r in obs) else ('not_confirmed' if obs else 'not_started'),'holdout_results':[{k:r[k] for k in ['success_rate','episodes','record_url']} for r in obs]}}
     out={'run_id':run.name,'generated_at':now(),'elapsed_hours':(read(run/'state.json',{}).get('ended_epoch',time.time())-cfg['started_epoch'])/3600,'quota_start':cfg['quota_start'],'quota_latest':q,'verdict':verdict,'errors':errors,'remaining':['실제 초파리 뇌 전체와 생물학적 가소성은 이번 정책 학습의 대상이 아닙니다.','서로 다른 환경 seed와 새로운 조건에서 반복 검증이 필요합니다.'],'reproduction':'See README.md and per-evaluation config/seeds/checkpoint/actions.', 'publication':read(run/'deployment.json',{})}
     if cfg.get('schema_version',1)>=2:
@@ -39,11 +50,11 @@ def build_report(run):
     labels['replication']='세 학습 seed에서 같은 학습량 비교';descriptions['replication']='같은 평가 조건과 행동 예산에서 A와 B 경로를 모두 완료한 seed만 비교합니다. 미완료 결과는 평균에 넣지 않습니다.'
     for key,item in verdict.items():body+=f'<section><h2>{esc(labels[key])} — {esc(states[item["status"]])}</h2><p>{esc(descriptions[key])}</p></section>'
     if comparisons:
-        body+='<h2>같은 조건에서의 변화</h2><table><tr><th>실험</th><th>학습 전</th><th>학습 후</th><th>변화</th><th>새 조건 평가</th></tr>'
+        body+='<h2>같은 조건에서의 변화</h2><table><tr><th>실험</th><th>학습 전</th><th>학습 후</th><th>변화 / 비교 조건</th><th>새 조건 평가와 학습량</th></tr>'
         for c in comparisons:
-            holdout=', '.join(f"{r['success_rate']:.0%} / {r['episodes']}회" for r in c['holdout']) or '아직 없음'
-            body+=f'<tr><td>{esc(c["trial"])}</td><td><a href="/{esc(c["before_record"])}">{c["before"]:.0%}</a></td><td><a href="/{esc(c["after_record"])}">{c["after"]:.0%}</a></td><td>{c["change_pp"]:+.1f}%p</td><td>{esc(holdout)}</td></tr>'
-        body+='</table><p>20회 평가의 차이는 이번 조건에서의 관측입니다. 다른 seed와 새로운 조건의 결과를 함께 확인해야 합니다.</p>'
+            holdout=', '.join(f"{r['success_rate']:.0%} / {r['episodes']}회 · 학습 {r['timesteps']:,} 행동" for r in c['holdout']) or '아직 없음'
+            body+=f'<tr><td>{esc(c["trial"])}</td><td><a href="/{esc(c["before_record"])}">{c["before"]:.0%}</a></td><td><a href="/{esc(c["after_record"])}">{c["after"]:.0%}</a> · {c["after_timesteps"]:,} 행동</td><td>{c["change_pp"]:+.1f}%p · {"같은 평가 규약" if c["comparable_protocol"] else "평가 규약 변경 · 개선 판정 제외"}</td><td>{esc(holdout)}</td></tr>'
+        body+='</table><p>20회 평가의 차이는 이번 조건에서의 관측입니다. 수치 오류 처리·보상·행동 범위·에피소드 길이가 달라진 결과는 개선 판정에서 제외합니다. 새 조건 평가도 학습량이 다르면 같은 예산의 비교가 아닙니다. 다른 seed와 새로운 조건의 결과를 함께 확인해야 합니다.</p>'
     body+=f'<h2>시간과 구독 사용량</h2><p>실제 경과 {out["elapsed_hours"]:.2f}시간. 시작 {cfg["quota_start"].get("used_percent","미확인")}% → 마지막 조회 {q.get("used_percent","미확인")}%. 증가 {q.get("increase_pp","미확인")}%p. 조회 시각 {esc(q.get("read_at","미확인"))}.</p>'
     body+='<h2>오류와 다음 확인</h2><ul>'+''.join(f'<li>{esc(e["at"])} · {esc(e["title"])}</li>' for e in errors)+'</ul><p>실제 초파리 뇌 전체 또는 생물학적 학습을 재현한 실험은 아닙니다.</p>'
     body+=f'<h2>원본 보고서</h2><a href="report.json">JSON</a><p><a href="/\u0023experiments">실험 타임라인으로 돌아가기</a></p>'

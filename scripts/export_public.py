@@ -29,9 +29,24 @@ def brief(e):return {k:v for k,v in e.items() if k!='episodes_raw'} if e else e
 def public_report(dest,report):
     esc=lambda v:html.escape(str(v));labels={'record_system':'10분 시각 기록','3d_execution':'실제 3D 몸 실행','learning_improvement':'정책의 학습 개선','obstacles':'장애물 회피','replication':'세 학습 seed의 같은 학습량 비교'}
     body=f'<h1>실험 결과 · 공개 기록</h1><p>생성 시각 {esc(report.get("generated_at",""))}. 공개 시점의 관측 결과입니다.</p>'
-    for k,v in report.get('verdict',{}).items():body+=f'<section><h2>{esc(labels.get(k,k))} · {esc(v.get("status"))}</h2><pre>{esc(json.dumps(v,ensure_ascii=False,indent=2))}</pre></section>'
+    states={'pass':'확보','partial':'일부 지연','observed':'관측됨','not_confirmed':'아직 확인되지 않음','not_started':'시작 전'}
+    body+='<p>먹이 위치를 알려 준 가상 몸의 이동 정책을 비교합니다. 실제 초파리의 뇌나 생물학적 학습을 재현한 결과가 아닙니다.</p>'
+    for k,v in report.get('verdict',{}).items():
+        body+=f'<section><h2>{esc(labels.get(k,k))} · {esc(states.get(v.get("status"),v.get("status")))}</h2>'
+        if k=='record_system':body+=f'<p>기록 {v.get("intervals",0)}개 · 영상 완료 {v.get("rendered",0)}개 · 기록 지연 {v.get("gaps",0)}개</p>'
+        if k=='learning_improvement':
+            body+='<p>같은 시작 조건뿐 아니라 보상·행동 범위·에피소드 길이·수치 오류 처리도 같아야 개선을 판정합니다. 학습량이 다른 최종 결과는 같은 예산의 비교가 아닙니다.</p><div class="table-wrap"><table><tr><th>실험</th><th>학습 전</th><th>학습 후</th><th>비교 조건</th><th>새 조건 평가</th></tr>'
+            for c in v.get('comparisons',[]):
+                before=esc(c.get('before_record',''));after=esc(c.get('after_record',''))
+                comparable=c.get('comparable_protocol')
+                label='같은 평가 규약' if comparable else ('평가 규약 변경 · 개선 판정 제외' if comparable is False else '규약 비교 정보 없음')
+                holdout='<br>'.join(f'{r["success_rate"]:.0%} / {r["episodes"]}회 · {r.get("timesteps","미기록")} 행동' for r in c.get('holdout',[])) or '아직 없음'
+                body+=f'<tr><td>{esc(c["trial"])}</td><td><a href="../../{before}">{c["before"]:.0%}</a></td><td><a href="../../{after}">{c["after"]:.0%}</a><br>{esc(c.get("after_timesteps","미기록"))} 행동</td><td>{esc(label)}</td><td>{holdout}</td></tr>'
+            body+='</table></div>'
+        if v.get('interpretation'):body+=f'<p>{esc(v["interpretation"])}</p>'
+        body+=f'<details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{esc(json.dumps(v,ensure_ascii=False,indent=2))}</pre></details></section>'
     body+='<p><a href="report.json">보고서 JSON</a> · <a href="../../#experiments">실험 타임라인으로</a></p>'
-    (dest/'report.html').write_text('<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly Brain Lab 공개 보고서</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:32px auto;padding:20px;background:#f7f8fa;color:#22313e}section{padding:18px;background:white;border:1px solid #ddd;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}</style>'+body+'</html>')
+    (dest/'report.html').write_text('<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly Brain Lab 공개 보고서</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:32px auto;padding:20px;background:#f7f8fa;color:#22313e}section{padding:18px;background:white;border:1px solid #ddd;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:12px;text-align:left;border-bottom:1px solid #ddd;vertical-align:top}td:first-child{overflow-wrap:anywhere;min-width:150px}summary{cursor:pointer;padding:12px 0}a{color:#145c6a}</style>'+body+'</html>')
 def export_run(run,output):
     run=run.resolve();dest=output/'artifacts'/run.name;dest.mkdir(parents=True,exist_ok=True)
     with (run/'manifest.json').open() as f:original=json.load(f)
