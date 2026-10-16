@@ -1,14 +1,111 @@
-<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly Brain Lab 공개 보고서</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:32px auto;padding:20px;background:#f7f8fa;color:#22313e}section{padding:18px;background:white;border:1px solid #ddd;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}</style><h1>실험 결과 · 공개 기록</h1><p>생성 시각 2026-10-15T22:55:06+09:00. 공개 시점의 관측 결과입니다.</p><section><h2>10분 시각 기록 · pass</h2><pre>{
-  &quot;status&quot;: &quot;pass&quot;,
-  &quot;intervals&quot;: 6,
-  &quot;rendered&quot;: 6,
-  &quot;gaps&quot;: 0
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly Brain Lab 공개 보고서</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:32px auto;padding:20px;background:#f7f8fa;color:#22313e}section{padding:18px;background:white;border:1px solid #ddd;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}</style><h1>실험 결과 · 공개 기록</h1><p>생성 시각 2026-10-16T09:17:49+09:00. 공개 시점의 관측 결과입니다.</p><section><h2>10분 시각 기록 · partial</h2><pre>{
+  &quot;status&quot;: &quot;partial&quot;,
+  &quot;intervals&quot;: 68,
+  &quot;rendered&quot;: 68,
+  &quot;gaps&quot;: 1
 }</pre></section><section><h2>실제 3D 몸 실행 · pass</h2><pre>{
   &quot;status&quot;: &quot;pass&quot;,
   &quot;evidence&quot;: &quot;artifacts/20261015-220404/media/1792070388818900000-3d-near-ppo-seed11-rule-fixed.mp4&quot;
 }</pre></section><section><h2>정책의 학습 개선 · not_confirmed</h2><pre>{
   &quot;status&quot;: &quot;not_confirmed&quot;,
-  &quot;comparisons&quot;: [],
+  &quot;comparisons&quot;: [
+    {
+      &quot;trial&quot;: &quot;3d-near-bc-ppo-seed11&quot;,
+      &quot;backend&quot;: &quot;3d&quot;,
+      &quot;initial_policy&quot;: &quot;bc-initial&quot;,
+      &quot;before&quot;: 1.0,
+      &quot;after&quot;: 1.0,
+      &quot;change_pp&quot;: 0.0,
+      &quot;fixed_episodes&quot;: 20,
+      &quot;comparable_seeds&quot;: true,
+      &quot;comparable_protocol&quot;: true,
+      &quot;before_timesteps&quot;: 0,
+      &quot;after_timesteps&quot;: 10240,
+      &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792072274131695000-3d-near-bc-ppo-seed11-bc-initial-fixed.json&quot;,
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: []
+    },
+    {
+      &quot;trial&quot;: &quot;3d-near-bc-ppo-seed29&quot;,
+      &quot;backend&quot;: &quot;3d&quot;,
+      &quot;initial_policy&quot;: &quot;bc-initial&quot;,
+      &quot;before&quot;: 1.0,
+      &quot;after&quot;: 1.0,
+      &quot;change_pp&quot;: 0.0,
+      &quot;fixed_episodes&quot;: 20,
+      &quot;comparable_seeds&quot;: true,
+      &quot;comparable_protocol&quot;: true,
+      &quot;before_timesteps&quot;: 0,
+      &quot;after_timesteps&quot;: 10240,
+      &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792086518725662000-3d-near-bc-ppo-seed29-bc-initial-fixed.json&quot;,
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: []
+    },
+    {
+      &quot;trial&quot;: &quot;3d-near-bc-ppo-seed47&quot;,
+      &quot;backend&quot;: &quot;3d&quot;,
+      &quot;initial_policy&quot;: &quot;bc-initial&quot;,
+      &quot;before&quot;: 1.0,
+      &quot;after&quot;: 1.0,
+      &quot;change_pp&quot;: 0.0,
+      &quot;fixed_episodes&quot;: 20,
+      &quot;comparable_seeds&quot;: true,
+      &quot;comparable_protocol&quot;: false,
+      &quot;before_timesteps&quot;: 0,
+      &quot;after_timesteps&quot;: 2048,
+      &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json&quot;,
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: []
+    },
+    {
+      &quot;trial&quot;: &quot;3d-near-ppo-seed11&quot;,
+      &quot;backend&quot;: &quot;3d&quot;,
+      &quot;initial_policy&quot;: &quot;untrained&quot;,
+      &quot;before&quot;: 0.2,
+      &quot;after&quot;: 0.0,
+      &quot;change_pp&quot;: -20.0,
+      &quot;fixed_episodes&quot;: 20,
+      &quot;comparable_seeds&quot;: true,
+      &quot;comparable_protocol&quot;: true,
+      &quot;before_timesteps&quot;: 0,
+      &quot;after_timesteps&quot;: 10240,
+      &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792071362605026000-3d-near-ppo-seed11-untrained-fixed.json&quot;,
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: []
+    },
+    {
+      &quot;trial&quot;: &quot;3d-near-ppo-seed29&quot;,
+      &quot;backend&quot;: &quot;3d&quot;,
+      &quot;initial_policy&quot;: &quot;untrained&quot;,
+      &quot;before&quot;: 0.2,
+      &quot;after&quot;: 0.05,
+      &quot;change_pp&quot;: -15.0,
+      &quot;fixed_episodes&quot;: 20,
+      &quot;comparable_seeds&quot;: true,
+      &quot;comparable_protocol&quot;: true,
+      &quot;before_timesteps&quot;: 0,
+      &quot;after_timesteps&quot;: 10240,
+      &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792085633959981000-3d-near-ppo-seed29-untrained-fixed.json&quot;,
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: []
+    },
+    {
+      &quot;trial&quot;: &quot;3d-near-ppo-seed47&quot;,
+      &quot;backend&quot;: &quot;3d&quot;,
+      &quot;initial_policy&quot;: &quot;untrained&quot;,
+      &quot;before&quot;: 0.2,
+      &quot;after&quot;: 0.05,
+      &quot;change_pp&quot;: -15.0,
+      &quot;fixed_episodes&quot;: 20,
+      &quot;comparable_seeds&quot;: true,
+      &quot;comparable_protocol&quot;: false,
+      &quot;before_timesteps&quot;: 0,
+      &quot;after_timesteps&quot;: 4096,
+      &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json&quot;,
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: []
+    }
+  ],
   &quot;interpretation&quot;: &quot;같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다.&quot;
 }</pre></section><section><h2>장애물 회피 · not_started</h2><pre>{
   &quot;status&quot;: &quot;not_started&quot;,
@@ -18,10 +115,53 @@
   &quot;matched_budgets&quot;: [
     {
       &quot;online_timesteps&quot;: 10240,
-      &quot;completed_pairs&quot;: 0,
+      &quot;completed_pairs&quot;: 2,
       &quot;planned_pairs&quot;: 3,
-      &quot;pairs&quot;: [],
-      &quot;mean_difference_pp&quot;: null
+      &quot;pairs&quot;: [
+        {
+          &quot;seed&quot;: 11,
+          &quot;ppo&quot;: 0.0,
+          &quot;bc_ppo&quot;: 1.0,
+          &quot;difference_pp&quot;: 100.0,
+          &quot;records&quot;: [
+            &quot;artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json&quot;,
+            &quot;artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json&quot;
+          ],
+          &quot;evaluation_contract&quot;: {
+            &quot;evaluation_suite&quot;: &quot;3094622ba4a9&quot;,
+            &quot;backend&quot;: &quot;3d&quot;,
+            &quot;task&quot;: &quot;food-near&quot;,
+            &quot;curriculum&quot;: &quot;near&quot;,
+            &quot;reward_mode&quot;: &quot;dense&quot;,
+            &quot;max_steps&quot;: 120,
+            &quot;action_mode&quot;: &quot;normalized&quot;,
+            &quot;physics_error_policy&quot;: &quot;raise&quot;,
+            &quot;environment_version&quot;: &quot;food-v2-action-affine&quot;
+          }
+        },
+        {
+          &quot;seed&quot;: 29,
+          &quot;ppo&quot;: 0.05,
+          &quot;bc_ppo&quot;: 1.0,
+          &quot;difference_pp&quot;: 95.0,
+          &quot;records&quot;: [
+            &quot;artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json&quot;,
+            &quot;artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json&quot;
+          ],
+          &quot;evaluation_contract&quot;: {
+            &quot;evaluation_suite&quot;: &quot;3094622ba4a9&quot;,
+            &quot;backend&quot;: &quot;3d&quot;,
+            &quot;task&quot;: &quot;food-near&quot;,
+            &quot;curriculum&quot;: &quot;near&quot;,
+            &quot;reward_mode&quot;: &quot;dense&quot;,
+            &quot;max_steps&quot;: 120,
+            &quot;action_mode&quot;: &quot;normalized&quot;,
+            &quot;physics_error_policy&quot;: &quot;raise&quot;,
+            &quot;environment_version&quot;: &quot;food-v2-action-affine&quot;
+          }
+        }
+      ],
+      &quot;mean_difference_pp&quot;: 97.5
     },
     {
       &quot;online_timesteps&quot;: 20480,

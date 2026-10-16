@@ -1,13 +1,13 @@
 {
   "run_id": "20261015-220404",
-  "generated_at": "2026-10-15T22:55:06+09:00",
-  "elapsed_hours": 0.8505201252301534,
+  "generated_at": "2026-10-16T09:17:49+09:00",
+  "elapsed_hours": 11.22928128639857,
   "verdict": {
     "record_system": {
-      "status": "pass",
-      "intervals": 6,
-      "rendered": 6,
-      "gaps": 0
+      "status": "partial",
+      "intervals": 68,
+      "rendered": 68,
+      "gaps": 1
     },
     "3d_execution": {
       "status": "pass",
@@ -15,7 +15,104 @@
     },
     "learning_improvement": {
       "status": "not_confirmed",
-      "comparisons": [],
+      "comparisons": [
+        {
+          "trial": "3d-near-bc-ppo-seed11",
+          "backend": "3d",
+          "initial_policy": "bc-initial",
+          "before": 1.0,
+          "after": 1.0,
+          "change_pp": 0.0,
+          "fixed_episodes": 20,
+          "comparable_seeds": true,
+          "comparable_protocol": true,
+          "before_timesteps": 0,
+          "after_timesteps": 10240,
+          "before_record": "artifacts/20261015-220404/evaluations/1792072274131695000-3d-near-bc-ppo-seed11-bc-initial-fixed.json",
+          "after_record": "artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json",
+          "holdout": []
+        },
+        {
+          "trial": "3d-near-bc-ppo-seed29",
+          "backend": "3d",
+          "initial_policy": "bc-initial",
+          "before": 1.0,
+          "after": 1.0,
+          "change_pp": 0.0,
+          "fixed_episodes": 20,
+          "comparable_seeds": true,
+          "comparable_protocol": true,
+          "before_timesteps": 0,
+          "after_timesteps": 10240,
+          "before_record": "artifacts/20261015-220404/evaluations/1792086518725662000-3d-near-bc-ppo-seed29-bc-initial-fixed.json",
+          "after_record": "artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json",
+          "holdout": []
+        },
+        {
+          "trial": "3d-near-bc-ppo-seed47",
+          "backend": "3d",
+          "initial_policy": "bc-initial",
+          "before": 1.0,
+          "after": 1.0,
+          "change_pp": 0.0,
+          "fixed_episodes": 20,
+          "comparable_seeds": true,
+          "comparable_protocol": false,
+          "before_timesteps": 0,
+          "after_timesteps": 2048,
+          "before_record": "artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json",
+          "after_record": "artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json",
+          "holdout": []
+        },
+        {
+          "trial": "3d-near-ppo-seed11",
+          "backend": "3d",
+          "initial_policy": "untrained",
+          "before": 0.2,
+          "after": 0.0,
+          "change_pp": -20.0,
+          "fixed_episodes": 20,
+          "comparable_seeds": true,
+          "comparable_protocol": true,
+          "before_timesteps": 0,
+          "after_timesteps": 10240,
+          "before_record": "artifacts/20261015-220404/evaluations/1792071362605026000-3d-near-ppo-seed11-untrained-fixed.json",
+          "after_record": "artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json",
+          "holdout": []
+        },
+        {
+          "trial": "3d-near-ppo-seed29",
+          "backend": "3d",
+          "initial_policy": "untrained",
+          "before": 0.2,
+          "after": 0.05,
+          "change_pp": -15.0,
+          "fixed_episodes": 20,
+          "comparable_seeds": true,
+          "comparable_protocol": true,
+          "before_timesteps": 0,
+          "after_timesteps": 10240,
+          "before_record": "artifacts/20261015-220404/evaluations/1792085633959981000-3d-near-ppo-seed29-untrained-fixed.json",
+          "after_record": "artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json",
+          "holdout": []
+        },
+        {
+          "trial": "3d-near-ppo-seed47",
+          "backend": "3d",
+          "initial_policy": "untrained",
+          "before": 0.2,
+          "after": 0.05,
+          "change_pp": -15.0,
+          "fixed_episodes": 20,
+          "comparable_seeds": true,
+          "comparable_protocol": false,
+          "before_timesteps": 0,
+          "after_timesteps": 4096,
+          "before_record": "artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json",
+          "after_record": "artifacts/20261015-220404/evaluations/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.json",
+          "holdout": []
+        }
+      ],
       "interpretation": "같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다."
     },
     "obstacles": {
@@ -27,10 +124,53 @@
       "matched_budgets": [
         {
           "online_timesteps": 10240,
-          "completed_pairs": 0,
+          "completed_pairs": 2,
           "planned_pairs": 3,
-          "pairs": [],
-          "mean_difference_pp": null
+          "pairs": [
+            {
+              "seed": 11,
+              "ppo": 0.0,
+              "bc_ppo": 1.0,
+              "difference_pp": 100.0,
+              "records": [
+                "artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json",
+                "artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json"
+              ],
+              "evaluation_contract": {
+                "evaluation_suite": "3094622ba4a9",
+                "backend": "3d",
+                "task": "food-near",
+                "curriculum": "near",
+                "reward_mode": "dense",
+                "max_steps": 120,
+                "action_mode": "normalized",
+                "physics_error_policy": "raise",
+                "environment_version": "food-v2-action-affine"
+              }
+            },
+            {
+              "seed": 29,
+              "ppo": 0.05,
+              "bc_ppo": 1.0,
+              "difference_pp": 95.0,
+              "records": [
+                "artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json",
+                "artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json"
+              ],
+              "evaluation_contract": {
+                "evaluation_suite": "3094622ba4a9",
+                "backend": "3d",
+                "task": "food-near",
+                "curriculum": "near",
+                "reward_mode": "dense",
+                "max_steps": 120,
+                "action_mode": "normalized",
+                "physics_error_policy": "raise",
+                "environment_version": "food-v2-action-affine"
+              }
+            }
+          ],
+          "mean_difference_pp": 97.5
         },
         {
           "online_timesteps": 20480,
@@ -43,7 +183,53 @@
       "interpretation": "같은 온라인 행동 예산과 평가 조건에서만 seed별 차이를 계산합니다. B 경로는 별도 시범 비용이 있으며, 세 seed의 차이를 통계적 확정으로 해석하지 않습니다."
     }
   },
-  "errors": [],
+  "errors": [
+    {
+      "id": "d575737946ec48c39c9b5ad1fa7989ef",
+      "at": "2026-10-16T07:24:23+09:00",
+      "epoch": 1792103063.2373161,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "실험 실행 오류 · 코드 검토 필요",
+      "returncode": 1
+    },
+    {
+      "id": "9f7e67f3fe134817af8d158aa118ba6c",
+      "at": "2026-10-16T07:24:23+09:00",
+      "epoch": 1792103063.239649,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "자동 실험 진행 보류",
+      "detail": "RuntimeError('lab.learning failed; inspect job-v2-1792102482518173000.log')"
+    },
+    {
+      "id": "f11fd87b143b4cabb6f42361cb82aa4d",
+      "at": "2026-10-16T08:11:31+09:00",
+      "epoch": 1792105891.1511822,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "실험 실행 오류 · 코드 검토 필요",
+      "returncode": 1
+    },
+    {
+      "id": "063ff3914cad45ea9b729b0a7b9fa5ef",
+      "at": "2026-10-16T08:11:31+09:00",
+      "epoch": 1792105891.1524491,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "자동 실험 진행 보류",
+      "detail": "RuntimeError('lab.learning failed; inspect job-v2-1792105262984344000.log')"
+    },
+    {
+      "id": "2314d34afadf42509db9152b53d54ec8",
+      "at": "2026-10-16T08:37:31+09:00",
+      "epoch": 1792107451.259868,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "호환성 측정의 기존 환경 실행 경로 수정",
+      "detail": "가상환경 Python의 심볼릭 링크를 실제 인터프리터 경로로 풀어 실행하면서 numpy를 읽지 못했습니다. 모델 문제가 아니며 올바른 가상환경 경로로 재실행합니다."
+    }
+  ],
   "remaining": [
     "실제 초파리 뇌 전체와 생물학적 가소성은 이번 정책 학습의 대상이 아닙니다.",
     "서로 다른 환경 seed와 새로운 조건에서 반복 검증이 필요합니다."
@@ -51,11 +237,11 @@
   "reproduction": "See README.md and per-evaluation config/seeds/checkpoint/actions.",
   "publication": {
     "status": "deployed",
-    "at": "2026-10-15T22:50:43+09:00",
-    "commit": "aafe134d2872b177af55bc576ddc8c3d06356e61",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/aafe134d2872b177af55bc576ddc8c3d06356e61",
-    "snapshot_at": "2026-10-15T13:50:39+00:00",
+    "at": "2026-10-16T09:05:14+09:00",
+    "commit": "7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
+    "snapshot_at": "2026-10-16T00:05:05+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-15T22:51:14+09:00"
+    "verified_at": "2026-10-16T09:06:03+09:00"
   }
 }

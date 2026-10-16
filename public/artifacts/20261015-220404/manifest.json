@@ -27,30 +27,30 @@
     "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
     "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
     "next_action": "10,240 행동 경계와 주기적 고정 평가에서 비교",
-    "updated_at": "2026-10-16T09:04:56+09:00",
+    "updated_at": "2026-10-16T09:14:42+09:00",
     "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
     "training": {
       "trial": "3d-near-ppo-seed47",
-      "timesteps": 4384,
-      "steps_this_segment": 288,
-      "decisions_per_second": 1.9336354817843653,
+      "timesteps": 5558,
+      "steps_this_segment": 1462,
+      "decisions_per_second": 1.9878642006667524,
       "reward_terms_sum": {
-        "approach": -1.3048395621662041,
-        "arrival": 0.0,
-        "time": -7.200000000000035,
+        "approach": -11.107621032141028,
+        "arrival": 60.0,
+        "time": -36.549999999998995,
         "collision": 0.0,
         "flip": 0.0
       },
-      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000004352.zip",
+      "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000005376.zip",
       "action_mean": [
-        -0.5620268509826727,
-        0.019912855402152572
+        -0.5268914981066121,
+        0.101287969233909
       ],
       "action_std": [
-        0.967069636512844,
-        0.9980386265329444
+        0.9710677388579754,
+        1.0264459646897315
       ],
-      "action_clipped_fraction": 0.3350694444444444
+      "action_clipped_fraction": 0.34610123119015046
     }
   },
   "intervals": [
@@ -14889,6 +14889,302 @@
       "record_type": "interval",
       "recording_delay_seconds": 3.3257107734680176,
       "last_evaluated_at": "2026-10-16T09:02:14+09:00"
+    },
+    {
+      "id": "20261015-220404-0067",
+      "index": 67,
+      "recorded_at": "2026-10-16T09:14:09+09:00",
+      "scheduled_epoch": 1792109644.360686,
+      "elapsed_minutes": 670.0832729458809,
+      "backend": "3d",
+      "status": "training",
+      "title": "동일 조건 행동 평가 시작",
+      "question": "같은 학습량에서 두 경로의 먹이 도달률은 어떻게 달라질까?",
+      "change": "3d-near-ppo-seed47: 정규화한 행동, dense 보상",
+      "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
+      "next_action": "10,240 행동 경계와 주기적 고정 평가에서 비교",
+      "training": {
+        "trial": "3d-near-ppo-seed47",
+        "timesteps": 5478,
+        "steps_this_segment": 1382,
+        "decisions_per_second": 1.9940925800542908,
+        "reward_terms_sum": {
+          "approach": -17.52062889530675,
+          "arrival": 60.0,
+          "time": -34.54999999999911,
+          "collision": 0.0,
+          "flip": 0.0
+        },
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000005376.zip",
+        "action_mean": [
+          -0.5263171320088348,
+          0.10277846047732919
+        ],
+        "action_std": [
+          0.9742182954639994,
+          1.0285792378164342
+        ],
+        "action_clipped_fraction": 0.34406657018813314
+      },
+      "events": [
+        {
+          "id": "136cdc1a16a34e46a597b34c770f4036",
+          "at": "2026-10-16T09:05:02+09:00",
+          "epoch": 1792109102.9340181,
+          "actor": "local-script",
+          "kind": "maintenance",
+          "title": "기록·렌더·공개 worker의 새 자료 형식 반영",
+          "detail": "현재 렌더가 끝난 뒤 worker를 교체했습니다. 학습·평가 child는 중단하지 않았습니다. 10분 기록과 공개 주기는 유지합니다."
+        },
+        {
+          "id": "d8647a90e7554a54bb3c507118f1d3c7",
+          "at": "2026-10-16T09:05:14+09:00",
+          "epoch": 1792109163.6811981,
+          "actor": "local-script",
+          "kind": "publication",
+          "title": "공개 스냅샷 배포 확인",
+          "status": "deployed",
+          "commit": "7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
+          "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
+          "snapshot_at": "2026-10-16T00:05:05+00:00",
+          "url": "https://bookseal.github.io/virtual-fly-brain/",
+          "verified_at": "2026-10-16T09:06:03+09:00"
+        },
+        {
+          "id": "608222fb66434df6b78a5bb113ff53fc",
+          "at": "2026-10-16T09:06:57+09:00",
+          "epoch": 1792109217.47157,
+          "actor": "local-script",
+          "kind": "checkpoint",
+          "title": "10분 정책 체크포인트 저장",
+          "trial": "3d-near-noise-v2-small-seed11",
+          "timesteps": 1200
+        },
+        {
+          "id": "fafc847276c748c7b06e9bf303db7705",
+          "at": "2026-10-16T09:12:28+09:00",
+          "epoch": 1792109548.324502,
+          "actor": "local-script",
+          "kind": "checkpoint",
+          "title": "10분 정책 체크포인트 저장",
+          "trial": "3d-near-ppo-seed47",
+          "timesteps": 5288
+        },
+        {
+          "id": "e08f8a4a976d4f2697d8d580996977ed",
+          "at": "2026-10-16T09:13:32+09:00",
+          "epoch": 1792109612.304248,
+          "actor": "codex-agent",
+          "kind": "research",
+          "title": "저장된 정책을 함수처럼 검사했습니다",
+          "question": "먹이 방향과 거리를 바꿔 입력하면 좌우 신호도 바뀔까?",
+          "observation": "153가지 가정 입력을 8개 저장 모델에 넣어 계산했습니다. seed 11의 PPO 단독 모델은 먹이 정면 7 mm·속력 0 입력에서 좌우 신호가 약 0.006과 0.000이었습니다. seed 29의 같은 경로는 거리를 7 mm에서 1.5 mm로 줄이면 왼쪽 신호가 약 0.833에서 0.158로 줄었습니다.",
+          "interpretation": "실패 모델마다 반응이 다릅니다. 첫 모델은 이 입력에서 명령이 매우 작고, 다른 모델은 먹이 거리와 속력에 따라 출력을 바꿉니다. 가정 입력을 검사한 것이므로 실제 정지 원인이나 성공률을 확정하지 않습니다. 이 검사는 완료된 실패 사례를 본 뒤 설계한 탐색적 분석입니다.",
+          "next_action": "공개 화면에서 방향·거리·속력을 바꾸어 보고 실제 경로 재생과 비교합니다. 탐험 폭 비교의 실제 고정 평가 결과는 따로 기다립니다.",
+          "evidence": "artifacts/20261015-220404/policy-probe.json",
+          "prediction": {
+            "prompt": "동일한 모델에서 속력 입력만 바꿨더니 신호가 작아졌습니다. 무엇을 확인한 걸까요?",
+            "options": [
+              "그 가정 입력들에서 속력이 정책 출력에 영향을 줬다",
+              "그 모델이 실제로 반드시 멈춘다는 것을 증명했다",
+              "먹이 도달률이 높아졌다는 것을 증명했다"
+            ],
+            "answer": 0,
+            "explanation": "입력과 출력의 관계를 확인했습니다. 실제 몸에서의 움직임과 목표 달성 여부는 별도의 행동 평가가 필요합니다."
+          }
+        },
+        {
+          "id": "1a5b330c470f4774b5f65a2f7ff19b17",
+          "at": "2026-10-16T09:13:50+09:00",
+          "epoch": 1792109630.004349,
+          "actor": "local-script",
+          "kind": "training",
+          "title": "학습 구간 저장",
+          "trial": "3d-near-noise-v2-small-seed11",
+          "checkpoint": "runs/20261015-220404/checkpoints/3d-near-noise-v2-small-seed11/step-000002048.zip",
+          "timesteps": 2048,
+          "seconds": 1012.9347929954529,
+          "stopped": false,
+          "config": {
+            "trial": "3d-near-noise-v2-small-seed11",
+            "backend": "3d",
+            "task": "food",
+            "curriculum": "near",
+            "reward_mode": "dense",
+            "max_steps": 120,
+            "seed": 11,
+            "action_mode": "normalized",
+            "environment_version": "food-v2-action-affine",
+            "initialization": "random",
+            "physics_error_policy": "terminate",
+            "recovery_protocol": "numerical-failure-v1",
+            "initial_log_std": -1.0,
+            "training_rng_protocol": "explicit-seed-before-checkpoint-v2",
+            "purpose": "one-factor initial exploration ablation with fresh seeded control"
+          }
+        },
+        {
+          "id": "37cbbc738f714fd39c5af79b6574acb9",
+          "at": "2026-10-16T09:13:51+09:00",
+          "epoch": 1792109631.620341,
+          "actor": "local-script",
+          "kind": "command",
+          "title": "초기 탐험 폭 변경 실험",
+          "command": ".venv/bin/python -m lab.learning evaluate runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-noise-v2-small-seed11.json --workers 2 --checkpoint runs/20261015-220404/checkpoints/3d-near-noise-v2-small-seed11/step-000002048.zip --policy ppo-low-noise --background-evaluation",
+          "command_ko": "주 비교와 다른 trial에 저장합니다. 초기 탐험 폭 외의 학습 조건은 유지합니다."
+        },
+        {
+          "id": "d164c8fb84fa4c62b1f498500d29592a",
+          "at": "2026-10-16T09:13:51+09:00",
+          "epoch": 1792109631.720341,
+          "actor": "local-script",
+          "kind": "evaluation",
+          "title": "동일 조건 행동 평가 시작",
+          "trial": "3d-near-noise-v2-small-seed11",
+          "policy": "ppo-low-noise",
+          "seeds": [
+            10000,
+            10001,
+            10002,
+            10003,
+            10004,
+            10005,
+            10006,
+            10007,
+            10008,
+            10009,
+            10010,
+            10011,
+            10012,
+            10013,
+            10014,
+            10015,
+            10016,
+            10017,
+            10018,
+            10019
+          ],
+          "backend": "3d",
+          "task": "food",
+          "command": ".venv/bin/python -m lab.learning evaluate runs/20261015-220404 --config runs/20261015-220404/configs/3d-near-noise-v2-small-seed11.json --policy ppo-low-noise --checkpoint runs/20261015-220404/checkpoints/3d-near-noise-v2-small-seed11/step-000002048.zip --seed-start 10000 --episodes 20 --workers 2",
+          "command_ko": "학습에 쓰지 않은 고정 시작 조건에서 먹이 도달 횟수를 셉니다. 모델을 평가 중에 업데이트하지 않습니다."
+        }
+      ],
+      "evaluation": {
+        "id": "1792107765481822000-3d-near-ppo-seed47-ppo-fixed",
+        "evaluated_at": "2026-10-16T09:02:14+09:00",
+        "backend": "3d",
+        "task": "food-near",
+        "policy": "ppo",
+        "policy_family": "3d-near-ppo-seed47",
+        "trial": "3d-near-ppo-seed47",
+        "seed": 47,
+        "timesteps": 4096,
+        "success_rate": 0.05,
+        "successes": 1,
+        "episodes": 20,
+        "mean_steps": 119.25,
+        "mean_success_seconds": 5.25,
+        "collision_count": 0,
+        "flip_count": 0,
+        "numerical_failure_count": 0,
+        "seconds": 1169.0344688892365,
+        "evaluation_suite": "3094622ba4a9",
+        "selection_holdout": false,
+        "seeds": [
+          10000,
+          10001,
+          10002,
+          10003,
+          10004,
+          10005,
+          10006,
+          10007,
+          10008,
+          10009,
+          10010,
+          10011,
+          10012,
+          10013,
+          10014,
+          10015,
+          10016,
+          10017,
+          10018,
+          10019
+        ],
+        "progress_dir": "artifacts/20261015-220404/evaluation-progress/1792107765481822000-3d-near-ppo-seed47-ppo-fixed",
+        "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-ppo-seed47/step-000004096.zip",
+        "config": {
+          "trial": "3d-near-ppo-seed47",
+          "backend": "3d",
+          "task": "food",
+          "curriculum": "near",
+          "reward_mode": "dense",
+          "max_steps": 120,
+          "seed": 47,
+          "action_mode": "normalized",
+          "environment_version": "food-v2-action-affine",
+          "initialization": "random",
+          "physics_error_policy": "terminate",
+          "recovery_protocol": "numerical-failure-v1"
+        },
+        "video": "artifacts/20261015-220404/media/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.mp4",
+        "video_seed": 10000,
+        "path_image": "artifacts/20261015-220404/media/1792107765481822000-3d-near-ppo-seed47-ppo-fixed-paths.png",
+        "record_url": "artifacts/20261015-220404/evaluations/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.json",
+        "source_version": {
+          "at": "2026-10-16T08:42:45+09:00",
+          "version": "ffb0c4197a43e40e",
+          "path": "artifacts/20261015-220404/source/ffb0c4197a43e40e",
+          "sha256": {
+            "lab/store.py": "96f822b6c4f36e917b24ce9d25efc3a103d245030d7efaec27e4afeead98bba9",
+            "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
+            "lab/baselines.py": "a9209fbffcba5191d81dbae344cc94610e5b5cd8c411e12b1d176376dd1378b2",
+            "lab/server.py": "ccf3f3233fdbf8f897412f3553e18631ca9a6e84d18abe94b76ef2a933eaba30",
+            "lab/journal.py": "863f35642ea981540dbb9d685e830053581a217dee76f38420eb706ac7d2f7f4",
+            "lab/benchmark.py": "2905ebbcda376c972e49608dfda2c0096a43446d96b6e0337f7f1c11d9cf1825",
+            "lab/policy_audit.py": "cf5563d07e6c479af16fa52f0789abfd1881871ecc3fe577be7156cc8ca98e9c",
+            "lab/repair_first_run.py": "172210c462715a0288500bb14489bb19e8341f16031898f58317c4218d8ad393",
+            "lab/start_day2.py": "2f2c207208abb906bb5bc8691d1215a3a27557fad1e5fe57db0435e7b3db4c03",
+            "lab/recorder.py": "0b00210e1fc2b292c8c3d8a7f184fb5e68f675f083168f7593ed343151eaa7a3",
+            "lab/quota.py": "e7335da5c68b4d4578ec1e32f9983f44b3a72ce829b633c469370b3a1ecbed5d",
+            "lab/__init__.py": "a305554192d124c4ea2484511db4f68e5e281741f5c3973780b4ab676bf8d99a",
+            "lab/compatibility_probe.py": "a9f2a4c935192e5c89a0c6578b33203f603ac3933a482557f3bd18f34ada9bf1",
+            "lab/imitation.py": "794bbf9e42dab2b340bae0476080cf8a8159a519072b5c10ea053f75a5520c09",
+            "lab/campaign.py": "2131b0a373f1ad0307c438e66b7525d8edeb91e60f22128862cbbe211dce7305",
+            "lab/diagnose.py": "ba9a040d6a47c4e01bb087211a4533333176138cc22a3fa251eecf5689bf1dca",
+            "lab/replay.py": "bb5308bbc5463d42b4d5fa26c34969e730f31aa4febaccad5bf7423f7eb1a0da",
+            "lab/generalization.py": "b6f2647930aaaa6f06b8e6daad624ea7448b0a217993f1ba2a550a8b90675e85",
+            "lab/noise_ablation.py": "456f95f1aeb4b122d3fad9fe17735f926e40fba01eabb0ccb16dc0f8475922d1",
+            "lab/reload_supervisor.py": "e34c5347b5bcc79a9d23a454fad50fbf1d38c874ce7bd00eacd89de0d8165b59",
+            "lab/campaign_v2.py": "cd9a2eda02e6155f0bd74cc14ec0e3e5c5ca6ab943898dce84b46238668ed215",
+            "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
+            "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
+            "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
+            "lab/video.py": "8bd0f78582a111559bd533dd3cc709b7762f0d4f0d9d4c9bc938af0bad2320b6",
+            "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
+            "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
+            "lab/analyze.py": "5e8fa16fe6b350ed823c56ee6dd31d1939df07b9a2a475771747384c742cd7d5",
+            "requirements.lock.txt": "9ce487ddaebab2de5c57ad017304da1b184a8fc15a784044eca2f259ec6d5caf",
+            "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
+          }
+        },
+        "checkpoint_sha256": "7cbaa186712f5c47b4e5e0c67f163ba1ee94abd646a31cd1438cddba51b31f95"
+      },
+      "media": [
+        "artifacts/20261015-220404/media/interval-0067.svg"
+      ],
+      "render": {
+        "status": "done",
+        "completed_at": "2026-10-16T09:14:48+09:00",
+        "video": "artifacts/20261015-220404/videos/interval-0067/recap.mp4",
+        "source_intervals": null
+      },
+      "actor": "local-script",
+      "record_type": "interval",
+      "recording_delay_seconds": 4.9963767528533936,
+      "last_evaluated_at": "2026-10-16T09:02:14+09:00"
     }
   ],
   "evaluations": [
@@ -18411,7 +18707,7 @@
   ],
   "retrospective": {},
   "report": "artifacts/20261015-220404/report.html",
-  "updated_at": "2026-10-16T09:04:57+09:00",
+  "updated_at": "2026-10-16T09:14:48+09:00",
   "journal": {
     "entries": [
       {
@@ -18777,6 +19073,29 @@
         "interpretation": "이 Mac에서 두 환경이 실행된다는 증거입니다. 몸·제어기·초기 안정화 구현이 다르고 측정 때의 주 실험 부하도 같다고 보장할 수 없어, 같은 학습 과제의 속도 개선 배수로 해석하지 않습니다. 공식 소개 수치를 검증했다고도 하지 않습니다.",
         "next_action": "주 비교의 엔진을 유지하고, 작은 탐험 폭 조건의 2,048회 학습을 이어갑니다. 새 API의 학습 환경 이식에는 관찰·행동·보상과 모델 전이를 따로 검증해야 합니다.",
         "evidence": "artifacts/20261015-220404/compatibility/flygym2/legacy.json"
+      },
+      {
+        "id": "e08f8a4a976d4f2697d8d580996977ed",
+        "at": "2026-10-16T09:13:32+09:00",
+        "epoch": 1792109612.304248,
+        "actor": "codex-agent",
+        "kind": "research",
+        "title": "저장된 정책을 함수처럼 검사했습니다",
+        "question": "먹이 방향과 거리를 바꿔 입력하면 좌우 신호도 바뀔까?",
+        "observation": "153가지 가정 입력을 8개 저장 모델에 넣어 계산했습니다. seed 11의 PPO 단독 모델은 먹이 정면 7 mm·속력 0 입력에서 좌우 신호가 약 0.006과 0.000이었습니다. seed 29의 같은 경로는 거리를 7 mm에서 1.5 mm로 줄이면 왼쪽 신호가 약 0.833에서 0.158로 줄었습니다.",
+        "interpretation": "실패 모델마다 반응이 다릅니다. 첫 모델은 이 입력에서 명령이 매우 작고, 다른 모델은 먹이 거리와 속력에 따라 출력을 바꿉니다. 가정 입력을 검사한 것이므로 실제 정지 원인이나 성공률을 확정하지 않습니다. 이 검사는 완료된 실패 사례를 본 뒤 설계한 탐색적 분석입니다.",
+        "next_action": "공개 화면에서 방향·거리·속력을 바꾸어 보고 실제 경로 재생과 비교합니다. 탐험 폭 비교의 실제 고정 평가 결과는 따로 기다립니다.",
+        "evidence": "artifacts/20261015-220404/policy-probe.json",
+        "prediction": {
+          "prompt": "동일한 모델에서 속력 입력만 바꿨더니 신호가 작아졌습니다. 무엇을 확인한 걸까요?",
+          "options": [
+            "그 가정 입력들에서 속력이 정책 출력에 영향을 줬다",
+            "그 모델이 실제로 반드시 멈춘다는 것을 증명했다",
+            "먹이 도달률이 높아졌다는 것을 증명했다"
+          ],
+          "answer": 0,
+          "explanation": "입력과 출력의 관계를 확인했습니다. 실제 몸에서의 움직임과 목표 달성 여부는 별도의 행동 평가가 필요합니다."
+        }
       }
     ]
   },
@@ -19783,12 +20102,12 @@
   },
   "deployment": {
     "status": "deployed",
-    "at": "2026-10-16T08:58:42+09:00",
-    "commit": "e6532216756d2a039472ba08b08b00392ace097e",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/e6532216756d2a039472ba08b08b00392ace097e",
-    "snapshot_at": "2026-10-15T23:58:32+00:00",
+    "at": "2026-10-16T09:05:14+09:00",
+    "commit": "7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/7a1c48fc242d9b61cd079b8db41513a16b3ebef3",
+    "snapshot_at": "2026-10-16T00:05:05+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T08:59:14+09:00"
+    "verified_at": "2026-10-16T09:06:03+09:00"
   },
   "analysis": {
     "at": "2026-10-16T09:02:14+09:00",
@@ -21976,12 +22295,12 @@
     "launch_failure": "artifacts/20261015-220404/compatibility/flygym2/legacy-launch-failure.json"
   },
   "policy-probe": {
-    "at": "2026-10-16T09:03:26+09:00",
+    "at": "2026-10-16T09:08:53+09:00",
     "kind": "hypothetical-input-policy-query",
     "source_version": {
-      "at": "2026-10-16T09:03:26+09:00",
-      "version": "3e1911183a357421",
-      "path": "artifacts/20261015-220404/source/3e1911183a357421",
+      "at": "2026-10-16T09:08:53+09:00",
+      "version": "eb02b8d6a1118720",
+      "path": "artifacts/20261015-220404/source/eb02b8d6a1118720",
       "sha256": {
         "lab/store.py": "d5074fc04231e52c34d0fdfe66934f5c4d7d33bec627e119169bf568a4508d08",
         "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
@@ -22007,7 +22326,7 @@
         "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
         "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
         "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
-        "lab/policy_probe.py": "64b9b9098951d4f8af6cfb76443904ab2e38fec40e518fb1aa9eaf4078ee4086",
+        "lab/policy_probe.py": "61c527e93821bc0bb1760a425c4455e73482b1b4d0c690670d2cbfd2ba307cfe",
         "lab/video.py": "c8db83b82a7d7bfba2228b488e338847f9b5c789bea10f446dca20b846a63161",
         "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
         "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
@@ -22016,7 +22335,7 @@
         "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
       }
     },
-    "source_sha256": "64b9b9098951d4f8af6cfb76443904ab2e38fec40e518fb1aa9eaf4078ee4086",
+    "source_sha256": "61c527e93821bc0bb1760a425c4455e73482b1b4d0c690670d2cbfd2ba307cfe",
     "input_definition": "먹이까지 1.5/3/7 mm, 방향 -40~40도(5도 간격), 몸 속력 0/6/12 mm/s. 회전 속력 0, 장애물 없음.",
     "selection_note": "완료된 실패 사례를 보고 설계한 탐색적 검사입니다. 도착 문턱 1.2 mm보다 밖에서 멈추는 현상을 살펴보려고 가까운 거리도 포함했습니다.",
     "cases": [
@@ -43656,12 +43975,13 @@
       }
     ],
     "limitation": "가정한 관찰값을 저장된 모델에 넣은 출력입니다. 실제 이동 경로·방문 상태·성공률을 측정한 결과가 아닙니다. 신호 차이를 실제 회전 각도로 바꾸어 해석하지 않습니다.",
-    "source": "lab/policy_probe.py"
+    "source": "lab/policy_probe.py",
+    "record_url": "artifacts/20261015-220404/policy-probe.json"
   },
   "publication": {
     "mode": "snapshot",
-    "exported_at": "2026-10-16T00:05:05+00:00",
-    "snapshot_epoch": 1792109106.921132,
+    "exported_at": "2026-10-16T00:17:55+00:00",
+    "snapshot_epoch": 1792109877.620821,
     "repository": "https://github.com/bookseal/virtual-fly-brain",
     "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
   },
@@ -44075,6 +44395,7 @@
     "artifacts/20261015-220404/source/c8ee4f69a231e543/sha256.json",
     "artifacts/20261015-220404/source/dce13159ba1c0f31/sha256.json",
     "artifacts/20261015-220404/source/e98396aa4f9e2482/sha256.json",
+    "artifacts/20261015-220404/source/eb02b8d6a1118720/sha256.json",
     "artifacts/20261015-220404/source/f82d94273833163f/sha256.json",
     "artifacts/20261015-220404/source/fd62fbb99ea948bf/sha256.json",
     "artifacts/20261015-220404/source/ffb0c4197a43e40e/sha256.json"

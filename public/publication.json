@@ -1,7 +1,7 @@
 {
   "mode": "snapshot",
-  "exported_at": "2026-10-16T00:05:05+00:00",
-  "snapshot_epoch": 1792109106.921132,
+  "exported_at": "2026-10-16T00:17:55+00:00",
+  "snapshot_epoch": 1792109877.620821,
   "repository": "https://github.com/bookseal/virtual-fly-brain",
   "note": "로컬에서 실행한 실험 결과의 공개 스냅샷입니다."
 }

@@ -1,10 +1,10 @@
 {
-  "at": "2026-10-16T09:03:26+09:00",
+  "at": "2026-10-16T09:08:53+09:00",
   "kind": "hypothetical-input-policy-query",
   "source_version": {
-    "at": "2026-10-16T09:03:26+09:00",
-    "version": "3e1911183a357421",
-    "path": "artifacts/20261015-220404/source/3e1911183a357421",
+    "at": "2026-10-16T09:08:53+09:00",
+    "version": "eb02b8d6a1118720",
+    "path": "artifacts/20261015-220404/source/eb02b8d6a1118720",
     "sha256": {
       "lab/store.py": "d5074fc04231e52c34d0fdfe66934f5c4d7d33bec627e119169bf568a4508d08",
       "lab/envs.py": "544c53767a8c136434fcd2c73de54ec295d22110f53ba10ba9000f79a125223e",
@@ -30,7 +30,7 @@
       "lab/manage.py": "8fd3819e4bd89a1c24f9d858d6f899e80f5daf772b5bf0833d6cbb100ea39f25",
       "lab/publisher.py": "a614700b194a69e7e4178a247c42532cf5febb71f0c6d116242d8aa4fe1abf6f",
       "lab/learning.py": "242dcf8e078876d106c92c44347b51e4c59fb60fcd77b03624d889a86bcafa9d",
-      "lab/policy_probe.py": "64b9b9098951d4f8af6cfb76443904ab2e38fec40e518fb1aa9eaf4078ee4086",
+      "lab/policy_probe.py": "61c527e93821bc0bb1760a425c4455e73482b1b4d0c690670d2cbfd2ba307cfe",
       "lab/video.py": "c8db83b82a7d7bfba2228b488e338847f9b5c789bea10f446dca20b846a63161",
       "lab/smoke3d.py": "4ea788b0a9c6a6e7d7b2bcb10d0db87ef6d3d71eef5b3ecfb4c175d12191ab0c",
       "lab/report.py": "03a99c8b654882dfd966fabd4ad988b4a15b97b19336b682f52b396093eb6ee2",
@@ -39,7 +39,7 @@
       "video/package-lock.json": "775447d0d0aa12b4581db00c4275b331ce9d06845378a1d3ea247311c9399e37"
     }
   },
-  "source_sha256": "64b9b9098951d4f8af6cfb76443904ab2e38fec40e518fb1aa9eaf4078ee4086",
+  "source_sha256": "61c527e93821bc0bb1760a425c4455e73482b1b4d0c690670d2cbfd2ba307cfe",
   "input_definition": "먹이까지 1.5/3/7 mm, 방향 -40~40도(5도 간격), 몸 속력 0/6/12 mm/s. 회전 속력 0, 장애물 없음.",
   "selection_note": "완료된 실패 사례를 보고 설계한 탐색적 검사입니다. 도착 문턱 1.2 mm보다 밖에서 멈추는 현상을 살펴보려고 가까운 거리도 포함했습니다.",
   "cases": [
@@ -21679,5 +21679,6 @@
     }
   ],
   "limitation": "가정한 관찰값을 저장된 모델에 넣은 출력입니다. 실제 이동 경로·방문 상태·성공률을 측정한 결과가 아닙니다. 신호 차이를 실제 회전 각도로 바꾸어 해석하지 않습니다.",
-  "source": "lab/policy_probe.py"
+  "source": "lab/policy_probe.py",
+  "record_url": "artifacts/20261015-220404/policy-probe.json"
 }
