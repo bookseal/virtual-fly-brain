@@ -1,12 +1,12 @@
 {
   "status": "evaluating",
   "backend": "3d",
-  "activity": "ppo 20회 평가",
+  "activity": "ppo 30회 평가",
   "question": "같은 시작 조건에서 이전보다 먹이에 더 잘 도착할까?",
   "change": "3d-near-ppo-seed11: 정규화한 행동, dense 보상",
-  "result": "3d ppo: 동일 조건 20회 중 0회 도달. 학습량 12,288회.",
+  "result": "3d ppo: 동일 조건 30회 중 0회 도달. 학습량 12,288회.",
   "next_action": "모든 에피소드를 마친 뒤 성공·실패·경로와 영상을 저장",
-  "updated_at": "2026-10-16T12:09:33+09:00",
+  "updated_at": "2026-10-16T12:38:52+09:00",
   "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
   "training": {
     "trial": "3d-near-ppo-seed11",
