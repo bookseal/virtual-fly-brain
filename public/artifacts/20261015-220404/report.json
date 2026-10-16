@@ -1,12 +1,12 @@
 {
   "run_id": "20261015-220404",
-  "generated_at": "2026-10-16T09:19:26+09:00",
-  "elapsed_hours": 11.256054000258446,
+  "generated_at": "2026-10-16T13:44:52+09:00",
+  "elapsed_hours": 15.413301823271645,
   "verdict": {
     "record_system": {
       "status": "partial",
-      "intervals": 68,
-      "rendered": 68,
+      "intervals": 94,
+      "rendered": 94,
       "gaps": 1
     },
     "3d_execution": {
@@ -30,7 +30,14 @@
           "after_timesteps": 10240,
           "before_record": "artifacts/20261015-220404/evaluations/1792072274131695000-3d-near-bc-ppo-seed11-bc-initial-fixed.json",
           "after_record": "artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json",
-          "holdout": []
+          "holdout": [
+            {
+              "success_rate": 1.0,
+              "episodes": 30,
+              "record_url": "artifacts/20261015-220404/evaluations/1792121938054123000-3d-near-bc-ppo-seed11-bc-ppo-holdout.json",
+              "timesteps": 10240
+            }
+          ]
         },
         {
           "trial": "3d-near-bc-ppo-seed29",
@@ -46,7 +53,14 @@
           "after_timesteps": 10240,
           "before_record": "artifacts/20261015-220404/evaluations/1792086518725662000-3d-near-bc-ppo-seed29-bc-initial-fixed.json",
           "after_record": "artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json",
-          "holdout": []
+          "holdout": [
+            {
+              "success_rate": 1.0,
+              "episodes": 30,
+              "record_url": "artifacts/20261015-220404/evaluations/1792123719473640000-3d-near-bc-ppo-seed29-bc-ppo-holdout.json",
+              "timesteps": 10240
+            }
+          ]
         },
         {
           "trial": "3d-near-bc-ppo-seed47",
@@ -59,10 +73,17 @@
           "comparable_seeds": true,
           "comparable_protocol": false,
           "before_timesteps": 0,
-          "after_timesteps": 2048,
+          "after_timesteps": 10240,
           "before_record": "artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json",
-          "after_record": "artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json",
-          "holdout": []
+          "after_record": "artifacts/20261015-220404/evaluations/1792116921507696000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json",
+          "holdout": [
+            {
+              "success_rate": 1.0,
+              "episodes": 30,
+              "record_url": "artifacts/20261015-220404/evaluations/1792124799728998000-3d-near-bc-ppo-seed47-bc-ppo-holdout.json",
+              "timesteps": 10240
+            }
+          ]
         },
         {
           "trial": "3d-near-ppo-seed11",
@@ -73,12 +94,19 @@
           "change_pp": -20.0,
           "fixed_episodes": 20,
           "comparable_seeds": true,
-          "comparable_protocol": true,
+          "comparable_protocol": false,
           "before_timesteps": 0,
-          "after_timesteps": 10240,
+          "after_timesteps": 12288,
           "before_record": "artifacts/20261015-220404/evaluations/1792071362605026000-3d-near-ppo-seed11-untrained-fixed.json",
-          "after_record": "artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json",
-          "holdout": []
+          "after_record": "artifacts/20261015-220404/evaluations/1792117941772802000-3d-near-ppo-seed11-ppo-fixed.json",
+          "holdout": [
+            {
+              "success_rate": 0.0,
+              "episodes": 30,
+              "record_url": "artifacts/20261015-220404/evaluations/1792120178562457000-3d-near-ppo-seed11-ppo-holdout.json",
+              "timesteps": 12288
+            }
+          ]
         },
         {
           "trial": "3d-near-ppo-seed29",
@@ -94,23 +122,37 @@
           "after_timesteps": 10240,
           "before_record": "artifacts/20261015-220404/evaluations/1792085633959981000-3d-near-ppo-seed29-untrained-fixed.json",
           "after_record": "artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json",
-          "holdout": []
+          "holdout": [
+            {
+              "success_rate": 0.2,
+              "episodes": 30,
+              "record_url": "artifacts/20261015-220404/evaluations/1792122067495101000-3d-near-ppo-seed29-ppo-holdout.json",
+              "timesteps": 10240
+            }
+          ]
         },
         {
           "trial": "3d-near-ppo-seed47",
           "backend": "3d",
           "initial_policy": "untrained",
           "before": 0.2,
-          "after": 0.05,
-          "change_pp": -15.0,
+          "after": 1.0,
+          "change_pp": 80.0,
           "fixed_episodes": 20,
           "comparable_seeds": true,
           "comparable_protocol": false,
           "before_timesteps": 0,
-          "after_timesteps": 4096,
+          "after_timesteps": 10240,
           "before_record": "artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json",
-          "after_record": "artifacts/20261015-220404/evaluations/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.json",
-          "holdout": []
+          "after_record": "artifacts/20261015-220404/evaluations/1792112042717220000-3d-near-ppo-seed47-ppo-fixed.json",
+          "holdout": [
+            {
+              "success_rate": 1.0,
+              "episodes": 30,
+              "record_url": "artifacts/20261015-220404/evaluations/1792123863912878000-3d-near-ppo-seed47-ppo-holdout.json",
+              "timesteps": 10240
+            }
+          ]
         }
       ],
       "interpretation": "같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다."
@@ -120,11 +162,11 @@
       "holdout_results": []
     },
     "replication": {
-      "status": "not_confirmed",
+      "status": "observed",
       "matched_budgets": [
         {
           "online_timesteps": 10240,
-          "completed_pairs": 2,
+          "completed_pairs": 3,
           "planned_pairs": 3,
           "pairs": [
             {
@@ -168,10 +210,31 @@
                 "physics_error_policy": "raise",
                 "environment_version": "food-v2-action-affine"
               }
+            },
+            {
+              "seed": 47,
+              "ppo": 1.0,
+              "bc_ppo": 1.0,
+              "difference_pp": 0.0,
+              "records": [
+                "artifacts/20261015-220404/evaluations/1792112042717220000-3d-near-ppo-seed47-ppo-fixed.json",
+                "artifacts/20261015-220404/evaluations/1792116921507696000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json"
+              ],
+              "evaluation_contract": {
+                "evaluation_suite": "3094622ba4a9",
+                "backend": "3d",
+                "task": "food-near",
+                "curriculum": "near",
+                "reward_mode": "dense",
+                "max_steps": 120,
+                "action_mode": "normalized",
+                "physics_error_policy": "terminate",
+                "environment_version": "food-v2-action-affine"
+              }
             }
           ],
-          "evaluation_protocol_count": 1,
-          "mean_difference_pp": 97.5,
+          "evaluation_protocol_count": 2,
+          "mean_difference_pp": null,
           "aggregation_note": "평가 규약이 여러 개이면 seed별 쌍은 보존하되 하나의 평균으로 합치지 않습니다."
         },
         {
@@ -232,6 +295,18 @@
       "kind": "error",
       "title": "호환성 측정의 기존 환경 실행 경로 수정",
       "detail": "가상환경 Python의 심볼릭 링크를 실제 인터프리터 경로로 풀어 실행하면서 numpy를 읽지 못했습니다. 모델 문제가 아니며 올바른 가상환경 경로로 재실행합니다."
+    },
+    {
+      "id": "26e46c72edc141a4a251cdd039f616d0",
+      "at": "2026-10-16T09:45:42+09:00",
+      "epoch": 1792111542.475914,
+      "actor": "local-script",
+      "kind": "error",
+      "title": "수치 시뮬레이션 실패 · 해당 에피소드 종료",
+      "trial": "3d-near-noise-v2-control-seed29",
+      "timesteps": 1748,
+      "evidence": "artifacts/20261015-220404/failures/1792111542474629000.json",
+      "detail": "성공·넘어짐과 구분합니다. 마지막 유효 관찰값으로 종료하고 다음 에피소드에서 재시작합니다."
     }
   ],
   "remaining": [
@@ -241,11 +316,11 @@
   "reproduction": "See README.md and per-evaluation config/seeds/checkpoint/actions.",
   "publication": {
     "status": "deployed",
-    "at": "2026-10-16T09:18:23+09:00",
-    "commit": "fb0cf5b926ed2a211569709fb6e4b460884b5129",
-    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/fb0cf5b926ed2a211569709fb6e4b460884b5129",
-    "snapshot_at": "2026-10-16T00:17:55+00:00",
+    "at": "2026-10-16T13:11:36+09:00",
+    "commit": "c133bb074a68b172bc2c344df90eefd45cae97d5",
+    "commit_url": "https://github.com/bookseal/virtual-fly-brain/commit/c133bb074a68b172bc2c344df90eefd45cae97d5",
+    "snapshot_at": "2026-10-16T04:11:29+00:00",
     "url": "https://bookseal.github.io/virtual-fly-brain/",
-    "verified_at": "2026-10-16T09:19:00+09:00"
+    "verified_at": "2026-10-16T13:12:25+09:00"
   }
 }

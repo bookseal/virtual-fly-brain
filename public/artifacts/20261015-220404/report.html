@@ -1,12 +1,12 @@
-<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly Brain Lab 공개 보고서</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:32px auto;padding:20px;background:#f7f8fa;color:#22313e}section{padding:18px;background:white;border:1px solid #ddd;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:12px;text-align:left;border-bottom:1px solid #ddd;vertical-align:top}td:first-child{overflow-wrap:anywhere;min-width:150px}summary{cursor:pointer;padding:12px 0}a{color:#145c6a}</style><h1>실험 결과 · 공개 기록</h1><p>생성 시각 2026-10-16T09:19:26+09:00. 공개 시점의 관측 결과입니다.</p><p>먹이 위치를 알려 준 가상 몸의 이동 정책을 비교합니다. 실제 초파리의 뇌나 생물학적 학습을 재현한 결과가 아닙니다.</p><section><h2>10분 시각 기록 · 일부 지연</h2><p>기록 68개 · 영상 완료 68개 · 기록 지연 1개</p><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fly Brain Lab 공개 보고서</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:32px auto;padding:20px;background:#f7f8fa;color:#22313e}section{padding:18px;background:white;border:1px solid #ddd;border-radius:12px;margin:16px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:12px;text-align:left;border-bottom:1px solid #ddd;vertical-align:top}td:first-child{overflow-wrap:anywhere;min-width:150px}summary{cursor:pointer;padding:12px 0}a{color:#145c6a}</style><h1>실험 결과 · 공개 기록</h1><p>생성 시각 2026-10-16T13:44:52+09:00. 공개 시점의 관측 결과입니다.</p><p>먹이 위치를 알려 준 가상 몸의 이동 정책을 비교합니다. 실제 초파리의 뇌나 생물학적 학습을 재현한 결과가 아닙니다.</p><section><h2>10분 시각 기록 · 일부 지연</h2><p>기록 94개 · 영상 완료 94개 · 기록 지연 1개</p><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
   &quot;status&quot;: &quot;partial&quot;,
-  &quot;intervals&quot;: 68,
-  &quot;rendered&quot;: 68,
+  &quot;intervals&quot;: 94,
+  &quot;rendered&quot;: 94,
   &quot;gaps&quot;: 1
 }</pre></details></section><section><h2>실제 3D 몸 실행 · 확보</h2><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
   &quot;status&quot;: &quot;pass&quot;,
   &quot;evidence&quot;: &quot;artifacts/20261015-220404/media/1792070388818900000-3d-near-ppo-seed11-rule-fixed.mp4&quot;
-}</pre></details></section><section><h2>정책의 학습 개선 · 아직 확인되지 않음</h2><p>같은 시작 조건뿐 아니라 보상·행동 범위·에피소드 길이·수치 오류 처리도 같아야 개선을 판정합니다. 학습량이 다른 최종 결과는 같은 예산의 비교가 아닙니다.</p><div class="table-wrap"><table><tr><th>실험</th><th>학습 전</th><th>학습 후</th><th>비교 조건</th><th>새 조건 평가</th></tr><tr><td>3d-near-bc-ppo-seed11</td><td><a href="../../artifacts/20261015-220404/evaluations/1792072274131695000-3d-near-bc-ppo-seed11-bc-initial-fixed.json">100%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json">100%</a><br>10240 행동</td><td>같은 평가 규약</td><td>아직 없음</td></tr><tr><td>3d-near-bc-ppo-seed29</td><td><a href="../../artifacts/20261015-220404/evaluations/1792086518725662000-3d-near-bc-ppo-seed29-bc-initial-fixed.json">100%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json">100%</a><br>10240 행동</td><td>같은 평가 규약</td><td>아직 없음</td></tr><tr><td>3d-near-bc-ppo-seed47</td><td><a href="../../artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json">100%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json">100%</a><br>2048 행동</td><td>평가 규약 변경 · 개선 판정 제외</td><td>아직 없음</td></tr><tr><td>3d-near-ppo-seed11</td><td><a href="../../artifacts/20261015-220404/evaluations/1792071362605026000-3d-near-ppo-seed11-untrained-fixed.json">20%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json">0%</a><br>10240 행동</td><td>같은 평가 규약</td><td>아직 없음</td></tr><tr><td>3d-near-ppo-seed29</td><td><a href="../../artifacts/20261015-220404/evaluations/1792085633959981000-3d-near-ppo-seed29-untrained-fixed.json">20%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json">5%</a><br>10240 행동</td><td>같은 평가 규약</td><td>아직 없음</td></tr><tr><td>3d-near-ppo-seed47</td><td><a href="../../artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json">20%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.json">5%</a><br>4096 행동</td><td>평가 규약 변경 · 개선 판정 제외</td><td>아직 없음</td></tr></table></div><p>같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다.</p><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
+}</pre></details></section><section><h2>정책의 학습 개선 · 아직 확인되지 않음</h2><p>같은 시작 조건뿐 아니라 보상·행동 범위·에피소드 길이·수치 오류 처리도 같아야 개선을 판정합니다. 학습량이 다른 최종 결과는 같은 예산의 비교가 아닙니다.</p><div class="table-wrap"><table><tr><th>실험</th><th>학습 전</th><th>학습 후</th><th>비교 조건</th><th>새 조건 평가</th></tr><tr><td>3d-near-bc-ppo-seed11</td><td><a href="../../artifacts/20261015-220404/evaluations/1792072274131695000-3d-near-bc-ppo-seed11-bc-initial-fixed.json">100%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json">100%</a><br>10240 행동</td><td>같은 평가 규약</td><td>100% / 30회 · 10240 행동</td></tr><tr><td>3d-near-bc-ppo-seed29</td><td><a href="../../artifacts/20261015-220404/evaluations/1792086518725662000-3d-near-bc-ppo-seed29-bc-initial-fixed.json">100%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json">100%</a><br>10240 행동</td><td>같은 평가 규약</td><td>100% / 30회 · 10240 행동</td></tr><tr><td>3d-near-bc-ppo-seed47</td><td><a href="../../artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json">100%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792116921507696000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json">100%</a><br>10240 행동</td><td>평가 규약 변경 · 개선 판정 제외</td><td>100% / 30회 · 10240 행동</td></tr><tr><td>3d-near-ppo-seed11</td><td><a href="../../artifacts/20261015-220404/evaluations/1792071362605026000-3d-near-ppo-seed11-untrained-fixed.json">20%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792117941772802000-3d-near-ppo-seed11-ppo-fixed.json">0%</a><br>12288 행동</td><td>평가 규약 변경 · 개선 판정 제외</td><td>0% / 30회 · 12288 행동</td></tr><tr><td>3d-near-ppo-seed29</td><td><a href="../../artifacts/20261015-220404/evaluations/1792085633959981000-3d-near-ppo-seed29-untrained-fixed.json">20%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json">5%</a><br>10240 행동</td><td>같은 평가 규약</td><td>20% / 30회 · 10240 행동</td></tr><tr><td>3d-near-ppo-seed47</td><td><a href="../../artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json">20%</a></td><td><a href="../../artifacts/20261015-220404/evaluations/1792112042717220000-3d-near-ppo-seed47-ppo-fixed.json">100%</a><br>10240 행동</td><td>평가 규약 변경 · 개선 판정 제외</td><td>100% / 30회 · 10240 행동</td></tr></table></div><p>같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다.</p><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
   &quot;status&quot;: &quot;not_confirmed&quot;,
   &quot;comparisons&quot;: [
     {
@@ -23,7 +23,14 @@
       &quot;after_timesteps&quot;: 10240,
       &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792072274131695000-3d-near-bc-ppo-seed11-bc-initial-fixed.json&quot;,
       &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792085540688209000-3d-near-bc-ppo-seed11-bc-ppo-fixed.json&quot;,
-      &quot;holdout&quot;: []
+      &quot;holdout&quot;: [
+        {
+          &quot;success_rate&quot;: 1.0,
+          &quot;episodes&quot;: 30,
+          &quot;record_url&quot;: &quot;artifacts/20261015-220404/evaluations/1792121938054123000-3d-near-bc-ppo-seed11-bc-ppo-holdout.json&quot;,
+          &quot;timesteps&quot;: 10240
+        }
+      ]
     },
     {
       &quot;trial&quot;: &quot;3d-near-bc-ppo-seed29&quot;,
@@ -39,7 +46,14 @@
       &quot;after_timesteps&quot;: 10240,
       &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792086518725662000-3d-near-bc-ppo-seed29-bc-initial-fixed.json&quot;,
       &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792099452101441000-3d-near-bc-ppo-seed29-bc-ppo-fixed.json&quot;,
-      &quot;holdout&quot;: []
+      &quot;holdout&quot;: [
+        {
+          &quot;success_rate&quot;: 1.0,
+          &quot;episodes&quot;: 30,
+          &quot;record_url&quot;: &quot;artifacts/20261015-220404/evaluations/1792123719473640000-3d-near-bc-ppo-seed29-bc-ppo-holdout.json&quot;,
+          &quot;timesteps&quot;: 10240
+        }
+      ]
     },
     {
       &quot;trial&quot;: &quot;3d-near-bc-ppo-seed47&quot;,
@@ -52,10 +66,17 @@
       &quot;comparable_seeds&quot;: true,
       &quot;comparable_protocol&quot;: false,
       &quot;before_timesteps&quot;: 0,
-      &quot;after_timesteps&quot;: 2048,
+      &quot;after_timesteps&quot;: 10240,
       &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792100433162611000-3d-near-bc-ppo-seed47-bc-initial-fixed.json&quot;,
-      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792106619106610000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json&quot;,
-      &quot;holdout&quot;: []
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792116921507696000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: [
+        {
+          &quot;success_rate&quot;: 1.0,
+          &quot;episodes&quot;: 30,
+          &quot;record_url&quot;: &quot;artifacts/20261015-220404/evaluations/1792124799728998000-3d-near-bc-ppo-seed47-bc-ppo-holdout.json&quot;,
+          &quot;timesteps&quot;: 10240
+        }
+      ]
     },
     {
       &quot;trial&quot;: &quot;3d-near-ppo-seed11&quot;,
@@ -66,12 +87,19 @@
       &quot;change_pp&quot;: -20.0,
       &quot;fixed_episodes&quot;: 20,
       &quot;comparable_seeds&quot;: true,
-      &quot;comparable_protocol&quot;: true,
+      &quot;comparable_protocol&quot;: false,
       &quot;before_timesteps&quot;: 0,
-      &quot;after_timesteps&quot;: 10240,
+      &quot;after_timesteps&quot;: 12288,
       &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792071362605026000-3d-near-ppo-seed11-untrained-fixed.json&quot;,
-      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792080302006508000-3d-near-ppo-seed11-ppo-fixed.json&quot;,
-      &quot;holdout&quot;: []
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792117941772802000-3d-near-ppo-seed11-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: [
+        {
+          &quot;success_rate&quot;: 0.0,
+          &quot;episodes&quot;: 30,
+          &quot;record_url&quot;: &quot;artifacts/20261015-220404/evaluations/1792120178562457000-3d-near-ppo-seed11-ppo-holdout.json&quot;,
+          &quot;timesteps&quot;: 12288
+        }
+      ]
     },
     {
       &quot;trial&quot;: &quot;3d-near-ppo-seed29&quot;,
@@ -87,35 +115,49 @@
       &quot;after_timesteps&quot;: 10240,
       &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792085633959981000-3d-near-ppo-seed29-untrained-fixed.json&quot;,
       &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792094231400668000-3d-near-ppo-seed29-ppo-fixed.json&quot;,
-      &quot;holdout&quot;: []
+      &quot;holdout&quot;: [
+        {
+          &quot;success_rate&quot;: 0.2,
+          &quot;episodes&quot;: 30,
+          &quot;record_url&quot;: &quot;artifacts/20261015-220404/evaluations/1792122067495101000-3d-near-ppo-seed29-ppo-holdout.json&quot;,
+          &quot;timesteps&quot;: 10240
+        }
+      ]
     },
     {
       &quot;trial&quot;: &quot;3d-near-ppo-seed47&quot;,
       &quot;backend&quot;: &quot;3d&quot;,
       &quot;initial_policy&quot;: &quot;untrained&quot;,
       &quot;before&quot;: 0.2,
-      &quot;after&quot;: 0.05,
-      &quot;change_pp&quot;: -15.0,
+      &quot;after&quot;: 1.0,
+      &quot;change_pp&quot;: 80.0,
       &quot;fixed_episodes&quot;: 20,
       &quot;comparable_seeds&quot;: true,
       &quot;comparable_protocol&quot;: false,
       &quot;before_timesteps&quot;: 0,
-      &quot;after_timesteps&quot;: 4096,
+      &quot;after_timesteps&quot;: 10240,
       &quot;before_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792099554404588000-3d-near-ppo-seed47-untrained-fixed.json&quot;,
-      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792107765481822000-3d-near-ppo-seed47-ppo-fixed.json&quot;,
-      &quot;holdout&quot;: []
+      &quot;after_record&quot;: &quot;artifacts/20261015-220404/evaluations/1792112042717220000-3d-near-ppo-seed47-ppo-fixed.json&quot;,
+      &quot;holdout&quot;: [
+        {
+          &quot;success_rate&quot;: 1.0,
+          &quot;episodes&quot;: 30,
+          &quot;record_url&quot;: &quot;artifacts/20261015-220404/evaluations/1792123863912878000-3d-near-ppo-seed47-ppo-holdout.json&quot;,
+          &quot;timesteps&quot;: 10240
+        }
+      ]
     }
   ],
   &quot;interpretation&quot;: &quot;같은 조건에서 관측한 차이이며 통계적 확정이나 생물학적 학습의 재현을 뜻하지 않습니다.&quot;
 }</pre></details></section><section><h2>장애물 회피 · 시작 전</h2><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
   &quot;status&quot;: &quot;not_started&quot;,
   &quot;holdout_results&quot;: []
-}</pre></details></section><section><h2>세 학습 seed의 같은 학습량 비교 · 아직 확인되지 않음</h2><p>같은 온라인 행동 예산과 평가 조건에서만 seed별 차이를 계산합니다. B 경로는 별도 시범 비용이 있으며, 세 seed의 차이를 통계적 확정으로 해석하지 않습니다.</p><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
-  &quot;status&quot;: &quot;not_confirmed&quot;,
+}</pre></details></section><section><h2>세 학습 seed의 같은 학습량 비교 · 관측됨</h2><p>같은 온라인 행동 예산과 평가 조건에서만 seed별 차이를 계산합니다. B 경로는 별도 시범 비용이 있으며, 세 seed의 차이를 통계적 확정으로 해석하지 않습니다.</p><details><summary>계산 근거와 원본 참조 펼치기</summary><pre>{
+  &quot;status&quot;: &quot;observed&quot;,
   &quot;matched_budgets&quot;: [
     {
       &quot;online_timesteps&quot;: 10240,
-      &quot;completed_pairs&quot;: 2,
+      &quot;completed_pairs&quot;: 3,
       &quot;planned_pairs&quot;: 3,
       &quot;pairs&quot;: [
         {
@@ -159,10 +201,31 @@
             &quot;physics_error_policy&quot;: &quot;raise&quot;,
             &quot;environment_version&quot;: &quot;food-v2-action-affine&quot;
           }
+        },
+        {
+          &quot;seed&quot;: 47,
+          &quot;ppo&quot;: 1.0,
+          &quot;bc_ppo&quot;: 1.0,
+          &quot;difference_pp&quot;: 0.0,
+          &quot;records&quot;: [
+            &quot;artifacts/20261015-220404/evaluations/1792112042717220000-3d-near-ppo-seed47-ppo-fixed.json&quot;,
+            &quot;artifacts/20261015-220404/evaluations/1792116921507696000-3d-near-bc-ppo-seed47-bc-ppo-fixed.json&quot;
+          ],
+          &quot;evaluation_contract&quot;: {
+            &quot;evaluation_suite&quot;: &quot;3094622ba4a9&quot;,
+            &quot;backend&quot;: &quot;3d&quot;,
+            &quot;task&quot;: &quot;food-near&quot;,
+            &quot;curriculum&quot;: &quot;near&quot;,
+            &quot;reward_mode&quot;: &quot;dense&quot;,
+            &quot;max_steps&quot;: 120,
+            &quot;action_mode&quot;: &quot;normalized&quot;,
+            &quot;physics_error_policy&quot;: &quot;terminate&quot;,
+            &quot;environment_version&quot;: &quot;food-v2-action-affine&quot;
+          }
         }
       ],
-      &quot;evaluation_protocol_count&quot;: 1,
-      &quot;mean_difference_pp&quot;: 97.5,
+      &quot;evaluation_protocol_count&quot;: 2,
+      &quot;mean_difference_pp&quot;: null,
       &quot;aggregation_note&quot;: &quot;평가 규약이 여러 개이면 seed별 쌍은 보존하되 하나의 평균으로 합치지 않습니다.&quot;
     },
     {
