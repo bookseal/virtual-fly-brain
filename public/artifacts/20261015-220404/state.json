@@ -6,29 +6,29 @@
   "change": "3d-near-bc-ppo-seed47: 정규화한 행동, dense 보상",
   "result": "정책을 업데이트하는 중입니다. 성능 판정은 분리된 평가 결과로 합니다.",
   "next_action": "10,240 행동 경계와 주기적 고정 평가에서 비교",
-  "updated_at": "2026-10-16T10:06:13+09:00",
+  "updated_at": "2026-10-16T10:35:08+09:00",
   "model_note": "로컬 프로그램이 승인된 비교 순서를 실행합니다. GPT의 해석은 연구자의 선택에 별도로 기록합니다.",
   "training": {
     "trial": "3d-near-bc-ppo-seed47",
-    "timesteps": 2188,
-    "steps_this_segment": 140,
-    "decisions_per_second": 1.865502915615535,
+    "timesteps": 5460,
+    "steps_this_segment": 1364,
+    "decisions_per_second": 2.0170935005502617,
     "reward_terms_sum": {
-      "approach": 25.03198036861715,
-      "arrival": 60.0,
-      "time": -3.4999999999999916,
+      "approach": 331.82435465755907,
+      "arrival": 1100.0,
+      "time": -34.099999999999135,
       "collision": 0.0,
       "flip": 0.0
     },
-    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000002048.zip",
+    "checkpoint": "artifacts/20261015-220404/checkpoints/3d-near-bc-ppo-seed47/step-000005376.zip",
     "action_mean": [
-      0.26750064907329424,
-      0.44013956412672994
+      0.6065540166894012,
+      0.4286987118401136
     ],
     "action_std": [
-      1.2313008202493019,
-      1.1798251355426335
+      1.3253091495725822,
+      1.249170626238376
     ],
-    "action_clipped_fraction": 0.39285714285714285
+    "action_clipped_fraction": 0.4750733137829912
   }
 }
